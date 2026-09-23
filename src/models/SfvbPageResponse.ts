@@ -39,6 +39,12 @@ export interface SfvbPageResponse {
      */
     attributes?: Array<SfvbPageAttribute>;
     /**
+     * The page description, the text a page template renders as the page's description.  Omitted when empty.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    description?: string;
+    /**
      * True when the page is left out of the sitemap and marked noindex.
      * @type {boolean}
      * @memberof SfvbPageResponse
@@ -110,6 +116,7 @@ export function SfvbPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : ((json['attributes'] as Array<any>).map(SfvbPageAttributeFromJSON)),
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'group_template': !exists(json, 'group_template') ? undefined : json['group_template'],
         'item_template': !exists(json, 'item_template') ? undefined : json['item_template'],
@@ -131,6 +138,7 @@ export function SfvbPageResponseToJSON(value?: SfvbPageResponse | null): any {
     return {
         
         'attributes': value.attributes === undefined ? undefined : ((value.attributes as Array<any>).map(SfvbPageAttributeToJSON)),
+        'description': value.description,
         'exclude_from_sitemap': value.exclude_from_sitemap,
         'group_template': value.group_template,
         'item_template': value.item_template,

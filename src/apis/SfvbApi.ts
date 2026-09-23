@@ -219,9 +219,24 @@ import {
     SfvbThemesResponse,
     SfvbThemesResponseFromJSON,
     SfvbThemesResponseToJSON,
+    SfvbUpsellOffer,
+    SfvbUpsellOfferFromJSON,
+    SfvbUpsellOfferToJSON,
     SfvbUpsellOffersResponse,
     SfvbUpsellOffersResponseFromJSON,
     SfvbUpsellOffersResponseToJSON,
+    SfvbUpsellPath,
+    SfvbUpsellPathFromJSON,
+    SfvbUpsellPathToJSON,
+    SfvbUpsellPathDuplicateRequest,
+    SfvbUpsellPathDuplicateRequestFromJSON,
+    SfvbUpsellPathDuplicateRequestToJSON,
+    SfvbUpsellPathMoveRequest,
+    SfvbUpsellPathMoveRequestFromJSON,
+    SfvbUpsellPathMoveRequestToJSON,
+    SfvbUpsellPathsResponse,
+    SfvbUpsellPathsResponseFromJSON,
+    SfvbUpsellPathsResponseToJSON,
     SfvbValidateRequest,
     SfvbValidateRequestFromJSON,
     SfvbValidateRequestToJSON,
@@ -254,6 +269,11 @@ export interface AddSfvbPageItemsRequest {
     pageItemsAddRequest: SfvbPageItemsAddRequest;
 }
 
+export interface ArchiveSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+}
+
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
 }
@@ -271,6 +291,13 @@ export interface DeleteSfvbFileRequest {
     storefrontOid: number;
     ifMatch: string;
     path?: string;
+}
+
+export interface DeleteSfvbItemAttributeRequest {
+    storefrontOid: number;
+    name: string;
+    merchantItemId?: string;
+    merchantItemOid?: number;
 }
 
 export interface DeleteSfvbItemMultimediaRequest {
@@ -293,6 +320,16 @@ export interface DeleteSfvbPreviewSessionRequest {
     previewSessionId: string;
 }
 
+export interface DisableSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOfferOid: number;
+}
+
+export interface DisableSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+}
+
 export interface DownloadSfvbFileRequest {
     storefrontOid: number;
     path?: string;
@@ -307,6 +344,17 @@ export interface DuplicateSfvbThemeRequest {
     storefrontOid: number;
     themeOid: number;
     duplicateRequest: SfvbThemeDuplicateRequest;
+}
+
+export interface DuplicateSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOfferOid: number;
+}
+
+export interface DuplicateSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+    duplicateRequest?: SfvbUpsellPathDuplicateRequest;
 }
 
 export interface EndSfvbExperimentRequest {
@@ -424,9 +472,37 @@ export interface GetSfvbThemeJobRequest {
     jobId: number;
 }
 
+export interface GetSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOfferOid: number;
+    stats?: boolean;
+    statsStart?: string;
+    statsEnd?: string;
+    statsWeekdays?: string;
+}
+
+export interface GetSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+    stats?: boolean;
+    statsStart?: string;
+    statsEnd?: string;
+    statsWeekdays?: string;
+}
+
 export interface InsertSfvbPageRequest {
     storefrontOid: number;
     pageCreateRequest: SfvbPageCreateRequest;
+}
+
+export interface InsertSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOffer: SfvbUpsellOffer;
+}
+
+export interface InsertSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPath: SfvbUpsellPath;
 }
 
 export interface InstallSfvbLibraryEntryRequest {
@@ -493,6 +569,29 @@ export interface ListSfvbThemesRequest {
 
 export interface ListSfvbUpsellOffersRequest {
     storefrontOid: number;
+    stats?: boolean;
+    statsStart?: string;
+    statsEnd?: string;
+    statsWeekdays?: string;
+}
+
+export interface ListSfvbUpsellPathsRequest {
+    storefrontOid: number;
+    status?: string;
+    location?: string;
+    search?: string;
+    stats?: boolean;
+    statsStart?: string;
+    statsEnd?: string;
+    statsWeekdays?: string;
+    maxResults?: number;
+    offset?: number;
+}
+
+export interface MoveSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+    moveRequest: SfvbUpsellPathMoveRequest;
 }
 
 export interface PutSfvbContainerRequest {
@@ -651,6 +750,25 @@ export interface StartSfvbExperimentRequest {
     experimentStartRequest: SfvbExperimentStartRequest;
 }
 
+export interface UnarchiveSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+}
+
+export interface UpdateSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOfferOid: number;
+    ifMatch: string;
+    upsellOffer: SfvbUpsellOffer;
+}
+
+export interface UpdateSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+    ifMatch: string;
+    upsellPath: SfvbUpsellPath;
+}
+
 export interface UploadSfvbFileRequest {
     storefrontOid: number;
     fileUploadRequest: SfvbFileUploadRequest;
@@ -709,6 +827,23 @@ export interface SfvbApiInterface {
      * Assign items to a page
      */
     addSfvbPageItems(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
+
+    /**
+     * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
+     * @summary Archive an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    archiveSfvbUpsellPathRaw(requestParameters: ArchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
+     * Archive an upsell path
+     */
+    archiveSfvbUpsellPath(requestParameters: ArchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
@@ -778,6 +913,25 @@ export interface SfvbApiInterface {
     deleteSfvbFile(requestParameters: DeleteSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Removes one attribute that no template on the item\'s pages declares - a test name, a misspelling, one a retired template used.  A declared attribute is refused, because the template would list it again, empty; send an empty value through the attributes update to clear one of those instead. 
+     * @summary Delete an attribute from an item
+     * @param {number} storefrontOid 
+     * @param {string} name The attribute name, matched without regard to case
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbItemAttributeRaw(requestParameters: DeleteSfvbItemAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Removes one attribute that no template on the item\'s pages declares - a test name, a misspelling, one a retired template used.  A declared attribute is refused, because the template would list it again, empty; send an empty value through the attributes update to clear one of those instead. 
+     * Delete an attribute from an item
+     */
+    deleteSfvbItemAttribute(requestParameters: DeleteSfvbItemAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
      * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
      * @summary Detach an image from an item
      * @param {number} storefrontOid 
@@ -834,6 +988,40 @@ export interface SfvbApiInterface {
     deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
+     * @summary Disable an upsell offer
+     * @param {number} storefrontOid 
+     * @param {number} upsellOfferOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    disableSfvbUpsellOfferRaw(requestParameters: DisableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell offer
+     */
+    disableSfvbUpsellOffer(requestParameters: DisableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * Switches the path off.  Disabling a running path is a live change and needs sfvb_publish.  A path that is already off is returned unchanged.  There is no delete. 
+     * @summary Disable an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    disableSfvbUpsellPathRaw(requestParameters: DisableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Switches the path off.  Disabling a running path is a live change and needs sfvb_publish.  A path that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell path
+     */
+    disableSfvbUpsellPath(requestParameters: DisableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
      * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
      * @summary Read a storefront file\'s raw bytes
      * @param {number} storefrontOid 
@@ -884,6 +1072,41 @@ export interface SfvbApiInterface {
      * Duplicate a theme
      */
     duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
+
+    /**
+     * A copy named Copy of, switched off, with its own copy of the container.  Put it on a path with a path update to have it shown. 
+     * @summary Duplicate an upsell offer
+     * @param {number} storefrontOid 
+     * @param {number} upsellOfferOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    duplicateSfvbUpsellOfferRaw(requestParameters: DuplicateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * A copy named Copy of, switched off, with its own copy of the container.  Put it on a path with a path update to have it shown. 
+     * Duplicate an upsell offer
+     */
+    duplicateSfvbUpsellOffer(requestParameters: DuplicateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * Without a variation, copies the whole path right after it, switched off.  With a variation, appends a copy of that variation to the same path, which needs sfvb_publish when the path is running.  Every offer the copy uses is copied too and switched off.  Within this storefront only. 
+     * @summary Duplicate an upsell path or one of its variations
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {SfvbUpsellPathDuplicateRequest} [duplicateRequest] What to duplicate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    duplicateSfvbUpsellPathRaw(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Without a variation, copies the whole path right after it, switched off.  With a variation, appends a copy of that variation to the same path, which needs sfvb_publish when the path is running.  Every offer the copy uses is copied too and switched off.  Within this storefront only. 
+     * Duplicate an upsell path or one of its variations
+     */
+    duplicateSfvbUpsellPath(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
      * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
@@ -1263,6 +1486,48 @@ export interface SfvbApiInterface {
     getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
 
     /**
+     * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
+     * @summary Get an upsell offer
+     * @param {number} storefrontOid 
+     * @param {number} upsellOfferOid 
+     * @param {boolean} [stats] Include stats
+     * @param {string} [statsStart] Stats window start, YYYY-MM-DD
+     * @param {string} [statsEnd] Stats window end, YYYY-MM-DD
+     * @param {string} [statsWeekdays] Only these weekdays, comma separated mon to sun
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbUpsellOfferRaw(requestParameters: GetSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
+     * Get an upsell offer
+     */
+    getSfvbUpsellOffer(requestParameters: GetSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * The whole path, with the hash an update sends back in If-Match.  Stats as on the list. 
+     * @summary Get an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {boolean} [stats] Include stats
+     * @param {string} [statsStart] Stats window start, YYYY-MM-DD
+     * @param {string} [statsEnd] Stats window end, YYYY-MM-DD
+     * @param {string} [statsWeekdays] Only these weekdays, comma separated mon to sun
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbUpsellPathRaw(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * The whole path, with the hash an update sends back in If-Match.  Stats as on the list. 
+     * Get an upsell path
+     */
+    getSfvbUpsellPath(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
      * The visual builder release channel is per merchant, so a CLI holding cached schema or element data should compare against this to know when it has gone stale. 
      * @summary Compiler version for this merchant
      * @param {*} [options] Override http request option.
@@ -1308,6 +1573,40 @@ export interface SfvbApiInterface {
      * Create a page
      */
     insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * @summary Create an upsell offer
+     * @param {number} storefrontOid 
+     * @param {SfvbUpsellOffer} upsellOffer The offer to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbUpsellOfferRaw(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Create an upsell offer
+     */
+    insertSfvbUpsellOffer(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * @summary Create an upsell path
+     * @param {number} storefrontOid 
+     * @param {SfvbUpsellPath} upsellPath The path to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbUpsellPathRaw(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Create an upsell path
+     */
+    insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
      * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
@@ -1521,9 +1820,13 @@ export interface SfvbApiInterface {
     listSfvbThemes(requestParameters: ListSfvbThemesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemesResponse>;
 
     /**
-     * Without container JSON, so the funnel can be surveyed cheaply.  A large container size alongside a small element count is the signature of markup pasted into a single html element. 
+     * Every offer on one of this storefront\'s paths that are not archived, the same list the admin shows, with each offer\'s full settings but not its container JSON.  An offer on no path yet is still read by oid.  A large container size alongside a small element count is the signature of markup pasted into a single html element.  Stats as on the path list. 
      * @summary List upsell offers
      * @param {number} storefrontOid 
+     * @param {boolean} [stats] Include stats
+     * @param {string} [statsStart] Stats window start, YYYY-MM-DD
+     * @param {string} [statsEnd] Stats window end, YYYY-MM-DD
+     * @param {string} [statsWeekdays] Only these weekdays, comma separated mon to sun
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -1531,10 +1834,53 @@ export interface SfvbApiInterface {
     listSfvbUpsellOffersRaw(requestParameters: ListSfvbUpsellOffersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffersResponse>>;
 
     /**
-     * Without container JSON, so the funnel can be surveyed cheaply.  A large container size alongside a small element count is the signature of markup pasted into a single html element. 
+     * Every offer on one of this storefront\'s paths that are not archived, the same list the admin shows, with each offer\'s full settings but not its container JSON.  An offer on no path yet is still read by oid.  A large container size alongside a small element count is the signature of markup pasted into a single html element.  Stats as on the path list. 
      * List upsell offers
      */
     listSfvbUpsellOffers(requestParameters: ListSfvbUpsellOffersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffersResponse>;
+
+    /**
+     * In path order, first to last.  status current (the default) leaves out archived paths.  Stats are computed only with stats=true, over stats_start to stats_end (YYYY-MM-DD, the last 30 days when both are omitted, at most 366 days), because they are the expensive part of the read. 
+     * @summary List upsell paths
+     * @param {number} storefrontOid 
+     * @param {string} [status] current, archived or all
+     * @param {string} [location] pre checkout or post checkout
+     * @param {string} [search] Only paths whose name contains this
+     * @param {boolean} [stats] Include stats
+     * @param {string} [statsStart] Stats window start, YYYY-MM-DD
+     * @param {string} [statsEnd] Stats window end, YYYY-MM-DD
+     * @param {string} [statsWeekdays] Only these weekdays, comma separated mon to sun
+     * @param {number} [maxResults] Page size, 1 to 500, default 100
+     * @param {number} [offset] Offset of the first path returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbUpsellPathsRaw(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPathsResponse>>;
+
+    /**
+     * In path order, first to last.  status current (the default) leaves out archived paths.  Stats are computed only with stats=true, over stats_start to stats_end (YYYY-MM-DD, the last 30 days when both are omitted, at most 366 days), because they are the expensive part of the read. 
+     * List upsell paths
+     */
+    listSfvbUpsellPaths(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPathsResponse>;
+
+    /**
+     * Up, down, to the top or to the bottom of the storefront\'s paths.  Order decides which running path a shopper meets first, so moving a running path needs sfvb_publish. 
+     * @summary Move an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {SfvbUpsellPathMoveRequest} moveRequest Where to move it
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    moveSfvbUpsellPathRaw(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Up, down, to the top or to the bottom of the storefront\'s paths.  Order decides which running path a shopper meets first, so moving a running path needs sfvb_publish. 
+     * Move an upsell path
+     */
+    moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
      * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
@@ -1596,7 +1942,7 @@ export interface SfvbApiInterface {
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
 
     /**
-     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Partial - only the attributes named change, and an empty value empties one but keeps it on the item.  To remove an attribute no template declares, use the attribute DELETE.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
      * @summary Change some of an item\'s attributes
      * @param {number} storefrontOid 
      * @param {SfvbItemAttributeUpdateRequest} itemAttributeUpdateRequest Attributes to change
@@ -1609,7 +1955,7 @@ export interface SfvbApiInterface {
     putSfvbItemAttributesRaw(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
 
     /**
-     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Partial - only the attributes named change, and an empty value empties one but keeps it on the item.  To remove an attribute no template declares, use the attribute DELETE.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
      * Change some of an item\'s attributes
      */
     putSfvbItemAttributes(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
@@ -1981,6 +2327,61 @@ export interface SfvbApiInterface {
     startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
 
     /**
+     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * @summary Unarchive an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    unarchiveSfvbUpsellPathRaw(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Unarchive an upsell path
+     */
+    unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * @summary Update an upsell offer
+     * @param {number} storefrontOid 
+     * @param {number} upsellOfferOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbUpsellOffer} upsellOffer The whole offer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbUpsellOfferRaw(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * Update an upsell offer
+     */
+    updateSfvbUpsellOffer(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * @summary Update an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbUpsellPath} upsellPath The whole path
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbUpsellPathRaw(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * Update an upsell path
+     */
+    updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
      * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
      * @summary Store a binary asset that was already uploaded
      * @param {number} storefrontOid 
@@ -2148,6 +2549,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async addSfvbPageItems(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse> {
         const response = await this.addSfvbPageItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
+     * Archive an upsell path
+     */
+    async archiveSfvbUpsellPathRaw(requestParameters: ArchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling archiveSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling archiveSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/archive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
+     * Archive an upsell path
+     */
+    async archiveSfvbUpsellPath(requestParameters: ArchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.archiveSfvbUpsellPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2333,6 +2779,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Removes one attribute that no template on the item\'s pages declares - a test name, a misspelling, one a retired template used.  A declared attribute is refused, because the template would list it again, empty; send an empty value through the attributes update to clear one of those instead. 
+     * Delete an attribute from an item
+     */
+    async deleteSfvbItemAttributeRaw(requestParameters: DeleteSfvbItemAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbItemAttribute.');
+        }
+
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteSfvbItemAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        if (requestParameters.name !== undefined) {
+            queryParameters['name'] = requestParameters.name;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes one attribute that no template on the item\'s pages declares - a test name, a misspelling, one a retired template used.  A declared attribute is refused, because the template would list it again, empty; send an empty value through the attributes update to clear one of those instead. 
+     * Delete an attribute from an item
+     */
+    async deleteSfvbItemAttribute(requestParameters: DeleteSfvbItemAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.deleteSfvbItemAttributeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
      * Detach an image from an item
      */
@@ -2491,6 +2994,96 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell offer
+     */
+    async disableSfvbUpsellOfferRaw(requestParameters: DisableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling disableSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOfferOid === null || requestParameters.upsellOfferOid === undefined) {
+            throw new runtime.RequiredError('upsellOfferOid','Required parameter requestParameters.upsellOfferOid was null or undefined when calling disableSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers/{upsell_offer_oid}/disable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_offer_oid"}}`, encodeURIComponent(String(requestParameters.upsellOfferOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell offer
+     */
+    async disableSfvbUpsellOffer(requestParameters: DisableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.disableSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Switches the path off.  Disabling a running path is a live change and needs sfvb_publish.  A path that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell path
+     */
+    async disableSfvbUpsellPathRaw(requestParameters: DisableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling disableSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling disableSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/disable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Switches the path off.  Disabling a running path is a live change and needs sfvb_publish.  A path that is already off is returned unchanged.  There is no delete. 
+     * Disable an upsell path
+     */
+    async disableSfvbUpsellPath(requestParameters: DisableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.disableSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
      * Read a storefront file\'s raw bytes
      */
@@ -2631,6 +3224,99 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse> {
         const response = await this.duplicateSfvbThemeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A copy named Copy of, switched off, with its own copy of the container.  Put it on a path with a path update to have it shown. 
+     * Duplicate an upsell offer
+     */
+    async duplicateSfvbUpsellOfferRaw(requestParameters: DuplicateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling duplicateSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOfferOid === null || requestParameters.upsellOfferOid === undefined) {
+            throw new runtime.RequiredError('upsellOfferOid','Required parameter requestParameters.upsellOfferOid was null or undefined when calling duplicateSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers/{upsell_offer_oid}/duplicate`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_offer_oid"}}`, encodeURIComponent(String(requestParameters.upsellOfferOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * A copy named Copy of, switched off, with its own copy of the container.  Put it on a path with a path update to have it shown. 
+     * Duplicate an upsell offer
+     */
+    async duplicateSfvbUpsellOffer(requestParameters: DuplicateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.duplicateSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Without a variation, copies the whole path right after it, switched off.  With a variation, appends a copy of that variation to the same path, which needs sfvb_publish when the path is running.  Every offer the copy uses is copied too and switched off.  Within this storefront only. 
+     * Duplicate an upsell path or one of its variations
+     */
+    async duplicateSfvbUpsellPathRaw(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling duplicateSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling duplicateSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/duplicate`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellPathDuplicateRequestToJSON(requestParameters.duplicateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Without a variation, copies the whole path right after it, switched off.  With a variation, appends a copy of that variation to the same path, which needs sfvb_publish when the path is running.  Every offer the copy uses is copied too and switched off.  Within this storefront only. 
+     * Duplicate an upsell path or one of its variations
+     */
+    async duplicateSfvbUpsellPath(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.duplicateSfvbUpsellPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3659,6 +4345,128 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
+     * Get an upsell offer
+     */
+    async getSfvbUpsellOfferRaw(requestParameters: GetSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOfferOid === null || requestParameters.upsellOfferOid === undefined) {
+            throw new runtime.RequiredError('upsellOfferOid','Required parameter requestParameters.upsellOfferOid was null or undefined when calling getSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.stats !== undefined) {
+            queryParameters['stats'] = requestParameters.stats;
+        }
+
+        if (requestParameters.statsStart !== undefined) {
+            queryParameters['stats_start'] = requestParameters.statsStart;
+        }
+
+        if (requestParameters.statsEnd !== undefined) {
+            queryParameters['stats_end'] = requestParameters.statsEnd;
+        }
+
+        if (requestParameters.statsWeekdays !== undefined) {
+            queryParameters['stats_weekdays'] = requestParameters.statsWeekdays;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers/{upsell_offer_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_offer_oid"}}`, encodeURIComponent(String(requestParameters.upsellOfferOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
+     * Get an upsell offer
+     */
+    async getSfvbUpsellOffer(requestParameters: GetSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.getSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The whole path, with the hash an update sends back in If-Match.  Stats as on the list. 
+     * Get an upsell path
+     */
+    async getSfvbUpsellPathRaw(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling getSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.stats !== undefined) {
+            queryParameters['stats'] = requestParameters.stats;
+        }
+
+        if (requestParameters.statsStart !== undefined) {
+            queryParameters['stats_start'] = requestParameters.statsStart;
+        }
+
+        if (requestParameters.statsEnd !== undefined) {
+            queryParameters['stats_end'] = requestParameters.statsEnd;
+        }
+
+        if (requestParameters.statsWeekdays !== undefined) {
+            queryParameters['stats_weekdays'] = requestParameters.statsWeekdays;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * The whole path, with the hash an update sends back in If-Match.  Stats as on the list. 
+     * Get an upsell path
+     */
+    async getSfvbUpsellPath(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.getSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The visual builder release channel is per merchant, so a CLI holding cached schema or element data should compare against this to know when it has gone stale. 
      * Compiler version for this merchant
      */
@@ -3777,6 +4585,102 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
         const response = await this.insertSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Create an upsell offer
+     */
+    async insertSfvbUpsellOfferRaw(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOffer === null || requestParameters.upsellOffer === undefined) {
+            throw new runtime.RequiredError('upsellOffer','Required parameter requestParameters.upsellOffer was null or undefined when calling insertSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellOfferToJSON(requestParameters.upsellOffer),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Create an upsell offer
+     */
+    async insertSfvbUpsellOffer(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.insertSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Create an upsell path
+     */
+    async insertSfvbUpsellPathRaw(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPath === null || requestParameters.upsellPath === undefined) {
+            throw new runtime.RequiredError('upsellPath','Required parameter requestParameters.upsellPath was null or undefined when calling insertSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellPathToJSON(requestParameters.upsellPath),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Create an upsell path
+     */
+    async insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.insertSfvbUpsellPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4351,7 +5255,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Without container JSON, so the funnel can be surveyed cheaply.  A large container size alongside a small element count is the signature of markup pasted into a single html element. 
+     * Every offer on one of this storefront\'s paths that are not archived, the same list the admin shows, with each offer\'s full settings but not its container JSON.  An offer on no path yet is still read by oid.  A large container size alongside a small element count is the signature of markup pasted into a single html element.  Stats as on the path list. 
      * List upsell offers
      */
     async listSfvbUpsellOffersRaw(requestParameters: ListSfvbUpsellOffersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffersResponse>> {
@@ -4360,6 +5264,22 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.stats !== undefined) {
+            queryParameters['stats'] = requestParameters.stats;
+        }
+
+        if (requestParameters.statsStart !== undefined) {
+            queryParameters['stats_start'] = requestParameters.statsStart;
+        }
+
+        if (requestParameters.statsEnd !== undefined) {
+            queryParameters['stats_end'] = requestParameters.statsEnd;
+        }
+
+        if (requestParameters.statsWeekdays !== undefined) {
+            queryParameters['stats_weekdays'] = requestParameters.statsWeekdays;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4383,11 +5303,140 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Without container JSON, so the funnel can be surveyed cheaply.  A large container size alongside a small element count is the signature of markup pasted into a single html element. 
+     * Every offer on one of this storefront\'s paths that are not archived, the same list the admin shows, with each offer\'s full settings but not its container JSON.  An offer on no path yet is still read by oid.  A large container size alongside a small element count is the signature of markup pasted into a single html element.  Stats as on the path list. 
      * List upsell offers
      */
     async listSfvbUpsellOffers(requestParameters: ListSfvbUpsellOffersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffersResponse> {
         const response = await this.listSfvbUpsellOffersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * In path order, first to last.  status current (the default) leaves out archived paths.  Stats are computed only with stats=true, over stats_start to stats_end (YYYY-MM-DD, the last 30 days when both are omitted, at most 366 days), because they are the expensive part of the read. 
+     * List upsell paths
+     */
+    async listSfvbUpsellPathsRaw(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPathsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbUpsellPaths.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.status !== undefined) {
+            queryParameters['status'] = requestParameters.status;
+        }
+
+        if (requestParameters.location !== undefined) {
+            queryParameters['location'] = requestParameters.location;
+        }
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.stats !== undefined) {
+            queryParameters['stats'] = requestParameters.stats;
+        }
+
+        if (requestParameters.statsStart !== undefined) {
+            queryParameters['stats_start'] = requestParameters.statsStart;
+        }
+
+        if (requestParameters.statsEnd !== undefined) {
+            queryParameters['stats_end'] = requestParameters.statsEnd;
+        }
+
+        if (requestParameters.statsWeekdays !== undefined) {
+            queryParameters['stats_weekdays'] = requestParameters.statsWeekdays;
+        }
+
+        if (requestParameters.maxResults !== undefined) {
+            queryParameters['max_results'] = requestParameters.maxResults;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * In path order, first to last.  status current (the default) leaves out archived paths.  Stats are computed only with stats=true, over stats_start to stats_end (YYYY-MM-DD, the last 30 days when both are omitted, at most 366 days), because they are the expensive part of the read. 
+     * List upsell paths
+     */
+    async listSfvbUpsellPaths(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPathsResponse> {
+        const response = await this.listSfvbUpsellPathsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Up, down, to the top or to the bottom of the storefront\'s paths.  Order decides which running path a shopper meets first, so moving a running path needs sfvb_publish. 
+     * Move an upsell path
+     */
+    async moveSfvbUpsellPathRaw(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling moveSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling moveSfvbUpsellPath.');
+        }
+
+        if (requestParameters.moveRequest === null || requestParameters.moveRequest === undefined) {
+            throw new runtime.RequiredError('moveRequest','Required parameter requestParameters.moveRequest was null or undefined when calling moveSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/move`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellPathMoveRequestToJSON(requestParameters.moveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Up, down, to the top or to the bottom of the storefront\'s paths.  Order decides which running path a shopper meets first, so moving a running path needs sfvb_publish. 
+     * Move an upsell path
+     */
+    async moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.moveSfvbUpsellPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4576,7 +5625,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Partial - only the attributes named change, and an empty value empties one but keeps it on the item.  To remove an attribute no template declares, use the attribute DELETE.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
      * Change some of an item\'s attributes
      */
     async putSfvbItemAttributesRaw(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
@@ -4623,7 +5672,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Partial - only the attributes named change, and an empty value empties one but keeps it on the item.  To remove an attribute no template declares, use the attribute DELETE.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
      * Change some of an item\'s attributes
      */
     async putSfvbItemAttributes(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
@@ -5718,6 +6767,171 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
         const response = await this.startSfvbExperimentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Unarchive an upsell path
+     */
+    async unarchiveSfvbUpsellPathRaw(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling unarchiveSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling unarchiveSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/unarchive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Unarchive an upsell path
+     */
+    async unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.unarchiveSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * Update an upsell offer
+     */
+    async updateSfvbUpsellOfferRaw(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOfferOid === null || requestParameters.upsellOfferOid === undefined) {
+            throw new runtime.RequiredError('upsellOfferOid','Required parameter requestParameters.upsellOfferOid was null or undefined when calling updateSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOffer === null || requestParameters.upsellOffer === undefined) {
+            throw new runtime.RequiredError('upsellOffer','Required parameter requestParameters.upsellOffer was null or undefined when calling updateSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers/{upsell_offer_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_offer_oid"}}`, encodeURIComponent(String(requestParameters.upsellOfferOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellOfferToJSON(requestParameters.upsellOffer),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * Update an upsell offer
+     */
+    async updateSfvbUpsellOffer(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.updateSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * Update an upsell path
+     */
+    async updateSfvbUpsellPathRaw(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling updateSfvbUpsellPath.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPath === null || requestParameters.upsellPath === undefined) {
+            throw new runtime.RequiredError('upsellPath','Required parameter requestParameters.upsellPath was null or undefined when calling updateSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUpsellPathToJSON(requestParameters.upsellPath),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * Update an upsell path
+     */
+    async updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.updateSfvbUpsellPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

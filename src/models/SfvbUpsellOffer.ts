@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbUpsellItemLogic,
+    SfvbUpsellItemLogicFromJSON,
+    SfvbUpsellItemLogicFromJSONTyped,
+    SfvbUpsellItemLogicToJSON,
+} from './SfvbUpsellItemLogic';
+import {
+    SfvbUpsellStats,
+    SfvbUpsellStatsFromJSON,
+    SfvbUpsellStatsFromJSONTyped,
+    SfvbUpsellStatsToJSON,
+} from './SfvbUpsellStats';
+
 /**
  * 
  * @export
@@ -20,47 +33,317 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbUpsellOffer {
     /**
-     * Whether the offer is switched on.
+     * Whether the offer is switched on.  Setting it true, or changing an offer that is active overall, needs the sfvb_publish scope.
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
     active?: boolean;
     /**
-     * Whether the offer is active once its date window and daily pricing are taken into account.  This is the one that says whether shoppers are actually seeing it.
+     * Read only.  Whether the offer is active once its date window and daily pricing are taken into account.  This is the one that says whether shoppers are actually seeing it.
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
     active_overall?: boolean;
     /**
-     * Size of the offer's container JSON in bytes.  A large value here alongside a low element count is the signature of a hand pasted HTML dump.
+     * Accessory items added when the offer is accepted.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    add_accessory_item_ids?: Array<string>;
+    /**
+     * Option on the trigger item to adjust when the offer is accepted.  Omitted or null for none.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    adjust_trigger_item_option?: string;
+    /**
+     * Whether to show the offer when the upsell item is already in the cart.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    allow_upsell_item_in_cart_already?: boolean;
+    /**
+     * Price per unit when the offer is accepted.  Omitted or null to charge the item's own price.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost?: number;
+    /**
+     * Price on Fridays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_friday?: number;
+    /**
+     * Price on Mondays, overriding arbitrary_unit_cost.  Omitted or null for no override.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_monday?: number;
+    /**
+     * Price on Saturdays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_saturday?: number;
+    /**
+     * Price on Sundays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_sunday?: number;
+    /**
+     * Price on Thursdays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_thursday?: number;
+    /**
+     * Price on Tuesdays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_tuesday?: number;
+    /**
+     * Price on Wednesdays, overriding arbitrary_unit_cost.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    arbitrary_unit_cost_wednesday?: number;
+    /**
+     * Read only.  Size of the offer's container JSON in bytes.  A large value here alongside a low element count is the signature of a hand pasted HTML dump.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
     cjson_size?: number;
     /**
-     * Whether a container has been authored for this offer.
+     * Last day the offer runs, as YYYY-MM-DD, inclusive.  Omitted or null for no end.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    end_date?: string;
+    /**
+     * Everflow advertiser event id recorded when the offer is accepted.  Omitted or null for none.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    everflow_advertiser_event_id?: string;
+    /**
+     * Show only to shoppers who have not bought the upsell item before.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    first_time_item?: boolean;
+    /**
+     * Show only to shoppers buying from this store for the first time.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    first_time_store?: boolean;
+    /**
+     * Whether the upsell item ships free.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    free_shipping?: boolean;
+    /**
+     * Read only.  Whether a container has been authored for this offer.
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
     has_container?: boolean;
     /**
-     * Offer name.
+     * Read only.  Whether the merchant has Everflow set up.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    has_everflow_configured?: boolean;
+    /**
+     * Read only.  Whether the merchant has loyalty set up, so the loyalty tier lists apply.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    has_loyalty_configured?: boolean;
+    /**
+     * Read only.  Whether the merchant has TowerData set up, so the age and gender lists apply.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    has_towerdata_configured?: boolean;
+    /**
+     * Read only.  Hash of the offer's writable fields.  Send it in If-Match on an update.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    hash_sha256?: string;
+    /**
+     * 
+     * @type {SfvbUpsellItemLogic}
+     * @memberof SfvbUpsellOffer
+     */
+    item_logic_suppression?: SfvbUpsellItemLogic;
+    /**
+     * 
+     * @type {SfvbUpsellItemLogic}
+     * @memberof SfvbUpsellOffer
+     */
+    item_logic_trigger?: SfvbUpsellItemLogic;
+    /**
+     * Whether the shipping method is locked once the offer is accepted.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    lock_shipping?: boolean;
+    /**
+     * Most units a shopper can take.  Omitted or null for no limit.
+     * @type {number}
+     * @memberof SfvbUpsellOffer
+     */
+    max_quantity?: number;
+    /**
+     * Accessory items to migrate from, paired by position with migrate_accessory_item_ids_to.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    migrate_accessory_item_ids_from?: Array<string>;
+    /**
+     * Accessory items to migrate to, paired by position with migrate_accessory_item_ids_from.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    migrate_accessory_item_ids_to?: Array<string>;
+    /**
+     * Offer name, at most 50 characters.
      * @type {string}
      * @memberof SfvbUpsellOffer
      */
     name?: string;
     /**
-     * Name of the upsell path this offer sits on.
+     * URL of offsite content shown instead of the container.  Omitted or null for none.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    offsite_content_url?: string;
+    /**
+     * Read only.  Upsell items that are out of stock now, so the offer would not be shown.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    out_of_stock_upsell_item_ids?: Array<string>;
+    /**
+     * Read only.  Name of the upsell path this offer was last served on.  Written by checkout traffic, so it is empty until shoppers have seen the offer and can be stale.  Use referenced_by_path_oids for the configured answer.
      * @type {string}
      * @memberof SfvbUpsellOffer
      */
     path_name?: string;
     /**
-     * Storefront oid.
+     * Whether the accepted item is recorded as a regular item rather than an upsell.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    record_as_regular_item?: boolean;
+    /**
+     * Read only.  The storefront's upsell paths whose steps use this offer, as an offer or a downsell.
+     * @type {Array<number>}
+     * @memberof SfvbUpsellOffer
+     */
+    referenced_by_path_oids?: Array<number>;
+    /**
+     * Whether the shopper can remove the accepted item on the confirmation step.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    removable_on_confirmation?: boolean;
+    /**
+     * Accessory items removed when the offer is accepted.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    remove_accessory_item_ids?: Array<string>;
+    /**
+     * Whether accepting the offer removes the item that triggered it (a swap rather than an add).
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    remove_trigger_item?: boolean;
+    /**
+     * Do not show to previous customers.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    skip_previous_customers?: boolean;
+    /**
+     * First day the offer runs, as YYYY-MM-DD.  Omitted or null for no start.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    start_date?: string;
+    /**
+     * 
+     * @type {SfvbUpsellStats}
+     * @memberof SfvbUpsellOffer
+     */
+    stats?: SfvbUpsellStats;
+    /**
+     * Read only.  Storefront oid.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
     storefront_oid?: number;
+    /**
+     * Do not show on large screens.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    suppress_large?: boolean;
+    /**
+     * Do not show on medium screens.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    suppress_medium?: boolean;
+    /**
+     * Do not show on small screens.
+     * @type {boolean}
+     * @memberof SfvbUpsellOffer
+     */
+    suppress_small?: boolean;
+    /**
+     * Shipping countries that stop the offer from showing.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_country_codes?: Array<string>;
+    /**
+     * Loyalty tiers that stop the offer from showing.
+     * @type {Array<number>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_loyalty_tier_oids?: Array<number>;
+    /**
+     * Payment methods that stop the offer from showing.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_payment_methods?: Array<string>;
+    /**
+     * Shipping methods that stop the offer from showing.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_shipping_methods?: Array<string>;
+    /**
+     * Shipping states that stop the offer from showing.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_state_codes?: Array<string>;
+    /**
+     * Customer tags that stop the offer from showing.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    suppression_tags?: Array<string>;
     /**
      * Whether the offer is restricted to test traffic.
      * @type {boolean}
@@ -68,7 +351,67 @@ export interface SfvbUpsellOffer {
      */
     test_only?: boolean;
     /**
-     * Upsell offer oid.
+     * TowerData age bands the offer is shown to.  18-20, 21-24, 25-34, 35-44, 45-54, 55-64, 65+ or Unknown.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_ages?: Array<string>;
+    /**
+     * Shipping countries (ISO 3166 two letter codes) that trigger the offer.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_country_codes?: Array<string>;
+    /**
+     * TowerData genders the offer is shown to.  Male, Female or Unknown.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_genders?: Array<string>;
+    /**
+     * Loyalty tiers that trigger the offer.  Each must be one of the merchant's loyalty tiers.
+     * @type {Array<number>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_loyalty_tier_oids?: Array<number>;
+    /**
+     * Payment methods that trigger the offer.  Each must be one of the merchant's payment methods.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_payment_methods?: Array<string>;
+    /**
+     * Shipping methods that trigger the offer.  Each must be one of the merchant's shipping methods.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_shipping_methods?: Array<string>;
+    /**
+     * Shipping states that trigger the offer.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_state_codes?: Array<string>;
+    /**
+     * Customer tags that trigger the offer.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    trigger_tags?: Array<string>;
+    /**
+     * JavaScript that chooses the upsell item at runtime.  Omitted or null for none.
+     * @type {string}
+     * @memberof SfvbUpsellOffer
+     */
+    upsell_item_id_javascript?: string;
+    /**
+     * The items offered.  Every item id must exist on the merchant account.
+     * @type {Array<string>}
+     * @memberof SfvbUpsellOffer
+     */
+    upsell_item_ids?: Array<string>;
+    /**
+     * Read only.  Upsell offer oid.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
@@ -98,12 +441,67 @@ export function SfvbUpsellOfferFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'active': !exists(json, 'active') ? undefined : json['active'],
         'active_overall': !exists(json, 'active_overall') ? undefined : json['active_overall'],
+        'add_accessory_item_ids': !exists(json, 'add_accessory_item_ids') ? undefined : json['add_accessory_item_ids'],
+        'adjust_trigger_item_option': !exists(json, 'adjust_trigger_item_option') ? undefined : json['adjust_trigger_item_option'],
+        'allow_upsell_item_in_cart_already': !exists(json, 'allow_upsell_item_in_cart_already') ? undefined : json['allow_upsell_item_in_cart_already'],
+        'arbitrary_unit_cost': !exists(json, 'arbitrary_unit_cost') ? undefined : json['arbitrary_unit_cost'],
+        'arbitrary_unit_cost_friday': !exists(json, 'arbitrary_unit_cost_friday') ? undefined : json['arbitrary_unit_cost_friday'],
+        'arbitrary_unit_cost_monday': !exists(json, 'arbitrary_unit_cost_monday') ? undefined : json['arbitrary_unit_cost_monday'],
+        'arbitrary_unit_cost_saturday': !exists(json, 'arbitrary_unit_cost_saturday') ? undefined : json['arbitrary_unit_cost_saturday'],
+        'arbitrary_unit_cost_sunday': !exists(json, 'arbitrary_unit_cost_sunday') ? undefined : json['arbitrary_unit_cost_sunday'],
+        'arbitrary_unit_cost_thursday': !exists(json, 'arbitrary_unit_cost_thursday') ? undefined : json['arbitrary_unit_cost_thursday'],
+        'arbitrary_unit_cost_tuesday': !exists(json, 'arbitrary_unit_cost_tuesday') ? undefined : json['arbitrary_unit_cost_tuesday'],
+        'arbitrary_unit_cost_wednesday': !exists(json, 'arbitrary_unit_cost_wednesday') ? undefined : json['arbitrary_unit_cost_wednesday'],
         'cjson_size': !exists(json, 'cjson_size') ? undefined : json['cjson_size'],
+        'end_date': !exists(json, 'end_date') ? undefined : json['end_date'],
+        'everflow_advertiser_event_id': !exists(json, 'everflow_advertiser_event_id') ? undefined : json['everflow_advertiser_event_id'],
+        'first_time_item': !exists(json, 'first_time_item') ? undefined : json['first_time_item'],
+        'first_time_store': !exists(json, 'first_time_store') ? undefined : json['first_time_store'],
+        'free_shipping': !exists(json, 'free_shipping') ? undefined : json['free_shipping'],
         'has_container': !exists(json, 'has_container') ? undefined : json['has_container'],
+        'has_everflow_configured': !exists(json, 'has_everflow_configured') ? undefined : json['has_everflow_configured'],
+        'has_loyalty_configured': !exists(json, 'has_loyalty_configured') ? undefined : json['has_loyalty_configured'],
+        'has_towerdata_configured': !exists(json, 'has_towerdata_configured') ? undefined : json['has_towerdata_configured'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'item_logic_suppression': !exists(json, 'item_logic_suppression') ? undefined : SfvbUpsellItemLogicFromJSON(json['item_logic_suppression']),
+        'item_logic_trigger': !exists(json, 'item_logic_trigger') ? undefined : SfvbUpsellItemLogicFromJSON(json['item_logic_trigger']),
+        'lock_shipping': !exists(json, 'lock_shipping') ? undefined : json['lock_shipping'],
+        'max_quantity': !exists(json, 'max_quantity') ? undefined : json['max_quantity'],
+        'migrate_accessory_item_ids_from': !exists(json, 'migrate_accessory_item_ids_from') ? undefined : json['migrate_accessory_item_ids_from'],
+        'migrate_accessory_item_ids_to': !exists(json, 'migrate_accessory_item_ids_to') ? undefined : json['migrate_accessory_item_ids_to'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'offsite_content_url': !exists(json, 'offsite_content_url') ? undefined : json['offsite_content_url'],
+        'out_of_stock_upsell_item_ids': !exists(json, 'out_of_stock_upsell_item_ids') ? undefined : json['out_of_stock_upsell_item_ids'],
         'path_name': !exists(json, 'path_name') ? undefined : json['path_name'],
+        'record_as_regular_item': !exists(json, 'record_as_regular_item') ? undefined : json['record_as_regular_item'],
+        'referenced_by_path_oids': !exists(json, 'referenced_by_path_oids') ? undefined : json['referenced_by_path_oids'],
+        'removable_on_confirmation': !exists(json, 'removable_on_confirmation') ? undefined : json['removable_on_confirmation'],
+        'remove_accessory_item_ids': !exists(json, 'remove_accessory_item_ids') ? undefined : json['remove_accessory_item_ids'],
+        'remove_trigger_item': !exists(json, 'remove_trigger_item') ? undefined : json['remove_trigger_item'],
+        'skip_previous_customers': !exists(json, 'skip_previous_customers') ? undefined : json['skip_previous_customers'],
+        'start_date': !exists(json, 'start_date') ? undefined : json['start_date'],
+        'stats': !exists(json, 'stats') ? undefined : SfvbUpsellStatsFromJSON(json['stats']),
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
+        'suppress_large': !exists(json, 'suppress_large') ? undefined : json['suppress_large'],
+        'suppress_medium': !exists(json, 'suppress_medium') ? undefined : json['suppress_medium'],
+        'suppress_small': !exists(json, 'suppress_small') ? undefined : json['suppress_small'],
+        'suppression_country_codes': !exists(json, 'suppression_country_codes') ? undefined : json['suppression_country_codes'],
+        'suppression_loyalty_tier_oids': !exists(json, 'suppression_loyalty_tier_oids') ? undefined : json['suppression_loyalty_tier_oids'],
+        'suppression_payment_methods': !exists(json, 'suppression_payment_methods') ? undefined : json['suppression_payment_methods'],
+        'suppression_shipping_methods': !exists(json, 'suppression_shipping_methods') ? undefined : json['suppression_shipping_methods'],
+        'suppression_state_codes': !exists(json, 'suppression_state_codes') ? undefined : json['suppression_state_codes'],
+        'suppression_tags': !exists(json, 'suppression_tags') ? undefined : json['suppression_tags'],
         'test_only': !exists(json, 'test_only') ? undefined : json['test_only'],
+        'trigger_ages': !exists(json, 'trigger_ages') ? undefined : json['trigger_ages'],
+        'trigger_country_codes': !exists(json, 'trigger_country_codes') ? undefined : json['trigger_country_codes'],
+        'trigger_genders': !exists(json, 'trigger_genders') ? undefined : json['trigger_genders'],
+        'trigger_loyalty_tier_oids': !exists(json, 'trigger_loyalty_tier_oids') ? undefined : json['trigger_loyalty_tier_oids'],
+        'trigger_payment_methods': !exists(json, 'trigger_payment_methods') ? undefined : json['trigger_payment_methods'],
+        'trigger_shipping_methods': !exists(json, 'trigger_shipping_methods') ? undefined : json['trigger_shipping_methods'],
+        'trigger_state_codes': !exists(json, 'trigger_state_codes') ? undefined : json['trigger_state_codes'],
+        'trigger_tags': !exists(json, 'trigger_tags') ? undefined : json['trigger_tags'],
+        'upsell_item_id_javascript': !exists(json, 'upsell_item_id_javascript') ? undefined : json['upsell_item_id_javascript'],
+        'upsell_item_ids': !exists(json, 'upsell_item_ids') ? undefined : json['upsell_item_ids'],
         'upsell_offer_oid': !exists(json, 'upsell_offer_oid') ? undefined : json['upsell_offer_oid'],
     };
 }
@@ -119,12 +517,67 @@ export function SfvbUpsellOfferToJSON(value?: SfvbUpsellOffer | null): any {
         
         'active': value.active,
         'active_overall': value.active_overall,
+        'add_accessory_item_ids': value.add_accessory_item_ids,
+        'adjust_trigger_item_option': value.adjust_trigger_item_option,
+        'allow_upsell_item_in_cart_already': value.allow_upsell_item_in_cart_already,
+        'arbitrary_unit_cost': value.arbitrary_unit_cost,
+        'arbitrary_unit_cost_friday': value.arbitrary_unit_cost_friday,
+        'arbitrary_unit_cost_monday': value.arbitrary_unit_cost_monday,
+        'arbitrary_unit_cost_saturday': value.arbitrary_unit_cost_saturday,
+        'arbitrary_unit_cost_sunday': value.arbitrary_unit_cost_sunday,
+        'arbitrary_unit_cost_thursday': value.arbitrary_unit_cost_thursday,
+        'arbitrary_unit_cost_tuesday': value.arbitrary_unit_cost_tuesday,
+        'arbitrary_unit_cost_wednesday': value.arbitrary_unit_cost_wednesday,
         'cjson_size': value.cjson_size,
+        'end_date': value.end_date,
+        'everflow_advertiser_event_id': value.everflow_advertiser_event_id,
+        'first_time_item': value.first_time_item,
+        'first_time_store': value.first_time_store,
+        'free_shipping': value.free_shipping,
         'has_container': value.has_container,
+        'has_everflow_configured': value.has_everflow_configured,
+        'has_loyalty_configured': value.has_loyalty_configured,
+        'has_towerdata_configured': value.has_towerdata_configured,
+        'hash_sha256': value.hash_sha256,
+        'item_logic_suppression': SfvbUpsellItemLogicToJSON(value.item_logic_suppression),
+        'item_logic_trigger': SfvbUpsellItemLogicToJSON(value.item_logic_trigger),
+        'lock_shipping': value.lock_shipping,
+        'max_quantity': value.max_quantity,
+        'migrate_accessory_item_ids_from': value.migrate_accessory_item_ids_from,
+        'migrate_accessory_item_ids_to': value.migrate_accessory_item_ids_to,
         'name': value.name,
+        'offsite_content_url': value.offsite_content_url,
+        'out_of_stock_upsell_item_ids': value.out_of_stock_upsell_item_ids,
         'path_name': value.path_name,
+        'record_as_regular_item': value.record_as_regular_item,
+        'referenced_by_path_oids': value.referenced_by_path_oids,
+        'removable_on_confirmation': value.removable_on_confirmation,
+        'remove_accessory_item_ids': value.remove_accessory_item_ids,
+        'remove_trigger_item': value.remove_trigger_item,
+        'skip_previous_customers': value.skip_previous_customers,
+        'start_date': value.start_date,
+        'stats': SfvbUpsellStatsToJSON(value.stats),
         'storefront_oid': value.storefront_oid,
+        'suppress_large': value.suppress_large,
+        'suppress_medium': value.suppress_medium,
+        'suppress_small': value.suppress_small,
+        'suppression_country_codes': value.suppression_country_codes,
+        'suppression_loyalty_tier_oids': value.suppression_loyalty_tier_oids,
+        'suppression_payment_methods': value.suppression_payment_methods,
+        'suppression_shipping_methods': value.suppression_shipping_methods,
+        'suppression_state_codes': value.suppression_state_codes,
+        'suppression_tags': value.suppression_tags,
         'test_only': value.test_only,
+        'trigger_ages': value.trigger_ages,
+        'trigger_country_codes': value.trigger_country_codes,
+        'trigger_genders': value.trigger_genders,
+        'trigger_loyalty_tier_oids': value.trigger_loyalty_tier_oids,
+        'trigger_payment_methods': value.trigger_payment_methods,
+        'trigger_shipping_methods': value.trigger_shipping_methods,
+        'trigger_state_codes': value.trigger_state_codes,
+        'trigger_tags': value.trigger_tags,
+        'upsell_item_id_javascript': value.upsell_item_id_javascript,
+        'upsell_item_ids': value.upsell_item_ids,
         'upsell_offer_oid': value.upsell_offer_oid,
     };
 }
