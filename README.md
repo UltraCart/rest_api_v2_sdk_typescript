@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.171
+## ultracart_rest_api_v2_typescript@4.1.172
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.171 --save
+npm install ultracart_rest_api_v2_typescript@4.1.172 --save
 ```
 
 ```typescript
@@ -84,6 +84,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.172 | 09/24/2026 | storefront communications flow re-entry setting |
 | 4.1.171 | 09/23/2026 | sfvb internal testing |
 | 4.1.170 | 09/22/2026 | sfvb internal testing |
 | 4.1.169 | 09/22/2026 | sfvb builder |
