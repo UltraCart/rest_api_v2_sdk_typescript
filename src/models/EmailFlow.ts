@@ -140,6 +140,18 @@ export interface EmailFlow {
      */
     open_rate_formatted?: string;
     /**
+     * Number of days after the last enrollment before a customer may enter this flow again.  Only used when reentry_policy is after_days.  Maximum 1095.
+     * @type {number}
+     * @memberof EmailFlow
+     */
+    reentry_delay_days?: number;
+    /**
+     * Whether a customer may enter this flow again after a previous enrollment.  anytime (default), after_days (see reentry_delay_days), or never.  Enrollment history is kept for 3 years, so never means not within 3 years of the last enrollment.
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    reentry_policy?: EmailFlowReentryPolicyEnum;
+    /**
      * Revenue, formatted
      * @type {string}
      * @memberof EmailFlow
@@ -210,6 +222,17 @@ export interface EmailFlow {
 
 
 /**
+ * @export
+ */
+export const EmailFlowReentryPolicyEnum = {
+    Anytime: 'anytime',
+    AfterDays: 'after_days',
+    Never: 'never'
+} as const;
+export type EmailFlowReentryPolicyEnum = typeof EmailFlowReentryPolicyEnum[keyof typeof EmailFlowReentryPolicyEnum];
+
+
+/**
  * Check if a given object implements the EmailFlow interface.
  */
 export function instanceOfEmailFlow(value: object): boolean {
@@ -248,6 +271,8 @@ export function EmailFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'open_rate_formatted': !exists(json, 'open_rate_formatted') ? undefined : json['open_rate_formatted'],
+        'reentry_delay_days': !exists(json, 'reentry_delay_days') ? undefined : json['reentry_delay_days'],
+        'reentry_policy': !exists(json, 'reentry_policy') ? undefined : json['reentry_policy'],
         'revenue_formatted': !exists(json, 'revenue_formatted') ? undefined : json['revenue_formatted'],
         'revenue_per_customer_formatted': !exists(json, 'revenue_per_customer_formatted') ? undefined : json['revenue_per_customer_formatted'],
         'screenshot_large_full_url': !exists(json, 'screenshot_large_full_url') ? undefined : json['screenshot_large_full_url'],
@@ -291,6 +316,8 @@ export function EmailFlowToJSON(value?: EmailFlow | null): any {
         'merchant_id': value.merchant_id,
         'name': value.name,
         'open_rate_formatted': value.open_rate_formatted,
+        'reentry_delay_days': value.reentry_delay_days,
+        'reentry_policy': value.reentry_policy,
         'revenue_formatted': value.revenue_formatted,
         'revenue_per_customer_formatted': value.revenue_per_customer_formatted,
         'screenshot_large_full_url': value.screenshot_large_full_url,
