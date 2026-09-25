@@ -198,6 +198,9 @@ import {
     SfvbStorefrontsResponse,
     SfvbStorefrontsResponseFromJSON,
     SfvbStorefrontsResponseToJSON,
+    SfvbTemplateResolveResponse,
+    SfvbTemplateResolveResponseFromJSON,
+    SfvbTemplateResolveResponseToJSON,
     SfvbTemplatesResponse,
     SfvbTemplatesResponseFromJSON,
     SfvbTemplatesResponseToJSON,
@@ -717,6 +720,12 @@ export interface ReserveSfvbWidgetIdsRequest {
     count?: number;
 }
 
+export interface ResolveSfvbTemplateRequest {
+    storefrontOid: number;
+    name: string;
+    themeOid?: number;
+}
+
 export interface RevertSfvbContainerRequest {
     storefrontOid: number;
     ownerType: string;
@@ -1109,7 +1118,7 @@ export interface SfvbApiInterface {
     duplicateSfvbUpsellPath(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
      * @summary End an experiment
      * @param {number} storefrontOid 
      * @param {number} experimentOid 
@@ -1121,7 +1130,7 @@ export interface SfvbApiInterface {
     endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
      * End an experiment
      */
     endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
@@ -2234,6 +2243,24 @@ export interface SfvbApiInterface {
     reserveSfvbWidgetIds(requestParameters: ReserveSfvbWidgetIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWidgetIdsResponse>;
 
     /**
+     * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
+     * @summary Resolve a template name to the file a page renders
+     * @param {number} storefrontOid 
+     * @param {string} name The template file name, such as catalog.vm
+     * @param {number} [themeOid] Resolve in this theme instead of the active theme
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    resolveSfvbTemplateRaw(requestParameters: ResolveSfvbTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTemplateResolveResponse>>;
+
+    /**
+     * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
+     * Resolve a template name to the file a page renders
+     */
+    resolveSfvbTemplate(requestParameters: ResolveSfvbTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTemplateResolveResponse>;
+
+    /**
      * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does.  owner_type also says how owner_object_id is read, so a version written by oid can be reverted by merchant item id and the other way round. 
      * @summary Revert a container stored outside the file system
      * @param {number} storefrontOid 
@@ -3321,7 +3348,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
      * End an experiment
      */
     async endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
@@ -3360,7 +3387,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
      * End an experiment
      */
     async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
@@ -6490,6 +6517,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async reserveSfvbWidgetIds(requestParameters: ReserveSfvbWidgetIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWidgetIdsResponse> {
         const response = await this.reserveSfvbWidgetIdsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
+     * Resolve a template name to the file a page renders
+     */
+    async resolveSfvbTemplateRaw(requestParameters: ResolveSfvbTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTemplateResolveResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling resolveSfvbTemplate.');
+        }
+
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling resolveSfvbTemplate.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.name !== undefined) {
+            queryParameters['name'] = requestParameters.name;
+        }
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/templates/resolve`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTemplateResolveResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
+     * Resolve a template name to the file a page renders
+     */
+    async resolveSfvbTemplate(requestParameters: ResolveSfvbTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTemplateResolveResponse> {
+        const response = await this.resolveSfvbTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

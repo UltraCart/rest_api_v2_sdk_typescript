@@ -1078,6 +1078,9 @@ src/models/SfvbSiteAttributesResponse.ts
 src/models/SfvbStorefront.ts
 src/models/SfvbStorefrontsResponse.ts
 src/models/SfvbTemplate.ts
+src/models/SfvbTemplateResolveCandidate.ts
+src/models/SfvbTemplateResolvePath.ts
+src/models/SfvbTemplateResolveResponse.ts
 src/models/SfvbTemplatesResponse.ts
 src/models/SfvbTheme.ts
 src/models/SfvbThemeAttribute.ts
