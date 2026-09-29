@@ -1125,6 +1125,7 @@ src/models/StoreFront.ts
 src/models/StoreFrontPageContentAttribute.ts
 src/models/StoreFrontsResponse.ts
 src/models/TaxCity.ts
+src/models/TaxCloudConfig.ts
 src/models/TaxCountry.ts
 src/models/TaxCountryCode.ts
 src/models/TaxCounty.ts
@@ -1132,6 +1133,8 @@ src/models/TaxJarConfig.ts
 src/models/TaxPostalCode.ts
 src/models/TaxProviderActivateResult.ts
 src/models/TaxProviderAnrok.ts
+src/models/TaxProviderAnrokProduct.ts
+src/models/TaxProviderAnrokTestResult.ts
 src/models/TaxProviderAvalara.ts
 src/models/TaxProviderAvalaraCompaniesResult.ts
 src/models/TaxProviderAvalaraCompany.ts
@@ -1139,6 +1142,7 @@ src/models/TaxProviderSelf.ts
 src/models/TaxProviderSelfCountriesResponse.ts
 src/models/TaxProviderSelfRegionsResponse.ts
 src/models/TaxProviderSovos.ts
+src/models/TaxProviderTaxCloud.ts
 src/models/TaxProviderTaxJar.ts
 src/models/TaxProviderTestResult.ts
 src/models/TaxProviderUltraCart.ts

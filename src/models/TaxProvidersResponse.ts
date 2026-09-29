@@ -50,6 +50,12 @@ import {
     TaxProviderSovosToJSON,
 } from './TaxProviderSovos';
 import {
+    TaxProviderTaxCloud,
+    TaxProviderTaxCloudFromJSON,
+    TaxProviderTaxCloudFromJSONTyped,
+    TaxProviderTaxCloudToJSON,
+} from './TaxProviderTaxCloud';
+import {
     TaxProviderTaxJar,
     TaxProviderTaxJarFromJSON,
     TaxProviderTaxJarFromJSONTyped,
@@ -118,6 +124,12 @@ export interface TaxProvidersResponse {
     success?: boolean;
     /**
      * 
+     * @type {TaxProviderTaxCloud}
+     * @memberof TaxProvidersResponse
+     */
+    taxcloud?: TaxProviderTaxCloud;
+    /**
+     * 
      * @type {TaxProviderTaxJar}
      * @memberof TaxProvidersResponse
      */
@@ -164,6 +176,7 @@ export function TaxProvidersResponseFromJSONTyped(json: any, ignoreDiscriminator
         'self': !exists(json, 'self') ? undefined : TaxProviderSelfFromJSON(json['self']),
         'sovos': !exists(json, 'sovos') ? undefined : TaxProviderSovosFromJSON(json['sovos']),
         'success': !exists(json, 'success') ? undefined : json['success'],
+        'taxcloud': !exists(json, 'taxcloud') ? undefined : TaxProviderTaxCloudFromJSON(json['taxcloud']),
         'taxjar': !exists(json, 'taxjar') ? undefined : TaxProviderTaxJarFromJSON(json['taxjar']),
         'ultracart': !exists(json, 'ultracart') ? undefined : TaxProviderUltraCartFromJSON(json['ultracart']),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
@@ -186,6 +199,7 @@ export function TaxProvidersResponseToJSON(value?: TaxProvidersResponse | null):
         'self': TaxProviderSelfToJSON(value.self),
         'sovos': TaxProviderSovosToJSON(value.sovos),
         'success': value.success,
+        'taxcloud': TaxProviderTaxCloudToJSON(value.taxcloud),
         'taxjar': TaxProviderTaxJarToJSON(value.taxjar),
         'ultracart': TaxProviderUltraCartToJSON(value.ultracart),
         'warning': WarningToJSON(value.warning),
