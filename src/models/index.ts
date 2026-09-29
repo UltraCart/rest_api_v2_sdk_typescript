@@ -1032,6 +1032,8 @@ export * from './SfvbPageItemsResponse';
 export * from './SfvbPageListResponse';
 export * from './SfvbPageMultimedia';
 export * from './SfvbPageMultimediaRequest';
+export * from './SfvbPageRefreshRequest';
+export * from './SfvbPageRefreshResponse';
 export * from './SfvbPageResponse';
 export * from './SfvbPageSelectors';
 export * from './SfvbPageSettingsRequest';

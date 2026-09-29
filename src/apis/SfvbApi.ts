@@ -159,6 +159,12 @@ import {
     SfvbPageMultimediaRequest,
     SfvbPageMultimediaRequestFromJSON,
     SfvbPageMultimediaRequestToJSON,
+    SfvbPageRefreshRequest,
+    SfvbPageRefreshRequestFromJSON,
+    SfvbPageRefreshRequestToJSON,
+    SfvbPageRefreshResponse,
+    SfvbPageRefreshResponseFromJSON,
+    SfvbPageRefreshResponseToJSON,
     SfvbPageResponse,
     SfvbPageResponseFromJSON,
     SfvbPageResponseToJSON,
@@ -695,6 +701,11 @@ export interface PutSfvbThemeAttributesRequest {
     storefrontOid: number;
     themeOid: number;
     attributeUpdateRequest: SfvbThemeAttributeUpdateRequest;
+}
+
+export interface RefreshSfvbPageRequest {
+    storefrontOid: number;
+    pageRefreshRequest: SfvbPageRefreshRequest;
 }
 
 export interface RemoveSfvbPageBlogPostsRequest {
@@ -2170,6 +2181,23 @@ export interface SfvbApiInterface {
      * Change a theme\'s colors, fonts and settings
      */
     putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
+
+    /**
+     * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
+     * @summary Drop one page\'s cached copy
+     * @param {number} storefrontOid 
+     * @param {SfvbPageRefreshRequest} pageRefreshRequest The page to refresh
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    refreshSfvbPageRaw(requestParameters: RefreshSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageRefreshResponse>>;
+
+    /**
+     * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
+     * Drop one page\'s cached copy
+     */
+    refreshSfvbPage(requestParameters: RefreshSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageRefreshResponse>;
 
     /**
      * Removes posts by blog_post_oid, at most 500 at a time.  Every oid must be on the page, and one that is not changes nothing.  The posts themselves are not touched.  Always needs sfvb_publish. 
@@ -6308,6 +6336,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse> {
         const response = await this.putSfvbThemeAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
+     * Drop one page\'s cached copy
+     */
+    async refreshSfvbPageRaw(requestParameters: RefreshSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageRefreshResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling refreshSfvbPage.');
+        }
+
+        if (requestParameters.pageRefreshRequest === null || requestParameters.pageRefreshRequest === undefined) {
+            throw new runtime.RequiredError('pageRefreshRequest','Required parameter requestParameters.pageRefreshRequest was null or undefined when calling refreshSfvbPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/refresh`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageRefreshRequestToJSON(requestParameters.pageRefreshRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageRefreshResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
+     * Drop one page\'s cached copy
+     */
+    async refreshSfvbPage(requestParameters: RefreshSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageRefreshResponse> {
+        const response = await this.refreshSfvbPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

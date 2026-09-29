@@ -1060,6 +1060,8 @@ src/models/SfvbPageItemsResponse.ts
 src/models/SfvbPageListResponse.ts
 src/models/SfvbPageMultimedia.ts
 src/models/SfvbPageMultimediaRequest.ts
+src/models/SfvbPageRefreshRequest.ts
+src/models/SfvbPageRefreshResponse.ts
 src/models/SfvbPageResponse.ts
 src/models/SfvbPageSelectors.ts
 src/models/SfvbPageSettingsRequest.ts
