@@ -994,6 +994,10 @@ src/models/ScreenRecordingUserProperty.ts
 src/models/ScreenshotsResponse.ts
 src/models/SelfConfig.ts
 src/models/SfvbBlogPost.ts
+src/models/SfvbBlogPostDetail.ts
+src/models/SfvbBlogPostImage.ts
+src/models/SfvbBlogPostImageRequest.ts
+src/models/SfvbBlogPostRequest.ts
 src/models/SfvbBlogPostsResponse.ts
 src/models/SfvbCompileRequest.ts
 src/models/SfvbCompileResponse.ts

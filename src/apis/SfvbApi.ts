@@ -18,6 +18,15 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SfvbBlogPostDetail,
+    SfvbBlogPostDetailFromJSON,
+    SfvbBlogPostDetailToJSON,
+    SfvbBlogPostImageRequest,
+    SfvbBlogPostImageRequestFromJSON,
+    SfvbBlogPostImageRequestToJSON,
+    SfvbBlogPostRequest,
+    SfvbBlogPostRequestFromJSON,
+    SfvbBlogPostRequestToJSON,
     SfvbBlogPostsResponse,
     SfvbBlogPostsResponseFromJSON,
     SfvbBlogPostsResponseToJSON,
@@ -283,6 +292,12 @@ export interface ArchiveSfvbUpsellPathRequest {
     upsellPathOid: number;
 }
 
+export interface AttachSfvbBlogPostImageRequest {
+    storefrontOid: number;
+    blogPostOid: number;
+    blogPostImageRequest: SfvbBlogPostImageRequest;
+}
+
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
 }
@@ -294,6 +309,11 @@ export interface CreateSfvbPreviewAccessRequest {
 
 export interface CreateSfvbPreviewSessionRequest {
     storefrontOid: number;
+}
+
+export interface DeleteSfvbBlogPostRequest {
+    storefrontOid: number;
+    blogPostOid: number;
 }
 
 export interface DeleteSfvbFileRequest {
@@ -327,6 +347,12 @@ export interface DeleteSfvbPageMultimediaRequest {
 export interface DeleteSfvbPreviewSessionRequest {
     storefrontOid: number;
     previewSessionId: string;
+}
+
+export interface DetachSfvbBlogPostImageRequest {
+    storefrontOid: number;
+    blogPostOid: number;
+    blogPostImageRequest: SfvbBlogPostImageRequest;
 }
 
 export interface DisableSfvbUpsellOfferRequest {
@@ -370,6 +396,11 @@ export interface EndSfvbExperimentRequest {
     storefrontOid: number;
     experimentOid: number;
     experimentEndRequest?: SfvbExperimentEndRequest;
+}
+
+export interface GetSfvbBlogPostRequest {
+    storefrontOid: number;
+    blogPostOid: number;
 }
 
 export interface GetSfvbCjsonUsedElementsRequest {
@@ -497,6 +528,11 @@ export interface GetSfvbUpsellPathRequest {
     statsStart?: string;
     statsEnd?: string;
     statsWeekdays?: string;
+}
+
+export interface InsertSfvbBlogPostRequest {
+    storefrontOid: number;
+    blogPostRequest: SfvbBlogPostRequest;
 }
 
 export interface InsertSfvbPageRequest {
@@ -775,6 +811,12 @@ export interface UnarchiveSfvbUpsellPathRequest {
     upsellPathOid: number;
 }
 
+export interface UpdateSfvbBlogPostRequest {
+    storefrontOid: number;
+    blogPostOid: number;
+    blogPostRequest: SfvbBlogPostRequest;
+}
+
 export interface UpdateSfvbUpsellOfferRequest {
     storefrontOid: number;
     upsellOfferOid: number;
@@ -866,6 +908,24 @@ export interface SfvbApiInterface {
     archiveSfvbUpsellPath(requestParameters: ArchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
+     * Three calls, like the admin blog editor\'s upload.  Request an upload URL with files/upload_url, send the bytes to it, then attach with the key and a filename.  No storefront file is created, and the key is redeemed, so it cannot be used twice.  default_image replaces the post\'s default image and code replaces the image with that code; with neither, the image is added for use in the body at the url the response reports.  JPEG, PNG, GIF or WebP, checked by content.  A post that is not a draft needs sfvb_publish. 
+     * @summary Attach an image to a blog post
+     * @param {number} storefrontOid 
+     * @param {number} blogPostOid 
+     * @param {SfvbBlogPostImageRequest} blogPostImageRequest Image to attach
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    attachSfvbBlogPostImageRaw(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>>;
+
+    /**
+     * Three calls, like the admin blog editor\'s upload.  Request an upload URL with files/upload_url, send the bytes to it, then attach with the key and a filename.  No storefront file is created, and the key is redeemed, so it cannot be used twice.  default_image replaces the post\'s default image and code replaces the image with that code; with neither, the image is added for use in the body at the url the response reports.  JPEG, PNG, GIF or WebP, checked by content.  A post that is not a draft needs sfvb_publish. 
+     * Attach an image to a blog post
+     */
+    attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * @summary Compile CJSON to Velocity
      * @param {SfvbCompileRequest} compileRequest CJSON to compile
@@ -913,6 +973,23 @@ export interface SfvbApiInterface {
      * Create a preview session
      */
     createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
+
+    /**
+     * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
+     * @summary Delete a blog post
+     * @param {number} storefrontOid 
+     * @param {number} blogPostOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbBlogPostRaw(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
+     * Delete a blog post
+     */
+    deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Recoverable from the recycle bin. 
@@ -1006,6 +1083,24 @@ export interface SfvbApiInterface {
      * Delete a preview session
      */
     deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
+     * @summary Detach an image from a blog post
+     * @param {number} storefrontOid 
+     * @param {number} blogPostOid 
+     * @param {SfvbBlogPostImageRequest} blogPostImageRequest Image to detach
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    detachSfvbBlogPostImageRaw(requestParameters: DetachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>>;
+
+    /**
+     * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
+     * Detach an image from a blog post
+     */
+    detachSfvbBlogPostImage(requestParameters: DetachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
      * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
@@ -1145,6 +1240,23 @@ export interface SfvbApiInterface {
      * End an experiment
      */
     endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
+
+    /**
+     * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
+     * @summary Read a blog post
+     * @param {number} storefrontOid 
+     * @param {number} blogPostOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbBlogPostRaw(requestParameters: GetSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>>;
+
+    /**
+     * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
+     * Read a blog post
+     */
+    getSfvbBlogPost(requestParameters: GetSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
      * 
@@ -1576,6 +1688,23 @@ export interface SfvbApiInterface {
      * Who this token is
      */
     getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse>;
+
+    /**
+     * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
+     * @summary Create a blog post
+     * @param {number} storefrontOid 
+     * @param {SfvbBlogPostRequest} blogPostRequest The blog post to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbBlogPostRaw(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>>;
+
+    /**
+     * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
+     * Create a blog post
+     */
+    insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
@@ -2399,6 +2528,24 @@ export interface SfvbApiInterface {
     unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
+     * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
+     * @summary Change a blog post
+     * @param {number} storefrontOid 
+     * @param {number} blogPostOid 
+     * @param {SfvbBlogPostRequest} blogPostRequest The fields to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbBlogPostRaw(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>>;
+
+    /**
+     * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
+     * Change a blog post
+     */
+    updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * @summary Update an upsell offer
      * @param {number} storefrontOid 
@@ -2653,6 +2800,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Three calls, like the admin blog editor\'s upload.  Request an upload URL with files/upload_url, send the bytes to it, then attach with the key and a filename.  No storefront file is created, and the key is redeemed, so it cannot be used twice.  default_image replaces the post\'s default image and code replaces the image with that code; with neither, the image is added for use in the body at the url the response reports.  JPEG, PNG, GIF or WebP, checked by content.  A post that is not a draft needs sfvb_publish. 
+     * Attach an image to a blog post
+     */
+    async attachSfvbBlogPostImageRaw(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling attachSfvbBlogPostImage.');
+        }
+
+        if (requestParameters.blogPostOid === null || requestParameters.blogPostOid === undefined) {
+            throw new runtime.RequiredError('blogPostOid','Required parameter requestParameters.blogPostOid was null or undefined when calling attachSfvbBlogPostImage.');
+        }
+
+        if (requestParameters.blogPostImageRequest === null || requestParameters.blogPostImageRequest === undefined) {
+            throw new runtime.RequiredError('blogPostImageRequest','Required parameter requestParameters.blogPostImageRequest was null or undefined when calling attachSfvbBlogPostImage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts/{blog_post_oid}/images/attach`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"blog_post_oid"}}`, encodeURIComponent(String(requestParameters.blogPostOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbBlogPostImageRequestToJSON(requestParameters.blogPostImageRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * Three calls, like the admin blog editor\'s upload.  Request an upload URL with files/upload_url, send the bytes to it, then attach with the key and a filename.  No storefront file is created, and the key is redeemed, so it cannot be used twice.  default_image replaces the post\'s default image and code replaces the image with that code; with neither, the image is added for use in the body at the url the response reports.  JPEG, PNG, GIF or WebP, checked by content.  A post that is not a draft needs sfvb_publish. 
+     * Attach an image to a blog post
+     */
+    async attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
+        const response = await this.attachSfvbBlogPostImageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * Compile CJSON to Velocity
      */
@@ -2779,6 +2978,50 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     async createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {
         const response = await this.createSfvbPreviewSessionRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
+     * Delete a blog post
+     */
+    async deleteSfvbBlogPostRaw(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbBlogPost.');
+        }
+
+        if (requestParameters.blogPostOid === null || requestParameters.blogPostOid === undefined) {
+            throw new runtime.RequiredError('blogPostOid','Required parameter requestParameters.blogPostOid was null or undefined when calling deleteSfvbBlogPost.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts/{blog_post_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"blog_post_oid"}}`, encodeURIComponent(String(requestParameters.blogPostOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
+     * Delete a blog post
+     */
+    async deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbBlogPostRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -3046,6 +3289,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbPreviewSessionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
+     * Detach an image from a blog post
+     */
+    async detachSfvbBlogPostImageRaw(requestParameters: DetachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling detachSfvbBlogPostImage.');
+        }
+
+        if (requestParameters.blogPostOid === null || requestParameters.blogPostOid === undefined) {
+            throw new runtime.RequiredError('blogPostOid','Required parameter requestParameters.blogPostOid was null or undefined when calling detachSfvbBlogPostImage.');
+        }
+
+        if (requestParameters.blogPostImageRequest === null || requestParameters.blogPostImageRequest === undefined) {
+            throw new runtime.RequiredError('blogPostImageRequest','Required parameter requestParameters.blogPostImageRequest was null or undefined when calling detachSfvbBlogPostImage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts/{blog_post_oid}/images/detach`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"blog_post_oid"}}`, encodeURIComponent(String(requestParameters.blogPostOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbBlogPostImageRequestToJSON(requestParameters.blogPostImageRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
+     * Detach an image from a blog post
+     */
+    async detachSfvbBlogPostImage(requestParameters: DetachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
+        const response = await this.detachSfvbBlogPostImageRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -3420,6 +3715,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
         const response = await this.endSfvbExperimentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
+     * Read a blog post
+     */
+    async getSfvbBlogPostRaw(requestParameters: GetSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbBlogPost.');
+        }
+
+        if (requestParameters.blogPostOid === null || requestParameters.blogPostOid === undefined) {
+            throw new runtime.RequiredError('blogPostOid','Required parameter requestParameters.blogPostOid was null or undefined when calling getSfvbBlogPost.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts/{blog_post_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"blog_post_oid"}}`, encodeURIComponent(String(requestParameters.blogPostOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
+     * Read a blog post
+     */
+    async getSfvbBlogPost(requestParameters: GetSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
+        const response = await this.getSfvbBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4592,6 +4932,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse> {
         const response = await this.getSfvbWhoamiRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
+     * Create a blog post
+     */
+    async insertSfvbBlogPostRaw(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbBlogPost.');
+        }
+
+        if (requestParameters.blogPostRequest === null || requestParameters.blogPostRequest === undefined) {
+            throw new runtime.RequiredError('blogPostRequest','Required parameter requestParameters.blogPostRequest was null or undefined when calling insertSfvbBlogPost.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbBlogPostRequestToJSON(requestParameters.blogPostRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
+     * Create a blog post
+     */
+    async insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
+        const response = await this.insertSfvbBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6968,6 +7356,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.unarchiveSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
+     * Change a blog post
+     */
+    async updateSfvbBlogPostRaw(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbBlogPost.');
+        }
+
+        if (requestParameters.blogPostOid === null || requestParameters.blogPostOid === undefined) {
+            throw new runtime.RequiredError('blogPostOid','Required parameter requestParameters.blogPostOid was null or undefined when calling updateSfvbBlogPost.');
+        }
+
+        if (requestParameters.blogPostRequest === null || requestParameters.blogPostRequest === undefined) {
+            throw new runtime.RequiredError('blogPostRequest','Required parameter requestParameters.blogPostRequest was null or undefined when calling updateSfvbBlogPost.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts/{blog_post_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"blog_post_oid"}}`, encodeURIComponent(String(requestParameters.blogPostOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbBlogPostRequestToJSON(requestParameters.blogPostRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
+     * Change a blog post
+     */
+    async updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
+        const response = await this.updateSfvbBlogPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
