@@ -204,6 +204,12 @@ import {
     SfvbRenderResponse,
     SfvbRenderResponseFromJSON,
     SfvbRenderResponseToJSON,
+    SfvbServerLogDetail,
+    SfvbServerLogDetailFromJSON,
+    SfvbServerLogDetailToJSON,
+    SfvbServerLogsResponse,
+    SfvbServerLogsResponseFromJSON,
+    SfvbServerLogsResponseToJSON,
     SfvbSiteAttributeUpdateRequest,
     SfvbSiteAttributeUpdateRequestFromJSON,
     SfvbSiteAttributeUpdateRequestToJSON,
@@ -493,6 +499,12 @@ export interface GetSfvbPreviewUrlRequest {
     path?: string;
 }
 
+export interface GetSfvbServerLogRequest {
+    storefrontOid: number;
+    logId: string;
+    minLevel?: string;
+}
+
 export interface GetSfvbSiteAttributesRequest {
     storefrontOid: number;
 }
@@ -601,6 +613,14 @@ export interface ListSfvbItemContainersRequest {
 export interface ListSfvbPagesRequest {
     storefrontOid: number;
     under?: string;
+}
+
+export interface ListSfvbServerLogsRequest {
+    storefrontOid: number;
+    uri?: string;
+    since?: string;
+    errorsOnly?: boolean;
+    limit?: number;
 }
 
 export interface ListSfvbTemplatesRequest {
@@ -1552,6 +1572,24 @@ export interface SfvbApiInterface {
     getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse>;
 
     /**
+     * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
+     * @summary Get one storefront render log
+     * @param {number} storefrontOid 
+     * @param {string} logId 
+     * @param {string} [minLevel] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbServerLogRaw(requestParameters: GetSfvbServerLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbServerLogDetail>>;
+
+    /**
+     * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
+     * Get one storefront render log
+     */
+    getSfvbServerLog(requestParameters: GetSfvbServerLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbServerLogDetail>;
+
+    /**
      * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
      * @summary Read a storefront\'s site attributes
      * @param {number} storefrontOid 
@@ -1920,6 +1958,26 @@ export interface SfvbApiInterface {
      * List the storefront\'s pages
      */
     listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse>;
+
+    /**
+     * The server log the storefront Developer Tools panel shows, one per page render, newest first and without the log text.  Each carries counts of error and warning lines, including Velocity problems such as a null #set, so a failing render stands out without reading every log.  Filter by uri (a case insensitive contains match on the rendered address) and errors_only.  since is 15m, 2h or 1d, or an ISO-8601 time, default 1h; logs are kept for seven days and only the newest 1000.  With a filter the newest 200 logs in the window are searched, and more_available says whether older ones were left unread. 
+     * @summary List recent storefront render logs
+     * @param {number} storefrontOid 
+     * @param {string} [uri] 
+     * @param {string} [since] 
+     * @param {boolean} [errorsOnly] 
+     * @param {number} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbServerLogsRaw(requestParameters: ListSfvbServerLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbServerLogsResponse>>;
+
+    /**
+     * The server log the storefront Developer Tools panel shows, one per page render, newest first and without the log text.  Each carries counts of error and warning lines, including Velocity problems such as a null #set, so a failing render stands out without reading every log.  Filter by uri (a case insensitive contains match on the rendered address) and errors_only.  since is 15m, 2h or 1d, or an ISO-8601 time, default 1h; logs are kept for seven days and only the newest 1000.  With a filter the newest 200 logs in the window are searched, and more_available says whether older ones were left unread. 
+     * List recent storefront render logs
+     */
+    listSfvbServerLogs(requestParameters: ListSfvbServerLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbServerLogsResponse>;
 
     /**
      * 
@@ -4566,6 +4624,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
+     * Get one storefront render log
+     */
+    async getSfvbServerLogRaw(requestParameters: GetSfvbServerLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbServerLogDetail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbServerLog.');
+        }
+
+        if (requestParameters.logId === null || requestParameters.logId === undefined) {
+            throw new runtime.RequiredError('logId','Required parameter requestParameters.logId was null or undefined when calling getSfvbServerLog.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.minLevel !== undefined) {
+            queryParameters['min_level'] = requestParameters.minLevel;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/logs/{log_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"log_id"}}`, encodeURIComponent(String(requestParameters.logId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbServerLogDetailFromJSON(jsonValue));
+    }
+
+    /**
+     * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
+     * Get one storefront render log
+     */
+    async getSfvbServerLog(requestParameters: GetSfvbServerLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbServerLogDetail> {
+        const response = await this.getSfvbServerLogRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
      * Read a storefront\'s site attributes
      */
@@ -5573,6 +5680,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse> {
         const response = await this.listSfvbPagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The server log the storefront Developer Tools panel shows, one per page render, newest first and without the log text.  Each carries counts of error and warning lines, including Velocity problems such as a null #set, so a failing render stands out without reading every log.  Filter by uri (a case insensitive contains match on the rendered address) and errors_only.  since is 15m, 2h or 1d, or an ISO-8601 time, default 1h; logs are kept for seven days and only the newest 1000.  With a filter the newest 200 logs in the window are searched, and more_available says whether older ones were left unread. 
+     * List recent storefront render logs
+     */
+    async listSfvbServerLogsRaw(requestParameters: ListSfvbServerLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbServerLogsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbServerLogs.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.uri !== undefined) {
+            queryParameters['uri'] = requestParameters.uri;
+        }
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.errorsOnly !== undefined) {
+            queryParameters['errors_only'] = requestParameters.errorsOnly;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/logs`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbServerLogsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The server log the storefront Developer Tools panel shows, one per page render, newest first and without the log text.  Each carries counts of error and warning lines, including Velocity problems such as a null #set, so a failing render stands out without reading every log.  Filter by uri (a case insensitive contains match on the rendered address) and errors_only.  since is 15m, 2h or 1d, or an ISO-8601 time, default 1h; logs are kept for seven days and only the newest 1000.  With a filter the newest 200 logs in the window are searched, and more_available says whether older ones were left unread. 
+     * List recent storefront render logs
+     */
+    async listSfvbServerLogs(requestParameters: ListSfvbServerLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbServerLogsResponse> {
+        const response = await this.listSfvbServerLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

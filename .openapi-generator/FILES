@@ -1077,6 +1077,10 @@ src/models/SfvbPreviewSessionResponse.ts
 src/models/SfvbPreviewUrlResponse.ts
 src/models/SfvbRenderRequest.ts
 src/models/SfvbRenderResponse.ts
+src/models/SfvbServerLog.ts
+src/models/SfvbServerLogDetail.ts
+src/models/SfvbServerLogEntry.ts
+src/models/SfvbServerLogsResponse.ts
 src/models/SfvbSiteAttribute.ts
 src/models/SfvbSiteAttributeUpdate.ts
 src/models/SfvbSiteAttributeUpdateRequest.ts
