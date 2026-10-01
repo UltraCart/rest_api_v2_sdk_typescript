@@ -198,6 +198,12 @@ import {
     SfvbPreviewUrlResponse,
     SfvbPreviewUrlResponseFromJSON,
     SfvbPreviewUrlResponseToJSON,
+    SfvbRecordingEventsResponse,
+    SfvbRecordingEventsResponseFromJSON,
+    SfvbRecordingEventsResponseToJSON,
+    SfvbRecordingResponse,
+    SfvbRecordingResponseFromJSON,
+    SfvbRecordingResponseToJSON,
     SfvbRenderRequest,
     SfvbRenderRequestFromJSON,
     SfvbRenderRequestToJSON,
@@ -497,6 +503,17 @@ export interface GetSfvbPreviewUrlRequest {
     storefrontOid: number;
     previewSessionId: string;
     path?: string;
+}
+
+export interface GetSfvbRecordingRequest {
+    storefrontOid: number;
+    screenRecordingUuid: string;
+}
+
+export interface GetSfvbRecordingPageViewEventsRequest {
+    storefrontOid: number;
+    screenRecordingUuid: string;
+    screenRecordingPageViewUuid: string;
 }
 
 export interface GetSfvbServerLogRequest {
@@ -1570,6 +1587,41 @@ export interface SfvbApiInterface {
      * URL that renders a preview session
      */
     getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse>;
+
+    /**
+     * One recorded visitor session and its page views, with each page view\'s named events such as rage clicks, script errors and checkout errors, but without the replay data.  Fetch a page view\'s replay events separately.  Find recordings to look at from the heatmaps or the analytics warehouse.  The visitor\'s email, IP address and visitor id are not returned, nor what they typed into form fields.  Reading a recording does not mark it watched. 
+     * @summary Get a screen recording
+     * @param {number} storefrontOid 
+     * @param {string} screenRecordingUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbRecordingRaw(requestParameters: GetSfvbRecordingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingResponse>>;
+
+    /**
+     * One recorded visitor session and its page views, with each page view\'s named events such as rage clicks, script errors and checkout errors, but without the replay data.  Fetch a page view\'s replay events separately.  Find recordings to look at from the heatmaps or the analytics warehouse.  The visitor\'s email, IP address and visitor id are not returned, nor what they typed into form fields.  Reading a recording does not mark it watched. 
+     * Get a screen recording
+     */
+    getSfvbRecording(requestParameters: GetSfvbRecordingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingResponse>;
+
+    /**
+     * The rrweb events for one page view, as a JSON array in a string, for replaying on the caller\'s own machine.  Card fields are masked by the recorder, but other text the visitor typed can appear.  Limited per account to 30 page views a minute, 300 an hour and 1000 a day.  Reading the events does not mark the recording watched. 
+     * @summary Get one recorded page view\'s replay events
+     * @param {number} storefrontOid 
+     * @param {string} screenRecordingUuid 
+     * @param {string} screenRecordingPageViewUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbRecordingPageViewEventsRaw(requestParameters: GetSfvbRecordingPageViewEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingEventsResponse>>;
+
+    /**
+     * The rrweb events for one page view, as a JSON array in a string, for replaying on the caller\'s own machine.  Card fields are masked by the recorder, but other text the visitor typed can appear.  Limited per account to 30 page views a minute, 300 an hour and 1000 a day.  Reading the events does not mark the recording watched. 
+     * Get one recorded page view\'s replay events
+     */
+    getSfvbRecordingPageViewEvents(requestParameters: GetSfvbRecordingPageViewEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingEventsResponse>;
 
     /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
@@ -4620,6 +4672,100 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse> {
         const response = await this.getSfvbPreviewUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One recorded visitor session and its page views, with each page view\'s named events such as rage clicks, script errors and checkout errors, but without the replay data.  Fetch a page view\'s replay events separately.  Find recordings to look at from the heatmaps or the analytics warehouse.  The visitor\'s email, IP address and visitor id are not returned, nor what they typed into form fields.  Reading a recording does not mark it watched. 
+     * Get a screen recording
+     */
+    async getSfvbRecordingRaw(requestParameters: GetSfvbRecordingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbRecording.');
+        }
+
+        if (requestParameters.screenRecordingUuid === null || requestParameters.screenRecordingUuid === undefined) {
+            throw new runtime.RequiredError('screenRecordingUuid','Required parameter requestParameters.screenRecordingUuid was null or undefined when calling getSfvbRecording.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/recordings/{screen_recording_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(requestParameters.screenRecordingUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRecordingResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One recorded visitor session and its page views, with each page view\'s named events such as rage clicks, script errors and checkout errors, but without the replay data.  Fetch a page view\'s replay events separately.  Find recordings to look at from the heatmaps or the analytics warehouse.  The visitor\'s email, IP address and visitor id are not returned, nor what they typed into form fields.  Reading a recording does not mark it watched. 
+     * Get a screen recording
+     */
+    async getSfvbRecording(requestParameters: GetSfvbRecordingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingResponse> {
+        const response = await this.getSfvbRecordingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The rrweb events for one page view, as a JSON array in a string, for replaying on the caller\'s own machine.  Card fields are masked by the recorder, but other text the visitor typed can appear.  Limited per account to 30 page views a minute, 300 an hour and 1000 a day.  Reading the events does not mark the recording watched. 
+     * Get one recorded page view\'s replay events
+     */
+    async getSfvbRecordingPageViewEventsRaw(requestParameters: GetSfvbRecordingPageViewEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingEventsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbRecordingPageViewEvents.');
+        }
+
+        if (requestParameters.screenRecordingUuid === null || requestParameters.screenRecordingUuid === undefined) {
+            throw new runtime.RequiredError('screenRecordingUuid','Required parameter requestParameters.screenRecordingUuid was null or undefined when calling getSfvbRecordingPageViewEvents.');
+        }
+
+        if (requestParameters.screenRecordingPageViewUuid === null || requestParameters.screenRecordingPageViewUuid === undefined) {
+            throw new runtime.RequiredError('screenRecordingPageViewUuid','Required parameter requestParameters.screenRecordingPageViewUuid was null or undefined when calling getSfvbRecordingPageViewEvents.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/recordings/{screen_recording_uuid}/page_views/{screen_recording_page_view_uuid}/events`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(requestParameters.screenRecordingUuid))).replace(`{${"screen_recording_page_view_uuid"}}`, encodeURIComponent(String(requestParameters.screenRecordingPageViewUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRecordingEventsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The rrweb events for one page view, as a JSON array in a string, for replaying on the caller\'s own machine.  Card fields are masked by the recorder, but other text the visitor typed can appear.  Limited per account to 30 page views a minute, 300 an hour and 1000 a day.  Reading the events does not mark the recording watched. 
+     * Get one recorded page view\'s replay events
+     */
+    async getSfvbRecordingPageViewEvents(requestParameters: GetSfvbRecordingPageViewEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingEventsResponse> {
+        const response = await this.getSfvbRecordingPageViewEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
