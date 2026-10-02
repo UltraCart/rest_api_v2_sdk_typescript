@@ -80,6 +80,12 @@ export interface SfvbRenderRequest {
      */
     context_upsell_offer_oid?: number;
     /**
+     * True renders every branch the way the builder shows it, for styling content a shopper only sometimes sees.  Omitted or false renders what a shopper sees, with conditions, prices and sale state evaluated against the context item.
+     * @type {boolean}
+     * @memberof SfvbRenderRequest
+     */
+    edit_mode?: boolean;
+    /**
      * Language ISO code.  Defaults to ENG.
      * @type {string}
      * @memberof SfvbRenderRequest
@@ -124,6 +130,7 @@ export function SfvbRenderRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         'context_order_id': !exists(json, 'context_order_id') ? undefined : json['context_order_id'],
         'context_page_number': !exists(json, 'context_page_number') ? undefined : json['context_page_number'],
         'context_upsell_offer_oid': !exists(json, 'context_upsell_offer_oid') ? undefined : json['context_upsell_offer_oid'],
+        'edit_mode': !exists(json, 'edit_mode') ? undefined : json['edit_mode'],
         'language_iso_code': !exists(json, 'language_iso_code') ? undefined : json['language_iso_code'],
         'uri': !exists(json, 'uri') ? undefined : json['uri'],
     };
@@ -148,6 +155,7 @@ export function SfvbRenderRequestToJSON(value?: SfvbRenderRequest | null): any {
         'context_order_id': value.context_order_id,
         'context_page_number': value.context_page_number,
         'context_upsell_offer_oid': value.context_upsell_offer_oid,
+        'edit_mode': value.edit_mode,
         'language_iso_code': value.language_iso_code,
         'uri': value.uri,
     };
