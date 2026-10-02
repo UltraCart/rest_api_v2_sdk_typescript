@@ -204,6 +204,12 @@ import {
     SfvbRecordingResponse,
     SfvbRecordingResponseFromJSON,
     SfvbRecordingResponseToJSON,
+    SfvbRecordingSettingsRequest,
+    SfvbRecordingSettingsRequestFromJSON,
+    SfvbRecordingSettingsRequestToJSON,
+    SfvbRecordingSettingsResponse,
+    SfvbRecordingSettingsResponseFromJSON,
+    SfvbRecordingSettingsResponseToJSON,
     SfvbRenderRequest,
     SfvbRenderRequestFromJSON,
     SfvbRenderRequestToJSON,
@@ -516,6 +522,10 @@ export interface GetSfvbRecordingPageViewEventsRequest {
     screenRecordingPageViewUuid: string;
 }
 
+export interface GetSfvbRecordingSettingsRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbServerLogRequest {
     storefrontOid: number;
     logId: string;
@@ -763,6 +773,11 @@ export interface PutSfvbPreviewSessionRequest {
     previewSessionId: string;
     previewSession: SfvbPreviewSessionRequest;
     themeOid?: number;
+}
+
+export interface PutSfvbRecordingSettingsRequest {
+    storefrontOid: number;
+    recordingSettingsRequest: SfvbRecordingSettingsRequest;
 }
 
 export interface PutSfvbSiteAttributesRequest {
@@ -1624,6 +1639,22 @@ export interface SfvbApiInterface {
     getSfvbRecordingPageViewEvents(requestParameters: GetSfvbRecordingPageViewEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingEventsResponse>;
 
     /**
+     * Whether real shoppers\' sessions on this storefront are being recorded, what recording costs per 1,000 sessions after the 14 day free trial, how long recordings are kept, and how many sessions were recorded in the current and last billing periods.  Recording only collects from the moment it is turned on, so when it is on but was turned on recently, check the analytics warehouse for rows before reporting that there is no data. 
+     * @summary Get the storefront\'s screen recording settings
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbRecordingSettingsRaw(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingSettingsResponse>>;
+
+    /**
+     * Whether real shoppers\' sessions on this storefront are being recorded, what recording costs per 1,000 sessions after the 14 day free trial, how long recordings are kept, and how many sessions were recorded in the current and last billing periods.  Recording only collects from the moment it is turned on, so when it is on but was turned on recently, check the analytics warehouse for rows before reporting that there is no data. 
+     * Get the storefront\'s screen recording settings
+     */
+    getSfvbRecordingSettings(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse>;
+
+    /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
      * @summary Get one storefront render log
      * @param {number} storefrontOid 
@@ -2385,6 +2416,23 @@ export interface SfvbApiInterface {
      * Push containers into a preview session
      */
     putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
+
+    /**
+     * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
+     * @summary Turn the storefront\'s screen recording on or off
+     * @param {number} storefrontOid 
+     * @param {SfvbRecordingSettingsRequest} recordingSettingsRequest Whether to record
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbRecordingSettingsRaw(requestParameters: PutSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingSettingsResponse>>;
+
+    /**
+     * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
+     * Turn the storefront\'s screen recording on or off
+     */
+    putSfvbRecordingSettings(requestParameters: PutSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse>;
 
     /**
      * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, video list, mailing list and item set attributes are refused, and so are the General screen settings other than the title, the SEO description and keywords and the social account names.  Credentials are refused.  Always needs sfvb_publish, because every theme reads the same attributes and there is no dormant copy to change instead.  The admin General screen saves the whole storefront, so a merchant with it open can still overwrite a change made here. 
@@ -4770,6 +4818,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Whether real shoppers\' sessions on this storefront are being recorded, what recording costs per 1,000 sessions after the 14 day free trial, how long recordings are kept, and how many sessions were recorded in the current and last billing periods.  Recording only collects from the moment it is turned on, so when it is on but was turned on recently, check the analytics warehouse for rows before reporting that there is no data. 
+     * Get the storefront\'s screen recording settings
+     */
+    async getSfvbRecordingSettingsRaw(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbRecordingSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/recording_settings`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRecordingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Whether real shoppers\' sessions on this storefront are being recorded, what recording costs per 1,000 sessions after the 14 day free trial, how long recordings are kept, and how many sessions were recorded in the current and last billing periods.  Recording only collects from the moment it is turned on, so when it is on but was turned on recently, check the analytics warehouse for rows before reporting that there is no data. 
+     * Get the storefront\'s screen recording settings
+     */
+    async getSfvbRecordingSettings(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse> {
+        const response = await this.getSfvbRecordingSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
      * Get one storefront render log
      */
@@ -6934,6 +7023,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {
         const response = await this.putSfvbPreviewSessionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
+     * Turn the storefront\'s screen recording on or off
+     */
+    async putSfvbRecordingSettingsRaw(requestParameters: PutSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRecordingSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbRecordingSettings.');
+        }
+
+        if (requestParameters.recordingSettingsRequest === null || requestParameters.recordingSettingsRequest === undefined) {
+            throw new runtime.RequiredError('recordingSettingsRequest','Required parameter requestParameters.recordingSettingsRequest was null or undefined when calling putSfvbRecordingSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/recording_settings`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRecordingSettingsRequestToJSON(requestParameters.recordingSettingsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRecordingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
+     * Turn the storefront\'s screen recording on or off
+     */
+    async putSfvbRecordingSettings(requestParameters: PutSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse> {
+        const response = await this.putSfvbRecordingSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -1083,6 +1083,9 @@ src/models/SfvbRecordingEventsResponse.ts
 src/models/SfvbRecordingPageView.ts
 src/models/SfvbRecordingParameter.ts
 src/models/SfvbRecordingResponse.ts
+src/models/SfvbRecordingSettings.ts
+src/models/SfvbRecordingSettingsRequest.ts
+src/models/SfvbRecordingSettingsResponse.ts
 src/models/SfvbRenderRequest.ts
 src/models/SfvbRenderResponse.ts
 src/models/SfvbServerLog.ts
