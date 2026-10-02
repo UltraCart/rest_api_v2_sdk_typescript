@@ -60,6 +60,9 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    OrderAutoOrderUpdateBillingUrlResponse,
+    OrderAutoOrderUpdateBillingUrlResponseFromJSON,
+    OrderAutoOrderUpdateBillingUrlResponseToJSON,
 } from '../models';
 
 export interface AttemptAutoOrderRebillRequest {
@@ -101,6 +104,10 @@ export interface GetAutoOrderByReferenceOrderIdRequest {
 }
 
 export interface GetAutoOrderEmailsRequest {
+    autoOrderOid: number;
+}
+
+export interface GetAutoOrderUpdateBillingUrlRequest {
     autoOrderOid: number;
 }
 
@@ -348,6 +355,22 @@ export interface AutoOrderApiInterface {
      * Retrieve email delivery information for this auto order.
      */
     getAutoOrderEmails(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderEmailsResponse>;
+
+    /**
+     * Generates the url a customer can use to update the billing information on this auto order.  This is the same url sent in the auto order update billing email. 
+     * @summary Generate an auto order update billing url
+     * @param {number} autoOrderOid The auto order oid to generate the update billing url for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    getAutoOrderUpdateBillingUrlRaw(requestParameters: GetAutoOrderUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderAutoOrderUpdateBillingUrlResponse>>;
+
+    /**
+     * Generates the url a customer can use to update the billing information on this auto order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    getAutoOrderUpdateBillingUrl(requestParameters: GetAutoOrderUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderAutoOrderUpdateBillingUrlResponse>;
 
     /**
      * Retrieves auto orders from the account.  If no parameters are specified, all auto orders will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -965,6 +988,47 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async getAutoOrderEmails(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderEmailsResponse> {
         const response = await this.getAutoOrderEmailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Generates the url a customer can use to update the billing information on this auto order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    async getAutoOrderUpdateBillingUrlRaw(requestParameters: GetAutoOrderUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderAutoOrderUpdateBillingUrlResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling getAutoOrderUpdateBillingUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/update_billing_url`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderAutoOrderUpdateBillingUrlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Generates the url a customer can use to update the billing information on this auto order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    async getAutoOrderUpdateBillingUrl(requestParameters: GetAutoOrderUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderAutoOrderUpdateBillingUrlResponse> {
+        const response = await this.getAutoOrderUpdateBillingUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

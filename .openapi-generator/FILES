@@ -818,8 +818,10 @@ src/models/Order.ts
 src/models/OrderAddItemsAndReleaseRequest.ts
 src/models/OrderAffiliate.ts
 src/models/OrderAffiliateLedger.ts
+src/models/OrderAssignRmaRequest.ts
 src/models/OrderAssignToAffiliateRequest.ts
 src/models/OrderAutoOrder.ts
+src/models/OrderAutoOrderUpdateBillingUrlResponse.ts
 src/models/OrderBilling.ts
 src/models/OrderBuysafe.ts
 src/models/OrderByTokenQuery.ts

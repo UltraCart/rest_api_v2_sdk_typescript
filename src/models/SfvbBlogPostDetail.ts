@@ -27,7 +27,7 @@ import {
  */
 export interface SfvbBlogPostDetail {
     /**
-     * Whether shoppers may comment.
+     * Whether shoppers may comment.  Like every false value here, false is left out of the response.
      * @type {boolean}
      * @memberof SfvbBlogPostDetail
      */
@@ -81,7 +81,25 @@ export interface SfvbBlogPostDetail {
      */
     publication_dts?: string;
     /**
-     * The post's tags.
+     * The meta description (storefrontSEODescription).  Absent when not set.
+     * @type {string}
+     * @memberof SfvbBlogPostDetail
+     */
+    seo_description?: string;
+    /**
+     * The meta keywords (storefrontSEOKeywords).  Absent when not set.
+     * @type {string}
+     * @memberof SfvbBlogPostDetail
+     */
+    seo_keywords?: string;
+    /**
+     * The page head title (storefrontSEOTitle).  Absent when not set, and the head then uses the post title.
+     * @type {string}
+     * @memberof SfvbBlogPostDetail
+     */
+    seo_title?: string;
+    /**
+     * The post's tags, in alphabetical order.  The order they were sent in is not kept.
      * @type {Array<string>}
      * @memberof SfvbBlogPostDetail
      */
@@ -148,6 +166,9 @@ export function SfvbBlogPostDetailFromJSONTyped(json: any, ignoreDiscriminator: 
         'images': !exists(json, 'images') ? undefined : ((json['images'] as Array<any>).map(SfvbBlogPostImageFromJSON)),
         'last_modified_dts': !exists(json, 'last_modified_dts') ? undefined : json['last_modified_dts'],
         'publication_dts': !exists(json, 'publication_dts') ? undefined : json['publication_dts'],
+        'seo_description': !exists(json, 'seo_description') ? undefined : json['seo_description'],
+        'seo_keywords': !exists(json, 'seo_keywords') ? undefined : json['seo_keywords'],
+        'seo_title': !exists(json, 'seo_title') ? undefined : json['seo_title'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'unassigned': !exists(json, 'unassigned') ? undefined : json['unassigned'],
@@ -175,6 +196,9 @@ export function SfvbBlogPostDetailToJSON(value?: SfvbBlogPostDetail | null): any
         'images': value.images === undefined ? undefined : ((value.images as Array<any>).map(SfvbBlogPostImageToJSON)),
         'last_modified_dts': value.last_modified_dts,
         'publication_dts': value.publication_dts,
+        'seo_description': value.seo_description,
+        'seo_keywords': value.seo_keywords,
+        'seo_title': value.seo_title,
         'tags': value.tags,
         'title': value.title,
         'unassigned': value.unassigned,

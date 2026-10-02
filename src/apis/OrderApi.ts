@@ -36,9 +36,15 @@ import {
     OrderAddItemsAndReleaseRequest,
     OrderAddItemsAndReleaseRequestFromJSON,
     OrderAddItemsAndReleaseRequestToJSON,
+    OrderAssignRmaRequest,
+    OrderAssignRmaRequestFromJSON,
+    OrderAssignRmaRequestToJSON,
     OrderAssignToAffiliateRequest,
     OrderAssignToAffiliateRequestFromJSON,
     OrderAssignToAffiliateRequestToJSON,
+    OrderAutoOrderUpdateBillingUrlResponse,
+    OrderAutoOrderUpdateBillingUrlResponseFromJSON,
+    OrderAutoOrderUpdateBillingUrlResponseToJSON,
     OrderByTokenQuery,
     OrderByTokenQueryFromJSON,
     OrderByTokenQueryToJSON,
@@ -113,6 +119,12 @@ import {
 export interface AdjustOrderTotalRequest {
     orderId: string;
     desiredTotal: string;
+}
+
+export interface AssignRmaRequest {
+    orderId: string;
+    assignRmaRequest: OrderAssignRmaRequest;
+    expand?: string;
 }
 
 export interface AssignToAffiliateRequest {
@@ -252,6 +264,15 @@ export interface GetOrdersByQueryRequest {
     expand?: string;
 }
 
+export interface GetOrdersByRmaRequest {
+    rma: string;
+    expand?: string;
+}
+
+export interface GetUpdateBillingUrlRequest {
+    orderId: string;
+}
+
 export interface HeldOrderAddItemsAndReleaseRequest {
     orderId: string;
     addItemsAndReleaseRequest: OrderAddItemsAndReleaseRequest;
@@ -350,6 +371,24 @@ export interface OrderApiInterface {
      * Adjusts an order total
      */
     adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
+     * Associates an RMA number with an order.  Any existing RMA on the order is replaced. 
+     * @summary Associates an RMA with an order
+     * @param {string} orderId The order id to associate the RMA with.
+     * @param {OrderAssignRmaRequest} assignRmaRequest Assign RMA request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    assignRmaRaw(requestParameters: AssignRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * Associates an RMA number with an order.  Any existing RMA on the order is replaced. 
+     * Associates an RMA with an order
+     */
+    assignRma(requestParameters: AssignRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
      * Assigns an order to an affiliate. 
@@ -783,6 +822,39 @@ export interface OrderApiInterface {
     getOrdersByQuery(requestParameters: GetOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse>;
 
     /**
+     * Retrieves the orders associated with the specified RMA number.  The RMA must be an exact value; wildcards are not permitted. 
+     * @summary Retrieve orders by RMA
+     * @param {string} rma The RMA number to search for.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrdersByRmaRaw(requestParameters: GetOrdersByRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>>;
+
+    /**
+     * Retrieves the orders associated with the specified RMA number.  The RMA must be an exact value; wildcards are not permitted. 
+     * Retrieve orders by RMA
+     */
+    getOrdersByRma(requestParameters: GetOrdersByRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse>;
+
+    /**
+     * Generates the url a customer can use to update the billing information on the auto order associated with this order.  This is the same url sent in the auto order update billing email. 
+     * @summary Generate an auto order update billing url
+     * @param {string} orderId The order id to generate the update billing url for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getUpdateBillingUrlRaw(requestParameters: GetUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderAutoOrderUpdateBillingUrlResponse>>;
+
+    /**
+     * Generates the url a customer can use to update the billing information on the auto order associated with this order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    getUpdateBillingUrl(requestParameters: GetUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderAutoOrderUpdateBillingUrlResponse>;
+
+    /**
      * This method adds items to an order in the hold stage and releases it 
      * @summary Add items and release a held order
      * @param {string} orderId The order id to release.
@@ -1074,6 +1146,58 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.adjustOrderTotalRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Associates an RMA number with an order.  Any existing RMA on the order is replaced. 
+     * Associates an RMA with an order
+     */
+    async assignRmaRaw(requestParameters: AssignRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling assignRma.');
+        }
+
+        if (requestParameters.assignRmaRequest === null || requestParameters.assignRmaRequest === undefined) {
+            throw new runtime.RequiredError('assignRmaRequest','Required parameter requestParameters.assignRmaRequest was null or undefined when calling assignRma.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/rma`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderAssignRmaRequestToJSON(requestParameters.assignRmaRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Associates an RMA number with an order.  Any existing RMA on the order is replaced. 
+     * Associates an RMA with an order
+     */
+    async assignRma(requestParameters: AssignRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.assignRmaRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2264,6 +2388,92 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrdersByQuery(requestParameters: GetOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse> {
         const response = await this.getOrdersByQueryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the orders associated with the specified RMA number.  The RMA must be an exact value; wildcards are not permitted. 
+     * Retrieve orders by RMA
+     */
+    async getOrdersByRmaRaw(requestParameters: GetOrdersByRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>> {
+        if (requestParameters.rma === null || requestParameters.rma === undefined) {
+            throw new runtime.RequiredError('rma','Required parameter requestParameters.rma was null or undefined when calling getOrdersByRma.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/rma/{rma}`.replace(`{${"rma"}}`, encodeURIComponent(String(requestParameters.rma))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrdersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves the orders associated with the specified RMA number.  The RMA must be an exact value; wildcards are not permitted. 
+     * Retrieve orders by RMA
+     */
+    async getOrdersByRma(requestParameters: GetOrdersByRmaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse> {
+        const response = await this.getOrdersByRmaRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Generates the url a customer can use to update the billing information on the auto order associated with this order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    async getUpdateBillingUrlRaw(requestParameters: GetUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderAutoOrderUpdateBillingUrlResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getUpdateBillingUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/auto_order_update_billing_url`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderAutoOrderUpdateBillingUrlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Generates the url a customer can use to update the billing information on the auto order associated with this order.  This is the same url sent in the auto order update billing email. 
+     * Generate an auto order update billing url
+     */
+    async getUpdateBillingUrl(requestParameters: GetUpdateBillingUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderAutoOrderUpdateBillingUrlResponse> {
+        const response = await this.getUpdateBillingUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

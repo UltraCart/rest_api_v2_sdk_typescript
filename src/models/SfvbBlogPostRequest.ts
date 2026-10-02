@@ -50,6 +50,24 @@ export interface SfvbBlogPostRequest {
      */
     publication_dts?: string;
     /**
+     * The meta description (storefrontSEODescription), the search result snippet.  Plain text with no angle brackets or double quotes, up to 1000 characters.  Left out, it is unchanged; an empty string clears it, and the head falls back to the site's description.
+     * @type {string}
+     * @memberof SfvbBlogPostRequest
+     */
+    seo_description?: string;
+    /**
+     * The meta keywords (storefrontSEOKeywords).  Plain text with no angle brackets or double quotes, up to 1000 characters.  Left out, it is unchanged; an empty string clears it, and the head falls back to the site's keywords.
+     * @type {string}
+     * @memberof SfvbBlogPostRequest
+     */
+    seo_keywords?: string;
+    /**
+     * The page head title (storefrontSEOTitle), used in place of the post title in the browser tab and search results.  Plain text with no angle brackets or double quotes, up to 1000 characters.  Left out, it is unchanged; an empty string clears it, and the head falls back to the post title.
+     * @type {string}
+     * @memberof SfvbBlogPostRequest
+     */
+    seo_title?: string;
+    /**
      * The post's tags as plain text, up to 100 characters each, with no quotes or angle brackets and no repeats.  On an update the list replaces every tag, and an empty list clears them.
      * @type {Array<string>}
      * @memberof SfvbBlogPostRequest
@@ -112,6 +130,9 @@ export function SfvbBlogPostRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'body': !exists(json, 'body') ? undefined : json['body'],
         'excerpt': !exists(json, 'excerpt') ? undefined : json['excerpt'],
         'publication_dts': !exists(json, 'publication_dts') ? undefined : json['publication_dts'],
+        'seo_description': !exists(json, 'seo_description') ? undefined : json['seo_description'],
+        'seo_keywords': !exists(json, 'seo_keywords') ? undefined : json['seo_keywords'],
+        'seo_title': !exists(json, 'seo_title') ? undefined : json['seo_title'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'url_part': !exists(json, 'url_part') ? undefined : json['url_part'],
@@ -133,6 +154,9 @@ export function SfvbBlogPostRequestToJSON(value?: SfvbBlogPostRequest | null): a
         'body': value.body,
         'excerpt': value.excerpt,
         'publication_dts': value.publication_dts,
+        'seo_description': value.seo_description,
+        'seo_keywords': value.seo_keywords,
+        'seo_title': value.seo_title,
         'tags': value.tags,
         'title': value.title,
         'url_part': value.url_part,
