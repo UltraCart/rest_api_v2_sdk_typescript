@@ -1056,6 +1056,7 @@ src/models/SfvbLibraryInstallReceipt.ts
 src/models/SfvbLibraryInstallRecord.ts
 src/models/SfvbLibraryInstallRequest.ts
 src/models/SfvbLibraryInstallsResponse.ts
+src/models/SfvbLibraryManifestFinding.ts
 src/models/SfvbLibraryParameter.ts
 src/models/SfvbLibraryPublishRequest.ts
 src/models/SfvbLibraryResponse.ts
@@ -1065,6 +1066,8 @@ src/models/SfvbLibraryShareTarget.ts
 src/models/SfvbLibraryShareTargetsResponse.ts
 src/models/SfvbLibraryTaxonomy.ts
 src/models/SfvbLibraryTaxonomyCatalog.ts
+src/models/SfvbLibraryTaxonomyDimension.ts
+src/models/SfvbLibraryTaxonomyTag.ts
 src/models/SfvbLibraryUnshareResult.ts
 src/models/SfvbMenu.ts
 src/models/SfvbMenuItem.ts

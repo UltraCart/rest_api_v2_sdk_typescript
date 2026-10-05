@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbLibraryTaxonomyDimension,
+    SfvbLibraryTaxonomyDimensionFromJSON,
+    SfvbLibraryTaxonomyDimensionFromJSONTyped,
+    SfvbLibraryTaxonomyDimensionToJSON,
+} from './SfvbLibraryTaxonomyDimension';
+
 /**
  * 
  * @export
@@ -21,10 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface SfvbLibraryTaxonomyCatalog {
     /**
      * purpose, section, industry and style, each with its allowed tags.
-     * @type {object}
+     * @type {Array<SfvbLibraryTaxonomyDimension>}
      * @memberof SfvbLibraryTaxonomyCatalog
      */
-    dimensions?: object;
+    dimensions?: Array<SfvbLibraryTaxonomyDimension>;
 }
 
 
@@ -48,7 +55,7 @@ export function SfvbLibraryTaxonomyCatalogFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'dimensions': !exists(json, 'dimensions') ? undefined : json['dimensions'],
+        'dimensions': !exists(json, 'dimensions') ? undefined : ((json['dimensions'] as Array<any>).map(SfvbLibraryTaxonomyDimensionFromJSON)),
     };
 }
 
@@ -61,7 +68,7 @@ export function SfvbLibraryTaxonomyCatalogToJSON(value?: SfvbLibraryTaxonomyCata
     }
     return {
         
-        'dimensions': value.dimensions,
+        'dimensions': value.dimensions === undefined ? undefined : ((value.dimensions as Array<any>).map(SfvbLibraryTaxonomyDimensionToJSON)),
     };
 }
 

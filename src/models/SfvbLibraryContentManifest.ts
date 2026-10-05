@@ -19,6 +19,12 @@ import {
     SfvbLibraryAiReviewFromJSONTyped,
     SfvbLibraryAiReviewToJSON,
 } from './SfvbLibraryAiReview';
+import {
+    SfvbLibraryManifestFinding,
+    SfvbLibraryManifestFindingFromJSON,
+    SfvbLibraryManifestFindingFromJSONTyped,
+    SfvbLibraryManifestFindingToJSON,
+} from './SfvbLibraryManifestFinding';
 
 /**
  * 
@@ -28,10 +34,10 @@ import {
 export interface SfvbLibraryContentManifest {
     /**
      * Images, fonts, stylesheets, scripts or media loaded from an absolute URL.  A shared or public entry must use relative paths so it never pulls files from another storefront or site.
-     * @type {object}
+     * @type {Array<SfvbLibraryManifestFinding>}
      * @memberof SfvbLibraryContentManifest
      */
-    absolute_asset_urls?: object;
+    absolute_asset_urls?: Array<SfvbLibraryManifestFinding>;
     /**
      * 
      * @type {SfvbLibraryAiReview}
@@ -40,22 +46,22 @@ export interface SfvbLibraryContentManifest {
     ai_review?: SfvbLibraryAiReview;
     /**
      * Content that runs in a shopper's browser or on the server.  Script, html, embed, css and velocity elements, script in markup, Velocity, script bearing CSS and unsafe URL schemes.  An entry with any of these cannot be made public, and installing it needs an explicit acknowledgement.
-     * @type {object}
+     * @type {Array<SfvbLibraryManifestFinding>}
      * @memberof SfvbLibraryContentManifest
      */
-    executable?: object;
+    executable?: Array<SfvbLibraryManifestFinding>;
     /**
      * Card skimming and obfuscation signals.  An entry with any is refused outright, whoever owns it.
-     * @type {object}
+     * @type {Array<SfvbLibraryManifestFinding>}
      * @memberof SfvbLibraryContentManifest
      */
-    rejected?: object;
+    rejected?: Array<SfvbLibraryManifestFinding>;
     /**
      * Strings shaped like credentials, by kind only.  An entry with any cannot be shared or made public.
-     * @type {object}
+     * @type {Array<SfvbLibraryManifestFinding>}
      * @memberof SfvbLibraryContentManifest
      */
-    secrets?: object;
+    secrets?: Array<SfvbLibraryManifestFinding>;
 }
 
 
@@ -79,11 +85,11 @@ export function SfvbLibraryContentManifestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'absolute_asset_urls': !exists(json, 'absolute_asset_urls') ? undefined : json['absolute_asset_urls'],
+        'absolute_asset_urls': !exists(json, 'absolute_asset_urls') ? undefined : ((json['absolute_asset_urls'] as Array<any>).map(SfvbLibraryManifestFindingFromJSON)),
         'ai_review': !exists(json, 'ai_review') ? undefined : SfvbLibraryAiReviewFromJSON(json['ai_review']),
-        'executable': !exists(json, 'executable') ? undefined : json['executable'],
-        'rejected': !exists(json, 'rejected') ? undefined : json['rejected'],
-        'secrets': !exists(json, 'secrets') ? undefined : json['secrets'],
+        'executable': !exists(json, 'executable') ? undefined : ((json['executable'] as Array<any>).map(SfvbLibraryManifestFindingFromJSON)),
+        'rejected': !exists(json, 'rejected') ? undefined : ((json['rejected'] as Array<any>).map(SfvbLibraryManifestFindingFromJSON)),
+        'secrets': !exists(json, 'secrets') ? undefined : ((json['secrets'] as Array<any>).map(SfvbLibraryManifestFindingFromJSON)),
     };
 }
 
@@ -96,11 +102,11 @@ export function SfvbLibraryContentManifestToJSON(value?: SfvbLibraryContentManif
     }
     return {
         
-        'absolute_asset_urls': value.absolute_asset_urls,
+        'absolute_asset_urls': value.absolute_asset_urls === undefined ? undefined : ((value.absolute_asset_urls as Array<any>).map(SfvbLibraryManifestFindingToJSON)),
         'ai_review': SfvbLibraryAiReviewToJSON(value.ai_review),
-        'executable': value.executable,
-        'rejected': value.rejected,
-        'secrets': value.secrets,
+        'executable': value.executable === undefined ? undefined : ((value.executable as Array<any>).map(SfvbLibraryManifestFindingToJSON)),
+        'rejected': value.rejected === undefined ? undefined : ((value.rejected as Array<any>).map(SfvbLibraryManifestFindingToJSON)),
+        'secrets': value.secrets === undefined ? undefined : ((value.secrets as Array<any>).map(SfvbLibraryManifestFindingToJSON)),
     };
 }
 

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbLibraryManifestFinding,
+    SfvbLibraryManifestFindingFromJSON,
+    SfvbLibraryManifestFindingFromJSONTyped,
+    SfvbLibraryManifestFindingToJSON,
+} from './SfvbLibraryManifestFinding';
+
 /**
  * 
  * @export
@@ -21,10 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface SfvbLibraryAiReview {
     /**
      * What the reviewers found.  detail is the category followed by the quoted evidence.
-     * @type {object}
+     * @type {Array<SfvbLibraryManifestFinding>}
      * @memberof SfvbLibraryAiReview
      */
-    findings?: object;
+    findings?: Array<SfvbLibraryManifestFinding>;
     /**
      * Version of the review policy that produced this verdict.
      * @type {string}
@@ -90,7 +97,7 @@ export function SfvbLibraryAiReviewFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'findings': !exists(json, 'findings') ? undefined : json['findings'],
+        'findings': !exists(json, 'findings') ? undefined : ((json['findings'] as Array<any>).map(SfvbLibraryManifestFindingFromJSON)),
         'prompt_version': !exists(json, 'prompt_version') ? undefined : json['prompt_version'],
         'reviewed_dts': !exists(json, 'reviewed_dts') ? undefined : json['reviewed_dts'],
         'screenshot_sha256': !exists(json, 'screenshot_sha256') ? undefined : json['screenshot_sha256'],
@@ -108,7 +115,7 @@ export function SfvbLibraryAiReviewToJSON(value?: SfvbLibraryAiReview | null): a
     }
     return {
         
-        'findings': value.findings,
+        'findings': value.findings === undefined ? undefined : ((value.findings as Array<any>).map(SfvbLibraryManifestFindingToJSON)),
         'prompt_version': value.prompt_version,
         'reviewed_dts': value.reviewed_dts,
         'screenshot_sha256': value.screenshot_sha256,
