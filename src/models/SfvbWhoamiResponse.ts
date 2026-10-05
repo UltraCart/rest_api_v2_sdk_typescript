@@ -51,6 +51,12 @@ export interface SfvbWhoamiResponse {
      */
     can_publish?: boolean;
     /**
+     * True when this account may publish library entries to the public library.  Set by UltraCart staff only.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    can_publish_public?: boolean;
+    /**
      * True when this token may read.  Do not infer this from the requested scope name.
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
@@ -131,6 +137,7 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'application_name': !exists(json, 'application_name') ? undefined : json['application_name'],
         'authentication_type': !exists(json, 'authentication_type') ? undefined : json['authentication_type'],
         'can_publish': !exists(json, 'can_publish') ? undefined : json['can_publish'],
+        'can_publish_public': !exists(json, 'can_publish_public') ? undefined : json['can_publish_public'],
         'can_read': !exists(json, 'can_read') ? undefined : json['can_read'],
         'can_write': !exists(json, 'can_write') ? undefined : json['can_write'],
         'device_scope': !exists(json, 'device_scope') ? undefined : json['device_scope'],
@@ -156,6 +163,7 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
         'application_name': value.application_name,
         'authentication_type': value.authentication_type,
         'can_publish': value.can_publish,
+        'can_publish_public': value.can_publish_public,
         'can_read': value.can_read,
         'can_write': value.can_write,
         'device_scope': value.device_scope,

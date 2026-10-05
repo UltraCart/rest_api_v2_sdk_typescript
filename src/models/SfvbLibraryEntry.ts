@@ -13,6 +13,31 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbLibraryContentManifest,
+    SfvbLibraryContentManifestFromJSON,
+    SfvbLibraryContentManifestFromJSONTyped,
+    SfvbLibraryContentManifestToJSON,
+} from './SfvbLibraryContentManifest';
+import {
+    SfvbLibraryParameter,
+    SfvbLibraryParameterFromJSON,
+    SfvbLibraryParameterFromJSONTyped,
+    SfvbLibraryParameterToJSON,
+} from './SfvbLibraryParameter';
+import {
+    SfvbLibraryShareTarget,
+    SfvbLibraryShareTargetFromJSON,
+    SfvbLibraryShareTargetFromJSONTyped,
+    SfvbLibraryShareTargetToJSON,
+} from './SfvbLibraryShareTarget';
+import {
+    SfvbLibraryTaxonomy,
+    SfvbLibraryTaxonomyFromJSON,
+    SfvbLibraryTaxonomyFromJSONTyped,
+    SfvbLibraryTaxonomyToJSON,
+} from './SfvbLibraryTaxonomy';
+
 /**
  * 
  * @export
@@ -32,11 +57,29 @@ export interface SfvbLibraryEntry {
      */
     cjson?: string;
     /**
+     * 
+     * @type {SfvbLibraryContentManifest}
+     * @memberof SfvbLibraryEntry
+     */
+    content_manifest?: SfvbLibraryContentManifest;
+    /**
      * What this fragment is for.
      * @type {string}
      * @memberof SfvbLibraryEntry
      */
     description?: string;
+    /**
+     * Hash of the draft's writable fields.  Send it back as If-Match to update, delete or publish.  Present only for the owner.
+     * @type {string}
+     * @memberof SfvbLibraryEntry
+     */
+    hash_sha256?: string;
+    /**
+     * When the draft was last saved, ISO 8601.
+     * @type {string}
+     * @memberof SfvbLibraryEntry
+     */
+    last_modified_dts?: string;
     /**
      * Library entry oid.
      * @type {number}
@@ -56,11 +99,41 @@ export interface SfvbLibraryEntry {
      */
     owned?: boolean;
     /**
+     * Named values the fragment expects the installer to supply.
+     * @type {Array<SfvbLibraryParameter>}
+     * @memberof SfvbLibraryEntry
+     */
+    parameters?: Array<SfvbLibraryParameter>;
+    /**
+     * The latest published revision, or null when the entry has never been published.
+     * @type {number}
+     * @memberof SfvbLibraryEntry
+     */
+    published_revision_number?: number;
+    /**
      * Storefront file paths this fragment references.  Installing the fragment copies them into the storefront; reading it does not.
      * @type {Array<string>}
      * @memberof SfvbLibraryEntry
      */
     referenced_files?: Array<string>;
+    /**
+     * True when the owner deleted an entry that had been published or installed.  It is kept so existing installs still resolve, and it leaves search.
+     * @type {boolean}
+     * @memberof SfvbLibraryEntry
+     */
+    retired?: boolean;
+    /**
+     * The revision returned.  For the owner this is the draft, which every save increments.  For anyone else it is the published revision.
+     * @type {number}
+     * @memberof SfvbLibraryEntry
+     */
+    revision_number?: number;
+    /**
+     * Screenshot height in pixels.
+     * @type {number}
+     * @memberof SfvbLibraryEntry
+     */
+    screenshot_height?: number;
     /**
      * S3 listing key for the large screenshot, when one has been generated.
      * @type {string}
@@ -68,17 +141,53 @@ export interface SfvbLibraryEntry {
      */
     screenshot_key?: string;
     /**
+     * Hash of the uploaded screenshot.
+     * @type {string}
+     * @memberof SfvbLibraryEntry
+     */
+    screenshot_sha256?: string;
+    /**
+     * True on an update that changed the fragment of an entry with a screenshot.  Retake it and set it again with the library screenshot endpoint.
+     * @type {boolean}
+     * @memberof SfvbLibraryEntry
+     */
+    screenshot_stale?: boolean;
+    /**
+     * Screenshot width in pixels.
+     * @type {number}
+     * @memberof SfvbLibraryEntry
+     */
+    screenshot_width?: number;
+    /**
      * True when the entry is shared across the merchant account.
      * @type {boolean}
      * @memberof SfvbLibraryEntry
      */
     share_with_account?: boolean;
     /**
+     * Linked accounts the entry is shared with.  Present only for the owner.
+     * @type {Array<SfvbLibraryShareTarget>}
+     * @memberof SfvbLibraryEntry
+     */
+    shared_with?: Array<SfvbLibraryShareTarget>;
+    /**
+     * 
+     * @type {SfvbLibraryTaxonomy}
+     * @memberof SfvbLibraryEntry
+     */
+    taxonomy?: SfvbLibraryTaxonomy;
+    /**
      * S3 listing key for the medium thumbnail, when one has been generated.  Thumbnails are produced asynchronously and can lag a save by a minute or two.
      * @type {string}
      * @memberof SfvbLibraryEntry
      */
     thumbnail_key?: string;
+    /**
+     * private, shared or public.
+     * @type {string}
+     * @memberof SfvbLibraryEntry
+     */
+    visibility?: SfvbLibraryEntryVisibilityEnum;
     /**
      * Element type at the root of the fragment.
      * @type {string}
@@ -87,6 +196,17 @@ export interface SfvbLibraryEntry {
     widget_type?: string;
 }
 
+
+
+/**
+ * @export
+ */
+export const SfvbLibraryEntryVisibilityEnum = {
+    Private: 'private',
+    Shared: 'shared',
+    Public: 'public'
+} as const;
+export type SfvbLibraryEntryVisibilityEnum = typeof SfvbLibraryEntryVisibilityEnum[keyof typeof SfvbLibraryEntryVisibilityEnum];
 
 
 /**
@@ -110,14 +230,28 @@ export function SfvbLibraryEntryFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'bookmarked': !exists(json, 'bookmarked') ? undefined : json['bookmarked'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
+        'content_manifest': !exists(json, 'content_manifest') ? undefined : SfvbLibraryContentManifestFromJSON(json['content_manifest']),
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'last_modified_dts': !exists(json, 'last_modified_dts') ? undefined : json['last_modified_dts'],
         'library_oid': !exists(json, 'library_oid') ? undefined : json['library_oid'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'owned': !exists(json, 'owned') ? undefined : json['owned'],
+        'parameters': !exists(json, 'parameters') ? undefined : ((json['parameters'] as Array<any>).map(SfvbLibraryParameterFromJSON)),
+        'published_revision_number': !exists(json, 'published_revision_number') ? undefined : json['published_revision_number'],
         'referenced_files': !exists(json, 'referenced_files') ? undefined : json['referenced_files'],
+        'retired': !exists(json, 'retired') ? undefined : json['retired'],
+        'revision_number': !exists(json, 'revision_number') ? undefined : json['revision_number'],
+        'screenshot_height': !exists(json, 'screenshot_height') ? undefined : json['screenshot_height'],
         'screenshot_key': !exists(json, 'screenshot_key') ? undefined : json['screenshot_key'],
+        'screenshot_sha256': !exists(json, 'screenshot_sha256') ? undefined : json['screenshot_sha256'],
+        'screenshot_stale': !exists(json, 'screenshot_stale') ? undefined : json['screenshot_stale'],
+        'screenshot_width': !exists(json, 'screenshot_width') ? undefined : json['screenshot_width'],
         'share_with_account': !exists(json, 'share_with_account') ? undefined : json['share_with_account'],
+        'shared_with': !exists(json, 'shared_with') ? undefined : ((json['shared_with'] as Array<any>).map(SfvbLibraryShareTargetFromJSON)),
+        'taxonomy': !exists(json, 'taxonomy') ? undefined : SfvbLibraryTaxonomyFromJSON(json['taxonomy']),
         'thumbnail_key': !exists(json, 'thumbnail_key') ? undefined : json['thumbnail_key'],
+        'visibility': !exists(json, 'visibility') ? undefined : json['visibility'],
         'widget_type': !exists(json, 'widget_type') ? undefined : json['widget_type'],
     };
 }
@@ -133,14 +267,28 @@ export function SfvbLibraryEntryToJSON(value?: SfvbLibraryEntry | null): any {
         
         'bookmarked': value.bookmarked,
         'cjson': value.cjson,
+        'content_manifest': SfvbLibraryContentManifestToJSON(value.content_manifest),
         'description': value.description,
+        'hash_sha256': value.hash_sha256,
+        'last_modified_dts': value.last_modified_dts,
         'library_oid': value.library_oid,
         'name': value.name,
         'owned': value.owned,
+        'parameters': value.parameters === undefined ? undefined : ((value.parameters as Array<any>).map(SfvbLibraryParameterToJSON)),
+        'published_revision_number': value.published_revision_number,
         'referenced_files': value.referenced_files,
+        'retired': value.retired,
+        'revision_number': value.revision_number,
+        'screenshot_height': value.screenshot_height,
         'screenshot_key': value.screenshot_key,
+        'screenshot_sha256': value.screenshot_sha256,
+        'screenshot_stale': value.screenshot_stale,
+        'screenshot_width': value.screenshot_width,
         'share_with_account': value.share_with_account,
+        'shared_with': value.shared_with === undefined ? undefined : ((value.shared_with as Array<any>).map(SfvbLibraryShareTargetToJSON)),
+        'taxonomy': SfvbLibraryTaxonomyToJSON(value.taxonomy),
         'thumbnail_key': value.thumbnail_key,
+        'visibility': value.visibility,
         'widget_type': value.widget_type,
     };
 }

@@ -26,13 +26,13 @@ export interface SfvbLibraryFacet {
      */
     display_name?: string;
     /**
-     * Facet key.  Pass a chosen option back as facet_{name}={option}.
+     * Facet key, such as facet_purpose.  To select an option, add a query parameter named after the key whose value is the key, a colon and the option.
      * @type {string}
      * @memberof SfvbLibraryFacet
      */
     name?: string;
     /**
-     * Available values for this facet.
+     * Values present in the results.  A facet with only one value is left out unless it is selected.
      * @type {Array<string>}
      * @memberof SfvbLibraryFacet
      */

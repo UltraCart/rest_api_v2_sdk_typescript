@@ -123,12 +123,48 @@ import {
     SfvbItemSeoRequest,
     SfvbItemSeoRequestFromJSON,
     SfvbItemSeoRequestToJSON,
+    SfvbLibraryDeleteResult,
+    SfvbLibraryDeleteResultFromJSON,
+    SfvbLibraryDeleteResultToJSON,
     SfvbLibraryEntry,
     SfvbLibraryEntryFromJSON,
     SfvbLibraryEntryToJSON,
+    SfvbLibraryEntryRequest,
+    SfvbLibraryEntryRequestFromJSON,
+    SfvbLibraryEntryRequestToJSON,
+    SfvbLibraryHistoryEntry,
+    SfvbLibraryHistoryEntryFromJSON,
+    SfvbLibraryHistoryEntryToJSON,
+    SfvbLibraryInstallReceipt,
+    SfvbLibraryInstallReceiptFromJSON,
+    SfvbLibraryInstallReceiptToJSON,
+    SfvbLibraryInstallRecord,
+    SfvbLibraryInstallRecordFromJSON,
+    SfvbLibraryInstallRecordToJSON,
+    SfvbLibraryInstallRequest,
+    SfvbLibraryInstallRequestFromJSON,
+    SfvbLibraryInstallRequestToJSON,
+    SfvbLibraryPublishRequest,
+    SfvbLibraryPublishRequestFromJSON,
+    SfvbLibraryPublishRequestToJSON,
     SfvbLibraryResponse,
     SfvbLibraryResponseFromJSON,
     SfvbLibraryResponseToJSON,
+    SfvbLibraryScreenshotRequest,
+    SfvbLibraryScreenshotRequestFromJSON,
+    SfvbLibraryScreenshotRequestToJSON,
+    SfvbLibraryShareRequest,
+    SfvbLibraryShareRequestFromJSON,
+    SfvbLibraryShareRequestToJSON,
+    SfvbLibraryShareTarget,
+    SfvbLibraryShareTargetFromJSON,
+    SfvbLibraryShareTargetToJSON,
+    SfvbLibraryTaxonomyCatalog,
+    SfvbLibraryTaxonomyCatalogFromJSON,
+    SfvbLibraryTaxonomyCatalogToJSON,
+    SfvbLibraryUnshareResult,
+    SfvbLibraryUnshareResultFromJSON,
+    SfvbLibraryUnshareResultToJSON,
     SfvbMenu,
     SfvbMenuFromJSON,
     SfvbMenuToJSON,
@@ -316,8 +352,19 @@ export interface AttachSfvbBlogPostImageRequest {
     blogPostImageRequest: SfvbBlogPostImageRequest;
 }
 
+export interface ClearSfvbLibraryScreenshotRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    ifMatch: string;
+}
+
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
+}
+
+export interface CreateSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryEntry: SfvbLibraryEntryRequest;
 }
 
 export interface CreateSfvbPreviewAccessRequest {
@@ -355,6 +402,12 @@ export interface DeleteSfvbItemMultimediaRequest {
     _default?: boolean;
 }
 
+export interface DeleteSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    ifMatch: string;
+}
+
 export interface DeleteSfvbPageMultimediaRequest {
     storefrontOid: number;
     path: string;
@@ -388,6 +441,12 @@ export interface DownloadSfvbFileRequest {
     path?: string;
 }
 
+export interface DuplicateSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    name?: string;
+}
+
 export interface DuplicateSfvbPageRequest {
     storefrontOid: number;
     pageDuplicateRequest: SfvbPageDuplicateRequest;
@@ -414,6 +473,11 @@ export interface EndSfvbExperimentRequest {
     storefrontOid: number;
     experimentOid: number;
     experimentEndRequest?: SfvbExperimentEndRequest;
+}
+
+export interface FavoriteSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
 }
 
 export interface GetSfvbBlogPostRequest {
@@ -474,6 +538,20 @@ export interface GetSfvbItemRequest {
 export interface GetSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+    revisionNumber?: number;
+}
+
+export interface GetSfvbLibraryHistoryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+}
+
+export interface GetSfvbLibraryShareTargetsRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbLibraryTaxonomyRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbMenuRequest {
@@ -592,6 +670,7 @@ export interface InsertSfvbUpsellPathRequest {
 export interface InstallSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+    installRequest?: SfvbLibraryInstallRequest;
 }
 
 export interface ListSfvbBlogPostsRequest {
@@ -635,6 +714,10 @@ export interface ListSfvbItemContainersRequest {
     containerName?: string;
     maxResults?: number;
     offset?: number;
+}
+
+export interface ListSfvbLibraryInstallsRequest {
+    storefrontOid: number;
 }
 
 export interface ListSfvbPagesRequest {
@@ -684,6 +767,13 @@ export interface MoveSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPathOid: number;
     moveRequest: SfvbUpsellPathMoveRequest;
+}
+
+export interface PublishSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    ifMatch: string;
+    publishRequest: SfvbLibraryPublishRequest;
 }
 
 export interface PutSfvbContainerRequest {
@@ -853,6 +943,19 @@ export interface SearchSfvbLibraryRequest {
     resultsPerPage?: number;
 }
 
+export interface SetSfvbLibraryScreenshotRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    ifMatch: string;
+    screenshotRequest: SfvbLibraryScreenshotRequest;
+}
+
+export interface ShareSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    shareRequest: SfvbLibraryShareRequest;
+}
+
 export interface StartSfvbExperimentRequest {
     storefrontOid: number;
     experimentStartRequest: SfvbExperimentStartRequest;
@@ -863,10 +966,34 @@ export interface UnarchiveSfvbUpsellPathRequest {
     upsellPathOid: number;
 }
 
+export interface UnfavoriteSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+}
+
+export interface UnpublishSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    unpublishRequest: SfvbLibraryPublishRequest;
+}
+
+export interface UnshareSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    merchantId: string;
+}
+
 export interface UpdateSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface UpdateSfvbLibraryEntryRequest {
+    storefrontOid: number;
+    libraryOid: number;
+    ifMatch: string;
+    libraryEntry: SfvbLibraryEntryRequest;
 }
 
 export interface UpdateSfvbUpsellOfferRequest {
@@ -978,6 +1105,24 @@ export interface SfvbApiInterface {
     attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  Clears the screenshot and thumbnail.  Published revisions and copies that used the image keep it. 
+     * @summary Remove a library entry\'s screenshot
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    clearSfvbLibraryScreenshotRaw(requestParameters: ClearSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  Clears the screenshot and thumbnail.  Published revisions and copies that used the image keep it. 
+     * Remove a library entry\'s screenshot
+     */
+    clearSfvbLibraryScreenshot(requestParameters: ClearSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * @summary Compile CJSON to Velocity
      * @param {SfvbCompileRequest} compileRequest CJSON to compile
@@ -992,6 +1137,23 @@ export interface SfvbApiInterface {
      * Compile CJSON to Velocity
      */
     compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse>;
+
+    /**
+     * Creates a private draft owned by the calling user.  The fragment is one widget and its children, and it must validate.  Images it references on this storefront are copied into the entry before this returns, so it installs anywhere with its images.  The fragment is scanned; card skimming or obfuscation signals are refused outright.  Nothing other merchants or shoppers see changes, so sfvb_write is enough.  Publish it to share it.  An optional screenshot takes a staged PNG key, exactly as the library screenshot endpoint does; a refused screenshot refuses the whole create. 
+     * @summary Save a fragment to the library
+     * @param {number} storefrontOid 
+     * @param {SfvbLibraryEntryRequest} libraryEntry The entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    createSfvbLibraryEntryRaw(requestParameters: CreateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Creates a private draft owned by the calling user.  The fragment is one widget and its children, and it must validate.  Images it references on this storefront are copied into the entry before this returns, so it installs anywhere with its images.  The fragment is scanned; card skimming or obfuscation signals are refused outright.  Nothing other merchants or shoppers see changes, so sfvb_write is enough.  Publish it to share it.  An optional screenshot takes a staged PNG key, exactly as the library screenshot endpoint does; a refused screenshot refuses the whole create. 
+     * Save a fragment to the library
+     */
+    createSfvbLibraryEntry(requestParameters: CreateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
      * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
@@ -1101,6 +1263,24 @@ export interface SfvbApiInterface {
     deleteSfvbItemMultimedia(requestParameters: DeleteSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  An entry that was never published, installed or shared is deleted.  Anything else is retired - kept so the storefronts that installed it still resolve, but out of search and refusing new installs and publishes.  The result says which happened. 
+     * @summary Delete or retire a library entry
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbLibraryEntryRaw(requestParameters: DeleteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryDeleteResult>>;
+
+    /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  An entry that was never published, installed or shared is deleted.  Anything else is retired - kept so the storefronts that installed it still resolve, but out of search and refusing new installs and publishes.  The result says which happened. 
+     * Delete or retire a library entry
+     */
+    deleteSfvbLibraryEntry(requestParameters: DeleteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryDeleteResult>;
+
+    /**
      * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
      * @summary Detach an image from a page
      * @param {number} storefrontOid 
@@ -1206,6 +1386,24 @@ export interface SfvbApiInterface {
     downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * The copy is owned by the calling user and private.  From an entry you own it copies the draft; from one shared with you it copies the published revision.  It is scanned on its own and inherits nothing but content, its images and its screenshot. 
+     * @summary Copy a library entry into a new private entry
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} [name] Name for the copy.  Defaults to Copy of and the source name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    duplicateSfvbLibraryEntryRaw(requestParameters: DuplicateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * The copy is owned by the calling user and private.  From an entry you own it copies the draft; from one shared with you it copies the published revision.  It is scanned on its own and inherits nothing but content, its images and its screenshot. 
+     * Copy a library entry into a new private entry
+     */
+    duplicateSfvbLibraryEntry(requestParameters: DuplicateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
      * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
      * @summary Copy a page to a new path
      * @param {number} storefrontOid 
@@ -1292,6 +1490,23 @@ export interface SfvbApiInterface {
      * End an experiment
      */
     endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
+
+    /**
+     * Bookmarks the entry for the calling user.  Idempotent.  Owner or anyone the entry is shared with. 
+     * @summary Favorite a library entry
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    favoriteSfvbLibraryEntryRaw(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Bookmarks the entry for the calling user.  Idempotent.  Owner or anyone the entry is shared with. 
+     * Favorite a library entry
+     */
+    favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
@@ -1468,10 +1683,11 @@ export interface SfvbApiInterface {
     getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
-     * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
+     * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
      * @summary Read one library entry including its CJSON
      * @param {number} storefrontOid 
      * @param {number} libraryOid 
+     * @param {number} [revisionNumber] A published revision to read instead of the default.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -1479,10 +1695,59 @@ export interface SfvbApiInterface {
     getSfvbLibraryEntryRaw(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
 
     /**
-     * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
+     * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
      * Read one library entry including its CJSON
      */
     getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
+     * @summary List a library entry\'s published revisions
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryEntry>>;
+
+    /**
+     * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
+     * List a library entry\'s published revisions
+     */
+    getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryEntry>;
+
+    /**
+     * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
+     * @summary List the accounts a library entry can be shared with
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTarget>>;
+
+    /**
+     * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
+     * List the accounts a library entry can be shared with
+     */
+    getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTarget>;
+
+    /**
+     * The fixed tag list for purpose, section, industry and style, each tag with a one line description.  Saving an entry refuses any tag not on it with sfvb.library_taxonomy_unknown, naming the closest one.  The same tags are the facet_purpose, facet_section, facet_industry and facet_style search facets. 
+     * @summary List the allowed library tags
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbLibraryTaxonomyRaw(requestParameters: GetSfvbLibraryTaxonomyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryTaxonomyCatalog>>;
+
+    /**
+     * The fixed tag list for purpose, section, industry and style, each tag with a one line description.  Saving an entry refuses any tag not on it with sfvb.library_taxonomy_unknown, naming the closest one.  The same tags are the facet_purpose, facet_section, facet_industry and facet_style search facets. 
+     * List the allowed library tags
+     */
+    getSfvbLibraryTaxonomy(requestParameters: GetSfvbLibraryTaxonomyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryTaxonomyCatalog>;
 
     /**
      * The whole tree, in render order.  Page entries carry the page_path they resolve to and item entries the merchant_item_id, rather than the oids the storage keeps.  Menu item oids are not returned at all because a write regenerates every one of them.  Keep hash_sha256 - it is the If-Match a write needs. 
@@ -1879,21 +2144,22 @@ export interface SfvbApiInterface {
     insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
-     * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
+     * Copies the fragment\'s referenced files into the storefront file system and returns a receipt with the CJSON\'s paths resolved, ready to place.  It never places the CJSON.  Read content_manifest first; executable content needs acknowledge_executable true.  A file that already exists with different content is a conflict - on_conflict fail (the default) refuses with 409 and writes nothing, skip keeps the existing file, overwrite replaces it.  A recipient installs a published revision.  This writes, which is why it is a POST, and it requires sfvb_publish because the files land in the shared storefront file system, which is served to shoppers whichever theme is active. 
      * @summary Install a library entry into a storefront
      * @param {number} storefrontOid 
      * @param {number} libraryOid 
+     * @param {SfvbLibraryInstallRequest} [installRequest] Revision, conflict handling and acknowledgement
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
      */
-    installSfvbLibraryEntryRaw(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+    installSfvbLibraryEntryRaw(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallReceipt>>;
 
     /**
-     * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
+     * Copies the fragment\'s referenced files into the storefront file system and returns a receipt with the CJSON\'s paths resolved, ready to place.  It never places the CJSON.  Read content_manifest first; executable content needs acknowledge_executable true.  A file that already exists with different content is a conflict - on_conflict fail (the default) refuses with 409 and writes nothing, skip keeps the existing file, overwrite replaces it.  A recipient installs a published revision.  This writes, which is why it is a POST, and it requires sfvb_publish because the files land in the shared storefront file system, which is served to shoppers whichever theme is active. 
      * Install a library entry into a storefront
      */
-    installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+    installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallReceipt>;
 
     /**
      * One page of blog posts, newest first, without their bodies.  search matches the title, body, excerpt, url part or author, or a tag exactly.  unassigned marks posts no page shows yet.  Use a post\'s blog_post_oid to assign it to a page. 
@@ -2024,6 +2290,22 @@ export interface SfvbApiInterface {
      * List the item containers on the account
      */
     listSfvbItemContainers(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemContainersResponse>;
+
+    /**
+     * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
+     * @summary List the library entries installed on a storefront
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallRecord>>;
+
+    /**
+     * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
+     * List the library entries installed on a storefront
+     */
+    listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallRecord>;
 
     /**
      * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
@@ -2171,6 +2453,25 @@ export interface SfvbApiInterface {
      * Move an upsell path
      */
     moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * Freezes the draft as a published revision at its revision_number and sets who can see it.  Owner only, with the draft\'s hash_sha256 as If-Match.  Always needs sfvb_publish, because it changes what other merchants can install.  Images, fonts, stylesheets and media must be relative paths, and credential shaped strings are refused.  Public also needs the library publisher property on the account and no executable content at all - no script, html, embed, css or velocity elements.  After those checks an automated AI review reads the fragment, which can take up to about a minute.  A clear violation both of its models agree on refuses any publish with sfvb.library_ai_review_blocked.  A public publish also needs its approval, otherwise sfvb.library_ai_review_inconclusive.  The result is in content_manifest.ai_review. 
+     * @summary Publish a library entry\'s draft
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbLibraryPublishRequest} publishRequest Visibility and release notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    publishSfvbLibraryEntryRaw(requestParameters: PublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Freezes the draft as a published revision at its revision_number and sets who can see it.  Owner only, with the draft\'s hash_sha256 as If-Match.  Always needs sfvb_publish, because it changes what other merchants can install.  Images, fonts, stylesheets and media must be relative paths, and credential shaped strings are refused.  Public also needs the library publisher property on the account and no executable content at all - no script, html, embed, css or velocity elements.  After those checks an automated AI review reads the fragment, which can take up to about a minute.  A clear violation both of its models agree on refuses any publish with sfvb.library_ai_review_blocked.  A public publish also needs its approval, otherwise sfvb.library_ai_review_inconclusive.  The result is in content_manifest.ai_review. 
+     * Publish a library entry\'s draft
+     */
+    publishSfvbLibraryEntry(requestParameters: PublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
      * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
@@ -2632,7 +2933,7 @@ export interface SfvbApiInterface {
     searchSfvbFiles(requestParameters: SearchSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileSearchResponse>;
 
     /**
-     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with facet_{name}={option} query parameters. 
+     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with a query parameter named after a facet, such as facet_purpose, whose value is the facet name, a colon and one of its options.  Besides element type and author, the facets include purpose, section, industry and style from library/taxonomy, and the search text matches those tags too.  Results follow the same rules as reading one entry, so others see published revisions only. 
      * @summary Search the element library
      * @param {number} storefrontOid 
      * @param {string} [segment] 
@@ -2646,10 +2947,47 @@ export interface SfvbApiInterface {
     searchSfvbLibraryRaw(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryResponse>>;
 
     /**
-     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with facet_{name}={option} query parameters. 
+     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with a query parameter named after a facet, such as facet_purpose, whose value is the facet name, a colon and one of its options.  Besides element type and author, the facets include purpose, section, industry and style from library/taxonomy, and the search text matches those tags too.  Results follow the same rules as reading one entry, so others see published revisions only. 
      * Search the element library
      */
     searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse>;
+
+    /**
+     * Three calls, like the other uploads.  Request an upload URL with files/upload_url/png, PUT the PNG bytes to it, then call this with the key, the sha256 of those bytes and where the image came from.  Owner only, with the draft\'s hash_sha256 as If-Match.  The PNG must be at most 5 MB and 4096 pixels a side; it is re-encoded, which drops any metadata, and a thumbnail is made from it before this returns.  Capture it with test data only.  A refused image leaves the previous screenshot in place.  Other merchants see a new screenshot only after the next publish, whose review checks it. 
+     * @summary Set a library entry\'s screenshot
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbLibraryScreenshotRequest} screenshotRequest The staged PNG
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    setSfvbLibraryScreenshotRaw(requestParameters: SetSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Three calls, like the other uploads.  Request an upload URL with files/upload_url/png, PUT the PNG bytes to it, then call this with the key, the sha256 of those bytes and where the image came from.  Owner only, with the draft\'s hash_sha256 as If-Match.  The PNG must be at most 5 MB and 4096 pixels a side; it is re-encoded, which drops any metadata, and a thumbnail is made from it before this returns.  Capture it with test data only.  A refused image leaves the previous screenshot in place.  Other merchants see a new screenshot only after the next publish, whose review checks it. 
+     * Set a library entry\'s screenshot
+     */
+    setSfvbLibraryScreenshot(requestParameters: SetSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * Owner only, and always needs sfvb_publish.  The merchant must be one share_targets lists, and the entry must have a published revision, which is what the recipient sees.  The published revision is checked again for absolute asset URLs and credentials.  Idempotent. 
+     * @summary Share a published library entry with a linked account
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {SfvbLibraryShareRequest} shareRequest The linked account
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    shareSfvbLibraryEntryRaw(requestParameters: ShareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Owner only, and always needs sfvb_publish.  The merchant must be one share_targets lists, and the entry must have a published revision, which is what the recipient sees.  The published revision is checked again for absolute asset URLs and credentials.  Idempotent. 
+     * Share a published library entry with a linked account
+     */
+    shareSfvbLibraryEntry(requestParameters: ShareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
      * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
@@ -2686,6 +3024,59 @@ export interface SfvbApiInterface {
     unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
+     * Removes the calling user\'s bookmark.  Idempotent. 
+     * @summary Remove a library entry from favorites
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    unfavoriteSfvbLibraryEntryRaw(requestParameters: UnfavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Removes the calling user\'s bookmark.  Idempotent. 
+     * Remove a library entry from favorites
+     */
+    unfavoriteSfvbLibraryEntry(requestParameters: UnfavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
+     * @summary Narrow who can see a library entry
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {SfvbLibraryPublishRequest} unpublishRequest The narrower visibility
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    unpublishSfvbLibraryEntryRaw(requestParameters: UnpublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
+     * Narrow who can see a library entry
+     */
+    unpublishSfvbLibraryEntry(requestParameters: UnpublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * Owner only, and always needs sfvb_publish.  Stops further installs by that account.  Its existing installs keep their copies and are listed in the result.  Idempotent, and still works while the library is turned off. 
+     * @summary Stop sharing a library entry with an account
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} merchantId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    unshareSfvbLibraryEntryRaw(requestParameters: UnshareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryUnshareResult>>;
+
+    /**
+     * Owner only, and always needs sfvb_publish.  Stops further installs by that account.  Its existing installs keep their copies and are listed in the result.  Idempotent, and still works while the library is turned off. 
+     * Stop sharing a library entry with an account
+     */
+    unshareSfvbLibraryEntry(requestParameters: UnshareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryUnshareResult>;
+
+    /**
      * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
      * @summary Change a blog post
      * @param {number} storefrontOid 
@@ -2702,6 +3093,25 @@ export interface SfvbApiInterface {
      * Change a blog post
      */
     updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
+     * @summary Update a library entry\'s draft
+     * @param {number} storefrontOid 
+     * @param {number} libraryOid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbLibraryEntryRequest} libraryEntry The whole entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbLibraryEntryRaw(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>>;
+
+    /**
+     * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
+     * Update a library entry\'s draft
+     */
+    updateSfvbLibraryEntry(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
@@ -3010,6 +3420,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  Clears the screenshot and thumbnail.  Published revisions and copies that used the image keep it. 
+     * Remove a library entry\'s screenshot
+     */
+    async clearSfvbLibraryScreenshotRaw(requestParameters: ClearSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling clearSfvbLibraryScreenshot.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling clearSfvbLibraryScreenshot.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling clearSfvbLibraryScreenshot.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/screenshot`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  Clears the screenshot and thumbnail.  Published revisions and copies that used the image keep it. 
+     * Remove a library entry\'s screenshot
+     */
+    async clearSfvbLibraryScreenshot(requestParameters: ClearSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.clearSfvbLibraryScreenshotRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * Compile CJSON to Velocity
      */
@@ -3050,6 +3513,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse> {
         const response = await this.compileSfvbCjsonRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates a private draft owned by the calling user.  The fragment is one widget and its children, and it must validate.  Images it references on this storefront are copied into the entry before this returns, so it installs anywhere with its images.  The fragment is scanned; card skimming or obfuscation signals are refused outright.  Nothing other merchants or shoppers see changes, so sfvb_write is enough.  Publish it to share it.  An optional screenshot takes a staged PNG key, exactly as the library screenshot endpoint does; a refused screenshot refuses the whole create. 
+     * Save a fragment to the library
+     */
+    async createSfvbLibraryEntryRaw(requestParameters: CreateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling createSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryEntry === null || requestParameters.libraryEntry === undefined) {
+            throw new runtime.RequiredError('libraryEntry','Required parameter requestParameters.libraryEntry was null or undefined when calling createSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryEntryRequestToJSON(requestParameters.libraryEntry),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a private draft owned by the calling user.  The fragment is one widget and its children, and it must validate.  Images it references on this storefront are copied into the entry before this returns, so it installs anywhere with its images.  The fragment is scanned; card skimming or obfuscation signals are refused outright.  Nothing other merchants or shoppers see changes, so sfvb_write is enough.  Publish it to share it.  An optional screenshot takes a staged PNG key, exactly as the library screenshot endpoint does; a refused screenshot refuses the whole create. 
+     * Save a fragment to the library
+     */
+    async createSfvbLibraryEntry(requestParameters: CreateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.createSfvbLibraryEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3349,6 +3860,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  An entry that was never published, installed or shared is deleted.  Anything else is retired - kept so the storefronts that installed it still resolve, but out of search and refusing new installs and publishes.  The result says which happened. 
+     * Delete or retire a library entry
+     */
+    async deleteSfvbLibraryEntryRaw(requestParameters: DeleteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryDeleteResult>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling deleteSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryDeleteResultFromJSON(jsonValue));
+    }
+
+    /**
+     * Owner only, with the draft\'s hash_sha256 as If-Match.  An entry that was never published, installed or shared is deleted.  Anything else is retired - kept so the storefronts that installed it still resolve, but out of search and refusing new installs and publishes.  The result says which happened. 
+     * Delete or retire a library entry
+     */
+    async deleteSfvbLibraryEntry(requestParameters: DeleteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryDeleteResult> {
+        const response = await this.deleteSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
      * Detach an image from a page
      */
@@ -3636,6 +4200,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The copy is owned by the calling user and private.  From an entry you own it copies the draft; from one shared with you it copies the published revision.  It is scanned on its own and inherits nothing but content, its images and its screenshot. 
+     * Copy a library entry into a new private entry
+     */
+    async duplicateSfvbLibraryEntryRaw(requestParameters: DuplicateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling duplicateSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling duplicateSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.name !== undefined) {
+            queryParameters['name'] = requestParameters.name;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/duplicate`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * The copy is owned by the calling user and private.  From an entry you own it copies the draft; from one shared with you it copies the published revision.  It is scanned on its own and inherits nothing but content, its images and its screenshot. 
+     * Copy a library entry into a new private entry
+     */
+    async duplicateSfvbLibraryEntry(requestParameters: DuplicateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.duplicateSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
      * Copy a page to a new path
      */
@@ -3874,6 +4487,50 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
         const response = await this.endSfvbExperimentRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Bookmarks the entry for the calling user.  Idempotent.  Owner or anyone the entry is shared with. 
+     * Favorite a library entry
+     */
+    async favoriteSfvbLibraryEntryRaw(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling favoriteSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling favoriteSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/favorite`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Bookmarks the entry for the calling user.  Idempotent.  Owner or anyone the entry is shared with. 
+     * Favorite a library entry
+     */
+    async favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.favoriteSfvbLibraryEntryRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -4348,7 +5005,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
+     * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
      * Read one library entry including its CJSON
      */
     async getSfvbLibraryEntryRaw(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
@@ -4361,6 +5018,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.revisionNumber !== undefined) {
+            queryParameters['revision_number'] = requestParameters.revisionNumber;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4384,11 +5045,138 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
+     * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
      * Read one library entry including its CJSON
      */
     async getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
         const response = await this.getSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
+     * List a library entry\'s published revisions
+     */
+    async getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbLibraryHistory.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling getSfvbLibraryHistory.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/history`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryHistoryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
+     * List a library entry\'s published revisions
+     */
+    async getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryEntry> {
+        const response = await this.getSfvbLibraryHistoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
+     * List the accounts a library entry can be shared with
+     */
+    async getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTarget>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbLibraryShareTargets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/share_targets`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryShareTargetFromJSON(jsonValue));
+    }
+
+    /**
+     * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
+     * List the accounts a library entry can be shared with
+     */
+    async getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTarget> {
+        const response = await this.getSfvbLibraryShareTargetsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The fixed tag list for purpose, section, industry and style, each tag with a one line description.  Saving an entry refuses any tag not on it with sfvb.library_taxonomy_unknown, naming the closest one.  The same tags are the facet_purpose, facet_section, facet_industry and facet_style search facets. 
+     * List the allowed library tags
+     */
+    async getSfvbLibraryTaxonomyRaw(requestParameters: GetSfvbLibraryTaxonomyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryTaxonomyCatalog>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbLibraryTaxonomy.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/taxonomy`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryTaxonomyCatalogFromJSON(jsonValue));
+    }
+
+    /**
+     * The fixed tag list for purpose, section, industry and style, each tag with a one line description.  Saving an entry refuses any tag not on it with sfvb.library_taxonomy_unknown, naming the closest one.  The same tags are the facet_purpose, facet_section, facet_industry and facet_style search facets. 
+     * List the allowed library tags
+     */
+    async getSfvbLibraryTaxonomy(requestParameters: GetSfvbLibraryTaxonomyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryTaxonomyCatalog> {
+        const response = await this.getSfvbLibraryTaxonomyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5470,10 +6258,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
+     * Copies the fragment\'s referenced files into the storefront file system and returns a receipt with the CJSON\'s paths resolved, ready to place.  It never places the CJSON.  Read content_manifest first; executable content needs acknowledge_executable true.  A file that already exists with different content is a conflict - on_conflict fail (the default) refuses with 409 and writes nothing, skip keeps the existing file, overwrite replaces it.  A recipient installs a published revision.  This writes, which is why it is a POST, and it requires sfvb_publish because the files land in the shared storefront file system, which is served to shoppers whichever theme is active. 
      * Install a library entry into a storefront
      */
-    async installSfvbLibraryEntryRaw(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+    async installSfvbLibraryEntryRaw(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallReceipt>> {
         if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
             throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling installSfvbLibraryEntry.');
         }
@@ -5485,6 +6273,8 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -5500,16 +6290,17 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: SfvbLibraryInstallRequestToJSON(requestParameters.installRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryInstallReceiptFromJSON(jsonValue));
     }
 
     /**
-     * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
+     * Copies the fragment\'s referenced files into the storefront file system and returns a receipt with the CJSON\'s paths resolved, ready to place.  It never places the CJSON.  Read content_manifest first; executable content needs acknowledge_executable true.  A file that already exists with different content is a conflict - on_conflict fail (the default) refuses with 409 and writes nothing, skip keeps the existing file, overwrite replaces it.  A recipient installs a published revision.  This writes, which is why it is a POST, and it requires sfvb_publish because the files land in the shared storefront file system, which is served to shoppers whichever theme is active. 
      * Install a library entry into a storefront
      */
-    async installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+    async installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallReceipt> {
         const response = await this.installSfvbLibraryEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5870,6 +6661,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbItemContainers(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemContainersResponse> {
         const response = await this.listSfvbItemContainersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
+     * List the library entries installed on a storefront
+     */
+    async listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallRecord>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbLibraryInstalls.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/installs`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryInstallRecordFromJSON(jsonValue));
+    }
+
+    /**
+     * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
+     * List the library entries installed on a storefront
+     */
+    async listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallRecord> {
+        const response = await this.listSfvbLibraryInstallsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6279,6 +7111,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.moveSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Freezes the draft as a published revision at its revision_number and sets who can see it.  Owner only, with the draft\'s hash_sha256 as If-Match.  Always needs sfvb_publish, because it changes what other merchants can install.  Images, fonts, stylesheets and media must be relative paths, and credential shaped strings are refused.  Public also needs the library publisher property on the account and no executable content at all - no script, html, embed, css or velocity elements.  After those checks an automated AI review reads the fragment, which can take up to about a minute.  A clear violation both of its models agree on refuses any publish with sfvb.library_ai_review_blocked.  A public publish also needs its approval, otherwise sfvb.library_ai_review_inconclusive.  The result is in content_manifest.ai_review. 
+     * Publish a library entry\'s draft
+     */
+    async publishSfvbLibraryEntryRaw(requestParameters: PublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling publishSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling publishSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling publishSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.publishRequest === null || requestParameters.publishRequest === undefined) {
+            throw new runtime.RequiredError('publishRequest','Required parameter requestParameters.publishRequest was null or undefined when calling publishSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/publish`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryPublishRequestToJSON(requestParameters.publishRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Freezes the draft as a published revision at its revision_number and sets who can see it.  Owner only, with the draft\'s hash_sha256 as If-Match.  Always needs sfvb_publish, because it changes what other merchants can install.  Images, fonts, stylesheets and media must be relative paths, and credential shaped strings are refused.  Public also needs the library publisher property on the account and no executable content at all - no script, html, embed, css or velocity elements.  After those checks an automated AI review reads the fragment, which can take up to about a minute.  A clear violation both of its models agree on refuses any publish with sfvb.library_ai_review_blocked.  A public publish also needs its approval, otherwise sfvb.library_ai_review_inconclusive.  The result is in content_manifest.ai_review. 
+     * Publish a library entry\'s draft
+     */
+    async publishSfvbLibraryEntry(requestParameters: PublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.publishSfvbLibraryEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7657,7 +8549,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with facet_{name}={option} query parameters. 
+     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with a query parameter named after a facet, such as facet_purpose, whose value is the facet name, a colon and one of its options.  Besides element type and author, the facets include purpose, section, industry and style from library/taxonomy, and the search text matches those tags too.  Results follow the same rules as reading one entry, so others see published revisions only. 
      * Search the element library
      */
     async searchSfvbLibraryRaw(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryResponse>> {
@@ -7705,11 +8597,123 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with facet_{name}={option} query parameters. 
+     * Known-good CJSON fragments a human already built out of real elements.  This is what a lint warning about a monolithic html element should point at - a warning that names a fragment solving the same problem is an instruction, where a warning on its own is only criticism.  Results are terse; fetch a single entry for its CJSON.  Narrow with a query parameter named after a facet, such as facet_purpose, whose value is the facet name, a colon and one of its options.  Besides element type and author, the facets include purpose, section, industry and style from library/taxonomy, and the search text matches those tags too.  Results follow the same rules as reading one entry, so others see published revisions only. 
      * Search the element library
      */
     async searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse> {
         const response = await this.searchSfvbLibraryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Three calls, like the other uploads.  Request an upload URL with files/upload_url/png, PUT the PNG bytes to it, then call this with the key, the sha256 of those bytes and where the image came from.  Owner only, with the draft\'s hash_sha256 as If-Match.  The PNG must be at most 5 MB and 4096 pixels a side; it is re-encoded, which drops any metadata, and a thumbnail is made from it before this returns.  Capture it with test data only.  A refused image leaves the previous screenshot in place.  Other merchants see a new screenshot only after the next publish, whose review checks it. 
+     * Set a library entry\'s screenshot
+     */
+    async setSfvbLibraryScreenshotRaw(requestParameters: SetSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling setSfvbLibraryScreenshot.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling setSfvbLibraryScreenshot.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling setSfvbLibraryScreenshot.');
+        }
+
+        if (requestParameters.screenshotRequest === null || requestParameters.screenshotRequest === undefined) {
+            throw new runtime.RequiredError('screenshotRequest','Required parameter requestParameters.screenshotRequest was null or undefined when calling setSfvbLibraryScreenshot.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/screenshot`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryScreenshotRequestToJSON(requestParameters.screenshotRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Three calls, like the other uploads.  Request an upload URL with files/upload_url/png, PUT the PNG bytes to it, then call this with the key, the sha256 of those bytes and where the image came from.  Owner only, with the draft\'s hash_sha256 as If-Match.  The PNG must be at most 5 MB and 4096 pixels a side; it is re-encoded, which drops any metadata, and a thumbnail is made from it before this returns.  Capture it with test data only.  A refused image leaves the previous screenshot in place.  Other merchants see a new screenshot only after the next publish, whose review checks it. 
+     * Set a library entry\'s screenshot
+     */
+    async setSfvbLibraryScreenshot(requestParameters: SetSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.setSfvbLibraryScreenshotRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Owner only, and always needs sfvb_publish.  The merchant must be one share_targets lists, and the entry must have a published revision, which is what the recipient sees.  The published revision is checked again for absolute asset URLs and credentials.  Idempotent. 
+     * Share a published library entry with a linked account
+     */
+    async shareSfvbLibraryEntryRaw(requestParameters: ShareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling shareSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling shareSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.shareRequest === null || requestParameters.shareRequest === undefined) {
+            throw new runtime.RequiredError('shareRequest','Required parameter requestParameters.shareRequest was null or undefined when calling shareSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/shares`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryShareRequestToJSON(requestParameters.shareRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Owner only, and always needs sfvb_publish.  The merchant must be one share_targets lists, and the entry must have a published revision, which is what the recipient sees.  The published revision is checked again for absolute asset URLs and credentials.  Idempotent. 
+     * Share a published library entry with a linked account
+     */
+    async shareSfvbLibraryEntry(requestParameters: ShareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.shareSfvbLibraryEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7807,6 +8811,151 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Removes the calling user\'s bookmark.  Idempotent. 
+     * Remove a library entry from favorites
+     */
+    async unfavoriteSfvbLibraryEntryRaw(requestParameters: UnfavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling unfavoriteSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling unfavoriteSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/favorite`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes the calling user\'s bookmark.  Idempotent. 
+     * Remove a library entry from favorites
+     */
+    async unfavoriteSfvbLibraryEntry(requestParameters: UnfavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.unfavoriteSfvbLibraryEntryRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
+     * Narrow who can see a library entry
+     */
+    async unpublishSfvbLibraryEntryRaw(requestParameters: UnpublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling unpublishSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling unpublishSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.unpublishRequest === null || requestParameters.unpublishRequest === undefined) {
+            throw new runtime.RequiredError('unpublishRequest','Required parameter requestParameters.unpublishRequest was null or undefined when calling unpublishSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/unpublish`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryPublishRequestToJSON(requestParameters.unpublishRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
+     * Narrow who can see a library entry
+     */
+    async unpublishSfvbLibraryEntry(requestParameters: UnpublishSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.unpublishSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Owner only, and always needs sfvb_publish.  Stops further installs by that account.  Its existing installs keep their copies and are listed in the result.  Idempotent, and still works while the library is turned off. 
+     * Stop sharing a library entry with an account
+     */
+    async unshareSfvbLibraryEntryRaw(requestParameters: UnshareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryUnshareResult>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling unshareSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling unshareSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.merchantId === null || requestParameters.merchantId === undefined) {
+            throw new runtime.RequiredError('merchantId','Required parameter requestParameters.merchantId was null or undefined when calling unshareSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}/shares/{merchant_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))).replace(`{${"merchant_id"}}`, encodeURIComponent(String(requestParameters.merchantId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryUnshareResultFromJSON(jsonValue));
+    }
+
+    /**
+     * Owner only, and always needs sfvb_publish.  Stops further installs by that account.  Its existing installs keep their copies and are listed in the result.  Idempotent, and still works while the library is turned off. 
+     * Stop sharing a library entry with an account
+     */
+    async unshareSfvbLibraryEntry(requestParameters: UnshareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryUnshareResult> {
+        const response = await this.unshareSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
      * Change a blog post
      */
@@ -7855,6 +9004,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.updateSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
+     * Update a library entry\'s draft
+     */
+    async updateSfvbLibraryEntryRaw(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryOid === null || requestParameters.libraryOid === undefined) {
+            throw new runtime.RequiredError('libraryOid','Required parameter requestParameters.libraryOid was null or undefined when calling updateSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbLibraryEntry.');
+        }
+
+        if (requestParameters.libraryEntry === null || requestParameters.libraryEntry === undefined) {
+            throw new runtime.RequiredError('libraryEntry','Required parameter requestParameters.libraryEntry was null or undefined when calling updateSfvbLibraryEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/library/{library_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_oid"}}`, encodeURIComponent(String(requestParameters.libraryOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbLibraryEntryRequestToJSON(requestParameters.libraryEntry),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
+     * Update a library entry\'s draft
+     */
+    async updateSfvbLibraryEntry(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
+        const response = await this.updateSfvbLibraryEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
