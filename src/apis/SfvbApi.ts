@@ -132,18 +132,18 @@ import {
     SfvbLibraryEntryRequest,
     SfvbLibraryEntryRequestFromJSON,
     SfvbLibraryEntryRequestToJSON,
-    SfvbLibraryHistoryEntry,
-    SfvbLibraryHistoryEntryFromJSON,
-    SfvbLibraryHistoryEntryToJSON,
+    SfvbLibraryHistoryResponse,
+    SfvbLibraryHistoryResponseFromJSON,
+    SfvbLibraryHistoryResponseToJSON,
     SfvbLibraryInstallReceipt,
     SfvbLibraryInstallReceiptFromJSON,
     SfvbLibraryInstallReceiptToJSON,
-    SfvbLibraryInstallRecord,
-    SfvbLibraryInstallRecordFromJSON,
-    SfvbLibraryInstallRecordToJSON,
     SfvbLibraryInstallRequest,
     SfvbLibraryInstallRequestFromJSON,
     SfvbLibraryInstallRequestToJSON,
+    SfvbLibraryInstallsResponse,
+    SfvbLibraryInstallsResponseFromJSON,
+    SfvbLibraryInstallsResponseToJSON,
     SfvbLibraryPublishRequest,
     SfvbLibraryPublishRequestFromJSON,
     SfvbLibraryPublishRequestToJSON,
@@ -156,9 +156,9 @@ import {
     SfvbLibraryShareRequest,
     SfvbLibraryShareRequestFromJSON,
     SfvbLibraryShareRequestToJSON,
-    SfvbLibraryShareTarget,
-    SfvbLibraryShareTargetFromJSON,
-    SfvbLibraryShareTargetToJSON,
+    SfvbLibraryShareTargetsResponse,
+    SfvbLibraryShareTargetsResponseFromJSON,
+    SfvbLibraryShareTargetsResponseToJSON,
     SfvbLibraryTaxonomyCatalog,
     SfvbLibraryTaxonomyCatalogFromJSON,
     SfvbLibraryTaxonomyCatalogToJSON,
@@ -1709,13 +1709,13 @@ export interface SfvbApiInterface {
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
      */
-    getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryEntry>>;
+    getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryResponse>>;
 
     /**
      * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
      * List a library entry\'s published revisions
      */
-    getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryEntry>;
+    getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryResponse>;
 
     /**
      * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
@@ -1725,13 +1725,13 @@ export interface SfvbApiInterface {
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
      */
-    getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTarget>>;
+    getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTargetsResponse>>;
 
     /**
      * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
      * List the accounts a library entry can be shared with
      */
-    getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTarget>;
+    getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTargetsResponse>;
 
     /**
      * The fixed tag list for purpose, section, industry and style, each tag with a one line description.  Saving an entry refuses any tag not on it with sfvb.library_taxonomy_unknown, naming the closest one.  The same tags are the facet_purpose, facet_section, facet_industry and facet_style search facets. 
@@ -2299,13 +2299,13 @@ export interface SfvbApiInterface {
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
      */
-    listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallRecord>>;
+    listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallsResponse>>;
 
     /**
      * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
      * List the library entries installed on a storefront
      */
-    listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallRecord>;
+    listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallsResponse>;
 
     /**
      * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
@@ -5057,7 +5057,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
      * List a library entry\'s published revisions
      */
-    async getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryEntry>> {
+    async getSfvbLibraryHistoryRaw(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryHistoryResponse>> {
         if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
             throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbLibraryHistory.');
         }
@@ -5086,14 +5086,14 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryHistoryEntryFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryHistoryResponseFromJSON(jsonValue));
     }
 
     /**
      * Newest first, each with its release notes and hash.  Read one with getSfvbLibraryEntry and revision_number.  The owner and anyone the entry is shared with can list it. 
      * List a library entry\'s published revisions
      */
-    async getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryEntry> {
+    async getSfvbLibraryHistory(requestParameters: GetSfvbLibraryHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryHistoryResponse> {
         const response = await this.getSfvbLibraryHistoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5102,7 +5102,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
      * List the accounts a library entry can be shared with
      */
-    async getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTarget>> {
+    async getSfvbLibraryShareTargetsRaw(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryShareTargetsResponse>> {
         if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
             throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbLibraryShareTargets.');
         }
@@ -5127,14 +5127,14 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryShareTargetFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryShareTargetsResponseFromJSON(jsonValue));
     }
 
     /**
      * The calling account\'s linked accounts, each with its merchant id and company.  These are the only merchants a share can name. 
      * List the accounts a library entry can be shared with
      */
-    async getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTarget> {
+    async getSfvbLibraryShareTargets(requestParameters: GetSfvbLibraryShareTargetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryShareTargetsResponse> {
         const response = await this.getSfvbLibraryShareTargetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6668,7 +6668,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
      * List the library entries installed on a storefront
      */
-    async listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallRecord>> {
+    async listSfvbLibraryInstallsRaw(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbLibraryInstallsResponse>> {
         if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
             throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbLibraryInstalls.');
         }
@@ -6693,14 +6693,14 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryInstallRecordFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbLibraryInstallsResponseFromJSON(jsonValue));
     }
 
     /**
      * Each entry\'s most recently installed revision, its latest published revision and update_available.  Nothing updates automatically.  An entry this account can no longer see is listed without its name. 
      * List the library entries installed on a storefront
      */
-    async listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallRecord> {
+    async listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallsResponse> {
         const response = await this.listSfvbLibraryInstallsRaw(requestParameters, initOverrides);
         return await response.value();
     }
