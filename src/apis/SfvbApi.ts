@@ -201,6 +201,18 @@ import {
     SfvbMenusResponse,
     SfvbMenusResponseFromJSON,
     SfvbMenusResponseToJSON,
+    SfvbNotFoundEntry,
+    SfvbNotFoundEntryFromJSON,
+    SfvbNotFoundEntryToJSON,
+    SfvbNotFoundEntryResponse,
+    SfvbNotFoundEntryResponseFromJSON,
+    SfvbNotFoundEntryResponseToJSON,
+    SfvbNotFoundPage,
+    SfvbNotFoundPageFromJSON,
+    SfvbNotFoundPageToJSON,
+    SfvbNotFoundResponse,
+    SfvbNotFoundResponseFromJSON,
+    SfvbNotFoundResponseToJSON,
     SfvbPageAttributeUpdateRequest,
     SfvbPageAttributeUpdateRequestFromJSON,
     SfvbPageAttributeUpdateRequestToJSON,
@@ -273,6 +285,30 @@ import {
     SfvbRecordingSettingsResponse,
     SfvbRecordingSettingsResponseFromJSON,
     SfvbRecordingSettingsResponseToJSON,
+    SfvbRedirect,
+    SfvbRedirectFromJSON,
+    SfvbRedirectToJSON,
+    SfvbRedirectCheckResponse,
+    SfvbRedirectCheckResponseFromJSON,
+    SfvbRedirectCheckResponseToJSON,
+    SfvbRedirectImportRequest,
+    SfvbRedirectImportRequestFromJSON,
+    SfvbRedirectImportRequestToJSON,
+    SfvbRedirectImportResponse,
+    SfvbRedirectImportResponseFromJSON,
+    SfvbRedirectImportResponseToJSON,
+    SfvbRedirectRequest,
+    SfvbRedirectRequestFromJSON,
+    SfvbRedirectRequestToJSON,
+    SfvbRedirectResolveResponse,
+    SfvbRedirectResolveResponseFromJSON,
+    SfvbRedirectResolveResponseToJSON,
+    SfvbRedirectResponse,
+    SfvbRedirectResponseFromJSON,
+    SfvbRedirectResponseToJSON,
+    SfvbRedirectsResponse,
+    SfvbRedirectsResponseFromJSON,
+    SfvbRedirectsResponseToJSON,
     SfvbRenderRequest,
     SfvbRenderRequestFromJSON,
     SfvbRenderRequestToJSON,
@@ -379,6 +415,11 @@ export interface AttachSfvbBlogPostImageRequest {
     blogPostImageRequest: SfvbBlogPostImageRequest;
 }
 
+export interface CheckSfvbRedirectRequest {
+    storefrontOid: number;
+    redirectRequest: SfvbRedirectRequest;
+}
+
 export interface ClearSfvbLibraryScreenshotRequest {
     storefrontOid: number;
     libraryOid: number;
@@ -447,6 +488,12 @@ export interface DeleteSfvbPreviewSessionRequest {
     previewSessionId: string;
 }
 
+export interface DeleteSfvbRedirectRequest {
+    storefrontOid: number;
+    redirectId: number;
+    ifMatch: string;
+}
+
 export interface DetachSfvbBlogPostImageRequest {
     storefrontOid: number;
     blogPostOid: number;
@@ -472,6 +519,11 @@ export interface DisableSfvbUpsellPathRequest {
 export interface DownloadSfvbFileRequest {
     storefrontOid: number;
     path?: string;
+}
+
+export interface DryRunSfvbRedirectImportRequest {
+    storefrontOid: number;
+    redirectImportRequest: SfvbRedirectImportRequest;
 }
 
 export interface DuplicateSfvbLibraryEntryRequest {
@@ -630,6 +682,26 @@ export interface GetSfvbMenusRequest {
     storefrontOid: number;
 }
 
+export interface GetSfvbNotFoundRequest {
+    storefrontOid: number;
+    since?: string;
+    sort?: string;
+    includeBots?: boolean;
+    includeTokens?: boolean;
+    q?: string;
+    limit?: number;
+}
+
+export interface GetSfvbNotFoundEntryRequest {
+    storefrontOid: number;
+    notFoundId: string;
+    includeTokens?: boolean;
+}
+
+export interface GetSfvbNotFoundPageRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbPageRequest {
     storefrontOid: number;
     path: string;
@@ -669,6 +741,18 @@ export interface GetSfvbRecordingPageViewEventsRequest {
 
 export interface GetSfvbRecordingSettingsRequest {
     storefrontOid: number;
+}
+
+export interface GetSfvbRedirectRequest {
+    storefrontOid: number;
+    redirectId: number;
+}
+
+export interface GetSfvbRedirectsRequest {
+    storefrontOid: number;
+    q?: string;
+    type?: string;
+    status?: string;
 }
 
 export interface GetSfvbServerLogRequest {
@@ -714,6 +798,16 @@ export interface GetSfvbUpsellPathRequest {
     statsWeekdays?: string;
 }
 
+export interface IgnoreSfvbNotFoundEntryRequest {
+    storefrontOid: number;
+    notFoundId: string;
+}
+
+export interface ImportSfvbRedirectsRequest {
+    storefrontOid: number;
+    redirectImportRequest: SfvbRedirectImportRequest;
+}
+
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
@@ -722,6 +816,11 @@ export interface InsertSfvbBlogPostRequest {
 export interface InsertSfvbPageRequest {
     storefrontOid: number;
     pageCreateRequest: SfvbPageCreateRequest;
+}
+
+export interface InsertSfvbRedirectRequest {
+    storefrontOid: number;
+    redirectRequest: SfvbRedirectRequest;
 }
 
 export interface InsertSfvbUpsellOfferRequest {
@@ -1007,6 +1106,11 @@ export interface ResetSfvbI18nMessageRequest {
     themeOid?: number;
 }
 
+export interface ResolveSfvbRedirectRequest {
+    storefrontOid: number;
+    path?: string;
+}
+
 export interface ResolveSfvbTemplateRequest {
     storefrontOid: number;
     name: string;
@@ -1069,6 +1173,11 @@ export interface UnfavoriteSfvbLibraryEntryRequest {
     libraryOid: number;
 }
 
+export interface UnignoreSfvbNotFoundEntryRequest {
+    storefrontOid: number;
+    notFoundId: string;
+}
+
 export interface UnpublishSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
@@ -1092,6 +1201,13 @@ export interface UpdateSfvbLibraryEntryRequest {
     libraryOid: number;
     ifMatch: string;
     libraryEntry: SfvbLibraryEntryRequest;
+}
+
+export interface UpdateSfvbRedirectRequest {
+    storefrontOid: number;
+    redirectId: number;
+    ifMatch: string;
+    redirectRequest: SfvbRedirectRequest;
 }
 
 export interface UpdateSfvbUpsellOfferRequest {
@@ -1201,6 +1317,23 @@ export interface SfvbApiInterface {
      * Attach an image to a blog post
      */
     attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * Runs every check a create runs (loops, chains, duplicates, missing or external targets, system paths, live pages, the rule limit) and returns the findings.  Writes nothing. 
+     * @summary Check a redirect rule without creating it
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectRequest} redirectRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    checkSfvbRedirectRaw(requestParameters: CheckSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectCheckResponse>>;
+
+    /**
+     * Runs every check a create runs (loops, chains, duplicates, missing or external targets, system paths, live pages, the rule limit) and returns the findings.  Writes nothing. 
+     * Check a redirect rule without creating it
+     */
+    checkSfvbRedirect(requestParameters: CheckSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectCheckResponse>;
 
     /**
      * Owner only, with the draft\'s hash_sha256 as If-Match.  Clears the screenshot and thumbnail.  Published revisions and copies that used the image keep it. 
@@ -1415,6 +1548,24 @@ export interface SfvbApiInterface {
     deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Deletes one rule.  The source path answers again as it would without the rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * @summary Delete a redirect rule
+     * @param {number} storefrontOid 
+     * @param {number} redirectId 
+     * @param {string} ifMatch hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbRedirectRaw(requestParameters: DeleteSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Deletes one rule.  The source path answers again as it would without the rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Delete a redirect rule
+     */
+    deleteSfvbRedirect(requestParameters: DeleteSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * @summary Detach an image from a blog post
      * @param {number} storefrontOid 
@@ -1500,6 +1651,23 @@ export interface SfvbApiInterface {
      * Read a storefront file\'s raw bytes
      */
     downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Checks up to 5,000 rows against the existing rules and each other, and returns the findings per row with a plan_hash.  Writes nothing.  Rows are merged with the existing rules; nothing is ever deleted. 
+     * @summary Check a redirect import without writing it
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectImportRequest} redirectImportRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    dryRunSfvbRedirectImportRaw(requestParameters: DryRunSfvbRedirectImportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectImportResponse>>;
+
+    /**
+     * Checks up to 5,000 rows against the existing rules and each other, and returns the findings per row with a plan_hash.  Writes nothing.  Rows are merged with the existing rules; nothing is ever deleted. 
+     * Check a redirect import without writing it
+     */
+    dryRunSfvbRedirectImport(requestParameters: DryRunSfvbRedirectImportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse>;
 
     /**
      * The copy is owned by the calling user and private.  From an entry you own it copies the draft; from one shared with you it copies the published revision.  It is scanned on its own and inherits nothing but content, its images and its screenshot. 
@@ -2005,6 +2173,62 @@ export interface SfvbApiInterface {
     getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse>;
 
     /**
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * @summary List the paths that answered 404
+     * @param {number} storefrontOid 
+     * @param {string} [since] 
+     * @param {string} [sort] 
+     * @param {boolean} [includeBots] 
+     * @param {boolean} [includeTokens] 
+     * @param {string} [q] 
+     * @param {number} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbNotFoundRaw(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundResponse>>;
+
+    /**
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * List the paths that answered 404
+     */
+    getSfvbNotFound(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundResponse>;
+
+    /**
+     * One entry with up to 100 recent hits, each with its time, the linking host, the user agent and whether it was a bot.  Client IP addresses are never returned. 
+     * @summary Read one 404 path with its recent hits
+     * @param {number} storefrontOid 
+     * @param {string} notFoundId 
+     * @param {boolean} [includeTokens] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbNotFoundEntryRaw(requestParameters: GetSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntryResponse>>;
+
+    /**
+     * One entry with up to 100 recent hits, each with its time, the linking host, the user agent and whether it was a bot.  Client IP addresses are never returned. 
+     * Read one 404 path with its recent hits
+     */
+    getSfvbNotFoundEntry(requestParameters: GetSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntryResponse>;
+
+    /**
+     * The site_404.vm the active theme renders for a 404, found the way the storefront finds it, and whether it exists.  Without it the storefront serves a plain fallback.  Edit it with the file endpoints. 
+     * @summary What renders the storefront\'s 404 page
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbNotFoundPageRaw(requestParameters: GetSfvbNotFoundPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundPage>>;
+
+    /**
+     * The site_404.vm the active theme renders for a 404, found the way the storefront finds it, and whether it exists.  Without it the storefront serves a plain fallback.  Edit it with the file endpoints. 
+     * What renders the storefront\'s 404 page
+     */
+    getSfvbNotFoundPage(requestParameters: GetSfvbNotFoundPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundPage>;
+
+    /**
      * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
      * @summary Read a page\'s attributes and images
      * @param {number} storefrontOid 
@@ -2140,6 +2364,42 @@ export interface SfvbApiInterface {
      * Get the storefront\'s screen recording settings
      */
     getSfvbRecordingSettings(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse>;
+
+    /**
+     * One rule, with the hash_sha256 to send as If-Match when updating or deleting it. 
+     * @summary Read one redirect rule
+     * @param {number} storefrontOid 
+     * @param {number} redirectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbRedirectRaw(requestParameters: GetSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirect>>;
+
+    /**
+     * One rule, with the hash_sha256 to send as If-Match when updating or deleting it. 
+     * Read one redirect rule
+     */
+    getSfvbRedirect(requestParameters: GetSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirect>;
+
+    /**
+     * Every redirect rule, exact and pattern.  Filter with q (searches source, target and note), type (exact or pattern) and status (301, 302 or rewrite).  count and limit say how close the storefront is to its rule limit. 
+     * @summary List the storefront\'s redirect rules
+     * @param {number} storefrontOid 
+     * @param {string} [q] 
+     * @param {string} [type] 
+     * @param {string} [status] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbRedirectsRaw(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectsResponse>>;
+
+    /**
+     * Every redirect rule, exact and pattern.  Filter with q (searches source, target and note), type (exact or pattern) and status (301, 302 or rewrite).  count and limit say how close the storefront is to its rule limit. 
+     * List the storefront\'s redirect rules
+     */
+    getSfvbRedirects(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectsResponse>;
 
     /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
@@ -2298,6 +2558,40 @@ export interface SfvbApiInterface {
     getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse>;
 
     /**
+     * Hides one path from the list and stops counting its hits, for example scanner noise.  Reversible. 
+     * @summary Ignore a 404 path
+     * @param {number} storefrontOid 
+     * @param {string} notFoundId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    ignoreSfvbNotFoundEntryRaw(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntry>>;
+
+    /**
+     * Hides one path from the list and stops counting its hits, for example scanner noise.  Reversible. 
+     * Ignore a 404 path
+     */
+    ignoreSfvbNotFoundEntry(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry>;
+
+    /**
+     * Applies exactly the rows of a dry run, given its plan_hash, in one transaction.  Refused with 412 when the rows or the storefront\'s rules changed since the dry run, and refused when any row has a blocking finding.  Always needs sfvb_publish. 
+     * @summary Apply a reviewed redirect import
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectImportRequest} redirectImportRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    importSfvbRedirectsRaw(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectImportResponse>>;
+
+    /**
+     * Applies exactly the rows of a dry run, given its plan_hash, in one transaction.  Refused with 412 when the rows or the storefront\'s rules changed since the dry run, and refused when any row has a blocking finding.  Always needs sfvb_publish. 
+     * Apply a reviewed redirect import
+     */
+    importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse>;
+
+    /**
      * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
      * @summary Create a blog post
      * @param {number} storefrontOid 
@@ -2330,6 +2624,23 @@ export interface SfvbApiInterface {
      * Create a page
      */
     insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
+     * Creates one permanent (301) redirect, live for shoppers at once.  Refused for a loop, a chain longer than the storefront follows, a duplicate source, a target that is missing or on another site, a system path, a live page (unless over_live_page) and a full storefront.  A chain is allowed with a warning naming the final target.  Always needs sfvb_publish. 
+     * @summary Create a 301 redirect rule
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectRequest} redirectRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbRedirectRaw(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResponse>>;
+
+    /**
+     * Creates one permanent (301) redirect, live for shoppers at once.  Refused for a loop, a chain longer than the storefront follows, a duplicate source, a target that is missing or on another site, a system path, a live page (unless over_live_page) and a full storefront.  A chain is allowed with a warning naming the final target.  Always needs sfvb_publish. 
+     * Create a 301 redirect rule
+     */
+    insertSfvbRedirect(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
      * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
@@ -3160,6 +3471,23 @@ export interface SfvbApiInterface {
     resetSfvbI18nMessage(requestParameters: ResetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nResetResponse>;
 
     /**
+     * Follows the redirect rules for a path exactly as the storefront does and reports each step, the final path, its status and what it lands on (a live page, a hidden page, an item, a 404 or something else).  Read only.  Use it to check every change. 
+     * @summary What a shopper gets for a path
+     * @param {number} storefrontOid 
+     * @param {string} [path] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    resolveSfvbRedirectRaw(requestParameters: ResolveSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResolveResponse>>;
+
+    /**
+     * Follows the redirect rules for a path exactly as the storefront does and reports each step, the final path, its status and what it lands on (a live page, a hidden page, an item, a 404 or something else).  Read only.  Use it to check every change. 
+     * What a shopper gets for a path
+     */
+    resolveSfvbRedirect(requestParameters: ResolveSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResolveResponse>;
+
+    /**
      * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
      * @summary Resolve a template name to the file a page renders
      * @param {number} storefrontOid 
@@ -3342,6 +3670,23 @@ export interface SfvbApiInterface {
     unfavoriteSfvbLibraryEntry(requestParameters: UnfavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * The path lists and counts hits again. 
+     * @summary Stop ignoring a 404 path
+     * @param {number} storefrontOid 
+     * @param {string} notFoundId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    unignoreSfvbNotFoundEntryRaw(requestParameters: UnignoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntry>>;
+
+    /**
+     * The path lists and counts hits again. 
+     * Stop ignoring a 404 path
+     */
+    unignoreSfvbNotFoundEntry(requestParameters: UnignoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry>;
+
+    /**
      * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
      * @summary Narrow who can see a library entry
      * @param {number} storefrontOid 
@@ -3413,6 +3758,25 @@ export interface SfvbApiInterface {
      * Update a library entry\'s draft
      */
     updateSfvbLibraryEntry(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * Changes the source, target or note, and can turn an admin rule into a 301.  Fields left out keep their value.  A changed source or target is checked like a new rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * @summary Change a redirect rule
+     * @param {number} storefrontOid 
+     * @param {number} redirectId 
+     * @param {string} ifMatch hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbRedirectRequest} redirectRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbRedirectRaw(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResponse>>;
+
+    /**
+     * Changes the source, target or note, and can turn an admin rule into a 301.  Fields left out keep their value.  A changed source or target is checked like a new rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Change a redirect rule
+     */
+    updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
@@ -3717,6 +4081,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.attachSfvbBlogPostImageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Runs every check a create runs (loops, chains, duplicates, missing or external targets, system paths, live pages, the rule limit) and returns the findings.  Writes nothing. 
+     * Check a redirect rule without creating it
+     */
+    async checkSfvbRedirectRaw(requestParameters: CheckSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectCheckResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling checkSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectRequest === null || requestParameters.redirectRequest === undefined) {
+            throw new runtime.RequiredError('redirectRequest','Required parameter requestParameters.redirectRequest was null or undefined when calling checkSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/check`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectRequestToJSON(requestParameters.redirectRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectCheckResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Runs every check a create runs (loops, chains, duplicates, missing or external targets, system paths, live pages, the rule limit) and returns the findings.  Writes nothing. 
+     * Check a redirect rule without creating it
+     */
+    async checkSfvbRedirect(requestParameters: CheckSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectCheckResponse> {
+        const response = await this.checkSfvbRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4315,6 +4727,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Deletes one rule.  The source path answers again as it would without the rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Delete a redirect rule
+     */
+    async deleteSfvbRedirectRaw(requestParameters: DeleteSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
+            throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling deleteSfvbRedirect.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/{redirect_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"redirect_id"}}`, encodeURIComponent(String(requestParameters.redirectId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Deletes one rule.  The source path answers again as it would without the rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Delete a redirect rule
+     */
+    async deleteSfvbRedirect(requestParameters: DeleteSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbRedirectRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * Detach an image from a blog post
      */
@@ -4551,6 +5015,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.downloadSfvbFileRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Checks up to 5,000 rows against the existing rules and each other, and returns the findings per row with a plan_hash.  Writes nothing.  Rows are merged with the existing rules; nothing is ever deleted. 
+     * Check a redirect import without writing it
+     */
+    async dryRunSfvbRedirectImportRaw(requestParameters: DryRunSfvbRedirectImportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectImportResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling dryRunSfvbRedirectImport.');
+        }
+
+        if (requestParameters.redirectImportRequest === null || requestParameters.redirectImportRequest === undefined) {
+            throw new runtime.RequiredError('redirectImportRequest','Required parameter requestParameters.redirectImportRequest was null or undefined when calling dryRunSfvbRedirectImport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/import/dry_run`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectImportRequestToJSON(requestParameters.redirectImportRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectImportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Checks up to 5,000 rows against the existing rules and each other, and returns the findings per row with a plan_hash.  Writes nothing.  Rows are merged with the existing rules; nothing is ever deleted. 
+     * Check a redirect import without writing it
+     */
+    async dryRunSfvbRedirectImport(requestParameters: DryRunSfvbRedirectImportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse> {
+        const response = await this.dryRunSfvbRedirectImportRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -5914,6 +6426,161 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * List the paths that answered 404
+     */
+    async getSfvbNotFoundRaw(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbNotFound.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.includeBots !== undefined) {
+            queryParameters['include_bots'] = requestParameters.includeBots;
+        }
+
+        if (requestParameters.includeTokens !== undefined) {
+            queryParameters['include_tokens'] = requestParameters.includeTokens;
+        }
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/not_found`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbNotFoundResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * List the paths that answered 404
+     */
+    async getSfvbNotFound(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundResponse> {
+        const response = await this.getSfvbNotFoundRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One entry with up to 100 recent hits, each with its time, the linking host, the user agent and whether it was a bot.  Client IP addresses are never returned. 
+     * Read one 404 path with its recent hits
+     */
+    async getSfvbNotFoundEntryRaw(requestParameters: GetSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntryResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbNotFoundEntry.');
+        }
+
+        if (requestParameters.notFoundId === null || requestParameters.notFoundId === undefined) {
+            throw new runtime.RequiredError('notFoundId','Required parameter requestParameters.notFoundId was null or undefined when calling getSfvbNotFoundEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.includeTokens !== undefined) {
+            queryParameters['include_tokens'] = requestParameters.includeTokens;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/not_found/{not_found_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"not_found_id"}}`, encodeURIComponent(String(requestParameters.notFoundId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbNotFoundEntryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One entry with up to 100 recent hits, each with its time, the linking host, the user agent and whether it was a bot.  Client IP addresses are never returned. 
+     * Read one 404 path with its recent hits
+     */
+    async getSfvbNotFoundEntry(requestParameters: GetSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntryResponse> {
+        const response = await this.getSfvbNotFoundEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The site_404.vm the active theme renders for a 404, found the way the storefront finds it, and whether it exists.  Without it the storefront serves a plain fallback.  Edit it with the file endpoints. 
+     * What renders the storefront\'s 404 page
+     */
+    async getSfvbNotFoundPageRaw(requestParameters: GetSfvbNotFoundPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundPage>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbNotFoundPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/not_found_page`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbNotFoundPageFromJSON(jsonValue));
+    }
+
+    /**
+     * The site_404.vm the active theme renders for a 404, found the way the storefront finds it, and whether it exists.  Without it the storefront serves a plain fallback.  Edit it with the file endpoints. 
+     * What renders the storefront\'s 404 page
+     */
+    async getSfvbNotFoundPage(requestParameters: GetSfvbNotFoundPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundPage> {
+        const response = await this.getSfvbNotFoundPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
      * Read a page\'s attributes and images
      */
@@ -6290,6 +6957,104 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbRecordingSettings(requestParameters: GetSfvbRecordingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRecordingSettingsResponse> {
         const response = await this.getSfvbRecordingSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One rule, with the hash_sha256 to send as If-Match when updating or deleting it. 
+     * Read one redirect rule
+     */
+    async getSfvbRedirectRaw(requestParameters: GetSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirect>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
+            throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling getSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/{redirect_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"redirect_id"}}`, encodeURIComponent(String(requestParameters.redirectId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectFromJSON(jsonValue));
+    }
+
+    /**
+     * One rule, with the hash_sha256 to send as If-Match when updating or deleting it. 
+     * Read one redirect rule
+     */
+    async getSfvbRedirect(requestParameters: GetSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirect> {
+        const response = await this.getSfvbRedirectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every redirect rule, exact and pattern.  Filter with q (searches source, target and note), type (exact or pattern) and status (301, 302 or rewrite).  count and limit say how close the storefront is to its rule limit. 
+     * List the storefront\'s redirect rules
+     */
+    async getSfvbRedirectsRaw(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbRedirects.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.type !== undefined) {
+            queryParameters['type'] = requestParameters.type;
+        }
+
+        if (requestParameters.status !== undefined) {
+            queryParameters['status'] = requestParameters.status;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every redirect rule, exact and pattern.  Filter with q (searches source, target and note), type (exact or pattern) and status (301, 302 or rewrite).  count and limit say how close the storefront is to its rule limit. 
+     * List the storefront\'s redirect rules
+     */
+    async getSfvbRedirects(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectsResponse> {
+        const response = await this.getSfvbRedirectsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6713,6 +7478,99 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Hides one path from the list and stops counting its hits, for example scanner noise.  Reversible. 
+     * Ignore a 404 path
+     */
+    async ignoreSfvbNotFoundEntryRaw(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling ignoreSfvbNotFoundEntry.');
+        }
+
+        if (requestParameters.notFoundId === null || requestParameters.notFoundId === undefined) {
+            throw new runtime.RequiredError('notFoundId','Required parameter requestParameters.notFoundId was null or undefined when calling ignoreSfvbNotFoundEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/not_found/{not_found_id}/ignore`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"not_found_id"}}`, encodeURIComponent(String(requestParameters.notFoundId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbNotFoundEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * Hides one path from the list and stops counting its hits, for example scanner noise.  Reversible. 
+     * Ignore a 404 path
+     */
+    async ignoreSfvbNotFoundEntry(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry> {
+        const response = await this.ignoreSfvbNotFoundEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Applies exactly the rows of a dry run, given its plan_hash, in one transaction.  Refused with 412 when the rows or the storefront\'s rules changed since the dry run, and refused when any row has a blocking finding.  Always needs sfvb_publish. 
+     * Apply a reviewed redirect import
+     */
+    async importSfvbRedirectsRaw(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectImportResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling importSfvbRedirects.');
+        }
+
+        if (requestParameters.redirectImportRequest === null || requestParameters.redirectImportRequest === undefined) {
+            throw new runtime.RequiredError('redirectImportRequest','Required parameter requestParameters.redirectImportRequest was null or undefined when calling importSfvbRedirects.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/import`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectImportRequestToJSON(requestParameters.redirectImportRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectImportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Applies exactly the rows of a dry run, given its plan_hash, in one transaction.  Refused with 412 when the rows or the storefront\'s rules changed since the dry run, and refused when any row has a blocking finding.  Always needs sfvb_publish. 
+     * Apply a reviewed redirect import
+     */
+    async importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse> {
+        const response = await this.importSfvbRedirectsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
      * Create a blog post
      */
@@ -6805,6 +7663,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
         const response = await this.insertSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates one permanent (301) redirect, live for shoppers at once.  Refused for a loop, a chain longer than the storefront follows, a duplicate source, a target that is missing or on another site, a system path, a live page (unless over_live_page) and a full storefront.  A chain is allowed with a warning naming the final target.  Always needs sfvb_publish. 
+     * Create a 301 redirect rule
+     */
+    async insertSfvbRedirectRaw(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectRequest === null || requestParameters.redirectRequest === undefined) {
+            throw new runtime.RequiredError('redirectRequest','Required parameter requestParameters.redirectRequest was null or undefined when calling insertSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectRequestToJSON(requestParameters.redirectRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates one permanent (301) redirect, live for shoppers at once.  Refused for a loop, a chain longer than the storefront follows, a duplicate source, a target that is missing or on another site, a system path, a live page (unless over_live_page) and a full storefront.  A chain is allowed with a warning naming the final target.  Always needs sfvb_publish. 
+     * Create a 301 redirect rule
+     */
+    async insertSfvbRedirect(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse> {
+        const response = await this.insertSfvbRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -9209,6 +10115,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Follows the redirect rules for a path exactly as the storefront does and reports each step, the final path, its status and what it lands on (a live page, a hidden page, an item, a 404 or something else).  Read only.  Use it to check every change. 
+     * What a shopper gets for a path
+     */
+    async resolveSfvbRedirectRaw(requestParameters: ResolveSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResolveResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling resolveSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/resolve`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectResolveResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Follows the redirect rules for a path exactly as the storefront does and reports each step, the final path, its status and what it lands on (a live page, a hidden page, an item, a 404 or something else).  Read only.  Use it to check every change. 
+     * What a shopper gets for a path
+     */
+    async resolveSfvbRedirect(requestParameters: ResolveSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResolveResponse> {
+        const response = await this.resolveSfvbRedirectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
      * Resolve a template name to the file a page renders
      */
@@ -9740,6 +10691,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The path lists and counts hits again. 
+     * Stop ignoring a 404 path
+     */
+    async unignoreSfvbNotFoundEntryRaw(requestParameters: UnignoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundEntry>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling unignoreSfvbNotFoundEntry.');
+        }
+
+        if (requestParameters.notFoundId === null || requestParameters.notFoundId === undefined) {
+            throw new runtime.RequiredError('notFoundId','Required parameter requestParameters.notFoundId was null or undefined when calling unignoreSfvbNotFoundEntry.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/not_found/{not_found_id}/ignore`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"not_found_id"}}`, encodeURIComponent(String(requestParameters.notFoundId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbNotFoundEntryFromJSON(jsonValue));
+    }
+
+    /**
+     * The path lists and counts hits again. 
+     * Stop ignoring a 404 path
+     */
+    async unignoreSfvbNotFoundEntry(requestParameters: UnignoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry> {
+        const response = await this.unignoreSfvbNotFoundEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Sets visibility to shared or private.  Owner only, and always needs sfvb_publish.  Published revisions are kept and storefronts that already installed the entry keep their copies. 
      * Narrow who can see a library entry
      */
@@ -9949,6 +10945,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbLibraryEntry(requestParameters: UpdateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
         const response = await this.updateSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Changes the source, target or note, and can turn an admin rule into a 301.  Fields left out keep their value.  A changed source or target is checked like a new rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Change a redirect rule
+     */
+    async updateSfvbRedirectRaw(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
+            throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling updateSfvbRedirect.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbRedirect.');
+        }
+
+        if (requestParameters.redirectRequest === null || requestParameters.redirectRequest === undefined) {
+            throw new runtime.RequiredError('redirectRequest','Required parameter requestParameters.redirectRequest was null or undefined when calling updateSfvbRedirect.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/{redirect_id}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"redirect_id"}}`, encodeURIComponent(String(requestParameters.redirectId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectRequestToJSON(requestParameters.redirectRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Changes the source, target or note, and can turn an admin rule into a 301.  Fields left out keep their value.  A changed source or target is checked like a new rule.  Send the hash_sha256 you read as If-Match.  Always needs sfvb_publish. 
+     * Change a redirect rule
+     */
+    async updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse> {
+        const response = await this.updateSfvbRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -86,7 +86,7 @@ export interface SfvbRenderRequest {
      */
     edit_mode?: boolean;
     /**
-     * UltraCart language code such as ESP, enabled on the storefront.  Two-letter codes and English names are accepted.  Defaults to ENG.
+     * Three-letter ISO 639-2 language code in the bibliographic form (GER, FRE, CHI), with UltraCart exceptions such as ESP for Spanish.  Must be enabled on the storefront.  Defaults to ENG.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
