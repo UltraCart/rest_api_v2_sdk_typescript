@@ -24,7 +24,7 @@ export interface SfvbLibraryParameter {
      * @type {string}
      * @memberof SfvbLibraryParameter
      */
-    _default?: string;
+    default_value?: string;
     /**
      * What the value is used for.
      * @type {string}
@@ -72,7 +72,7 @@ export function SfvbLibraryParameterFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        '_default': !exists(json, 'default') ? undefined : json['default'],
+        'default_value': !exists(json, 'default_value') ? undefined : json['default_value'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'required': !exists(json, 'required') ? undefined : json['required'],
@@ -89,7 +89,7 @@ export function SfvbLibraryParameterToJSON(value?: SfvbLibraryParameter | null):
     }
     return {
         
-        'default': value._default,
+        'default_value': value.default_value,
         'description': value.description,
         'name': value.name,
         'required': value.required,
