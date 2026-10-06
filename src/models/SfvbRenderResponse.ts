@@ -57,6 +57,12 @@ export interface SfvbRenderResponse {
      */
     truncated?: boolean;
     /**
+     * Strings rendered in English because no translation is stored for the requested language yet.  A render never translates, so re-rendering does not change this.  Push the page to store its hand translations; machine translations are made when shoppers first view it in that language.
+     * @type {number}
+     * @memberof SfvbRenderResponse
+     */
+    untranslated_count?: number;
+    /**
      * Quality warnings about the rendered node.
      * @type {Array<SfvbErrorDetail>}
      * @memberof SfvbRenderResponse
@@ -90,6 +96,7 @@ export function SfvbRenderResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'pending_translation_count': !exists(json, 'pending_translation_count') ? undefined : json['pending_translation_count'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'truncated': !exists(json, 'truncated') ? undefined : json['truncated'],
+        'untranslated_count': !exists(json, 'untranslated_count') ? undefined : json['untranslated_count'],
         'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(SfvbErrorDetailFromJSON)),
     };
 }
@@ -108,6 +115,7 @@ export function SfvbRenderResponseToJSON(value?: SfvbRenderResponse | null): any
         'pending_translation_count': value.pending_translation_count,
         'success': value.success,
         'truncated': value.truncated,
+        'untranslated_count': value.untranslated_count,
         'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(SfvbErrorDetailToJSON)),
     };
 }
