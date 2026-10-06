@@ -86,7 +86,7 @@ export interface SfvbRenderRequest {
      */
     edit_mode?: boolean;
     /**
-     * Language ISO code.  Defaults to ENG.
+     * UltraCart language code such as ESP, enabled on the storefront.  Two-letter codes and English names are accepted.  Defaults to ENG.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
