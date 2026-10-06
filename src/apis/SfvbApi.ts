@@ -105,6 +105,33 @@ import {
     SfvbFilesResponse,
     SfvbFilesResponseFromJSON,
     SfvbFilesResponseToJSON,
+    SfvbI18nGlossary,
+    SfvbI18nGlossaryFromJSON,
+    SfvbI18nGlossaryToJSON,
+    SfvbI18nGlossaryRequest,
+    SfvbI18nGlossaryRequestFromJSON,
+    SfvbI18nGlossaryRequestToJSON,
+    SfvbI18nLanguageEnableRequest,
+    SfvbI18nLanguageEnableRequestFromJSON,
+    SfvbI18nLanguageEnableRequestToJSON,
+    SfvbI18nLanguagesResponse,
+    SfvbI18nLanguagesResponseFromJSON,
+    SfvbI18nLanguagesResponseToJSON,
+    SfvbI18nMachineTranslationsResponse,
+    SfvbI18nMachineTranslationsResponseFromJSON,
+    SfvbI18nMachineTranslationsResponseToJSON,
+    SfvbI18nMessage,
+    SfvbI18nMessageFromJSON,
+    SfvbI18nMessageToJSON,
+    SfvbI18nMessageWriteRequest,
+    SfvbI18nMessageWriteRequestFromJSON,
+    SfvbI18nMessageWriteRequestToJSON,
+    SfvbI18nMessagesResponse,
+    SfvbI18nMessagesResponseFromJSON,
+    SfvbI18nMessagesResponseToJSON,
+    SfvbI18nResetResponse,
+    SfvbI18nResetResponseFromJSON,
+    SfvbI18nResetResponseToJSON,
     SfvbItemAttributeUpdateRequest,
     SfvbItemAttributeUpdateRequestFromJSON,
     SfvbItemAttributeUpdateRequestToJSON,
@@ -426,6 +453,12 @@ export interface DetachSfvbBlogPostImageRequest {
     blogPostImageRequest: SfvbBlogPostImageRequest;
 }
 
+export interface DisableSfvbI18nLanguageRequest {
+    storefrontOid: number;
+    code: string;
+    ifMatch: string;
+}
+
 export interface DisableSfvbUpsellOfferRequest {
     storefrontOid: number;
     upsellOfferOid: number;
@@ -467,6 +500,13 @@ export interface DuplicateSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPathOid: number;
     duplicateRequest?: SfvbUpsellPathDuplicateRequest;
+}
+
+export interface EnableSfvbI18nLanguageRequest {
+    storefrontOid: number;
+    code: string;
+    ifMatch: string;
+    languageEnableRequest: SfvbI18nLanguageEnableRequest;
 }
 
 export interface EndSfvbExperimentRequest {
@@ -527,6 +567,33 @@ export interface GetSfvbFileContentRequest {
 export interface GetSfvbFileUploadUrlRequest {
     storefrontOid: number;
     extension: string;
+}
+
+export interface GetSfvbI18nGlossaryRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbI18nLanguagesRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbI18nMachineTranslationsRequest {
+    storefrontOid: number;
+    themeOid?: number;
+    widgetId?: string;
+    property?: string;
+}
+
+export interface GetSfvbI18nMessageRequest {
+    storefrontOid: number;
+    key: string;
+    themeOid?: number;
+}
+
+export interface GetSfvbI18nMessageMachineTranslationsRequest {
+    storefrontOid: number;
+    key: string;
+    themeOid?: number;
 }
 
 export interface GetSfvbItemRequest {
@@ -707,6 +774,16 @@ export interface ListSfvbFilesRequest {
     maxEntries?: number;
 }
 
+export interface ListSfvbI18nMessagesRequest {
+    storefrontOid: number;
+    themeOid?: number;
+    q?: string;
+    language?: string;
+    overridden?: boolean;
+    offset?: number;
+    limit?: number;
+}
+
 export interface ListSfvbItemContainersRequest {
     storefrontOid: number;
     merchantItemId?: string;
@@ -797,6 +874,20 @@ export interface PutSfvbFileContentRequest {
     ifMatch: string;
     fileWriteRequest: SfvbFileWriteRequest;
     path?: string;
+}
+
+export interface PutSfvbI18nGlossaryRequest {
+    storefrontOid: number;
+    glossaryRequest: SfvbI18nGlossaryRequest;
+    ifMatch?: string;
+}
+
+export interface PutSfvbI18nMessageRequest {
+    storefrontOid: number;
+    key: string;
+    ifMatch: string;
+    messageWriteRequest: SfvbI18nMessageWriteRequest;
+    themeOid?: number;
 }
 
 export interface PutSfvbItemAttributesRequest {
@@ -907,6 +998,13 @@ export interface RenderSfvbWidgetsRequest {
 export interface ReserveSfvbWidgetIdsRequest {
     storefrontOid: number;
     count?: number;
+}
+
+export interface ResetSfvbI18nMessageRequest {
+    storefrontOid: number;
+    key: string;
+    ifMatch: string;
+    themeOid?: number;
 }
 
 export interface ResolveSfvbTemplateRequest {
@@ -1335,6 +1433,24 @@ export interface SfvbApiInterface {
     detachSfvbBlogPostImage(requestParameters: DetachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * Stops serving a language.  Its hand and machine translations are kept and come back when it is enabled again.  The default language cannot be disabled.  Already disabled answers changed false.  Always needs sfvb_publish. 
+     * @summary Disable a language
+     * @param {number} storefrontOid 
+     * @param {string} code 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    disableSfvbI18nLanguageRaw(requestParameters: DisableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>>;
+
+    /**
+     * Stops serving a language.  Its hand and machine translations are kept and come back when it is enabled again.  The default language cannot be disabled.  Already disabled answers changed false.  Always needs sfvb_publish. 
+     * Disable a language
+     */
+    disableSfvbI18nLanguage(requestParameters: DisableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse>;
+
+    /**
      * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
      * @summary Disable an upsell offer
      * @param {number} storefrontOid 
@@ -1472,6 +1588,25 @@ export interface SfvbApiInterface {
      * Duplicate an upsell path or one of its variations
      */
     duplicateSfvbUpsellPath(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * Turns a language on.  It is served to shoppers and machine translated, which is billed per character, so acknowledge_cost must be true and the caller must be a person (device authorization).  Records the same billing note as the merchant admin.  Already enabled answers changed false.  Always needs sfvb_publish. 
+     * @summary Enable a language
+     * @param {number} storefrontOid 
+     * @param {string} code 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbI18nLanguageEnableRequest} languageEnableRequest The cost acknowledgement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    enableSfvbI18nLanguageRaw(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>>;
+
+    /**
+     * Turns a language on.  It is served to shoppers and machine translated, which is billed per character, so acknowledge_cost must be true and the caller must be a person (device authorization).  Records the same billing note as the merchant admin.  Already enabled answers changed false.  Always needs sfvb_publish. 
+     * Enable a language
+     */
+    enableSfvbI18nLanguage(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse>;
 
     /**
      * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
@@ -1663,6 +1798,93 @@ export interface SfvbApiInterface {
      * Get a URL to upload a binary asset to
      */
     getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse>;
+
+    /**
+     * The storefront\'s glossary, plain markdown with terms not to translate, required translations, tone and words to avoid.  Read it before translating anything.  Empty when none has been saved.  Each storefront has its own, because a storefront is often its own brand. 
+     * @summary Read the storefront\'s translation glossary
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbI18nGlossaryRaw(requestParameters: GetSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nGlossary>>;
+
+    /**
+     * The storefront\'s glossary, plain markdown with terms not to translate, required translations, tone and words to avoid.  Read it before translating anything.  Empty when none has been saved.  Each storefront has its own, because a storefront is often its own brand. 
+     * Read the storefront\'s translation glossary
+     */
+    getSfvbI18nGlossary(requestParameters: GetSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nGlossary>;
+
+    /**
+     * Every language the storefront can be translated into, with UltraCart\'s three-letter code (ESP for Spanish), the other spellings accepted, whether it is enabled, the default and right to left.  Language maps in CJSON and render take the code.  English is the source of every string.  Also gives the machine translation estimate for one more language, and the hash_sha256 an enable or disable sends back. 
+     * @summary List a storefront\'s languages
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbI18nLanguagesRaw(requestParameters: GetSfvbI18nLanguagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>>;
+
+    /**
+     * Every language the storefront can be translated into, with UltraCart\'s three-letter code (ESP for Spanish), the other spellings accepted, whether it is enabled, the default and right to left.  Language maps in CJSON and render take the code.  English is the source of every string.  Also gives the machine translation estimate for one more language, and the hash_sha256 an enable or disable sends back. 
+     * List a storefront\'s languages
+     */
+    getSfvbI18nLanguages(requestParameters: GetSfvbI18nLanguagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse>;
+
+    /**
+     * For one multilingual widget setting, named by widget_id and property on a theme (the active theme unless theme_oid is given), each enabled language\'s text and whether a shopper sees a hand translation from the language map, a machine translation, one still queued (pending) or none yet.  The setting is registered when its container is saved.  Nothing is generated by reading it. 
+     * @summary Read where a widget setting\'s translations come from
+     * @param {number} storefrontOid 
+     * @param {number} [themeOid] 
+     * @param {string} [widgetId] 
+     * @param {string} [property] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbI18nMachineTranslationsRaw(requestParameters: GetSfvbI18nMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMachineTranslationsResponse>>;
+
+    /**
+     * For one multilingual widget setting, named by widget_id and property on a theme (the active theme unless theme_oid is given), each enabled language\'s text and whether a shopper sees a hand translation from the language map, a machine translation, one still queued (pending) or none yet.  The setting is registered when its container is saved.  Nothing is generated by reading it. 
+     * Read where a widget setting\'s translations come from
+     */
+    getSfvbI18nMachineTranslations(requestParameters: GetSfvbI18nMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMachineTranslationsResponse>;
+
+    /**
+     * One message by key, with the hash_sha256 a set or reset sends back. 
+     * @summary Read one built-in message
+     * @param {number} storefrontOid 
+     * @param {string} key 
+     * @param {number} [themeOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbI18nMessageRaw(requestParameters: GetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>>;
+
+    /**
+     * One message by key, with the hash_sha256 a set or reset sends back. 
+     * Read one built-in message
+     */
+    getSfvbI18nMessage(requestParameters: GetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage>;
+
+    /**
+     * For one message, each enabled language\'s text and whether a shopper sees a hand translation, a machine translation, one still queued (pending) or none yet.  Nothing is generated by reading it. 
+     * @summary Read where a message\'s translations come from
+     * @param {number} storefrontOid 
+     * @param {string} key 
+     * @param {number} [themeOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbI18nMessageMachineTranslationsRaw(requestParameters: GetSfvbI18nMessageMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMachineTranslationsResponse>>;
+
+    /**
+     * For one message, each enabled language\'s text and whether a shopper sees a hand translation, a machine translation, one still queued (pending) or none yet.  Nothing is generated by reading it. 
+     * Read where a message\'s translations come from
+     */
+    getSfvbI18nMessageMachineTranslations(requestParameters: GetSfvbI18nMessageMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMachineTranslationsResponse>;
 
     /**
      * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
@@ -2271,6 +2493,28 @@ export interface SfvbApiInterface {
     listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse>;
 
     /**
+     * The system text templates render by key, such as checkout labels, for one theme (the active theme unless theme_oid is given).  Each message has its English, whether it was edited, and each enabled language\'s text with its source (hand, machine, pending or none).  A message appears the first time a page renders it.  q matches the key or the English.  overridden keeps messages with an edited English or a hand translation.  Paged by offset and limit (default 200, at most 500). 
+     * @summary List built-in messages
+     * @param {number} storefrontOid 
+     * @param {number} [themeOid] 
+     * @param {string} [q] 
+     * @param {string} [language] 
+     * @param {boolean} [overridden] 
+     * @param {number} [offset] 
+     * @param {number} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbI18nMessagesRaw(requestParameters: ListSfvbI18nMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessagesResponse>>;
+
+    /**
+     * The system text templates render by key, such as checkout labels, for one theme (the active theme unless theme_oid is given).  Each message has its English, whether it was edited, and each enabled language\'s text with its source (hand, machine, pending or none).  A message appears the first time a page renders it.  q matches the key or the English.  overridden keeps messages with an edited English or a hand translation.  Paged by offset and limit (default 200, at most 500). 
+     * List built-in messages
+     */
+    listSfvbI18nMessages(requestParameters: ListSfvbI18nMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessagesResponse>;
+
+    /**
      * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
      * @summary List the item containers on the account
      * @param {number} storefrontOid 
@@ -2531,6 +2775,44 @@ export interface SfvbApiInterface {
      * Write a storefront file
      */
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
+     * Replaces the whole glossary, plain markdown up to 64 KB.  The server stores it and never interprets it; the agent follows it.  Send the hash_sha256 you read as If-Match, except for the first save.  Always needs sfvb_publish. 
+     * @summary Replace the storefront\'s translation glossary
+     * @param {number} storefrontOid 
+     * @param {SfvbI18nGlossaryRequest} glossaryRequest The glossary
+     * @param {string} [ifMatch] hash_sha256 from the last read.  Not needed for the first save; otherwise 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbI18nGlossaryRaw(requestParameters: PutSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nGlossary>>;
+
+    /**
+     * Replaces the whole glossary, plain markdown up to 64 KB.  The server stores it and never interprets it; the agent follows it.  Send the hash_sha256 you read as If-Match, except for the first save.  Always needs sfvb_publish. 
+     * Replace the storefront\'s translation glossary
+     */
+    putSfvbI18nGlossary(requestParameters: PutSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nGlossary>;
+
+    /**
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * @summary Change one built-in message
+     * @param {number} storefrontOid 
+     * @param {string} key 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbI18nMessageWriteRequest} messageWriteRequest The languages to change
+     * @param {number} [themeOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbI18nMessageRaw(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>>;
+
+    /**
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Change one built-in message
+     */
+    putSfvbI18nMessage(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage>;
 
     /**
      * Partial - only the attributes named change, and an empty value empties one but keeps it on the item.  To remove an attribute no template declares, use the attribute DELETE.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
@@ -2857,6 +3139,25 @@ export interface SfvbApiInterface {
      * Reserve a block of widget ids
      */
     reserveSfvbWidgetIds(requestParameters: ReserveSfvbWidgetIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWidgetIdsResponse>;
+
+    /**
+     * Puts a message back to the template\'s text.  The merchant\'s English edit and hand translations stop serving at once and every language falls back to machine translation; the message comes back the next time a page renders it.  A message imported from an older theme\'s locale file is refused.  Always needs sfvb_publish. 
+     * @summary Reset one built-in message
+     * @param {number} storefrontOid 
+     * @param {string} key 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {number} [themeOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    resetSfvbI18nMessageRaw(requestParameters: ResetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nResetResponse>>;
+
+    /**
+     * Puts a message back to the template\'s text.  The merchant\'s English edit and hand translations stop serving at once and every language falls back to machine translation; the message comes back the next time a page renders it.  A message imported from an older theme\'s locale file is refused.  Always needs sfvb_publish. 
+     * Reset one built-in message
+     */
+    resetSfvbI18nMessage(requestParameters: ResetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nResetResponse>;
 
     /**
      * A page stores only its template\'s file name.  This runs the storefront\'s own template search for that name and returns the file a page naming it renders, relative to the theme.  It also lists the theme\'s resource paths in search order with every file of that name below each, so a theme copy overriding a shared core copy, or a copy in a snippets folder that is never used, is visible.  exists is false when a page naming the template cannot render. 
@@ -4066,6 +4367,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Stops serving a language.  Its hand and machine translations are kept and come back when it is enabled again.  The default language cannot be disabled.  Already disabled answers changed false.  Always needs sfvb_publish. 
+     * Disable a language
+     */
+    async disableSfvbI18nLanguageRaw(requestParameters: DisableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling disableSfvbI18nLanguage.');
+        }
+
+        if (requestParameters.code === null || requestParameters.code === undefined) {
+            throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling disableSfvbI18nLanguage.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling disableSfvbI18nLanguage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/languages/{code}/disable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"code"}}`, encodeURIComponent(String(requestParameters.code))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nLanguagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Stops serving a language.  Its hand and machine translations are kept and come back when it is enabled again.  The default language cannot be disabled.  Already disabled answers changed false.  Always needs sfvb_publish. 
+     * Disable a language
+     */
+    async disableSfvbI18nLanguage(requestParameters: DisableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse> {
+        const response = await this.disableSfvbI18nLanguageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Switches the offer off.  Disabling one that is switched on is a live change and needs sfvb_publish.  An offer that is already off is returned unchanged.  There is no delete. 
      * Disable an upsell offer
      */
@@ -4438,6 +4792,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async duplicateSfvbUpsellPath(requestParameters: DuplicateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.duplicateSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Turns a language on.  It is served to shoppers and machine translated, which is billed per character, so acknowledge_cost must be true and the caller must be a person (device authorization).  Records the same billing note as the merchant admin.  Already enabled answers changed false.  Always needs sfvb_publish. 
+     * Enable a language
+     */
+    async enableSfvbI18nLanguageRaw(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling enableSfvbI18nLanguage.');
+        }
+
+        if (requestParameters.code === null || requestParameters.code === undefined) {
+            throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling enableSfvbI18nLanguage.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling enableSfvbI18nLanguage.');
+        }
+
+        if (requestParameters.languageEnableRequest === null || requestParameters.languageEnableRequest === undefined) {
+            throw new runtime.RequiredError('languageEnableRequest','Required parameter requestParameters.languageEnableRequest was null or undefined when calling enableSfvbI18nLanguage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/languages/{code}/enable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"code"}}`, encodeURIComponent(String(requestParameters.code))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbI18nLanguageEnableRequestToJSON(requestParameters.languageEnableRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nLanguagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Turns a language on.  It is served to shoppers and machine translated, which is billed per character, so acknowledge_cost must be true and the caller must be a person (device authorization).  Records the same billing note as the merchant admin.  Already enabled answers changed false.  Always needs sfvb_publish. 
+     * Enable a language
+     */
+    async enableSfvbI18nLanguage(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse> {
+        const response = await this.enableSfvbI18nLanguageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4952,6 +5366,239 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse> {
         const response = await this.getSfvbFileUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The storefront\'s glossary, plain markdown with terms not to translate, required translations, tone and words to avoid.  Read it before translating anything.  Empty when none has been saved.  Each storefront has its own, because a storefront is often its own brand. 
+     * Read the storefront\'s translation glossary
+     */
+    async getSfvbI18nGlossaryRaw(requestParameters: GetSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nGlossary>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbI18nGlossary.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/glossary`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nGlossaryFromJSON(jsonValue));
+    }
+
+    /**
+     * The storefront\'s glossary, plain markdown with terms not to translate, required translations, tone and words to avoid.  Read it before translating anything.  Empty when none has been saved.  Each storefront has its own, because a storefront is often its own brand. 
+     * Read the storefront\'s translation glossary
+     */
+    async getSfvbI18nGlossary(requestParameters: GetSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nGlossary> {
+        const response = await this.getSfvbI18nGlossaryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every language the storefront can be translated into, with UltraCart\'s three-letter code (ESP for Spanish), the other spellings accepted, whether it is enabled, the default and right to left.  Language maps in CJSON and render take the code.  English is the source of every string.  Also gives the machine translation estimate for one more language, and the hash_sha256 an enable or disable sends back. 
+     * List a storefront\'s languages
+     */
+    async getSfvbI18nLanguagesRaw(requestParameters: GetSfvbI18nLanguagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nLanguagesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbI18nLanguages.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/languages`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nLanguagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every language the storefront can be translated into, with UltraCart\'s three-letter code (ESP for Spanish), the other spellings accepted, whether it is enabled, the default and right to left.  Language maps in CJSON and render take the code.  English is the source of every string.  Also gives the machine translation estimate for one more language, and the hash_sha256 an enable or disable sends back. 
+     * List a storefront\'s languages
+     */
+    async getSfvbI18nLanguages(requestParameters: GetSfvbI18nLanguagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse> {
+        const response = await this.getSfvbI18nLanguagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * For one multilingual widget setting, named by widget_id and property on a theme (the active theme unless theme_oid is given), each enabled language\'s text and whether a shopper sees a hand translation from the language map, a machine translation, one still queued (pending) or none yet.  The setting is registered when its container is saved.  Nothing is generated by reading it. 
+     * Read where a widget setting\'s translations come from
+     */
+    async getSfvbI18nMachineTranslationsRaw(requestParameters: GetSfvbI18nMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMachineTranslationsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbI18nMachineTranslations.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        if (requestParameters.widgetId !== undefined) {
+            queryParameters['widget_id'] = requestParameters.widgetId;
+        }
+
+        if (requestParameters.property !== undefined) {
+            queryParameters['property'] = requestParameters.property;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/machine_translations`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nMachineTranslationsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * For one multilingual widget setting, named by widget_id and property on a theme (the active theme unless theme_oid is given), each enabled language\'s text and whether a shopper sees a hand translation from the language map, a machine translation, one still queued (pending) or none yet.  The setting is registered when its container is saved.  Nothing is generated by reading it. 
+     * Read where a widget setting\'s translations come from
+     */
+    async getSfvbI18nMachineTranslations(requestParameters: GetSfvbI18nMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMachineTranslationsResponse> {
+        const response = await this.getSfvbI18nMachineTranslationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One message by key, with the hash_sha256 a set or reset sends back. 
+     * Read one built-in message
+     */
+    async getSfvbI18nMessageRaw(requestParameters: GetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbI18nMessage.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getSfvbI18nMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/messages/{key}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nMessageFromJSON(jsonValue));
+    }
+
+    /**
+     * One message by key, with the hash_sha256 a set or reset sends back. 
+     * Read one built-in message
+     */
+    async getSfvbI18nMessage(requestParameters: GetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage> {
+        const response = await this.getSfvbI18nMessageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * For one message, each enabled language\'s text and whether a shopper sees a hand translation, a machine translation, one still queued (pending) or none yet.  Nothing is generated by reading it. 
+     * Read where a message\'s translations come from
+     */
+    async getSfvbI18nMessageMachineTranslationsRaw(requestParameters: GetSfvbI18nMessageMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMachineTranslationsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbI18nMessageMachineTranslations.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getSfvbI18nMessageMachineTranslations.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/messages/{key}/machine_translations`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nMachineTranslationsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * For one message, each enabled language\'s text and whether a shopper sees a hand translation, a machine translation, one still queued (pending) or none yet.  Nothing is generated by reading it. 
+     * Read where a message\'s translations come from
+     */
+    async getSfvbI18nMessageMachineTranslations(requestParameters: GetSfvbI18nMessageMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMachineTranslationsResponse> {
+        const response = await this.getSfvbI18nMessageMachineTranslationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6604,6 +7251,71 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The system text templates render by key, such as checkout labels, for one theme (the active theme unless theme_oid is given).  Each message has its English, whether it was edited, and each enabled language\'s text with its source (hand, machine, pending or none).  A message appears the first time a page renders it.  q matches the key or the English.  overridden keeps messages with an edited English or a hand translation.  Paged by offset and limit (default 200, at most 500). 
+     * List built-in messages
+     */
+    async listSfvbI18nMessagesRaw(requestParameters: ListSfvbI18nMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessagesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbI18nMessages.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.language !== undefined) {
+            queryParameters['language'] = requestParameters.language;
+        }
+
+        if (requestParameters.overridden !== undefined) {
+            queryParameters['overridden'] = requestParameters.overridden;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/messages`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nMessagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The system text templates render by key, such as checkout labels, for one theme (the active theme unless theme_oid is given).  Each message has its English, whether it was edited, and each enabled language\'s text with its source (hand, machine, pending or none).  A message appears the first time a page renders it.  q matches the key or the English.  overridden keeps messages with an edited English or a hand translation.  Paged by offset and limit (default 200, at most 500). 
+     * List built-in messages
+     */
+    async listSfvbI18nMessages(requestParameters: ListSfvbI18nMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessagesResponse> {
+        const response = await this.listSfvbI18nMessagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
      * List the item containers on the account
      */
@@ -7355,6 +8067,122 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.putSfvbFileContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Replaces the whole glossary, plain markdown up to 64 KB.  The server stores it and never interprets it; the agent follows it.  Send the hash_sha256 you read as If-Match, except for the first save.  Always needs sfvb_publish. 
+     * Replace the storefront\'s translation glossary
+     */
+    async putSfvbI18nGlossaryRaw(requestParameters: PutSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nGlossary>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbI18nGlossary.');
+        }
+
+        if (requestParameters.glossaryRequest === null || requestParameters.glossaryRequest === undefined) {
+            throw new runtime.RequiredError('glossaryRequest','Required parameter requestParameters.glossaryRequest was null or undefined when calling putSfvbI18nGlossary.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/glossary`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbI18nGlossaryRequestToJSON(requestParameters.glossaryRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nGlossaryFromJSON(jsonValue));
+    }
+
+    /**
+     * Replaces the whole glossary, plain markdown up to 64 KB.  The server stores it and never interprets it; the agent follows it.  Send the hash_sha256 you read as If-Match, except for the first save.  Always needs sfvb_publish. 
+     * Replace the storefront\'s translation glossary
+     */
+    async putSfvbI18nGlossary(requestParameters: PutSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nGlossary> {
+        const response = await this.putSfvbI18nGlossaryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Change one built-in message
+     */
+    async putSfvbI18nMessageRaw(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbI18nMessage.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling putSfvbI18nMessage.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling putSfvbI18nMessage.');
+        }
+
+        if (requestParameters.messageWriteRequest === null || requestParameters.messageWriteRequest === undefined) {
+            throw new runtime.RequiredError('messageWriteRequest','Required parameter requestParameters.messageWriteRequest was null or undefined when calling putSfvbI18nMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/messages/{key}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbI18nMessageWriteRequestToJSON(requestParameters.messageWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nMessageFromJSON(jsonValue));
+    }
+
+    /**
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Change one built-in message
+     */
+    async putSfvbI18nMessage(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage> {
+        const response = await this.putSfvbI18nMessageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8320,6 +9148,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async reserveSfvbWidgetIds(requestParameters: ReserveSfvbWidgetIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWidgetIdsResponse> {
         const response = await this.reserveSfvbWidgetIdsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Puts a message back to the template\'s text.  The merchant\'s English edit and hand translations stop serving at once and every language falls back to machine translation; the message comes back the next time a page renders it.  A message imported from an older theme\'s locale file is refused.  Always needs sfvb_publish. 
+     * Reset one built-in message
+     */
+    async resetSfvbI18nMessageRaw(requestParameters: ResetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nResetResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling resetSfvbI18nMessage.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling resetSfvbI18nMessage.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling resetSfvbI18nMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.themeOid !== undefined) {
+            queryParameters['theme_oid'] = requestParameters.themeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/i18n/messages/{key}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbI18nResetResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Puts a message back to the template\'s text.  The merchant\'s English edit and hand translations stop serving at once and every language falls back to machine translation; the message comes back the next time a page renders it.  A message imported from an older theme\'s locale file is refused.  Always needs sfvb_publish. 
+     * Reset one built-in message
+     */
+    async resetSfvbI18nMessage(requestParameters: ResetSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nResetResponse> {
+        const response = await this.resetSfvbI18nMessageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
