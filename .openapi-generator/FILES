@@ -1154,6 +1154,8 @@ src/models/SfvbTemplateResolveCandidate.ts
 src/models/SfvbTemplateResolvePath.ts
 src/models/SfvbTemplateResolveResponse.ts
 src/models/SfvbTemplatesResponse.ts
+src/models/SfvbTestOrder.ts
+src/models/SfvbTestOrdersResponse.ts
 src/models/SfvbTheme.ts
 src/models/SfvbThemeAttribute.ts
 src/models/SfvbThemeAttributeUpdate.ts

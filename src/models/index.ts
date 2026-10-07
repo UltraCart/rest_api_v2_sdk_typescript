@@ -1126,6 +1126,8 @@ export * from './SfvbTemplateResolveCandidate';
 export * from './SfvbTemplateResolvePath';
 export * from './SfvbTemplateResolveResponse';
 export * from './SfvbTemplatesResponse';
+export * from './SfvbTestOrder';
+export * from './SfvbTestOrdersResponse';
 export * from './SfvbTheme';
 export * from './SfvbThemeAttribute';
 export * from './SfvbThemeAttributeUpdate';

@@ -336,6 +336,9 @@ import {
     SfvbTemplatesResponse,
     SfvbTemplatesResponseFromJSON,
     SfvbTemplatesResponseToJSON,
+    SfvbTestOrdersResponse,
+    SfvbTestOrdersResponseFromJSON,
+    SfvbTestOrdersResponseToJSON,
     SfvbTheme,
     SfvbThemeFromJSON,
     SfvbThemeToJSON,
@@ -763,6 +766,13 @@ export interface GetSfvbServerLogRequest {
 
 export interface GetSfvbSiteAttributesRequest {
     storefrontOid: number;
+}
+
+export interface GetSfvbTestOrdersRequest {
+    storefrontOid: number;
+    limit?: number;
+    digitalItems?: boolean;
+    autoOrder?: boolean;
 }
 
 export interface GetSfvbThemeRequest {
@@ -2434,6 +2444,25 @@ export interface SfvbApiInterface {
      * Read a storefront\'s site attributes
      */
     getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse>;
+
+    /**
+     * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
+     * @summary List recent test orders
+     * @param {number} storefrontOid 
+     * @param {number} [limit] 
+     * @param {boolean} [digitalItems] 
+     * @param {boolean} [autoOrder] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTestOrdersRaw(requestParameters: GetSfvbTestOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTestOrdersResponse>>;
+
+    /**
+     * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
+     * List recent test orders
+     */
+    getSfvbTestOrders(requestParameters: GetSfvbTestOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTestOrdersResponse>;
 
     /**
      * 
@@ -7145,6 +7174,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse> {
         const response = await this.getSfvbSiteAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
+     * List recent test orders
+     */
+    async getSfvbTestOrdersRaw(requestParameters: GetSfvbTestOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTestOrdersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTestOrders.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.digitalItems !== undefined) {
+            queryParameters['digital_items'] = requestParameters.digitalItems;
+        }
+
+        if (requestParameters.autoOrder !== undefined) {
+            queryParameters['auto_order'] = requestParameters.autoOrder;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/test_orders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTestOrdersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
+     * List recent test orders
+     */
+    async getSfvbTestOrders(requestParameters: GetSfvbTestOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTestOrdersResponse> {
+        const response = await this.getSfvbTestOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
