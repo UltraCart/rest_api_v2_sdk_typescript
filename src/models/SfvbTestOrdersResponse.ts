@@ -27,17 +27,11 @@ import {
  */
 export interface SfvbTestOrdersResponse {
     /**
-     * Present when nothing matched.  Says how to place a test order.
+     * Present when nothing matched.
      * @type {string}
      * @memberof SfvbTestOrdersResponse
      */
     hint?: string;
-    /**
-     * How many days back were searched, 7, 30 or 90, widening until enough test orders were found.
-     * @type {number}
-     * @memberof SfvbTestOrdersResponse
-     */
-    searched_days?: number;
     /**
      * Test orders, newest first.  Only orders marked as test orders are ever listed.
      * @type {Array<SfvbTestOrder>}
@@ -68,7 +62,6 @@ export function SfvbTestOrdersResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'hint': !exists(json, 'hint') ? undefined : json['hint'],
-        'searched_days': !exists(json, 'searched_days') ? undefined : json['searched_days'],
         'test_orders': !exists(json, 'test_orders') ? undefined : ((json['test_orders'] as Array<any>).map(SfvbTestOrderFromJSON)),
     };
 }
@@ -83,7 +76,6 @@ export function SfvbTestOrdersResponseToJSON(value?: SfvbTestOrdersResponse | nu
     return {
         
         'hint': value.hint,
-        'searched_days': value.searched_days,
         'test_orders': value.test_orders === undefined ? undefined : ((value.test_orders as Array<any>).map(SfvbTestOrderToJSON)),
     };
 }
