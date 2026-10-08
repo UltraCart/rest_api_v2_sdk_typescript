@@ -995,6 +995,10 @@ src/models/ScreenRecordingUserAgentOS.ts
 src/models/ScreenRecordingUserProperty.ts
 src/models/ScreenshotsResponse.ts
 src/models/SelfConfig.ts
+src/models/SfvbApproval.ts
+src/models/SfvbApprovalCreateRequest.ts
+src/models/SfvbApprovalParams.ts
+src/models/SfvbApprovalsResponse.ts
 src/models/SfvbBlogPost.ts
 src/models/SfvbBlogPostDetail.ts
 src/models/SfvbBlogPostImage.ts

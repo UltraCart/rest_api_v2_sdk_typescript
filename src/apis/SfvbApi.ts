@@ -18,6 +18,15 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SfvbApproval,
+    SfvbApprovalFromJSON,
+    SfvbApprovalToJSON,
+    SfvbApprovalCreateRequest,
+    SfvbApprovalCreateRequestFromJSON,
+    SfvbApprovalCreateRequestToJSON,
+    SfvbApprovalsResponse,
+    SfvbApprovalsResponseFromJSON,
+    SfvbApprovalsResponseToJSON,
     SfvbBlogPostDetail,
     SfvbBlogPostDetailFromJSON,
     SfvbBlogPostDetailToJSON,
@@ -447,15 +456,21 @@ export interface CreateSfvbPreviewSessionRequest {
     storefrontOid: number;
 }
 
+export interface DeleteSfvbApprovalRequest {
+    approvalId: string;
+}
+
 export interface DeleteSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
+    approvalId?: string;
 }
 
 export interface DeleteSfvbFileRequest {
     storefrontOid: number;
     ifMatch: string;
     path?: string;
+    approvalId?: string;
 }
 
 export interface DeleteSfvbItemAttributeRequest {
@@ -573,6 +588,10 @@ export interface EndSfvbExperimentRequest {
 export interface FavoriteSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+}
+
+export interface GetSfvbApprovalRequest {
+    approvalId: string;
 }
 
 export interface GetSfvbBlogPostRequest {
@@ -816,6 +835,11 @@ export interface IgnoreSfvbNotFoundEntryRequest {
 export interface ImportSfvbRedirectsRequest {
     storefrontOid: number;
     redirectImportRequest: SfvbRedirectImportRequest;
+}
+
+export interface InsertSfvbApprovalRequest {
+    approvalRequest: SfvbApprovalCreateRequest;
+    storefrontOid?: number;
 }
 
 export interface InsertSfvbBlogPostRequest {
@@ -1430,10 +1454,27 @@ export interface SfvbApiInterface {
     createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
 
     /**
+     * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
+     * @summary Cancel a pending approval request
+     * @param {string} approvalId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbApprovalRaw(requestParameters: DeleteSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
+     * Cancel a pending approval request
+     */
+    deleteSfvbApproval(requestParameters: DeleteSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
      * @summary Delete a blog post
      * @param {number} storefrontOid 
      * @param {number} blogPostOid 
+     * @param {string} [approvalId] The approval_id of an approved blog_post.delete request for this post.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -1452,6 +1493,7 @@ export interface SfvbApiInterface {
      * @param {number} storefrontOid 
      * @param {string} ifMatch Content hash of the file being deleted.  Required; 428 when absent, 412 when stale.
      * @param {string} [path] 
+     * @param {string} [approvalId] The approval_id of an approved file.delete request for this exact path.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -1820,6 +1862,37 @@ export interface SfvbApiInterface {
      * Favorite a library entry
      */
     favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Poll this every interval_seconds after requesting an approval.  status is pending until the person decides, then approved or denied, and expired if nobody acts in 10 minutes.  Once the gated call has used it, status is used and outcome says whether the call succeeded.  Used with no outcome means the result is unknown, so check the target - never repeat the call. 
+     * @summary Read one approval request
+     * @param {string} approvalId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbApprovalRaw(requestParameters: GetSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>>;
+
+    /**
+     * Poll this every interval_seconds after requesting an approval.  status is pending until the person decides, then approved or denied, and expired if nobody acts in 10 minutes.  Once the gated call has used it, status is used and outcome says whether the call succeeded.  Used with no outcome means the result is unknown, so check the target - never repeat the call. 
+     * Read one approval request
+     */
+    getSfvbApproval(requestParameters: GetSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval>;
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, with their status and outcome.  Use it to find a request whose id was lost, or to see what an earlier run did. 
+     * @summary List this sign-in\'s approval requests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbApprovalsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApprovalsResponse>>;
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, with their status and outcome.  Use it to find a request whose id was lost, or to see what an earlier run did. 
+     * List this sign-in\'s approval requests
+     */
+    getSfvbApprovals(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApprovalsResponse>;
 
     /**
      * The whole post - body, excerpt, tags, images and where it is shown.  An image\'s url is the address to use for it in the body. 
@@ -2619,6 +2692,23 @@ export interface SfvbApiInterface {
      * Apply a reviewed redirect import
      */
     importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse>;
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * @summary Request a human approval
+     * @param {SfvbApprovalCreateRequest} approvalRequest The request
+     * @param {number} [storefrontOid] The storefront the action runs on.  Required for storefront actions, left out for account-wide ones.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Request a human approval
+     */
+    insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
@@ -4392,6 +4482,46 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
+     * Cancel a pending approval request
+     */
+    async deleteSfvbApprovalRaw(requestParameters: DeleteSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.approvalId === null || requestParameters.approvalId === undefined) {
+            throw new runtime.RequiredError('approvalId','Required parameter requestParameters.approvalId was null or undefined when calling deleteSfvbApproval.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/approvals/{approval_id}`.replace(`{${"approval_id"}}`, encodeURIComponent(String(requestParameters.approvalId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
+     * Cancel a pending approval request
+     */
+    async deleteSfvbApproval(requestParameters: DeleteSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbApprovalRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Takes the post off every page and deletes it.  There is no undo.  A post that is not a draft needs sfvb_publish. 
      * Delete a blog post
      */
@@ -4407,6 +4537,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -4458,6 +4592,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
         }
 
         if (this.configuration && this.configuration.accessToken) {
@@ -5486,6 +5624,84 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.favoriteSfvbLibraryEntryRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Poll this every interval_seconds after requesting an approval.  status is pending until the person decides, then approved or denied, and expired if nobody acts in 10 minutes.  Once the gated call has used it, status is used and outcome says whether the call succeeded.  Used with no outcome means the result is unknown, so check the target - never repeat the call. 
+     * Read one approval request
+     */
+    async getSfvbApprovalRaw(requestParameters: GetSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>> {
+        if (requestParameters.approvalId === null || requestParameters.approvalId === undefined) {
+            throw new runtime.RequiredError('approvalId','Required parameter requestParameters.approvalId was null or undefined when calling getSfvbApproval.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/approvals/{approval_id}`.replace(`{${"approval_id"}}`, encodeURIComponent(String(requestParameters.approvalId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbApprovalFromJSON(jsonValue));
+    }
+
+    /**
+     * Poll this every interval_seconds after requesting an approval.  status is pending until the person decides, then approved or denied, and expired if nobody acts in 10 minutes.  Once the gated call has used it, status is used and outcome says whether the call succeeded.  Used with no outcome means the result is unknown, so check the target - never repeat the call. 
+     * Read one approval request
+     */
+    async getSfvbApproval(requestParameters: GetSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval> {
+        const response = await this.getSfvbApprovalRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, with their status and outcome.  Use it to find a request whose id was lost, or to see what an earlier run did. 
+     * List this sign-in\'s approval requests
+     */
+    async getSfvbApprovalsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApprovalsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/approvals`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbApprovalsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, with their status and outcome.  Use it to find a request whose id was lost, or to see what an earlier run did. 
+     * List this sign-in\'s approval requests
+     */
+    async getSfvbApprovals(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApprovalsResponse> {
+        const response = await this.getSfvbApprovalsRaw(initOverrides);
+        return await response.value();
     }
 
     /**
@@ -7650,6 +7866,53 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     async importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse> {
         const response = await this.importSfvbRedirectsRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Request a human approval
+     */
+    async insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.approvalRequest === null || requestParameters.approvalRequest === undefined) {
+            throw new runtime.RequiredError('approvalRequest','Required parameter requestParameters.approvalRequest was null or undefined when calling insertSfvbApproval.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.storefrontOid !== undefined) {
+            queryParameters['storefront_oid'] = requestParameters.storefrontOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/approvals`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbApprovalCreateRequestToJSON(requestParameters.approvalRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Request a human approval
+     */
+    async insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.insertSfvbApprovalRaw(requestParameters, initOverrides);
     }
 
     /**
