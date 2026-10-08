@@ -26,11 +26,35 @@ export interface SfvbApprovalParams {
      */
     blog_post_oid?: number;
     /**
-     * The file path, for file.delete.  Exactly as the delete call will send it.
+     * For file.put_script, the SHA-256 of the exact bytes approved.  Set by the server, never by the caller.  The write must send bytes with this hash.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    content_sha256?: string;
+    /**
+     * The file path, for file.delete and file.put_script.  Exactly as the gated call will send it.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
     path?: string;
+    /**
+     * For redirect.delete_batch, the plan_hash of the exact rows approved.  Set by the server.  The batch delete must send rows with this hash.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    rows_sha256?: string;
+    /**
+     * For redirect.delete_batch, how many rules the batch would delete when it was requested.  Set by the server.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    rule_count?: number;
+    /**
+     * For file.put_script, the history version a revert restores.  Leave it out, and send content instead, for a write.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    version?: number;
 }
 
 
@@ -55,7 +79,11 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
+        'content_sha256': !exists(json, 'content_sha256') ? undefined : json['content_sha256'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'rows_sha256': !exists(json, 'rows_sha256') ? undefined : json['rows_sha256'],
+        'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
+        'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
 
@@ -69,7 +97,11 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
     return {
         
         'blog_post_oid': value.blog_post_oid,
+        'content_sha256': value.content_sha256,
         'path': value.path,
+        'rows_sha256': value.rows_sha256,
+        'rule_count': value.rule_count,
+        'version': value.version,
     };
 }
 

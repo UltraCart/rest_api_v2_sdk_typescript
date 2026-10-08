@@ -300,6 +300,12 @@ import {
     SfvbRedirectCheckResponse,
     SfvbRedirectCheckResponseFromJSON,
     SfvbRedirectCheckResponseToJSON,
+    SfvbRedirectDeleteRequest,
+    SfvbRedirectDeleteRequestFromJSON,
+    SfvbRedirectDeleteRequestToJSON,
+    SfvbRedirectDeleteResponse,
+    SfvbRedirectDeleteResponseFromJSON,
+    SfvbRedirectDeleteResponseToJSON,
     SfvbRedirectImportRequest,
     SfvbRedirectImportRequestFromJSON,
     SfvbRedirectImportRequestToJSON,
@@ -512,6 +518,12 @@ export interface DeleteSfvbRedirectRequest {
     ifMatch: string;
 }
 
+export interface DeleteSfvbRedirectsRequest {
+    storefrontOid: number;
+    redirectDeleteRequest: SfvbRedirectDeleteRequest;
+    approvalId?: string;
+}
+
 export interface DetachSfvbBlogPostImageRequest {
     storefrontOid: number;
     blogPostOid: number;
@@ -537,6 +549,11 @@ export interface DisableSfvbUpsellPathRequest {
 export interface DownloadSfvbFileRequest {
     storefrontOid: number;
     path?: string;
+}
+
+export interface DryRunSfvbRedirectDeleteRequest {
+    storefrontOid: number;
+    redirectDeleteRequest: SfvbRedirectDeleteRequest;
 }
 
 export interface DryRunSfvbRedirectImportRequest {
@@ -1007,6 +1024,7 @@ export interface PutSfvbFileContentRequest {
     ifMatch: string;
     fileWriteRequest: SfvbFileWriteRequest;
     path?: string;
+    approvalId?: string;
 }
 
 export interface PutSfvbI18nGlossaryRequest {
@@ -1164,6 +1182,7 @@ export interface RevertSfvbFileRequest {
     storefrontOid: number;
     ifMatch: string;
     fileRevertRequest: SfvbFileRevertRequest;
+    approvalId?: string;
 }
 
 export interface SearchSfvbFilesRequest {
@@ -1618,6 +1637,24 @@ export interface SfvbApiInterface {
     deleteSfvbRedirect(requestParameters: DeleteSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Deletes exactly the rows of a dry run, given its plan_hash, in one transaction.  Every row needs its hash_sha256.  A rule changed since its hash was read is skipped and reported as stale, and a missing one as not_found; the other rows still go through.  Needs the approval of the person who signed in the CLI, as an approved redirect.delete_batch request for exactly these rows in the Approval-Id header, and sfvb_publish.  Deleting rules lets add and import work again once the storefront is back under 5,000 rules. 
+     * @summary Delete up to 5,000 redirect rules in one call
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectDeleteRequest} redirectDeleteRequest The request
+     * @param {string} [approvalId] The approval_id of an approved redirect.delete_batch request for exactly these rows.  Required.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbRedirectsRaw(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectDeleteResponse>>;
+
+    /**
+     * Deletes exactly the rows of a dry run, given its plan_hash, in one transaction.  Every row needs its hash_sha256.  A rule changed since its hash was read is skipped and reported as stale, and a missing one as not_found; the other rows still go through.  Needs the approval of the person who signed in the CLI, as an approved redirect.delete_batch request for exactly these rows in the Approval-Id header, and sfvb_publish.  Deleting rules lets add and import work again once the storefront is back under 5,000 rules. 
+     * Delete up to 5,000 redirect rules in one call
+     */
+    deleteSfvbRedirects(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse>;
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * @summary Detach an image from a blog post
      * @param {number} storefrontOid 
@@ -1703,6 +1740,23 @@ export interface SfvbApiInterface {
      * Read a storefront file\'s raw bytes
      */
     downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
+     * @summary Check a batch delete of redirect rules without writing it
+     * @param {number} storefrontOid 
+     * @param {SfvbRedirectDeleteRequest} redirectDeleteRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    dryRunSfvbRedirectDeleteRaw(requestParameters: DryRunSfvbRedirectDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectDeleteResponse>>;
+
+    /**
+     * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
+     * Check a batch delete of redirect rules without writing it
+     */
+    dryRunSfvbRedirectDelete(requestParameters: DryRunSfvbRedirectDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse>;
 
     /**
      * Checks up to 5,000 rows against the existing rules and each other, and returns the findings per row with a plan_hash.  Writes nothing.  Rows are merged with the existing rules; nothing is ever deleted. 
@@ -2694,7 +2748,7 @@ export interface SfvbApiInterface {
     importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse>;
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
      * @summary Request a human approval
      * @param {SfvbApprovalCreateRequest} approvalRequest The request
      * @param {number} [storefrontOid] The storefront the action runs on.  Required for storefront actions, left out for account-wide ones.
@@ -2705,7 +2759,7 @@ export interface SfvbApiInterface {
     insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>>;
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
      * Request a human approval
      */
     insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval>;
@@ -3194,6 +3248,7 @@ export interface SfvbApiInterface {
      * @param {string} ifMatch Content hash from the last read.  Required; 428 when absent, 412 when stale.
      * @param {SfvbFileWriteRequest} fileWriteRequest File content to write
      * @param {string} [path] 
+     * @param {string} [approvalId] For a .js or .mjs file, the approval_id of an approved file.put_script request for exactly these bytes.  Required for scripts.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -3651,6 +3706,7 @@ export interface SfvbApiInterface {
      * @param {number} storefrontOid 
      * @param {string} ifMatch Content hash of the file being reverted.  Required; 428 when absent, 412 when stale.
      * @param {SfvbFileRevertRequest} fileRevertRequest Version to revert the file to
+     * @param {string} [approvalId] For a .js or .mjs file, the approval_id of an approved file.put_script request naming this version.  Required for scripts.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -4946,6 +5002,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Deletes exactly the rows of a dry run, given its plan_hash, in one transaction.  Every row needs its hash_sha256.  A rule changed since its hash was read is skipped and reported as stale, and a missing one as not_found; the other rows still go through.  Needs the approval of the person who signed in the CLI, as an approved redirect.delete_batch request for exactly these rows in the Approval-Id header, and sfvb_publish.  Deleting rules lets add and import work again once the storefront is back under 5,000 rules. 
+     * Delete up to 5,000 redirect rules in one call
+     */
+    async deleteSfvbRedirectsRaw(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectDeleteResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbRedirects.');
+        }
+
+        if (requestParameters.redirectDeleteRequest === null || requestParameters.redirectDeleteRequest === undefined) {
+            throw new runtime.RequiredError('redirectDeleteRequest','Required parameter requestParameters.redirectDeleteRequest was null or undefined when calling deleteSfvbRedirects.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/delete`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectDeleteRequestToJSON(requestParameters.redirectDeleteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectDeleteResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Deletes exactly the rows of a dry run, given its plan_hash, in one transaction.  Every row needs its hash_sha256.  A rule changed since its hash was read is skipped and reported as stale, and a missing one as not_found; the other rows still go through.  Needs the approval of the person who signed in the CLI, as an approved redirect.delete_batch request for exactly these rows in the Approval-Id header, and sfvb_publish.  Deleting rules lets add and import work again once the storefront is back under 5,000 rules. 
+     * Delete up to 5,000 redirect rules in one call
+     */
+    async deleteSfvbRedirects(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse> {
+        const response = await this.deleteSfvbRedirectsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * Detach an image from a blog post
      */
@@ -5182,6 +5290,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.downloadSfvbFileRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
+     * Check a batch delete of redirect rules without writing it
+     */
+    async dryRunSfvbRedirectDeleteRaw(requestParameters: DryRunSfvbRedirectDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbRedirectDeleteResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling dryRunSfvbRedirectDelete.');
+        }
+
+        if (requestParameters.redirectDeleteRequest === null || requestParameters.redirectDeleteRequest === undefined) {
+            throw new runtime.RequiredError('redirectDeleteRequest','Required parameter requestParameters.redirectDeleteRequest was null or undefined when calling dryRunSfvbRedirectDelete.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/redirects/delete/dry_run`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbRedirectDeleteRequestToJSON(requestParameters.redirectDeleteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbRedirectDeleteResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
+     * Check a batch delete of redirect rules without writing it
+     */
+    async dryRunSfvbRedirectDelete(requestParameters: DryRunSfvbRedirectDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse> {
+        const response = await this.dryRunSfvbRedirectDeleteRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -7869,7 +8025,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
      * Request a human approval
      */
     async insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>> {
@@ -7908,7 +8064,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
      * Request a human approval
      */
     async insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval> {
@@ -9293,6 +9449,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
         }
 
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
             headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
@@ -10651,6 +10811,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
         }
 
         if (this.configuration && this.configuration.accessToken) {

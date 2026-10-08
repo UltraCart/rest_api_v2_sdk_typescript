@@ -998,6 +998,8 @@ src/models/SelfConfig.ts
 src/models/SfvbApproval.ts
 src/models/SfvbApprovalCreateRequest.ts
 src/models/SfvbApprovalParams.ts
+src/models/SfvbApprovalReview.ts
+src/models/SfvbApprovalReviewFinding.ts
 src/models/SfvbApprovalsResponse.ts
 src/models/SfvbBlogPost.ts
 src/models/SfvbBlogPostDetail.ts
@@ -1132,6 +1134,10 @@ src/models/SfvbRecordingSettingsRequest.ts
 src/models/SfvbRecordingSettingsResponse.ts
 src/models/SfvbRedirect.ts
 src/models/SfvbRedirectCheckResponse.ts
+src/models/SfvbRedirectDeleteRequest.ts
+src/models/SfvbRedirectDeleteResponse.ts
+src/models/SfvbRedirectDeleteRow.ts
+src/models/SfvbRedirectDeleteRowResult.ts
 src/models/SfvbRedirectImportRequest.ts
 src/models/SfvbRedirectImportResponse.ts
 src/models/SfvbRedirectImportRow.ts

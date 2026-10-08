@@ -19,6 +19,12 @@ import {
     SfvbApprovalParamsFromJSONTyped,
     SfvbApprovalParamsToJSON,
 } from './SfvbApprovalParams';
+import {
+    SfvbRedirectDeleteRow,
+    SfvbRedirectDeleteRowFromJSON,
+    SfvbRedirectDeleteRowFromJSONTyped,
+    SfvbRedirectDeleteRowToJSON,
+} from './SfvbRedirectDeleteRow';
 
 /**
  * 
@@ -33,6 +39,12 @@ export interface SfvbApprovalCreateRequest {
      */
     action?: SfvbApprovalCreateRequestActionEnum;
     /**
+     * For a file.put_script write, the exact script to be written, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
+     * @type {string}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    content?: string;
+    /**
      * 
      * @type {SfvbApprovalParams}
      * @memberof SfvbApprovalCreateRequest
@@ -44,6 +56,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     reason?: string;
+    /**
+     * For redirect.delete_batch, exactly the rows the batch delete will send, up to 5,000, each with its hash_sha256.  UltraCart keeps only their hash.
+     * @type {Array<SfvbRedirectDeleteRow>}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    redirect_rows?: Array<SfvbRedirectDeleteRow>;
 }
 
 
@@ -53,7 +71,9 @@ export interface SfvbApprovalCreateRequest {
  */
 export const SfvbApprovalCreateRequestActionEnum = {
     FileDelete: 'file.delete',
-    BlogPostDelete: 'blog_post.delete'
+    BlogPostDelete: 'blog_post.delete',
+    FilePutScript: 'file.put_script',
+    RedirectDeleteBatch: 'redirect.delete_batch'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -78,8 +98,10 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'content': !exists(json, 'content') ? undefined : json['content'],
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
+        'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
     };
 }
 
@@ -93,8 +115,10 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
     return {
         
         'action': value.action,
+        'content': value.content,
         'params': SfvbApprovalParamsToJSON(value.params),
         'reason': value.reason,
+        'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),
     };
 }
 

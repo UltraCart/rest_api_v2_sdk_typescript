@@ -19,6 +19,12 @@ import {
     SfvbApprovalParamsFromJSONTyped,
     SfvbApprovalParamsToJSON,
 } from './SfvbApprovalParams';
+import {
+    SfvbApprovalReview,
+    SfvbApprovalReviewFromJSON,
+    SfvbApprovalReviewFromJSONTyped,
+    SfvbApprovalReviewToJSON,
+} from './SfvbApprovalReview';
 
 /**
  * 
@@ -111,13 +117,19 @@ export interface SfvbApproval {
      */
     reason?: string;
     /**
+     * 
+     * @type {SfvbApprovalReview}
+     * @memberof SfvbApproval
+     */
+    review?: SfvbApprovalReview;
+    /**
      * Where the action applies.  The storefront host name, or account for account-wide actions.
      * @type {string}
      * @memberof SfvbApproval
      */
     scope?: string;
     /**
-     * pending, approved, denied, cancelled, expired or used.  Only approved may be sent with the gated call.
+     * reviewing, pending, approved, denied, cancelled, expired, used or refused.  Only approved may be sent with the gated call.  A script write starts as reviewing while UltraCart reviews it; keep polling, and show approval_url only once it is pending.  refused means the review refused the script; outcome_code and review say why.
      * @type {string}
      * @memberof SfvbApproval
      */
@@ -157,12 +169,14 @@ export type SfvbApprovalOutcomeEnum = typeof SfvbApprovalOutcomeEnum[keyof typeo
  * @export
  */
 export const SfvbApprovalStatusEnum = {
+    Reviewing: 'reviewing',
     Pending: 'pending',
     Approved: 'approved',
     Denied: 'denied',
     Cancelled: 'cancelled',
     Expired: 'expired',
-    Used: 'used'
+    Used: 'used',
+    Refused: 'refused'
 } as const;
 export type SfvbApprovalStatusEnum = typeof SfvbApprovalStatusEnum[keyof typeof SfvbApprovalStatusEnum];
 
@@ -200,6 +214,7 @@ export function SfvbApprovalFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'outcome_http_status': !exists(json, 'outcome_http_status') ? undefined : json['outcome_http_status'],
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
+        'review': !exists(json, 'review') ? undefined : SfvbApprovalReviewFromJSON(json['review']),
         'scope': !exists(json, 'scope') ? undefined : json['scope'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
@@ -231,6 +246,7 @@ export function SfvbApprovalToJSON(value?: SfvbApproval | null): any {
         'outcome_http_status': value.outcome_http_status,
         'params': SfvbApprovalParamsToJSON(value.params),
         'reason': value.reason,
+        'review': SfvbApprovalReviewToJSON(value.review),
         'scope': value.scope,
         'status': value.status,
         'storefront_oid': value.storefront_oid,
