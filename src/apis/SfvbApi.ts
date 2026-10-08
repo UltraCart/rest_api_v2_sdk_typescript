@@ -2702,13 +2702,13 @@ export interface SfvbApiInterface {
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
      */
-    insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>>;
 
     /**
      * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Request a human approval
      */
-    insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval>;
 
     /**
      * title and url_part are required.  The post is a draft unless visibility says otherwise, and anything but a draft needs sfvb_publish.  The body and excerpt are refused with sfvb.unsafe_html if they could run script, and a url_part another post uses is refused with a 409 and sfvb.blog_post_exists.  Assign the post to a page with pages/blog_posts/add, or let the page\'s selectors choose it. 
@@ -7872,7 +7872,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Request a human approval
      */
-    async insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>> {
         if (requestParameters.approvalRequest === null || requestParameters.approvalRequest === undefined) {
             throw new runtime.RequiredError('approvalRequest','Required parameter requestParameters.approvalRequest was null or undefined when calling insertSfvbApproval.');
         }
@@ -7904,15 +7904,16 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             body: SfvbApprovalCreateRequestToJSON(requestParameters.approvalRequest),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbApprovalFromJSON(jsonValue));
     }
 
     /**
      * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Request a human approval
      */
-    async insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.insertSfvbApprovalRaw(requestParameters, initOverrides);
+    async insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval> {
+        const response = await this.insertSfvbApprovalRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
