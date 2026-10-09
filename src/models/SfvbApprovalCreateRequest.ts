@@ -20,6 +20,24 @@ import {
     SfvbApprovalParamsToJSON,
 } from './SfvbApprovalParams';
 import {
+    SfvbExperimentStartRequest,
+    SfvbExperimentStartRequestFromJSON,
+    SfvbExperimentStartRequestFromJSONTyped,
+    SfvbExperimentStartRequestToJSON,
+} from './SfvbExperimentStartRequest';
+import {
+    SfvbItemAttributeBatchRow,
+    SfvbItemAttributeBatchRowFromJSON,
+    SfvbItemAttributeBatchRowFromJSONTyped,
+    SfvbItemAttributeBatchRowToJSON,
+} from './SfvbItemAttributeBatchRow';
+import {
+    SfvbItemPricingRequest,
+    SfvbItemPricingRequestFromJSON,
+    SfvbItemPricingRequestFromJSONTyped,
+    SfvbItemPricingRequestToJSON,
+} from './SfvbItemPricingRequest';
+import {
     SfvbRedirectDeleteRow,
     SfvbRedirectDeleteRowFromJSON,
     SfvbRedirectDeleteRowFromJSONTyped,
@@ -44,6 +62,24 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     content?: string;
+    /**
+     * 
+     * @type {SfvbExperimentStartRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    experiment_start?: SfvbExperimentStartRequest;
+    /**
+     * For item.attribute_batch, exactly the rows the batch will send - the dry run's change rows, each with merchant_item_oid and current_sha256.  UltraCart keeps only their hash.
+     * @type {Array<SfvbItemAttributeBatchRow>}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_attribute_rows?: Array<SfvbItemAttributeBatchRow>;
+    /**
+     * 
+     * @type {SfvbItemPricingRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_pricing?: SfvbItemPricingRequest;
     /**
      * 
      * @type {SfvbApprovalParams}
@@ -73,7 +109,12 @@ export const SfvbApprovalCreateRequestActionEnum = {
     FileDelete: 'file.delete',
     BlogPostDelete: 'blog_post.delete',
     FilePutScript: 'file.put_script',
-    RedirectDeleteBatch: 'redirect.delete_batch'
+    RedirectDeleteBatch: 'redirect.delete_batch',
+    ExperimentStart: 'experiment.start',
+    ExperimentEnd: 'experiment.end',
+    UpsellEnable: 'upsell.enable',
+    ItemAttributeBatch: 'item.attribute_batch',
+    ItemPricing: 'item.pricing'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -99,6 +140,9 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         
         'action': !exists(json, 'action') ? undefined : json['action'],
         'content': !exists(json, 'content') ? undefined : json['content'],
+        'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
+        'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
+        'item_pricing': !exists(json, 'item_pricing') ? undefined : SfvbItemPricingRequestFromJSON(json['item_pricing']),
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
@@ -116,6 +160,9 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         
         'action': value.action,
         'content': value.content,
+        'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
+        'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
+        'item_pricing': SfvbItemPricingRequestToJSON(value.item_pricing),
         'params': SfvbApprovalParamsToJSON(value.params),
         'reason': value.reason,
         'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),

@@ -1051,6 +1051,10 @@ src/models/SfvbI18nMessagesResponse.ts
 src/models/SfvbI18nResetResponse.ts
 src/models/SfvbI18nTranslation.ts
 src/models/SfvbItemAttribute.ts
+src/models/SfvbItemAttributeBatchRequest.ts
+src/models/SfvbItemAttributeBatchResponse.ts
+src/models/SfvbItemAttributeBatchRow.ts
+src/models/SfvbItemAttributeBatchRowResult.ts
 src/models/SfvbItemAttributeUpdate.ts
 src/models/SfvbItemAttributeUpdateRequest.ts
 src/models/SfvbItemContainer.ts
@@ -1058,9 +1062,15 @@ src/models/SfvbItemContainersResponse.ts
 src/models/SfvbItemContentRequest.ts
 src/models/SfvbItemMultimedia.ts
 src/models/SfvbItemMultimediaRequest.ts
+src/models/SfvbItemPricing.ts
+src/models/SfvbItemPricingRequest.ts
+src/models/SfvbItemRelated.ts
+src/models/SfvbItemRelatedItem.ts
+src/models/SfvbItemRelatedRequest.ts
 src/models/SfvbItemResponse.ts
 src/models/SfvbItemSeo.ts
 src/models/SfvbItemSeoRequest.ts
+src/models/SfvbItemVolumeDiscount.ts
 src/models/SfvbLibraryAiReview.ts
 src/models/SfvbLibraryContentManifest.ts
 src/models/SfvbLibraryDeleteResult.ts

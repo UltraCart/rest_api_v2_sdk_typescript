@@ -141,6 +141,12 @@ import {
     SfvbI18nResetResponse,
     SfvbI18nResetResponseFromJSON,
     SfvbI18nResetResponseToJSON,
+    SfvbItemAttributeBatchRequest,
+    SfvbItemAttributeBatchRequestFromJSON,
+    SfvbItemAttributeBatchRequestToJSON,
+    SfvbItemAttributeBatchResponse,
+    SfvbItemAttributeBatchResponseFromJSON,
+    SfvbItemAttributeBatchResponseToJSON,
     SfvbItemAttributeUpdateRequest,
     SfvbItemAttributeUpdateRequestFromJSON,
     SfvbItemAttributeUpdateRequestToJSON,
@@ -153,6 +159,18 @@ import {
     SfvbItemMultimediaRequest,
     SfvbItemMultimediaRequestFromJSON,
     SfvbItemMultimediaRequestToJSON,
+    SfvbItemPricing,
+    SfvbItemPricingFromJSON,
+    SfvbItemPricingToJSON,
+    SfvbItemPricingRequest,
+    SfvbItemPricingRequestFromJSON,
+    SfvbItemPricingRequestToJSON,
+    SfvbItemRelated,
+    SfvbItemRelatedFromJSON,
+    SfvbItemRelatedToJSON,
+    SfvbItemRelatedRequest,
+    SfvbItemRelatedRequestFromJSON,
+    SfvbItemRelatedRequestToJSON,
     SfvbItemResponse,
     SfvbItemResponseFromJSON,
     SfvbItemResponseToJSON,
@@ -551,6 +569,11 @@ export interface DownloadSfvbFileRequest {
     path?: string;
 }
 
+export interface DryRunSfvbItemAttributeBatchRequest {
+    storefrontOid: number;
+    itemAttributeBatchRequest: SfvbItemAttributeBatchRequest;
+}
+
 export interface DryRunSfvbRedirectDeleteRequest {
     storefrontOid: number;
     redirectDeleteRequest: SfvbRedirectDeleteRequest;
@@ -596,9 +619,22 @@ export interface EnableSfvbI18nLanguageRequest {
     languageEnableRequest: SfvbI18nLanguageEnableRequest;
 }
 
+export interface EnableSfvbUpsellOfferRequest {
+    storefrontOid: number;
+    upsellOfferOid: number;
+    approvalId?: string;
+}
+
+export interface EnableSfvbUpsellPathRequest {
+    storefrontOid: number;
+    upsellPathOid: number;
+    approvalId?: string;
+}
+
 export interface EndSfvbExperimentRequest {
     storefrontOid: number;
     experimentOid: number;
+    approvalId?: string;
     experimentEndRequest?: SfvbExperimentEndRequest;
 }
 
@@ -688,6 +724,18 @@ export interface GetSfvbI18nMessageMachineTranslationsRequest {
 }
 
 export interface GetSfvbItemRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface GetSfvbItemPricingRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface GetSfvbItemRelatedRequest {
     storefrontOid: number;
     merchantItemId?: string;
     merchantItemOid?: number;
@@ -1062,6 +1110,23 @@ export interface PutSfvbItemMultimediaRequest {
     merchantItemOid?: number;
 }
 
+export interface PutSfvbItemPricingRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    itemPricingRequest: SfvbItemPricingRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    approvalId?: string;
+}
+
+export interface PutSfvbItemRelatedRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    itemRelatedRequest: SfvbItemRelatedRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
 export interface PutSfvbItemSeoRequest {
     storefrontOid: number;
     itemSeoRequest: SfvbItemSeoRequest;
@@ -1214,6 +1279,7 @@ export interface ShareSfvbLibraryEntryRequest {
 export interface StartSfvbExperimentRequest {
     storefrontOid: number;
     experimentStartRequest: SfvbExperimentStartRequest;
+    approvalId?: string;
 }
 
 export interface UnarchiveSfvbUpsellPathRequest {
@@ -1247,6 +1313,12 @@ export interface UpdateSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface UpdateSfvbItemAttributeBatchRequest {
+    storefrontOid: number;
+    itemAttributeBatchRequest: SfvbItemAttributeBatchRequest;
+    approvalId?: string;
 }
 
 export interface UpdateSfvbLibraryEntryRequest {
@@ -1742,6 +1814,23 @@ export interface SfvbApiInterface {
     downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Checks up to 2,000 rows on up to 200 items, each with the single attribute update\'s checks, and answers every row as change, unchanged, stale (expected_value differs from the current value), not_found or invalid, with the current value and its current_sha256, plus a plan_hash over the change rows.  Writes nothing.  SEO attributes are refused; a batch never touches them or any attribute it does not name. 
+     * @summary Check attribute changes across many items without writing them
+     * @param {number} storefrontOid 
+     * @param {SfvbItemAttributeBatchRequest} itemAttributeBatchRequest The rows
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    dryRunSfvbItemAttributeBatchRaw(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemAttributeBatchResponse>>;
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each with the single attribute update\'s checks, and answers every row as change, unchanged, stale (expected_value differs from the current value), not_found or invalid, with the current value and its current_sha256, plus a plan_hash over the change rows.  Writes nothing.  SEO attributes are refused; a batch never touches them or any attribute it does not name. 
+     * Check attribute changes across many items without writing them
+     */
+    dryRunSfvbItemAttributeBatch(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse>;
+
+    /**
      * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
      * @summary Check a batch delete of redirect rules without writing it
      * @param {number} storefrontOid 
@@ -1883,10 +1972,47 @@ export interface SfvbApiInterface {
     enableSfvbI18nLanguage(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
+     * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
+     * @summary Enable an upsell offer
+     * @param {number} storefrontOid 
+     * @param {number} upsellOfferOid 
+     * @param {string} [approvalId] The approval_id of an approved upsell.enable request for this offer.  Required when the offer is off.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    enableSfvbUpsellOfferRaw(requestParameters: EnableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
+
+    /**
+     * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell offer
+     */
+    enableSfvbUpsellOffer(requestParameters: EnableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
+
+    /**
+     * Switches the path on, so it starts running.  The only way to switch one on - create, update and unarchive refuse to.  An archived path is refused; unarchive it first.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this path (see POST /sfvb/approvals).  A path that is already on is returned unchanged, and no approval is used. 
+     * @summary Enable an upsell path
+     * @param {number} storefrontOid 
+     * @param {number} upsellPathOid 
+     * @param {string} [approvalId] The approval_id of an approved upsell.enable request for this path.  Required when the path is off.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    enableSfvbUpsellPathRaw(requestParameters: EnableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
+
+    /**
+     * Switches the path on, so it starts running.  The only way to switch one on - create, update and unarchive refuse to.  An archived path is refused; unarchive it first.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this path (see POST /sfvb/approvals).  A path that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell path
+     */
+    enableSfvbUpsellPath(requestParameters: EnableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
      * @summary End an experiment
      * @param {number} storefrontOid 
      * @param {number} experimentOid 
+     * @param {string} [approvalId] The approval_id of an approved experiment.end request for this experiment and winner.  Required.  See POST /sfvb/approvals.
      * @param {SfvbExperimentEndRequest} [experimentEndRequest] The winner, if any
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1895,7 +2021,7 @@ export interface SfvbApiInterface {
     endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
      * End an experiment
      */
     endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
@@ -2192,7 +2318,7 @@ export interface SfvbApiInterface {
     getSfvbI18nMessageMachineTranslations(requestParameters: GetSfvbI18nMessageMachineTranslationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMachineTranslationsResponse>;
 
     /**
-     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing and related items have their own calls, items/pricing and items/related.  Shipping, inventory, tax, variants and kit structure stay with the item API.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
      * @summary Read an item\'s storefront facing content
      * @param {number} storefrontOid 
      * @param {string} [merchantItemId] The merchant item id, as a storefront carries it
@@ -2204,10 +2330,46 @@ export interface SfvbApiInterface {
     getSfvbItemRaw(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
 
     /**
-     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing and related items have their own calls, items/pricing and items/related.  Shipping, inventory, tax, variants and kit structure stay with the item API.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
      * Read an item\'s storefront facing content
      */
     getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
+     * @summary Read what an item charges
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemPricingRaw(requestParameters: GetSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPricing>>;
+
+    /**
+     * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
+     * Read what an item charges
+     */
+    getSfvbItemPricing(requestParameters: GetSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPricing>;
+
+    /**
+     * What itemrelateditemslist lists - the merchant\'s own related items (user, addon, complementary) and the ones UltraCart calculates (system), with a hash_sha256 to send as If-Match when changing them. 
+     * @summary Read an item\'s related items
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemRelatedRaw(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemRelated>>;
+
+    /**
+     * What itemrelateditemslist lists - the merchant\'s own related items (user, addon, complementary) and the ones UltraCart calculates (system), with a hash_sha256 to send as If-Match when changing them. 
+     * Read an item\'s related items
+     */
+    getSfvbItemRelated(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated>;
 
     /**
      * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
@@ -2816,7 +2978,7 @@ export interface SfvbApiInterface {
     insertSfvbRedirect(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
-     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
      * @summary Create an upsell offer
      * @param {number} storefrontOid 
      * @param {SfvbUpsellOffer} upsellOffer The offer to create
@@ -2827,13 +2989,13 @@ export interface SfvbApiInterface {
     insertSfvbUpsellOfferRaw(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
 
     /**
-     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
      * Create an upsell offer
      */
     insertSfvbUpsellOffer(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
 
     /**
-     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  It must be created with active false, and switched on with the enable call, which needs approval. 
      * @summary Create an upsell path
      * @param {number} storefrontOid 
      * @param {SfvbUpsellPath} upsellPath The path to create
@@ -2844,7 +3006,7 @@ export interface SfvbApiInterface {
     insertSfvbUpsellPathRaw(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
 
     /**
-     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  It must be created with active false, and switched on with the enable call, which needs approval. 
      * Create an upsell path
      */
     insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
@@ -3357,6 +3519,47 @@ export interface SfvbApiInterface {
     putSfvbItemMultimedia(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
+     * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
+     * @summary Change what an item charges
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the pricing read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbItemPricingRequest} itemPricingRequest The change
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {string} [approvalId] The approval_id of an approved item.pricing request for this item and change.  Required.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemPricingRaw(requestParameters: PutSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPricing>>;
+
+    /**
+     * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
+     * Change what an item charges
+     */
+    putSfvbItemPricing(requestParameters: PutSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPricing>;
+
+    /**
+     * Replaces the merchant\'s own related items, in order, and keeps the ones UltraCart calculates.  Each must be an item of this account and not the item itself, named once, up to 50.  No link back is added to the other items.  Needs sfvb_publish and If-Match with the related hash_sha256. 
+     * @summary Replace an item\'s related items
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the related read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbItemRelatedRequest} itemRelatedRequest The related items
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemRelatedRaw(requestParameters: PutSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemRelated>>;
+
+    /**
+     * Replaces the merchant\'s own related items, in order, and keeps the ones UltraCart calculates.  Each must be an item of this account and not the item itself, named once, up to 50.  No link back is added to the other items.  Needs sfvb_publish and If-Match with the related hash_sha256. 
+     * Replace an item\'s related items
+     */
+    putSfvbItemRelated(requestParameters: PutSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated>;
+
+    /**
      * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
      * @summary Change an item\'s search metadata
      * @param {number} storefrontOid 
@@ -3794,10 +3997,11 @@ export interface SfvbApiInterface {
     shareSfvbLibraryEntry(requestParameters: ShareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
-     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts, and the approval of the person who signed in the CLI - an approved experiment.start request for exactly this start (see POST /sfvb/approvals). 
      * @summary Start an experiment
      * @param {number} storefrontOid 
      * @param {SfvbExperimentStartRequest} experimentStartRequest The experiment to start
+     * @param {string} [approvalId] The approval_id of an approved experiment.start request for exactly this start.  Required.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -3805,13 +4009,13 @@ export interface SfvbApiInterface {
     startSfvbExperimentRaw(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
 
     /**
-     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts, and the approval of the person who signed in the CLI - an approved experiment.start request for exactly this start (see POST /sfvb/approvals). 
      * Start an experiment
      */
     startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
 
     /**
-     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * @summary Unarchive an upsell path
      * @param {number} storefrontOid 
      * @param {number} upsellPathOid 
@@ -3822,7 +4026,7 @@ export interface SfvbApiInterface {
     unarchiveSfvbUpsellPathRaw(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
 
     /**
-     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * Unarchive an upsell path
      */
     unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
@@ -3916,6 +4120,24 @@ export interface SfvbApiInterface {
     updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
+     * @summary Change attributes across many items in one call
+     * @param {number} storefrontOid 
+     * @param {SfvbItemAttributeBatchRequest} itemAttributeBatchRequest The dry run\&#39;s change rows and plan_hash
+     * @param {string} [approvalId] The approval_id of an approved item.attribute_batch request for exactly these rows.  Required.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbItemAttributeBatchRaw(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemAttributeBatchResponse>>;
+
+    /**
+     * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
+     * Change attributes across many items in one call
+     */
+    updateSfvbItemAttributeBatch(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse>;
+
+    /**
      * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
      * @summary Update a library entry\'s draft
      * @param {number} storefrontOid 
@@ -3954,7 +4176,7 @@ export interface SfvbApiInterface {
     updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
-     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * @summary Update an upsell offer
      * @param {number} storefrontOid 
      * @param {number} upsellOfferOid 
@@ -3967,13 +4189,13 @@ export interface SfvbApiInterface {
     updateSfvbUpsellOfferRaw(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>>;
 
     /**
-     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * Update an upsell offer
      */
     updateSfvbUpsellOffer(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer>;
 
     /**
-     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path needs sfvb_publish.  An update cannot switch a path on; that is the enable call, which needs approval. 
      * @summary Update an upsell path
      * @param {number} storefrontOid 
      * @param {number} upsellPathOid 
@@ -3986,7 +4208,7 @@ export interface SfvbApiInterface {
     updateSfvbUpsellPathRaw(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>>;
 
     /**
-     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path needs sfvb_publish.  An update cannot switch a path on; that is the enable call, which needs approval. 
      * Update an upsell path
      */
     updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
@@ -5293,6 +5515,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Checks up to 2,000 rows on up to 200 items, each with the single attribute update\'s checks, and answers every row as change, unchanged, stale (expected_value differs from the current value), not_found or invalid, with the current value and its current_sha256, plus a plan_hash over the change rows.  Writes nothing.  SEO attributes are refused; a batch never touches them or any attribute it does not name. 
+     * Check attribute changes across many items without writing them
+     */
+    async dryRunSfvbItemAttributeBatchRaw(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemAttributeBatchResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling dryRunSfvbItemAttributeBatch.');
+        }
+
+        if (requestParameters.itemAttributeBatchRequest === null || requestParameters.itemAttributeBatchRequest === undefined) {
+            throw new runtime.RequiredError('itemAttributeBatchRequest','Required parameter requestParameters.itemAttributeBatchRequest was null or undefined when calling dryRunSfvbItemAttributeBatch.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/attributes/batch/dry_run`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemAttributeBatchRequestToJSON(requestParameters.itemAttributeBatchRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemAttributeBatchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each with the single attribute update\'s checks, and answers every row as change, unchanged, stale (expected_value differs from the current value), not_found or invalid, with the current value and its current_sha256, plus a plan_hash over the change rows.  Writes nothing.  SEO attributes are refused; a batch never touches them or any attribute it does not name. 
+     * Check attribute changes across many items without writing them
+     */
+    async dryRunSfvbItemAttributeBatch(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse> {
+        const response = await this.dryRunSfvbItemAttributeBatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
      * Check a batch delete of redirect rules without writing it
      */
@@ -5691,7 +5961,105 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
+     * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell offer
+     */
+    async enableSfvbUpsellOfferRaw(requestParameters: EnableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling enableSfvbUpsellOffer.');
+        }
+
+        if (requestParameters.upsellOfferOid === null || requestParameters.upsellOfferOid === undefined) {
+            throw new runtime.RequiredError('upsellOfferOid','Required parameter requestParameters.upsellOfferOid was null or undefined when calling enableSfvbUpsellOffer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_offers/{upsell_offer_oid}/enable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_offer_oid"}}`, encodeURIComponent(String(requestParameters.upsellOfferOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellOfferFromJSON(jsonValue));
+    }
+
+    /**
+     * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell offer
+     */
+    async enableSfvbUpsellOffer(requestParameters: EnableSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
+        const response = await this.enableSfvbUpsellOfferRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Switches the path on, so it starts running.  The only way to switch one on - create, update and unarchive refuse to.  An archived path is refused; unarchive it first.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this path (see POST /sfvb/approvals).  A path that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell path
+     */
+    async enableSfvbUpsellPathRaw(requestParameters: EnableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling enableSfvbUpsellPath.');
+        }
+
+        if (requestParameters.upsellPathOid === null || requestParameters.upsellPathOid === undefined) {
+            throw new runtime.RequiredError('upsellPathOid','Required parameter requestParameters.upsellPathOid was null or undefined when calling enableSfvbUpsellPath.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/upsell_paths/{upsell_path_oid}/enable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"upsell_path_oid"}}`, encodeURIComponent(String(requestParameters.upsellPathOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUpsellPathFromJSON(jsonValue));
+    }
+
+    /**
+     * Switches the path on, so it starts running.  The only way to switch one on - create, update and unarchive refuse to.  An archived path is refused; unarchive it first.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this path (see POST /sfvb/approvals).  A path that is already on is returned unchanged, and no approval is used. 
+     * Enable an upsell path
+     */
+    async enableSfvbUpsellPath(requestParameters: EnableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
+        const response = await this.enableSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
      * End an experiment
      */
     async endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
@@ -5708,6 +6076,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -5730,7 +6102,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish. 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
      * End an experiment
      */
     async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
@@ -6516,7 +6888,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing and related items have their own calls, items/pricing and items/related.  Shipping, inventory, tax, variants and kit structure stay with the item API.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
      * Read an item\'s storefront facing content
      */
     async getSfvbItemRaw(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
@@ -6556,11 +6928,109 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing and related items have their own calls, items/pricing and items/related.  Shipping, inventory, tax, variants and kit structure stay with the item API.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
      * Read an item\'s storefront facing content
      */
     async getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
         const response = await this.getSfvbItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
+     * Read what an item charges
+     */
+    async getSfvbItemPricingRaw(requestParameters: GetSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPricing>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemPricing.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/pricing`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPricingFromJSON(jsonValue));
+    }
+
+    /**
+     * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
+     * Read what an item charges
+     */
+    async getSfvbItemPricing(requestParameters: GetSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPricing> {
+        const response = await this.getSfvbItemPricingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * What itemrelateditemslist lists - the merchant\'s own related items (user, addon, complementary) and the ones UltraCart calculates (system), with a hash_sha256 to send as If-Match when changing them. 
+     * Read an item\'s related items
+     */
+    async getSfvbItemRelatedRaw(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemRelated>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemRelated.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/related`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemRelatedFromJSON(jsonValue));
+    }
+
+    /**
+     * What itemrelateditemslist lists - the merchant\'s own related items (user, addon, complementary) and the ones UltraCart calculates (system), with a hash_sha256 to send as If-Match when changing them. 
+     * Read an item\'s related items
+     */
+    async getSfvbItemRelated(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated> {
+        const response = await this.getSfvbItemRelatedRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8217,7 +8687,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
      * Create an upsell offer
      */
     async insertSfvbUpsellOfferRaw(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
@@ -8256,7 +8726,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  Creating it switched on, or with upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
+     * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
      * Create an upsell offer
      */
     async insertSfvbUpsellOffer(requestParameters: InsertSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
@@ -8265,7 +8735,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  It must be created with active false, and switched on with the enable call, which needs approval. 
      * Create an upsell path
      */
     async insertSfvbUpsellPathRaw(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
@@ -8304,7 +8774,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  Creating it switched on needs sfvb_publish; create it with active false to build it without that scope. 
+     * Placed last in path order.  Every offer a step names must be an offer of this storefront, and every item in the item logic must exist.  It must be created with active false, and switched on with the enable call, which needs approval. 
      * Create an upsell path
      */
     async insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
@@ -9767,6 +10237,138 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
+     * Change what an item charges
+     */
+    async putSfvbItemPricingRaw(requestParameters: PutSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPricing>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemPricing.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling putSfvbItemPricing.');
+        }
+
+        if (requestParameters.itemPricingRequest === null || requestParameters.itemPricingRequest === undefined) {
+            throw new runtime.RequiredError('itemPricingRequest','Required parameter requestParameters.itemPricingRequest was null or undefined when calling putSfvbItemPricing.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/pricing`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemPricingRequestToJSON(requestParameters.itemPricingRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPricingFromJSON(jsonValue));
+    }
+
+    /**
+     * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
+     * Change what an item charges
+     */
+    async putSfvbItemPricing(requestParameters: PutSfvbItemPricingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPricing> {
+        const response = await this.putSfvbItemPricingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Replaces the merchant\'s own related items, in order, and keeps the ones UltraCart calculates.  Each must be an item of this account and not the item itself, named once, up to 50.  No link back is added to the other items.  Needs sfvb_publish and If-Match with the related hash_sha256. 
+     * Replace an item\'s related items
+     */
+    async putSfvbItemRelatedRaw(requestParameters: PutSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemRelated>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemRelated.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling putSfvbItemRelated.');
+        }
+
+        if (requestParameters.itemRelatedRequest === null || requestParameters.itemRelatedRequest === undefined) {
+            throw new runtime.RequiredError('itemRelatedRequest','Required parameter requestParameters.itemRelatedRequest was null or undefined when calling putSfvbItemRelated.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/related`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemRelatedRequestToJSON(requestParameters.itemRelatedRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemRelatedFromJSON(jsonValue));
+    }
+
+    /**
+     * Replaces the merchant\'s own related items, in order, and keeps the ones UltraCart calculates.  Each must be an item of this account and not the item itself, named once, up to 50.  No link back is added to the other items.  Needs sfvb_publish and If-Match with the related hash_sha256. 
+     * Replace an item\'s related items
+     */
+    async putSfvbItemRelated(requestParameters: PutSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated> {
+        const response = await this.putSfvbItemRelatedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
      * Change an item\'s search metadata
      */
@@ -11064,7 +11666,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts, and the approval of the person who signed in the CLI - an approved experiment.start request for exactly this start (see POST /sfvb/approvals). 
      * Start an experiment
      */
     async startSfvbExperimentRaw(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
@@ -11081,6 +11683,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -11103,7 +11709,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts, and the approval of the person who signed in the CLI - an approved experiment.start request for exactly this start (see POST /sfvb/approvals). 
      * Start an experiment
      */
     async startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
@@ -11112,7 +11718,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * Unarchive an upsell path
      */
     async unarchiveSfvbUpsellPathRaw(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
@@ -11148,7 +11754,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Brings the path back into the default list.  Unarchiving one that is switched on starts it, so that needs sfvb_publish. 
+     * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * Unarchive an upsell path
      */
     async unarchiveSfvbUpsellPath(requestParameters: UnarchiveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
@@ -11399,6 +12005,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
+     * Change attributes across many items in one call
+     */
+    async updateSfvbItemAttributeBatchRaw(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemAttributeBatchResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbItemAttributeBatch.');
+        }
+
+        if (requestParameters.itemAttributeBatchRequest === null || requestParameters.itemAttributeBatchRequest === undefined) {
+            throw new runtime.RequiredError('itemAttributeBatchRequest','Required parameter requestParameters.itemAttributeBatchRequest was null or undefined when calling updateSfvbItemAttributeBatch.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/attributes/batch`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemAttributeBatchRequestToJSON(requestParameters.itemAttributeBatchRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemAttributeBatchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
+     * Change attributes across many items in one call
+     */
+    async updateSfvbItemAttributeBatch(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse> {
+        const response = await this.updateSfvbItemAttributeBatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
      * Update a library entry\'s draft
      */
@@ -11519,7 +12177,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * Update an upsell offer
      */
     async updateSfvbUpsellOfferRaw(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellOffer>> {
@@ -11570,7 +12228,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, switching one on, or changing upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
+     * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * Update an upsell offer
      */
     async updateSfvbUpsellOffer(requestParameters: UpdateSfvbUpsellOfferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffer> {
@@ -11579,7 +12237,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path needs sfvb_publish.  An update cannot switch a path on; that is the enable call, which needs approval. 
      * Update an upsell path
      */
     async updateSfvbUpsellPathRaw(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUpsellPath>> {
@@ -11630,7 +12288,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path, or switching one on, needs sfvb_publish. 
+     * A full replace.  Send back the whole path you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Order and archived keep their stored values; change them with the move, archive and unarchive calls.  Changing a running path needs sfvb_publish.  An update cannot switch a path on; that is the enable call, which needs approval. 
      * Update an upsell path
      */
     async updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {

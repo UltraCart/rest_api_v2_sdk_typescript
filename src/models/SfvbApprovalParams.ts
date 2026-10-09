@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbApprovalParams {
     /**
+     * For item.attribute_batch, the attributes the batch would change.  Set by the server.
+     * @type {Array<string>}
+     * @memberof SfvbApprovalParams
+     */
+    attribute_names?: Array<string>;
+    /**
      * The blog post, for blog_post.delete.
      * @type {number}
      * @memberof SfvbApprovalParams
@@ -32,13 +38,37 @@ export interface SfvbApprovalParams {
      */
     content_sha256?: string;
     /**
-     * The file path, for file.delete and file.put_script.  Exactly as the gated call will send it.
+     * For experiment.end, the experiment to end.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    experiment_oid?: number;
+    /**
+     * For item.attribute_batch, how many items the batch would change when it was requested.  Set by the server.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    item_count?: number;
+    /**
+     * For item.pricing, the item whose pricing changes.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    merchant_item_oid?: number;
+    /**
+     * The file path, for file.delete and file.put_script, or the page path for experiment.start of a page experiment.  Exactly as the gated call will send it.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
     path?: string;
     /**
-     * For redirect.delete_batch, the plan_hash of the exact rows approved.  Set by the server.  The batch delete must send rows with this hash.
+     * For experiment.start of a url experiment, the hash of the checked experiment approved, and for item.pricing the hash of the change.  Set by the server.  The gated call must send the same.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    request_sha256?: string;
+    /**
+     * For redirect.delete_batch and item.attribute_batch, the plan_hash of the exact rows approved.  Set by the server.  The batch must send rows with this hash.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -50,13 +80,53 @@ export interface SfvbApprovalParams {
      */
     rule_count?: number;
     /**
+     * For experiment.start of a page experiment, the page body name.  Defaults to body.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    slot?: string;
+    /**
+     * For upsell.enable, what to switch on.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    upsell_kind?: SfvbApprovalParamsUpsellKindEnum;
+    /**
+     * For upsell.enable, the oid of the offer or path to switch on.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    upsell_oid?: number;
+    /**
      * For file.put_script, the history version a revert restores.  Leave it out, and send content instead, for a write.
      * @type {number}
      * @memberof SfvbApprovalParams
      */
     version?: number;
+    /**
+     * For experiment.start of a page experiment, the id of the experiment element.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    widget_id?: string;
+    /**
+     * For experiment.end, the winning variation.  Leave it out to end without a winner, and leave it out of the end call too.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    winner_variation_number?: number;
 }
 
+
+
+/**
+ * @export
+ */
+export const SfvbApprovalParamsUpsellKindEnum = {
+    Offer: 'offer',
+    Path: 'path'
+} as const;
+export type SfvbApprovalParamsUpsellKindEnum = typeof SfvbApprovalParamsUpsellKindEnum[keyof typeof SfvbApprovalParamsUpsellKindEnum];
 
 
 /**
@@ -78,12 +148,22 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'attribute_names': !exists(json, 'attribute_names') ? undefined : json['attribute_names'],
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
         'content_sha256': !exists(json, 'content_sha256') ? undefined : json['content_sha256'],
+        'experiment_oid': !exists(json, 'experiment_oid') ? undefined : json['experiment_oid'],
+        'item_count': !exists(json, 'item_count') ? undefined : json['item_count'],
+        'merchant_item_oid': !exists(json, 'merchant_item_oid') ? undefined : json['merchant_item_oid'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'request_sha256': !exists(json, 'request_sha256') ? undefined : json['request_sha256'],
         'rows_sha256': !exists(json, 'rows_sha256') ? undefined : json['rows_sha256'],
         'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
+        'slot': !exists(json, 'slot') ? undefined : json['slot'],
+        'upsell_kind': !exists(json, 'upsell_kind') ? undefined : json['upsell_kind'],
+        'upsell_oid': !exists(json, 'upsell_oid') ? undefined : json['upsell_oid'],
         'version': !exists(json, 'version') ? undefined : json['version'],
+        'widget_id': !exists(json, 'widget_id') ? undefined : json['widget_id'],
+        'winner_variation_number': !exists(json, 'winner_variation_number') ? undefined : json['winner_variation_number'],
     };
 }
 
@@ -96,12 +176,22 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
     }
     return {
         
+        'attribute_names': value.attribute_names,
         'blog_post_oid': value.blog_post_oid,
         'content_sha256': value.content_sha256,
+        'experiment_oid': value.experiment_oid,
+        'item_count': value.item_count,
+        'merchant_item_oid': value.merchant_item_oid,
         'path': value.path,
+        'request_sha256': value.request_sha256,
         'rows_sha256': value.rows_sha256,
         'rule_count': value.rule_count,
+        'slot': value.slot,
+        'upsell_kind': value.upsell_kind,
+        'upsell_oid': value.upsell_oid,
         'version': value.version,
+        'widget_id': value.widget_id,
+        'winner_variation_number': value.winner_variation_number,
     };
 }
 
