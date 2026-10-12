@@ -1018,6 +1018,10 @@ src/models/SfvbElement.ts
 src/models/SfvbElementSchemaResponse.ts
 src/models/SfvbElementsResponse.ts
 src/models/SfvbErrorDetail.ts
+src/models/SfvbEvent.ts
+src/models/SfvbEventsAuthRequest.ts
+src/models/SfvbEventsAuthResponse.ts
+src/models/SfvbEventsResponse.ts
 src/models/SfvbExperiment.ts
 src/models/SfvbExperimentEndRequest.ts
 src/models/SfvbExperimentObjective.ts

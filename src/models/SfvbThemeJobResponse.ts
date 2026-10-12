@@ -38,7 +38,7 @@ export interface SfvbThemeJobResponse {
      */
     error_message?: string;
     /**
-     * When the job stopped.  Null until it does.
+     * When the job stopped, ISO 8601 UTC.  Null until it does.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
@@ -62,7 +62,7 @@ export interface SfvbThemeJobResponse {
      */
     progress_description?: string;
     /**
-     * When the job started running.  Null until it does.
+     * When the job started running, ISO 8601 UTC.  Null until it does.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
@@ -74,7 +74,7 @@ export interface SfvbThemeJobResponse {
      */
     status?: SfvbThemeJobResponseStatusEnum;
     /**
-     * When the job was queued.
+     * When the job was queued, ISO 8601 UTC.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */

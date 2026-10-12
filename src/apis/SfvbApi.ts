@@ -66,6 +66,15 @@ import {
     SfvbElementsResponse,
     SfvbElementsResponseFromJSON,
     SfvbElementsResponseToJSON,
+    SfvbEventsAuthRequest,
+    SfvbEventsAuthRequestFromJSON,
+    SfvbEventsAuthRequestToJSON,
+    SfvbEventsAuthResponse,
+    SfvbEventsAuthResponseFromJSON,
+    SfvbEventsAuthResponseToJSON,
+    SfvbEventsResponse,
+    SfvbEventsResponseFromJSON,
+    SfvbEventsResponseToJSON,
     SfvbExperiment,
     SfvbExperimentFromJSON,
     SfvbExperimentToJSON,
@@ -675,6 +684,16 @@ export interface GetSfvbElementRequest {
     elementType: string;
 }
 
+export interface GetSfvbEventsRequest {
+    after?: string;
+    storefrontOid?: number;
+    limit?: number;
+}
+
+export interface GetSfvbEventsAuthorizationRequest {
+    eventsAuthRequest?: SfvbEventsAuthRequest;
+}
+
 export interface GetSfvbExperimentRequest {
     storefrontOid: number;
     experimentOid: number;
@@ -777,6 +796,7 @@ export interface GetSfvbNotFoundRequest {
     includeTokens?: boolean;
     q?: string;
     limit?: number;
+    redirected?: boolean;
 }
 
 export interface GetSfvbNotFoundEntryRequest {
@@ -2008,7 +2028,7 @@ export interface SfvbApiInterface {
     enableSfvbUpsellPath(requestParameters: EnableSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner.  An end with a winner always needs a fresh authenticator code; an end without a winner can be covered by the person\'s approval session (see POST /sfvb/approvals). 
      * @summary End an experiment
      * @param {number} storefrontOid 
      * @param {number} experimentOid 
@@ -2021,7 +2041,7 @@ export interface SfvbApiInterface {
     endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner.  An end with a winner always needs a fresh authenticator code; an end without a winner can be covered by the person\'s approval session (see POST /sfvb/approvals). 
      * End an experiment
      */
     endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
@@ -2160,6 +2180,40 @@ export interface SfvbApiInterface {
      * Configuration schema and field card for one element type
      */
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
+
+    /**
+     * The signed-in person\'s events after the cursor, oldest first.  Events are kept 72 hours; an older cursor returns resync_required, and then the caller re-lists what it was waiting on.  Events about one sign-in\'s requests, such as approvals, are only returned to that sign-in.  limit is 1 to 500, default 100. 
+     * @summary Replay events
+     * @param {string} [after] Return events after this event_id.  Leave it out for every event kept.
+     * @param {number} [storefrontOid] Only events about this storefront, plus merchant-level ones.
+     * @param {number} [limit] At most this many events, 1 to 500.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbEventsRaw(requestParameters: GetSfvbEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEventsResponse>>;
+
+    /**
+     * The signed-in person\'s events after the cursor, oldest first.  Events are kept 72 hours; an older cursor returns resync_required, and then the caller re-lists what it was waiting on.  Events about one sign-in\'s requests, such as approvals, are only returned to that sign-in.  limit is 1 to 500, default 100. 
+     * Replay events
+     */
+    getSfvbEvents(requestParameters: GetSfvbEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEventsResponse>;
+
+    /**
+     * Returns a websocket URL and a single-use token, valid for 5 minutes, for the signed-in person\'s event stream.  Events are thin hints, type and ids only, and the stream is at most once.  Re-read the object before acting, and after every reconnect replay from the last event_id with GET events.  Send ping messages to keep the connection open, and reconnect with a new token before two hours.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * @summary Open the event stream
+     * @param {SfvbEventsAuthRequest} [eventsAuthRequest] Optional storefront filter
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbEventsAuthorizationRaw(requestParameters: GetSfvbEventsAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEventsAuthResponse>>;
+
+    /**
+     * Returns a websocket URL and a single-use token, valid for 5 minutes, for the signed-in person\'s event stream.  Events are thin hints, type and ids only, and the stream is at most once.  Re-read the object before acting, and after every reconnect replay from the last event_id with GET events.  Send ping messages to keep the connection open, and reconnect with a new token before two hours.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Open the event stream
+     */
+    getSfvbEventsAuthorization(requestParameters: GetSfvbEventsAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEventsAuthResponse>;
 
     /**
      * The experiment, its variations and their statistics, and with daily=true each variation\'s daily rows.  p95_sessions_needed is estimated only after 1000 sessions, and sessions_needed_computed_dts says when.  For a url experiment, router_url is the address visitors must enter through. 
@@ -2472,7 +2526,7 @@ export interface SfvbApiInterface {
     getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse>;
 
     /**
-     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  A path stays listed after a redirect rule catches it, with redirected_to set.  redirected=false lists only paths no rule catches yet, and redirected=true only those one does.  limit is 1 to 100, default 50. 
      * @summary List the paths that answered 404
      * @param {number} storefrontOid 
      * @param {string} [since] 
@@ -2481,6 +2535,7 @@ export interface SfvbApiInterface {
      * @param {boolean} [includeTokens] 
      * @param {string} [q] 
      * @param {number} [limit] 
+     * @param {boolean} [redirected] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -2488,7 +2543,7 @@ export interface SfvbApiInterface {
     getSfvbNotFoundRaw(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundResponse>>;
 
     /**
-     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  A path stays listed after a redirect rule catches it, with redirected_to set.  redirected=false lists only paths no rule catches yet, and redirected=true only those one does.  limit is 1 to 100, default 50. 
      * List the paths that answered 404
      */
     getSfvbNotFound(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundResponse>;
@@ -3442,7 +3497,7 @@ export interface SfvbApiInterface {
     putSfvbI18nGlossary(requestParameters: PutSfvbI18nGlossaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nGlossary>;
 
     /**
-     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone.  Empty text removes that language\'s translation so machine translation fills it again (not allowed for ENG); it is the undo for an imported message, which can\'t be reset.  Shoppers see it at once.  Always needs sfvb_publish. 
      * @summary Change one built-in message
      * @param {number} storefrontOid 
      * @param {string} key 
@@ -3456,7 +3511,7 @@ export interface SfvbApiInterface {
     putSfvbI18nMessageRaw(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>>;
 
     /**
-     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone.  Empty text removes that language\'s translation so machine translation fills it again (not allowed for ENG); it is the undo for an imported message, which can\'t be reset.  Shoppers see it at once.  Always needs sfvb_publish. 
      * Change one built-in message
      */
     putSfvbI18nMessage(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage>;
@@ -6059,7 +6114,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner.  An end with a winner always needs a fresh authenticator code; an end without a winner can be covered by the person\'s approval session (see POST /sfvb/approvals). 
      * End an experiment
      */
     async endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
@@ -6102,7 +6157,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner, which always needs a fresh authenticator code (see POST /sfvb/approvals). 
+     * Ends a running experiment.  With winner_variation_number the winner gets every visitor, including visitors already assigned to another variation, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Always needs sfvb_publish, and the approval of the person who signed in the CLI - an approved experiment.end request for this experiment and winner.  An end with a winner always needs a fresh authenticator code; an end without a winner can be covered by the person\'s approval session (see POST /sfvb/approvals). 
      * End an experiment
      */
     async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
@@ -6467,6 +6522,95 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse> {
         const response = await this.getSfvbElementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The signed-in person\'s events after the cursor, oldest first.  Events are kept 72 hours; an older cursor returns resync_required, and then the caller re-lists what it was waiting on.  Events about one sign-in\'s requests, such as approvals, are only returned to that sign-in.  limit is 1 to 500, default 100. 
+     * Replay events
+     */
+    async getSfvbEventsRaw(requestParameters: GetSfvbEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEventsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.after !== undefined) {
+            queryParameters['after'] = requestParameters.after;
+        }
+
+        if (requestParameters.storefrontOid !== undefined) {
+            queryParameters['storefront_oid'] = requestParameters.storefrontOid;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/events`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEventsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The signed-in person\'s events after the cursor, oldest first.  Events are kept 72 hours; an older cursor returns resync_required, and then the caller re-lists what it was waiting on.  Events about one sign-in\'s requests, such as approvals, are only returned to that sign-in.  limit is 1 to 500, default 100. 
+     * Replay events
+     */
+    async getSfvbEvents(requestParameters: GetSfvbEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEventsResponse> {
+        const response = await this.getSfvbEventsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns a websocket URL and a single-use token, valid for 5 minutes, for the signed-in person\'s event stream.  Events are thin hints, type and ids only, and the stream is at most once.  Re-read the object before acting, and after every reconnect replay from the last event_id with GET events.  Send ping messages to keep the connection open, and reconnect with a new token before two hours.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Open the event stream
+     */
+    async getSfvbEventsAuthorizationRaw(requestParameters: GetSfvbEventsAuthorizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEventsAuthResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/events/auth`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbEventsAuthRequestToJSON(requestParameters.eventsAuthRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEventsAuthResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a websocket URL and a single-use token, valid for 5 minutes, for the signed-in person\'s event stream.  Events are thin hints, type and ids only, and the stream is at most once.  Re-read the object before acting, and after every reconnect replay from the last event_id with GET events.  Send ping messages to keep the connection open, and reconnect with a new token before two hours.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Open the event stream
+     */
+    async getSfvbEventsAuthorization(requestParameters: GetSfvbEventsAuthorizationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEventsAuthResponse> {
+        const response = await this.getSfvbEventsAuthorizationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7297,7 +7441,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  A path stays listed after a redirect rule catches it, with redirected_to set.  redirected=false lists only paths no rule catches yet, and redirected=true only those one does.  limit is 1 to 100, default 50. 
      * List the paths that answered 404
      */
     async getSfvbNotFoundRaw(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbNotFoundResponse>> {
@@ -7331,6 +7475,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             queryParameters['limit'] = requestParameters.limit;
         }
 
+        if (requestParameters.redirected !== undefined) {
+            queryParameters['redirected'] = requestParameters.redirected;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -7353,7 +7501,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  limit is 1 to 100, default 50. 
+     * The paths shoppers asked for that answered 404, most hits first or by last_seen.  Paths only, never query strings.  Bots are left out unless include_bots.  Token-like path segments show as {token} unless include_tokens.  A path stays listed after a redirect rule catches it, with redirected_to set.  redirected=false lists only paths no rule catches yet, and redirected=true only those one does.  limit is 1 to 100, default 50. 
      * List the paths that answered 404
      */
     async getSfvbNotFound(requestParameters: GetSfvbNotFoundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundResponse> {
@@ -10005,7 +10153,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone.  Empty text removes that language\'s translation so machine translation fills it again (not allowed for ENG); it is the undo for an imported message, which can\'t be reset.  Shoppers see it at once.  Always needs sfvb_publish. 
      * Change one built-in message
      */
     async putSfvbI18nMessageRaw(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbI18nMessage>> {
@@ -10060,7 +10208,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone; empty text is refused.  Shoppers see it at once.  Always needs sfvb_publish. 
+     * Sets one message in any number of languages.  ENG replaces the English, which drops its machine translations so they regenerate.  Any other language becomes a hand translation.  Languages not named are left alone.  Empty text removes that language\'s translation so machine translation fills it again (not allowed for ENG); it is the undo for an imported message, which can\'t be reset.  Shoppers see it at once.  Always needs sfvb_publish. 
      * Change one built-in message
      */
     async putSfvbI18nMessage(requestParameters: PutSfvbI18nMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nMessage> {

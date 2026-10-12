@@ -44,7 +44,7 @@ export interface SfvbContainerVersion {
      */
     container_name?: string;
     /**
-     * When this snapshot was taken.
+     * When this snapshot was taken, ISO 8601 UTC.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
