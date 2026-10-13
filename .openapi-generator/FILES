@@ -1065,6 +1065,7 @@ src/models/SfvbItemContainer.ts
 src/models/SfvbItemContainersResponse.ts
 src/models/SfvbItemContentRequest.ts
 src/models/SfvbItemMultimedia.ts
+src/models/SfvbItemMultimediaDescriptionRequest.ts
 src/models/SfvbItemMultimediaRequest.ts
 src/models/SfvbItemPricing.ts
 src/models/SfvbItemPricingRequest.ts

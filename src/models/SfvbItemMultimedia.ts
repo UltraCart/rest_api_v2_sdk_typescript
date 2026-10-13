@@ -38,11 +38,23 @@ export interface SfvbItemMultimedia {
      */
     _default?: boolean;
     /**
-     * Stored with the image and rendered as its alt text.  When it is empty the render falls back to the item's own description, so an empty value here is not an empty alt attribute.
+     * The merchant's description, stored with the image and rendered as its alt text.  When it is empty the render falls back to rekognition_description or to text built from the item's title, depending on the element, so an empty value here is not an empty alt attribute.
      * @type {string}
      * @memberof SfvbItemMultimedia
      */
     description?: string;
+    /**
+     * SHA-256 of description (empty when there is none).  Send it as current_sha256 when changing the description so a change made since you read it is not overwritten.
+     * @type {string}
+     * @memberof SfvbItemMultimedia
+     */
+    description_sha256?: string;
+    /**
+     * Where the alt text comes from now.  merchant when description is set, rekognition when only rekognition_description is, none otherwise.
+     * @type {string}
+     * @memberof SfvbItemMultimedia
+     */
+    description_source?: SfvbItemMultimediaDescriptionSourceEnum;
     /**
      * Width x height in pixels, when the storage measured the file.
      * @type {string}
@@ -62,6 +74,18 @@ export interface SfvbItemMultimedia {
      */
     filename?: string;
     /**
+     * The stored image's id.  Name it to change this image's description when it has no code.
+     * @type {number}
+     * @memberof SfvbItemMultimedia
+     */
+    merchant_item_multimedia_oid?: number;
+    /**
+     * The machine description image recognition produced for the stored image, if any.  It is used only while description is empty, and a description written here or in the admin always takes its place.
+     * @type {string}
+     * @memberof SfvbItemMultimedia
+     */
+    rekognition_description?: string;
+    /**
      * The media type the storage recorded.
      * @type {string}
      * @memberof SfvbItemMultimedia
@@ -76,6 +100,16 @@ export interface SfvbItemMultimedia {
 }
 
 
+
+/**
+ * @export
+ */
+export const SfvbItemMultimediaDescriptionSourceEnum = {
+    Merchant: 'merchant',
+    Rekognition: 'rekognition',
+    None: 'none'
+} as const;
+export type SfvbItemMultimediaDescriptionSourceEnum = typeof SfvbItemMultimediaDescriptionSourceEnum[keyof typeof SfvbItemMultimediaDescriptionSourceEnum];
 
 /**
  * @export
@@ -113,9 +147,13 @@ export function SfvbItemMultimediaFromJSONTyped(json: any, ignoreDiscriminator: 
         'declared': !exists(json, 'declared') ? undefined : json['declared'],
         '_default': !exists(json, 'default') ? undefined : json['default'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'description_sha256': !exists(json, 'description_sha256') ? undefined : json['description_sha256'],
+        'description_source': !exists(json, 'description_source') ? undefined : json['description_source'],
         'dimensions': !exists(json, 'dimensions') ? undefined : json['dimensions'],
         'exclude_from_gallery': !exists(json, 'exclude_from_gallery') ? undefined : json['exclude_from_gallery'],
         'filename': !exists(json, 'filename') ? undefined : json['filename'],
+        'merchant_item_multimedia_oid': !exists(json, 'merchant_item_multimedia_oid') ? undefined : json['merchant_item_multimedia_oid'],
+        'rekognition_description': !exists(json, 'rekognition_description') ? undefined : json['rekognition_description'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'view_url': !exists(json, 'view_url') ? undefined : json['view_url'],
     };
@@ -134,9 +172,13 @@ export function SfvbItemMultimediaToJSON(value?: SfvbItemMultimedia | null): any
         'declared': value.declared,
         'default': value._default,
         'description': value.description,
+        'description_sha256': value.description_sha256,
+        'description_source': value.description_source,
         'dimensions': value.dimensions,
         'exclude_from_gallery': value.exclude_from_gallery,
         'filename': value.filename,
+        'merchant_item_multimedia_oid': value.merchant_item_multimedia_oid,
+        'rekognition_description': value.rekognition_description,
         'type': value.type,
         'view_url': value.view_url,
     };

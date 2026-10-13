@@ -112,7 +112,7 @@ export interface OauthApiInterface {
      * Revokes the OAuth application associated with the specified client_id and token. 
      * @summary Revoke this OAuth application.
      * @param {string} clientId The OAuth application client_id.
-     * @param {string} token The OAuth access token that is to be revoked..
+     * @param {string} token The OAuth access token or refresh token that is to be revoked.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OauthApiInterface

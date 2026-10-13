@@ -1037,6 +1037,7 @@ export * from './SfvbItemContainer';
 export * from './SfvbItemContainersResponse';
 export * from './SfvbItemContentRequest';
 export * from './SfvbItemMultimedia';
+export * from './SfvbItemMultimediaDescriptionRequest';
 export * from './SfvbItemMultimediaRequest';
 export * from './SfvbItemPricing';
 export * from './SfvbItemPricingRequest';

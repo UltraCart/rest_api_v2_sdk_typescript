@@ -165,6 +165,9 @@ import {
     SfvbItemContentRequest,
     SfvbItemContentRequestFromJSON,
     SfvbItemContentRequestToJSON,
+    SfvbItemMultimediaDescriptionRequest,
+    SfvbItemMultimediaDescriptionRequestFromJSON,
+    SfvbItemMultimediaDescriptionRequestToJSON,
     SfvbItemMultimediaRequest,
     SfvbItemMultimediaRequestFromJSON,
     SfvbItemMultimediaRequestToJSON,
@@ -1126,6 +1129,13 @@ export interface PutSfvbItemContentRequest {
 export interface PutSfvbItemMultimediaRequest {
     storefrontOid: number;
     itemMultimediaRequest: SfvbItemMultimediaRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface PutSfvbItemMultimediaDescriptionRequest {
+    storefrontOid: number;
+    itemMultimediaDescriptionRequest: SfvbItemMultimediaDescriptionRequest;
     merchantItemId?: string;
     merchantItemOid?: number;
 }
@@ -3572,6 +3582,25 @@ export interface SfvbApiInterface {
      * Attach an image to an item
      */
     putSfvbItemMultimedia(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * Changes the description (alt text) of one image already attached to the item, in place.  The image is not touched.  Name it by merchant_item_multimedia_oid, or by exactly one of code or default; gallery images often have no code.  An empty description clears it, so the render falls back again.  Send the description_sha256 you read as current_sha256 so a change made since is not overwritten.  A description written here takes the place of the machine description, and image recognition never overwrites it. 
+     * @summary Change an item image\'s description
+     * @param {number} storefrontOid 
+     * @param {SfvbItemMultimediaDescriptionRequest} itemMultimediaDescriptionRequest The image and its new description
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemMultimediaDescriptionRaw(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Changes the description (alt text) of one image already attached to the item, in place.  The image is not touched.  Name it by merchant_item_multimedia_oid, or by exactly one of code or default; gallery images often have no code.  An empty description clears it, so the render falls back again.  Send the description_sha256 you read as current_sha256 so a change made since is not overwritten.  A description written here takes the place of the machine description, and image recognition never overwrites it. 
+     * Change an item image\'s description
+     */
+    putSfvbItemMultimediaDescription(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
      * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
@@ -10381,6 +10410,62 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbItemMultimedia(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
         const response = await this.putSfvbItemMultimediaRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Changes the description (alt text) of one image already attached to the item, in place.  The image is not touched.  Name it by merchant_item_multimedia_oid, or by exactly one of code or default; gallery images often have no code.  An empty description clears it, so the render falls back again.  Send the description_sha256 you read as current_sha256 so a change made since is not overwritten.  A description written here takes the place of the machine description, and image recognition never overwrites it. 
+     * Change an item image\'s description
+     */
+    async putSfvbItemMultimediaDescriptionRaw(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemMultimediaDescription.');
+        }
+
+        if (requestParameters.itemMultimediaDescriptionRequest === null || requestParameters.itemMultimediaDescriptionRequest === undefined) {
+            throw new runtime.RequiredError('itemMultimediaDescriptionRequest','Required parameter requestParameters.itemMultimediaDescriptionRequest was null or undefined when calling putSfvbItemMultimediaDescription.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/multimedia/description`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemMultimediaDescriptionRequestToJSON(requestParameters.itemMultimediaDescriptionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Changes the description (alt text) of one image already attached to the item, in place.  The image is not touched.  Name it by merchant_item_multimedia_oid, or by exactly one of code or default; gallery images often have no code.  An empty description clears it, so the render falls back again.  Send the description_sha256 you read as current_sha256 so a change made since is not overwritten.  A description written here takes the place of the machine description, and image recognition never overwrites it. 
+     * Change an item image\'s description
+     */
+    async putSfvbItemMultimediaDescription(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.putSfvbItemMultimediaDescriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
