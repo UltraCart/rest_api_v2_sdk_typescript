@@ -39,6 +39,18 @@ import {
     SfvbBlogPostsResponse,
     SfvbBlogPostsResponseFromJSON,
     SfvbBlogPostsResponseToJSON,
+    SfvbCommsSendingDomain,
+    SfvbCommsSendingDomainFromJSON,
+    SfvbCommsSendingDomainToJSON,
+    SfvbCommsSendingDomainsResponse,
+    SfvbCommsSendingDomainsResponseFromJSON,
+    SfvbCommsSendingDomainsResponseToJSON,
+    SfvbCommsTwilioAccount,
+    SfvbCommsTwilioAccountFromJSON,
+    SfvbCommsTwilioAccountToJSON,
+    SfvbCommsTwilioAccountResponse,
+    SfvbCommsTwilioAccountResponseFromJSON,
+    SfvbCommsTwilioAccountResponseToJSON,
     SfvbCompileRequest,
     SfvbCompileRequestFromJSON,
     SfvbCompileRequestToJSON,
@@ -514,6 +526,15 @@ export interface DeleteSfvbBlogPostRequest {
     approvalId?: string;
 }
 
+export interface DeleteSfvbCommsSendingDomainRequest {
+    domain: string;
+    approvalId?: string;
+}
+
+export interface DeleteSfvbCommsTwilioAccountRequest {
+    approvalId?: string;
+}
+
 export interface DeleteSfvbFileRequest {
     storefrontOid: number;
     ifMatch: string;
@@ -682,6 +703,10 @@ export interface GetSfvbBlogPostRequest {
 
 export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
+}
+
+export interface GetSfvbCommsSendingDomainRequest {
+    domain: string;
 }
 
 export interface GetSfvbContainerRequest {
@@ -953,6 +978,14 @@ export interface InsertSfvbApprovalRequest {
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface InsertSfvbCommsSendingDomainRequest {
+    sendingDomain: SfvbCommsSendingDomain;
+}
+
+export interface InsertSfvbCommsTwilioAccountRequest {
+    twilioAccount: SfvbCommsTwilioAccount;
 }
 
 export interface InsertSfvbPageRequest {
@@ -1242,6 +1275,10 @@ export interface PutSfvbThemeAttributesRequest {
     attributeUpdateRequest: SfvbThemeAttributeUpdateRequest;
 }
 
+export interface RefreshSfvbCommsSendingDomainStatusRequest {
+    domain: string;
+}
+
 export interface RefreshSfvbPageRequest {
     storefrontOid: number;
     pageRefreshRequest: SfvbPageRefreshRequest;
@@ -1371,6 +1408,15 @@ export interface UpdateSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface UpdateSfvbCommsSendingDomainRequest {
+    domain: string;
+    sendingDomain: SfvbCommsSendingDomain;
+}
+
+export interface UpdateSfvbCommsTwilioAccountRequest {
+    twilioAccount: SfvbCommsTwilioAccount;
 }
 
 export interface UpdateSfvbItemAttributeBatchRequest {
@@ -1635,6 +1681,39 @@ export interface SfvbApiInterface {
      * Delete a blog post
      */
     deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Removes the domain from UltraCart and from Amazon SES.  Needs an approved sending_domain.delete request for it (POST approvals, params.domain). 
+     * @summary Remove a sending domain
+     * @param {string} domain 
+     * @param {string} [approvalId] The approval_id of an approved sending_domain.delete request for this domain.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbCommsSendingDomainRaw(requestParameters: DeleteSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Removes the domain from UltraCart and from Amazon SES.  Needs an approved sending_domain.delete request for it (POST approvals, params.domain). 
+     * Remove a sending domain
+     */
+    deleteSfvbCommsSendingDomain(requestParameters: DeleteSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Removes the account\'s Twilio account and its credentials from UltraCart.  The account stays at Twilio.  Needs an approved twilio_account.delete request for it (POST approvals, params.esp_twilio_uuid). 
+     * @summary Remove the Twilio account
+     * @param {string} [approvalId] The approval_id of an approved twilio_account.delete request for this account.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbCommsTwilioAccountRaw(requestParameters: DeleteSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Removes the account\'s Twilio account and its credentials from UltraCart.  The account stays at Twilio.  Needs an approved twilio_account.delete request for it (POST approvals, params.esp_twilio_uuid). 
+     * Remove the Twilio account
+     */
+    deleteSfvbCommsTwilioAccount(requestParameters: DeleteSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Recoverable from the recycle bin. 
@@ -2179,6 +2258,52 @@ export interface SfvbApiInterface {
      * Element types used by a container
      */
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
+
+    /**
+     * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
+     * @summary Read a sending domain
+     * @param {string} domain 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSendingDomainRaw(requestParameters: GetSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>>;
+
+    /**
+     * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
+     * Read a sending domain
+     */
+    getSfvbCommsSendingDomain(requestParameters: GetSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain>;
+
+    /**
+     * Every domain the account sends email from, with its provider, verification status and the DNS records an amazon domain needs.  mailgun_api_key is always a mask. 
+     * @summary List the sending domains
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSendingDomainsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomainsResponse>>;
+
+    /**
+     * Every domain the account sends email from, with its provider, verification status and the DNS records an amazon domain needs.  mailgun_api_key is always a mask. 
+     * List the sending domains
+     */
+    getSfvbCommsSendingDomains(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomainsResponse>;
+
+    /**
+     * The account\'s Twilio account, used for SMS and the phone system, or none.  An account has at most one.  auth_token is always a mask. 
+     * @summary Read the Twilio account
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsTwilioAccountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>>;
+
+    /**
+     * The account\'s Twilio account, used for SMS and the phone system, or none.  An account has at most one.  auth_token is always a mask. 
+     * Read the Twilio account
+     */
+    getSfvbCommsTwilioAccount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
 
     /**
      * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
@@ -3099,6 +3224,38 @@ export interface SfvbApiInterface {
     insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * Adds a domain to send email from.  An amazon domain starts verification with Amazon SES and returns the DNS records to publish; the person signed in also gets them by email.  A mailgun domain needs mailgun_api_key as a secret handle made for the domain (POST secrets, sink mailgun.domain.api_key), never the key itself.  UltraCart sets up its webhooks on the Mailgun domain with the key; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * @summary Add a sending domain
+     * @param {SfvbCommsSendingDomain} sendingDomain The sending domain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsSendingDomainRaw(requestParameters: InsertSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>>;
+
+    /**
+     * Adds a domain to send email from.  An amazon domain starts verification with Amazon SES and returns the DNS records to publish; the person signed in also gets them by email.  A mailgun domain needs mailgun_api_key as a secret handle made for the domain (POST secrets, sink mailgun.domain.api_key), never the key itself.  UltraCart sets up its webhooks on the Mailgun domain with the key; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Add a sending domain
+     */
+    insertSfvbCommsSendingDomain(requestParameters: InsertSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain>;
+
+    /**
+     * Connects the account\'s Twilio account with account_sid and auth_token.  Send auth_token as a secret handle made for that account SID (POST secrets, sink twilio.account.auth_token), never the token itself.  UltraCart checks the token with Twilio, then makes its API key, TwiML apps and voice encryption key on the account, as the admin does.  If Twilio refuses, nothing is saved and the handle is given back unused.  An account has at most one Twilio account, so this is refused when one exists; update it instead. 
+     * @summary Connect the Twilio account
+     * @param {SfvbCommsTwilioAccount} twilioAccount The Twilio account
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsTwilioAccountRaw(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>>;
+
+    /**
+     * Connects the account\'s Twilio account with account_sid and auth_token.  Send auth_token as a secret handle made for that account SID (POST secrets, sink twilio.account.auth_token), never the token itself.  UltraCart checks the token with Twilio, then makes its API key, TwiML apps and voice encryption key on the account, as the admin does.  If Twilio refuses, nothing is saved and the handle is given back unused.  An account has at most one Twilio account, so this is refused when one exists; update it instead. 
+     * Connect the Twilio account
+     */
+    insertSfvbCommsTwilioAccount(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
+
+    /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
      * @summary Create a page
      * @param {number} storefrontOid 
@@ -3931,6 +4088,22 @@ export interface SfvbApiInterface {
     putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
 
     /**
+     * Asks Amazon SES again whether an amazon domain\'s DNS records are in place, and restarts a verification that failed (its records then change).  A mailgun domain comes back as it is; Mailgun checks its own records. 
+     * @summary Check a sending domain\'s verification
+     * @param {string} domain 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    refreshSfvbCommsSendingDomainStatusRaw(requestParameters: RefreshSfvbCommsSendingDomainStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>>;
+
+    /**
+     * Asks Amazon SES again whether an amazon domain\'s DNS records are in place, and restarts a verification that failed (its records then change).  A mailgun domain comes back as it is; Mailgun checks its own records. 
+     * Check a sending domain\'s verification
+     */
+    refreshSfvbCommsSendingDomainStatus(requestParameters: RefreshSfvbCommsSendingDomainStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain>;
+
+    /**
      * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
      * @summary Drop one page\'s cached copy
      * @param {number} storefrontOid 
@@ -4324,6 +4497,39 @@ export interface SfvbApiInterface {
      * Change a blog post
      */
     updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * @summary Update a sending domain
+     * @param {string} domain 
+     * @param {SfvbCommsSendingDomain} sendingDomain The changes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsSendingDomainRaw(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>>;
+
+    /**
+     * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Update a sending domain
+     */
+    updateSfvbCommsSendingDomain(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain>;
+
+    /**
+     * Changes the account\'s Twilio account.  Leave a field out to keep it.  Send auth_token as the mask it was read with to keep it, or as a secret handle made for the account SID to replace it.  A new account_sid needs a new auth_token with it.  A new token is checked with Twilio and UltraCart\'s API key, TwiML apps and voice encryption key are made again; if Twilio refuses, nothing is saved and the handle is given back unused.  phone_numbers, when sent, replaces the list. 
+     * @summary Update the Twilio account
+     * @param {SfvbCommsTwilioAccount} twilioAccount The changes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsTwilioAccountRaw(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>>;
+
+    /**
+     * Changes the account\'s Twilio account.  Leave a field out to keep it.  Send auth_token as the mask it was read with to keep it, or as a secret handle made for the account SID to replace it.  A new account_sid needs a new auth_token with it.  A new token is checked with Twilio and UltraCart\'s API key, TwiML apps and voice encryption key are made again; if Twilio refuses, nothing is saved and the handle is given back unused.  phone_numbers, when sent, replaces the list. 
+     * Update the Twilio account
+     */
+    updateSfvbCommsTwilioAccount(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
 
     /**
      * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
@@ -5051,6 +5257,90 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbBlogPostRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Removes the domain from UltraCart and from Amazon SES.  Needs an approved sending_domain.delete request for it (POST approvals, params.domain). 
+     * Remove a sending domain
+     */
+    async deleteSfvbCommsSendingDomainRaw(requestParameters: DeleteSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.domain === null || requestParameters.domain === undefined) {
+            throw new runtime.RequiredError('domain','Required parameter requestParameters.domain was null or undefined when calling deleteSfvbCommsSendingDomain.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains/{domain}`.replace(`{${"domain"}}`, encodeURIComponent(String(requestParameters.domain))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes the domain from UltraCart and from Amazon SES.  Needs an approved sending_domain.delete request for it (POST approvals, params.domain). 
+     * Remove a sending domain
+     */
+    async deleteSfvbCommsSendingDomain(requestParameters: DeleteSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbCommsSendingDomainRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Removes the account\'s Twilio account and its credentials from UltraCart.  The account stays at Twilio.  Needs an approved twilio_account.delete request for it (POST approvals, params.esp_twilio_uuid). 
+     * Remove the Twilio account
+     */
+    async deleteSfvbCommsTwilioAccountRaw(requestParameters: DeleteSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/twilio_account`,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes the account\'s Twilio account and its credentials from UltraCart.  The account stays at Twilio.  Needs an approved twilio_account.delete request for it (POST approvals, params.esp_twilio_uuid). 
+     * Remove the Twilio account
+     */
+    async deleteSfvbCommsTwilioAccount(requestParameters: DeleteSfvbCommsTwilioAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbCommsTwilioAccountRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -6563,6 +6853,121 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse> {
         const response = await this.getSfvbCjsonUsedElementsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
+     * Read a sending domain
+     */
+    async getSfvbCommsSendingDomainRaw(requestParameters: GetSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>> {
+        if (requestParameters.domain === null || requestParameters.domain === undefined) {
+            throw new runtime.RequiredError('domain','Required parameter requestParameters.domain was null or undefined when calling getSfvbCommsSendingDomain.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains/{domain}`.replace(`{${"domain"}}`, encodeURIComponent(String(requestParameters.domain))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSendingDomainFromJSON(jsonValue));
+    }
+
+    /**
+     * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
+     * Read a sending domain
+     */
+    async getSfvbCommsSendingDomain(requestParameters: GetSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain> {
+        const response = await this.getSfvbCommsSendingDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every domain the account sends email from, with its provider, verification status and the DNS records an amazon domain needs.  mailgun_api_key is always a mask. 
+     * List the sending domains
+     */
+    async getSfvbCommsSendingDomainsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomainsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSendingDomainsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every domain the account sends email from, with its provider, verification status and the DNS records an amazon domain needs.  mailgun_api_key is always a mask. 
+     * List the sending domains
+     */
+    async getSfvbCommsSendingDomains(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomainsResponse> {
+        const response = await this.getSfvbCommsSendingDomainsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The account\'s Twilio account, used for SMS and the phone system, or none.  An account has at most one.  auth_token is always a mask. 
+     * Read the Twilio account
+     */
+    async getSfvbCommsTwilioAccountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/twilio_account`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTwilioAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The account\'s Twilio account, used for SMS and the phone system, or none.  An account has at most one.  auth_token is always a mask. 
+     * Read the Twilio account
+     */
+    async getSfvbCommsTwilioAccount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
+        const response = await this.getSfvbCommsTwilioAccountRaw(initOverrides);
         return await response.value();
     }
 
@@ -9046,6 +9451,94 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Adds a domain to send email from.  An amazon domain starts verification with Amazon SES and returns the DNS records to publish; the person signed in also gets them by email.  A mailgun domain needs mailgun_api_key as a secret handle made for the domain (POST secrets, sink mailgun.domain.api_key), never the key itself.  UltraCart sets up its webhooks on the Mailgun domain with the key; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Add a sending domain
+     */
+    async insertSfvbCommsSendingDomainRaw(requestParameters: InsertSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>> {
+        if (requestParameters.sendingDomain === null || requestParameters.sendingDomain === undefined) {
+            throw new runtime.RequiredError('sendingDomain','Required parameter requestParameters.sendingDomain was null or undefined when calling insertSfvbCommsSendingDomain.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsSendingDomainToJSON(requestParameters.sendingDomain),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSendingDomainFromJSON(jsonValue));
+    }
+
+    /**
+     * Adds a domain to send email from.  An amazon domain starts verification with Amazon SES and returns the DNS records to publish; the person signed in also gets them by email.  A mailgun domain needs mailgun_api_key as a secret handle made for the domain (POST secrets, sink mailgun.domain.api_key), never the key itself.  UltraCart sets up its webhooks on the Mailgun domain with the key; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Add a sending domain
+     */
+    async insertSfvbCommsSendingDomain(requestParameters: InsertSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain> {
+        const response = await this.insertSfvbCommsSendingDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Connects the account\'s Twilio account with account_sid and auth_token.  Send auth_token as a secret handle made for that account SID (POST secrets, sink twilio.account.auth_token), never the token itself.  UltraCart checks the token with Twilio, then makes its API key, TwiML apps and voice encryption key on the account, as the admin does.  If Twilio refuses, nothing is saved and the handle is given back unused.  An account has at most one Twilio account, so this is refused when one exists; update it instead. 
+     * Connect the Twilio account
+     */
+    async insertSfvbCommsTwilioAccountRaw(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>> {
+        if (requestParameters.twilioAccount === null || requestParameters.twilioAccount === undefined) {
+            throw new runtime.RequiredError('twilioAccount','Required parameter requestParameters.twilioAccount was null or undefined when calling insertSfvbCommsTwilioAccount.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/twilio_account`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsTwilioAccountToJSON(requestParameters.twilioAccount),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTwilioAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Connects the account\'s Twilio account with account_sid and auth_token.  Send auth_token as a secret handle made for that account SID (POST secrets, sink twilio.account.auth_token), never the token itself.  UltraCart checks the token with Twilio, then makes its API key, TwiML apps and voice encryption key on the account, as the admin does.  If Twilio refuses, nothing is saved and the handle is given back unused.  An account has at most one Twilio account, so this is refused when one exists; update it instead. 
+     * Connect the Twilio account
+     */
+    async insertSfvbCommsTwilioAccount(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
+        const response = await this.insertSfvbCommsTwilioAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
      * Create a page
      */
@@ -11464,6 +11957,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Asks Amazon SES again whether an amazon domain\'s DNS records are in place, and restarts a verification that failed (its records then change).  A mailgun domain comes back as it is; Mailgun checks its own records. 
+     * Check a sending domain\'s verification
+     */
+    async refreshSfvbCommsSendingDomainStatusRaw(requestParameters: RefreshSfvbCommsSendingDomainStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>> {
+        if (requestParameters.domain === null || requestParameters.domain === undefined) {
+            throw new runtime.RequiredError('domain','Required parameter requestParameters.domain was null or undefined when calling refreshSfvbCommsSendingDomainStatus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains/{domain}/status`.replace(`{${"domain"}}`, encodeURIComponent(String(requestParameters.domain))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSendingDomainFromJSON(jsonValue));
+    }
+
+    /**
+     * Asks Amazon SES again whether an amazon domain\'s DNS records are in place, and restarts a verification that failed (its records then change).  A mailgun domain comes back as it is; Mailgun checks its own records. 
+     * Check a sending domain\'s verification
+     */
+    async refreshSfvbCommsSendingDomainStatus(requestParameters: RefreshSfvbCommsSendingDomainStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain> {
+        const response = await this.refreshSfvbCommsSendingDomainStatusRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The next request renders the page fresh.  Use it when a write succeeded, a read shows the new value, and the public page still shows the old one.  Writes normally refresh the pages they affect, so a stale page after a write is a bug worth reporting with its URL.  One page per request.  The response says whether the page had a cached copy and whether anything was dropped. 
      * Drop one page\'s cached copy
      */
@@ -12597,6 +13131,98 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.updateSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Update a sending domain
+     */
+    async updateSfvbCommsSendingDomainRaw(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSendingDomain>> {
+        if (requestParameters.domain === null || requestParameters.domain === undefined) {
+            throw new runtime.RequiredError('domain','Required parameter requestParameters.domain was null or undefined when calling updateSfvbCommsSendingDomain.');
+        }
+
+        if (requestParameters.sendingDomain === null || requestParameters.sendingDomain === undefined) {
+            throw new runtime.RequiredError('sendingDomain','Required parameter requestParameters.sendingDomain was null or undefined when calling updateSfvbCommsSendingDomain.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/sending_domains/{domain}`.replace(`{${"domain"}}`, encodeURIComponent(String(requestParameters.domain))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsSendingDomainToJSON(requestParameters.sendingDomain),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSendingDomainFromJSON(jsonValue));
+    }
+
+    /**
+     * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
+     * Update a sending domain
+     */
+    async updateSfvbCommsSendingDomain(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain> {
+        const response = await this.updateSfvbCommsSendingDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Changes the account\'s Twilio account.  Leave a field out to keep it.  Send auth_token as the mask it was read with to keep it, or as a secret handle made for the account SID to replace it.  A new account_sid needs a new auth_token with it.  A new token is checked with Twilio and UltraCart\'s API key, TwiML apps and voice encryption key are made again; if Twilio refuses, nothing is saved and the handle is given back unused.  phone_numbers, when sent, replaces the list. 
+     * Update the Twilio account
+     */
+    async updateSfvbCommsTwilioAccountRaw(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTwilioAccountResponse>> {
+        if (requestParameters.twilioAccount === null || requestParameters.twilioAccount === undefined) {
+            throw new runtime.RequiredError('twilioAccount','Required parameter requestParameters.twilioAccount was null or undefined when calling updateSfvbCommsTwilioAccount.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/twilio_account`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsTwilioAccountToJSON(requestParameters.twilioAccount),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTwilioAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Changes the account\'s Twilio account.  Leave a field out to keep it.  Send auth_token as the mask it was read with to keep it, or as a secret handle made for the account SID to replace it.  A new account_sid needs a new auth_token with it.  A new token is checked with Twilio and UltraCart\'s API key, TwiML apps and voice encryption key are made again; if Twilio refuses, nothing is saved and the handle is given back unused.  phone_numbers, when sent, replaces the list. 
+     * Update the Twilio account
+     */
+    async updateSfvbCommsTwilioAccount(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
+        const response = await this.updateSfvbCommsTwilioAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

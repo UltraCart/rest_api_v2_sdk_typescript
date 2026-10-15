@@ -38,6 +38,18 @@ export interface SfvbApprovalParams {
      */
     content_sha256?: string;
     /**
+     * For sending_domain.delete, the sending domain.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    domain?: string;
+    /**
+     * For twilio_account.delete, the Twilio account's esp_twilio_uuid, as GET comms/twilio_account returns it.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    esp_twilio_uuid?: string;
+    /**
      * For experiment.end, the experiment to end.
      * @type {number}
      * @memberof SfvbApprovalParams
@@ -151,6 +163,8 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'attribute_names': !exists(json, 'attribute_names') ? undefined : json['attribute_names'],
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
         'content_sha256': !exists(json, 'content_sha256') ? undefined : json['content_sha256'],
+        'domain': !exists(json, 'domain') ? undefined : json['domain'],
+        'esp_twilio_uuid': !exists(json, 'esp_twilio_uuid') ? undefined : json['esp_twilio_uuid'],
         'experiment_oid': !exists(json, 'experiment_oid') ? undefined : json['experiment_oid'],
         'item_count': !exists(json, 'item_count') ? undefined : json['item_count'],
         'merchant_item_oid': !exists(json, 'merchant_item_oid') ? undefined : json['merchant_item_oid'],
@@ -179,6 +193,8 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'attribute_names': value.attribute_names,
         'blog_post_oid': value.blog_post_oid,
         'content_sha256': value.content_sha256,
+        'domain': value.domain,
+        'esp_twilio_uuid': value.esp_twilio_uuid,
         'experiment_oid': value.experiment_oid,
         'item_count': value.item_count,
         'merchant_item_oid': value.merchant_item_oid,

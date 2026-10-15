@@ -1007,6 +1007,11 @@ src/models/SfvbBlogPostImage.ts
 src/models/SfvbBlogPostImageRequest.ts
 src/models/SfvbBlogPostRequest.ts
 src/models/SfvbBlogPostsResponse.ts
+src/models/SfvbCommsDnsRecord.ts
+src/models/SfvbCommsSendingDomain.ts
+src/models/SfvbCommsSendingDomainsResponse.ts
+src/models/SfvbCommsTwilioAccount.ts
+src/models/SfvbCommsTwilioAccountResponse.ts
 src/models/SfvbCompileRequest.ts
 src/models/SfvbCompileResponse.ts
 src/models/SfvbContainerResponse.ts
