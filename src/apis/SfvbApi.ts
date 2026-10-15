@@ -360,6 +360,18 @@ import {
     SfvbRenderResponse,
     SfvbRenderResponseFromJSON,
     SfvbRenderResponseToJSON,
+    SfvbSecretKindsResponse,
+    SfvbSecretKindsResponseFromJSON,
+    SfvbSecretKindsResponseToJSON,
+    SfvbSecretRequest,
+    SfvbSecretRequestFromJSON,
+    SfvbSecretRequestToJSON,
+    SfvbSecretRequestCreate,
+    SfvbSecretRequestCreateFromJSON,
+    SfvbSecretRequestCreateToJSON,
+    SfvbSecretRequestsResponse,
+    SfvbSecretRequestsResponseFromJSON,
+    SfvbSecretRequestsResponseToJSON,
     SfvbServerLogDetail,
     SfvbServerLogDetailFromJSON,
     SfvbServerLogDetailToJSON,
@@ -552,6 +564,10 @@ export interface DeleteSfvbRedirectsRequest {
     storefrontOid: number;
     redirectDeleteRequest: SfvbRedirectDeleteRequest;
     approvalId?: string;
+}
+
+export interface DeleteSfvbSecretRequestRequest {
+    requestId: string;
 }
 
 export interface DetachSfvbBlogPostImageRequest {
@@ -865,6 +881,10 @@ export interface GetSfvbRedirectsRequest {
     status?: string;
 }
 
+export interface GetSfvbSecretRequestRequest {
+    requestId: string;
+}
+
 export interface GetSfvbServerLogRequest {
     storefrontOid: number;
     logId: string;
@@ -943,6 +963,10 @@ export interface InsertSfvbPageRequest {
 export interface InsertSfvbRedirectRequest {
     storefrontOid: number;
     redirectRequest: SfvbRedirectRequest;
+}
+
+export interface InsertSfvbSecretRequestRequest {
+    secretRequest: SfvbSecretRequestCreate;
 }
 
 export interface InsertSfvbUpsellOfferRequest {
@@ -1280,6 +1304,10 @@ export interface RevertSfvbFileRequest {
     approvalId?: string;
 }
 
+export interface RevokeSfvbSecretRequestRequest {
+    requestId: string;
+}
+
 export interface SearchSfvbFilesRequest {
     storefrontOid: number;
     searchRequest: SfvbFileSearchRequest;
@@ -1542,7 +1570,7 @@ export interface SfvbApiInterface {
     createSfvbLibraryEntry(requestParameters: CreateSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
-     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  With a preview session, pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Without one, the pages are the live content and carry no X-UltraCart-Preview header.  Requires a token that resolves to a user, so use the device authorization flow. 
      * @summary One time link that opens a preview in a browser with no UltraCart login
      * @param {number} storefrontOid 
      * @param {SfvbPreviewAccessRequest} [previewAccess] What the browser should see
@@ -1553,7 +1581,7 @@ export interface SfvbApiInterface {
     createSfvbPreviewAccessRaw(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewAccessResponse>>;
 
     /**
-     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  With a preview session, pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Without one, the pages are the live content and carry no X-UltraCart-Preview header.  Requires a token that resolves to a user, so use the device authorization flow. 
      * One time link that opens a preview in a browser with no UltraCart login
      */
     createSfvbPreviewAccess(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewAccessResponse>;
@@ -1755,6 +1783,22 @@ export interface SfvbApiInterface {
      * Delete up to 5,000 redirect rules in one call
      */
     deleteSfvbRedirects(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse>;
+
+    /**
+     * Withdraws a request nobody has filled in yet, with its handles, which frees one of the five pending slots a sign-in has.  A fulfilled request cannot be cancelled; revoke its handles instead. 
+     * @summary Cancel a pending secret request
+     * @param {string} requestId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbSecretRequestRaw(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>>;
+
+    /**
+     * Withdraws a request nobody has filled in yet, with its handles, which frees one of the five pending slots a sign-in has.  A fulfilled request cannot be cancelled; revoke its handles instead. 
+     * Cancel a pending secret request
+     */
+    deleteSfvbSecretRequest(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
 
     /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
@@ -2766,6 +2810,52 @@ export interface SfvbApiInterface {
     getSfvbRedirects(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectsResponse>;
 
     /**
+     * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
+     * @summary List the secrets this server collects
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSecretKindsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretKindsResponse>>;
+
+    /**
+     * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
+     * List the secrets this server collects
+     */
+    getSfvbSecretKinds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretKindsResponse>;
+
+    /**
+     * Poll this every interval_seconds after making a request.  status is pending until a person enters the values, then fulfilled, and expired if nobody does within 24 hours.  handles lists each handle with its own status, and a fingerprint (the last few characters as a mask shows them) once its value is entered.  Never a value. 
+     * @summary Read one secret request
+     * @param {string} requestId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSecretRequestRaw(requestParameters: GetSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>>;
+
+    /**
+     * Poll this every interval_seconds after making a request.  status is pending until a person enters the values, then fulfilled, and expired if nobody does within 24 hours.  handles lists each handle with its own status, and a fingerprint (the last few characters as a mask shows them) once its value is entered.  Never a value. 
+     * Read one secret request
+     */
+    getSfvbSecretRequest(requestParameters: GetSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, without their handles.  Read one request for its handles. 
+     * @summary List this sign-in\'s secret requests
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSecretRequestsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequestsResponse>>;
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, without their handles.  Read one request for its handles. 
+     * List this sign-in\'s secret requests
+     */
+    getSfvbSecretRequests(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequestsResponse>;
+
+    /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
      * @summary Get one storefront render log
      * @param {number} storefrontOid 
@@ -3041,6 +3131,22 @@ export interface SfvbApiInterface {
      * Create a 301 redirect rule
      */
     insertSfvbRedirect(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
+
+    /**
+     * Never ask for a credential in the conversation.  This makes a handle for each sink (and each key, for a bulk request) at once, pending until a person enters the values on request_url.  Show the person request_url and user_code and never open or fill in the page yourself.  Poll GET secrets/{request_id} every interval_seconds until status is fulfilled, then send each handle in its secret field.  The server writes the value in its place.  A handle works only for this sign-in, its sink and its target, for ttl_seconds and uses writes.  A request lapses after 24 hours, and shares the five pending requests a sign-in has with approvals.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  Requires a token that resolves to a user, so use the device authorization flow.  A secret request is never an approval. 
+     * @summary Ask a person to enter secret values
+     * @param {SfvbSecretRequestCreate} secretRequest The request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbSecretRequestRaw(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>>;
+
+    /**
+     * Never ask for a credential in the conversation.  This makes a handle for each sink (and each key, for a bulk request) at once, pending until a person enters the values on request_url.  Show the person request_url and user_code and never open or fill in the page yourself.  Poll GET secrets/{request_id} every interval_seconds until status is fulfilled, then send each handle in its secret field.  The server writes the value in its place.  A handle works only for this sign-in, its sink and its target, for ttl_seconds and uses writes.  A request lapses after 24 hours, and shares the five pending requests a sign-in has with approvals.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  Requires a token that resolves to a user, so use the device authorization flow.  A secret request is never an approval. 
+     * Ask a person to enter secret values
+     */
+    insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
 
     /**
      * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
@@ -4007,6 +4113,22 @@ export interface SfvbApiInterface {
     revertSfvbFile(requestParameters: RevertSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
 
     /**
+     * Every handle of the request that no write has used up stops working at once, and its value is deleted.  A handle a write is using right now is left to that write.  Use it when the plan changed, or a handle may have leaked. 
+     * @summary Revoke a fulfilled request\'s unused handles
+     * @param {string} requestId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    revokeSfvbSecretRequestRaw(requestParameters: RevokeSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>>;
+
+    /**
+     * Every handle of the request that no write has used up stops working at once, and its value is deleted.  A handle a write is using right now is left to that write.  Use it when the plan changed, or a handle may have leaked. 
+     * Revoke a fulfilled request\'s unused handles
+     */
+    revokeSfvbSecretRequest(requestParameters: RevokeSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
+
+    /**
      * Searches names and, when text is supplied, file contents.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported. 
      * @summary Search storefront files
      * @param {number} storefrontOid 
@@ -4759,7 +4881,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  With a preview session, pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Without one, the pages are the live content and carry no X-UltraCart-Preview header.  Requires a token that resolves to a user, so use the device authorization flow. 
      * One time link that opens a preview in a browser with no UltraCart login
      */
     async createSfvbPreviewAccessRaw(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewAccessResponse>> {
@@ -4794,7 +4916,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  With a preview session, pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Without one, the pages are the live content and carry no X-UltraCart-Preview header.  Requires a token that resolves to a user, so use the device authorization flow. 
      * One time link that opens a preview in a browser with no UltraCart login
      */
     async createSfvbPreviewAccess(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewAccessResponse> {
@@ -5356,6 +5478,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbRedirects(requestParameters: DeleteSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectDeleteResponse> {
         const response = await this.deleteSfvbRedirectsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Withdraws a request nobody has filled in yet, with its handles, which frees one of the five pending slots a sign-in has.  A fulfilled request cannot be cancelled; revoke its handles instead. 
+     * Cancel a pending secret request
+     */
+    async deleteSfvbSecretRequestRaw(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>> {
+        if (requestParameters.requestId === null || requestParameters.requestId === undefined) {
+            throw new runtime.RequiredError('requestId','Required parameter requestParameters.requestId was null or undefined when calling deleteSfvbSecretRequest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets/{request_id}`.replace(`{${"request_id"}}`, encodeURIComponent(String(requestParameters.requestId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretRequestFromJSON(jsonValue));
+    }
+
+    /**
+     * Withdraws a request nobody has filled in yet, with its handles, which frees one of the five pending slots a sign-in has.  A fulfilled request cannot be cancelled; revoke its handles instead. 
+     * Cancel a pending secret request
+     */
+    async deleteSfvbSecretRequest(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
+        const response = await this.deleteSfvbSecretRequestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8107,6 +8270,121 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
+     * List the secrets this server collects
+     */
+    async getSfvbSecretKindsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretKindsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets/kinds`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretKindsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
+     * List the secrets this server collects
+     */
+    async getSfvbSecretKinds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretKindsResponse> {
+        const response = await this.getSfvbSecretKindsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Poll this every interval_seconds after making a request.  status is pending until a person enters the values, then fulfilled, and expired if nobody does within 24 hours.  handles lists each handle with its own status, and a fingerprint (the last few characters as a mask shows them) once its value is entered.  Never a value. 
+     * Read one secret request
+     */
+    async getSfvbSecretRequestRaw(requestParameters: GetSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>> {
+        if (requestParameters.requestId === null || requestParameters.requestId === undefined) {
+            throw new runtime.RequiredError('requestId','Required parameter requestParameters.requestId was null or undefined when calling getSfvbSecretRequest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets/{request_id}`.replace(`{${"request_id"}}`, encodeURIComponent(String(requestParameters.requestId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretRequestFromJSON(jsonValue));
+    }
+
+    /**
+     * Poll this every interval_seconds after making a request.  status is pending until a person enters the values, then fulfilled, and expired if nobody does within 24 hours.  handles lists each handle with its own status, and a fingerprint (the last few characters as a mask shows them) once its value is entered.  Never a value. 
+     * Read one secret request
+     */
+    async getSfvbSecretRequest(requestParameters: GetSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
+        const response = await this.getSfvbSecretRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, without their handles.  Read one request for its handles. 
+     * List this sign-in\'s secret requests
+     */
+    async getSfvbSecretRequestsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequestsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretRequestsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Requests made with this sign-in in the last 24 hours, newest first, at most 50, without their handles.  Read one request for its handles. 
+     * List this sign-in\'s secret requests
+     */
+    async getSfvbSecretRequests(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequestsResponse> {
+        const response = await this.getSfvbSecretRequestsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
      * Get one storefront render log
      */
@@ -8860,6 +9138,50 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbRedirect(requestParameters: InsertSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse> {
         const response = await this.insertSfvbRedirectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Never ask for a credential in the conversation.  This makes a handle for each sink (and each key, for a bulk request) at once, pending until a person enters the values on request_url.  Show the person request_url and user_code and never open or fill in the page yourself.  Poll GET secrets/{request_id} every interval_seconds until status is fulfilled, then send each handle in its secret field.  The server writes the value in its place.  A handle works only for this sign-in, its sink and its target, for ttl_seconds and uses writes.  A request lapses after 24 hours, and shares the five pending requests a sign-in has with approvals.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  Requires a token that resolves to a user, so use the device authorization flow.  A secret request is never an approval. 
+     * Ask a person to enter secret values
+     */
+    async insertSfvbSecretRequestRaw(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>> {
+        if (requestParameters.secretRequest === null || requestParameters.secretRequest === undefined) {
+            throw new runtime.RequiredError('secretRequest','Required parameter requestParameters.secretRequest was null or undefined when calling insertSfvbSecretRequest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSecretRequestCreateToJSON(requestParameters.secretRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretRequestFromJSON(jsonValue));
+    }
+
+    /**
+     * Never ask for a credential in the conversation.  This makes a handle for each sink (and each key, for a bulk request) at once, pending until a person enters the values on request_url.  Show the person request_url and user_code and never open or fill in the page yourself.  Poll GET secrets/{request_id} every interval_seconds until status is fulfilled, then send each handle in its secret field.  The server writes the value in its place.  A handle works only for this sign-in, its sink and its target, for ttl_seconds and uses writes.  A request lapses after 24 hours, and shares the five pending requests a sign-in has with approvals.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  Requires a token that resolves to a user, so use the device authorization flow.  A secret request is never an approval. 
+     * Ask a person to enter secret values
+     */
+    async insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
+        const response = await this.insertSfvbSecretRequestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -11678,6 +12000,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async revertSfvbFile(requestParameters: RevertSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.revertSfvbFileRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every handle of the request that no write has used up stops working at once, and its value is deleted.  A handle a write is using right now is left to that write.  Use it when the plan changed, or a handle may have leaked. 
+     * Revoke a fulfilled request\'s unused handles
+     */
+    async revokeSfvbSecretRequestRaw(requestParameters: RevokeSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSecretRequest>> {
+        if (requestParameters.requestId === null || requestParameters.requestId === undefined) {
+            throw new runtime.RequiredError('requestId','Required parameter requestParameters.requestId was null or undefined when calling revokeSfvbSecretRequest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/secrets/{request_id}/revoke`.replace(`{${"request_id"}}`, encodeURIComponent(String(requestParameters.requestId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSecretRequestFromJSON(jsonValue));
+    }
+
+    /**
+     * Every handle of the request that no write has used up stops working at once, and its value is deleted.  A handle a write is using right now is left to that write.  Use it when the plan changed, or a handle may have leaked. 
+     * Revoke a fulfilled request\'s unused handles
+     */
+    async revokeSfvbSecretRequest(requestParameters: RevokeSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
+        const response = await this.revokeSfvbSecretRequestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
