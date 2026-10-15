@@ -1022,6 +1022,8 @@ src/models/SfvbContainerWriteRequest.ts
 src/models/SfvbElement.ts
 src/models/SfvbElementSchemaResponse.ts
 src/models/SfvbElementsResponse.ts
+src/models/SfvbEmailRenderRequest.ts
+src/models/SfvbEmailRenderResponse.ts
 src/models/SfvbErrorDetail.ts
 src/models/SfvbEvent.ts
 src/models/SfvbEventsAuthRequest.ts
@@ -1203,6 +1205,8 @@ src/models/SfvbThemeFont.ts
 src/models/SfvbThemeFontFamily.ts
 src/models/SfvbThemeJobResponse.ts
 src/models/SfvbThemesResponse.ts
+src/models/SfvbTransactionalEmail.ts
+src/models/SfvbTransactionalEmailsResponse.ts
 src/models/SfvbUpsellItemLogic.ts
 src/models/SfvbUpsellItemLogicItem.ts
 src/models/SfvbUpsellOffer.ts

@@ -78,6 +78,12 @@ import {
     SfvbElementsResponse,
     SfvbElementsResponseFromJSON,
     SfvbElementsResponseToJSON,
+    SfvbEmailRenderRequest,
+    SfvbEmailRenderRequestFromJSON,
+    SfvbEmailRenderRequestToJSON,
+    SfvbEmailRenderResponse,
+    SfvbEmailRenderResponseFromJSON,
+    SfvbEmailRenderResponseToJSON,
     SfvbEventsAuthRequest,
     SfvbEventsAuthRequestFromJSON,
     SfvbEventsAuthRequestToJSON,
@@ -426,6 +432,9 @@ import {
     SfvbThemesResponse,
     SfvbThemesResponseFromJSON,
     SfvbThemesResponseToJSON,
+    SfvbTransactionalEmailsResponse,
+    SfvbTransactionalEmailsResponseFromJSON,
+    SfvbTransactionalEmailsResponseToJSON,
     SfvbUpsellOffer,
     SfvbUpsellOfferFromJSON,
     SfvbUpsellOfferToJSON,
@@ -942,6 +951,10 @@ export interface GetSfvbThemeJobRequest {
     jobId: number;
 }
 
+export interface GetSfvbTransactionalEmailsRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbUpsellOfferRequest {
     storefrontOid: number;
     upsellOfferOid: number;
@@ -1294,6 +1307,18 @@ export interface RemoveSfvbPageItemsRequest {
     storefrontOid: number;
     path: string;
     pageItemsRemoveRequest: SfvbPageItemsRemoveRequest;
+}
+
+export interface RenderSfvbEmailRequest {
+    storefrontOid: number;
+    emailUuid: string;
+    emailRenderRequest: SfvbEmailRenderRequest;
+}
+
+export interface RenderSfvbTransactionalEmailRequest {
+    storefrontOid: number;
+    fileName: string;
+    emailRenderRequest: SfvbEmailRenderRequest;
 }
 
 export interface RenderSfvbWidgetsRequest {
@@ -3084,6 +3109,22 @@ export interface SfvbApiInterface {
     getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
 
     /**
+     * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
+     * @summary List the transactional emails a storefront sends
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTransactionalEmailsRaw(requestParameters: GetSfvbTransactionalEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailsResponse>>;
+
+    /**
+     * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
+     * List the transactional emails a storefront sends
+     */
+    getSfvbTransactionalEmails(requestParameters: GetSfvbTransactionalEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailsResponse>;
+
+    /**
      * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
      * @summary Get an upsell offer
      * @param {number} storefrontOid 
@@ -4155,6 +4196,42 @@ export interface SfvbApiInterface {
      * Take items off a page
      */
     removeSfvbPageItems(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
+
+    /**
+     * Renders a flow or campaign email exactly as its send would, and returns the subject, preview text, HTML and text.  Nothing is sent, saved or created.  A unique coupon code, click id and magic link token are placeholders.  A missing footer token, which a send skips the email for, is a warning.  Give cjson to render an unsaved draft of the email container in place of the saved one.  An order must be a test order.  cart_item_ids fills the cart a cart flow email shows. 
+     * @summary Render a flow or campaign email without sending it
+     * @param {number} storefrontOid 
+     * @param {string} emailUuid 
+     * @param {SfvbEmailRenderRequest} emailRenderRequest What to render the email with
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    renderSfvbEmailRaw(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmailRenderResponse>>;
+
+    /**
+     * Renders a flow or campaign email exactly as its send would, and returns the subject, preview text, HTML and text.  Nothing is sent, saved or created.  A unique coupon code, click id and magic link token are placeholders.  A missing footer token, which a send skips the email for, is a warning.  Give cjson to render an unsaved draft of the email container in place of the saved one.  An order must be a test order.  cart_item_ids fills the cart a cart flow email shows. 
+     * Render a flow or campaign email without sending it
+     */
+    renderSfvbEmail(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse>;
+
+    /**
+     * Renders a transactional email, such as the order receipt, exactly as it is sent, and returns the subject, HTML and text.  Nothing is sent or saved.  file_name is the template file, such as receipt_html.vm, or the display name.  Give cjson to render an unsaved draft of the email\'s body container in place of the saved one.  The order must be a test order.  Without one the email renders with a made up order. 
+     * @summary Render a transactional email without sending it
+     * @param {number} storefrontOid 
+     * @param {string} fileName 
+     * @param {SfvbEmailRenderRequest} emailRenderRequest What to render the email with
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    renderSfvbTransactionalEmailRaw(requestParameters: RenderSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmailRenderResponse>>;
+
+    /**
+     * Renders a transactional email, such as the order receipt, exactly as it is sent, and returns the subject, HTML and text.  Nothing is sent or saved.  file_name is the template file, such as receipt_html.vm, or the display name.  Give cjson to render an unsaved draft of the email\'s body container in place of the saved one.  The order must be a test order.  Without one the email renders with a made up order. 
+     * Render a transactional email without sending it
+     */
+    renderSfvbTransactionalEmail(requestParameters: RenderSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse>;
 
     /**
      * Renders one node in the context of a theme and a page.  Unlike compile this is stateful.  Rendering resolves merchant data, so an element bound to an item renders wrongly, and silently, without a context item id.  One node per call, so a node that fails to render fails on its own rather than taking a batch with it, and a failure says why.  By default the node renders as a shopper sees it, with conditions, prices and sale state evaluated against the context item.  Set edit_mode to render every branch the way the builder shows it, for styling content a shopper only sometimes sees. 
@@ -9066,6 +9143,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
+     * List the transactional emails a storefront sends
+     */
+    async getSfvbTransactionalEmailsRaw(requestParameters: GetSfvbTransactionalEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTransactionalEmails.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/transactional_emails`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTransactionalEmailsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
+     * List the transactional emails a storefront sends
+     */
+    async getSfvbTransactionalEmails(requestParameters: GetSfvbTransactionalEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailsResponse> {
+        const response = await this.getSfvbTransactionalEmailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The whole offer, with the hash an update sends back in If-Match, which upsell items are out of stock now, and whether loyalty, TowerData and Everflow are set up.  Stats as on the path list. 
      * Get an upsell offer
      */
@@ -12154,6 +12272,110 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async removeSfvbPageItems(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse> {
         const response = await this.removeSfvbPageItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Renders a flow or campaign email exactly as its send would, and returns the subject, preview text, HTML and text.  Nothing is sent, saved or created.  A unique coupon code, click id and magic link token are placeholders.  A missing footer token, which a send skips the email for, is a warning.  Give cjson to render an unsaved draft of the email container in place of the saved one.  An order must be a test order.  cart_item_ids fills the cart a cart flow email shows. 
+     * Render a flow or campaign email without sending it
+     */
+    async renderSfvbEmailRaw(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmailRenderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling renderSfvbEmail.');
+        }
+
+        if (requestParameters.emailUuid === null || requestParameters.emailUuid === undefined) {
+            throw new runtime.RequiredError('emailUuid','Required parameter requestParameters.emailUuid was null or undefined when calling renderSfvbEmail.');
+        }
+
+        if (requestParameters.emailRenderRequest === null || requestParameters.emailRenderRequest === undefined) {
+            throw new runtime.RequiredError('emailRenderRequest','Required parameter requestParameters.emailRenderRequest was null or undefined when calling renderSfvbEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/emails/{email_uuid}/render`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_uuid"}}`, encodeURIComponent(String(requestParameters.emailUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbEmailRenderRequestToJSON(requestParameters.emailRenderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEmailRenderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Renders a flow or campaign email exactly as its send would, and returns the subject, preview text, HTML and text.  Nothing is sent, saved or created.  A unique coupon code, click id and magic link token are placeholders.  A missing footer token, which a send skips the email for, is a warning.  Give cjson to render an unsaved draft of the email container in place of the saved one.  An order must be a test order.  cart_item_ids fills the cart a cart flow email shows. 
+     * Render a flow or campaign email without sending it
+     */
+    async renderSfvbEmail(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse> {
+        const response = await this.renderSfvbEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Renders a transactional email, such as the order receipt, exactly as it is sent, and returns the subject, HTML and text.  Nothing is sent or saved.  file_name is the template file, such as receipt_html.vm, or the display name.  Give cjson to render an unsaved draft of the email\'s body container in place of the saved one.  The order must be a test order.  Without one the email renders with a made up order. 
+     * Render a transactional email without sending it
+     */
+    async renderSfvbTransactionalEmailRaw(requestParameters: RenderSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmailRenderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling renderSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
+            throw new runtime.RequiredError('fileName','Required parameter requestParameters.fileName was null or undefined when calling renderSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.emailRenderRequest === null || requestParameters.emailRenderRequest === undefined) {
+            throw new runtime.RequiredError('emailRenderRequest','Required parameter requestParameters.emailRenderRequest was null or undefined when calling renderSfvbTransactionalEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/transactional_emails/{file_name}/render`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbEmailRenderRequestToJSON(requestParameters.emailRenderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEmailRenderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Renders a transactional email, such as the order receipt, exactly as it is sent, and returns the subject, HTML and text.  Nothing is sent or saved.  file_name is the template file, such as receipt_html.vm, or the display name.  Give cjson to render an unsaved draft of the email\'s body container in place of the saved one.  The order must be a test order.  Without one the email renders with a made up order. 
+     * Render a transactional email without sending it
+     */
+    async renderSfvbTransactionalEmail(requestParameters: RenderSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse> {
+        const response = await this.renderSfvbTransactionalEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
