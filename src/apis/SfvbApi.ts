@@ -39,6 +39,12 @@ import {
     SfvbBlogPostsResponse,
     SfvbBlogPostsResponseFromJSON,
     SfvbBlogPostsResponseToJSON,
+    SfvbCampaign,
+    SfvbCampaignFromJSON,
+    SfvbCampaignToJSON,
+    SfvbCampaignsResponse,
+    SfvbCampaignsResponseFromJSON,
+    SfvbCampaignsResponseToJSON,
     SfvbCommsSendingDomain,
     SfvbCommsSendingDomainFromJSON,
     SfvbCommsSendingDomainToJSON,
@@ -141,6 +147,12 @@ import {
     SfvbFilesResponse,
     SfvbFilesResponseFromJSON,
     SfvbFilesResponseToJSON,
+    SfvbFlow,
+    SfvbFlowFromJSON,
+    SfvbFlowToJSON,
+    SfvbFlowsResponse,
+    SfvbFlowsResponseFromJSON,
+    SfvbFlowsResponseToJSON,
     SfvbI18nGlossary,
     SfvbI18nGlossaryFromJSON,
     SfvbI18nGlossaryToJSON,
@@ -710,6 +722,11 @@ export interface GetSfvbBlogPostRequest {
     blogPostOid: number;
 }
 
+export interface GetSfvbCampaignRequest {
+    storefrontOid: number;
+    campaignUuid: string;
+}
+
 export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
 }
@@ -766,6 +783,11 @@ export interface GetSfvbFileContentRequest {
 export interface GetSfvbFileUploadUrlRequest {
     storefrontOid: number;
     extension: string;
+}
+
+export interface GetSfvbFlowRequest {
+    storefrontOid: number;
+    flowUuid: string;
 }
 
 export interface GetSfvbI18nGlossaryRequest {
@@ -1038,6 +1060,14 @@ export interface ListSfvbBlogPostsRequest {
     pageSize?: number;
 }
 
+export interface ListSfvbCampaignsRequest {
+    storefrontOid: number;
+    search?: string;
+    page?: number;
+    pageSize?: number;
+    includeDeleted?: boolean;
+}
+
 export interface ListSfvbContainerVersionsRequest {
     storefrontOid: number;
     ownerType?: string;
@@ -1063,6 +1093,14 @@ export interface ListSfvbFilesRequest {
     storefrontFsDirectoryOid?: number;
     themeOid?: number;
     maxEntries?: number;
+}
+
+export interface ListSfvbFlowsRequest {
+    storefrontOid: number;
+    search?: string;
+    page?: number;
+    pageSize?: number;
+    includeDeleted?: boolean;
 }
 
 export interface ListSfvbI18nMessagesRequest {
@@ -2270,6 +2308,23 @@ export interface SfvbApiInterface {
     getSfvbBlogPost(requestParameters: GetSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * One campaign, the same object as its list entry, with its emails and postcards in step order.  A deleted campaign is returned with deleted true. 
+     * @summary Get a campaign
+     * @param {number} storefrontOid 
+     * @param {string} campaignUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCampaignRaw(requestParameters: GetSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>>;
+
+    /**
+     * One campaign, the same object as its list entry, with its emails and postcards in step order.  A deleted campaign is returned with deleted true. 
+     * Get a campaign
+     */
+    getSfvbCampaign(requestParameters: GetSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
      * 
      * @summary Element types used by a container
      * @param {SfvbCompileRequest} compileRequest CJSON to inspect
@@ -2487,6 +2542,23 @@ export interface SfvbApiInterface {
      * Get a URL to upload a binary asset to
      */
     getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse>;
+
+    /**
+     * One flow, the same object as its list entry, with its emails and postcards in step order.  A deleted flow is returned with deleted true. 
+     * @summary Get a flow
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbFlowRaw(requestParameters: GetSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * One flow, the same object as its list entry, with its emails and postcards in step order.  A deleted flow is returned with deleted true. 
+     * Get a flow
+     */
+    getSfvbFlow(requestParameters: GetSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
 
     /**
      * The storefront\'s glossary, plain markdown with terms not to translate, required translations, tone and words to avoid.  Read it before translating anything.  Empty when none has been saved.  Each storefront has its own, because a storefront is often its own brand. 
@@ -3418,6 +3490,26 @@ export interface SfvbApiInterface {
     listSfvbBlogPosts(requestParameters: ListSfvbBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostsResponse>;
 
     /**
+     * One page of campaigns, newest first, each with its emails and postcards in step order, without their container JSON.  search matches the campaign name.  Deleted campaigns are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or archived), so a change to one of its emails reaches customers at once. 
+     * @summary List the storefront\'s campaigns
+     * @param {number} storefrontOid 
+     * @param {string} [search] Text to search for in the name
+     * @param {number} [page] Page number, starting at 1
+     * @param {number} [pageSize] Campaigns per page, 1 to 100, default 50
+     * @param {boolean} [includeDeleted] Include deleted campaigns
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbCampaignsRaw(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaignsResponse>>;
+
+    /**
+     * One page of campaigns, newest first, each with its emails and postcards in step order, without their container JSON.  search matches the campaign name.  Deleted campaigns are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or archived), so a change to one of its emails reaches customers at once. 
+     * List the storefront\'s campaigns
+     */
+    listSfvbCampaigns(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaignsResponse>;
+
+    /**
      * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * @summary Version history for a container stored outside the file system
      * @param {number} storefrontOid 
@@ -3506,6 +3598,26 @@ export interface SfvbApiInterface {
      * List a storefront directory
      */
     listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse>;
+
+    /**
+     * One page of flows, newest first, each with its trigger and its emails and postcards in step order, without their container JSON.  search matches the flow name.  Deleted flows are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or inactive); a paused flow still holds enrolled customers, so it counts as live. 
+     * @summary List the storefront\'s flows
+     * @param {number} storefrontOid 
+     * @param {string} [search] Text to search for in the name
+     * @param {number} [page] Page number, starting at 1
+     * @param {number} [pageSize] Flows per page, 1 to 100, default 50
+     * @param {boolean} [includeDeleted] Include deleted flows
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbFlowsRaw(requestParameters: ListSfvbFlowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlowsResponse>>;
+
+    /**
+     * One page of flows, newest first, each with its trigger and its emails and postcards in step order, without their container JSON.  search matches the flow name.  Deleted flows are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or inactive); a paused flow still holds enrolled customers, so it counts as live. 
+     * List the storefront\'s flows
+     */
+    listSfvbFlows(requestParameters: ListSfvbFlowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlowsResponse>;
 
     /**
      * The system text templates render by key, such as checkout labels, for one theme (the active theme unless theme_oid is given).  Each message has its English, whether it was edited, and each enabled language\'s text with its source (hand, machine, pending or none).  A message appears the first time a page renders it.  q matches the key or the English.  overridden keeps messages with an edited English or a hand translation.  Paged by offset and limit (default 200, at most 500). 
@@ -6892,6 +7004,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * One campaign, the same object as its list entry, with its emails and postcards in step order.  A deleted campaign is returned with deleted true. 
+     * Get a campaign
+     */
+    async getSfvbCampaignRaw(requestParameters: GetSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignUuid === null || requestParameters.campaignUuid === undefined) {
+            throw new runtime.RequiredError('campaignUuid','Required parameter requestParameters.campaignUuid was null or undefined when calling getSfvbCampaign.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns/{campaign_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"campaign_uuid"}}`, encodeURIComponent(String(requestParameters.campaignUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * One campaign, the same object as its list entry, with its emails and postcards in step order.  A deleted campaign is returned with deleted true. 
+     * Get a campaign
+     */
+    async getSfvbCampaign(requestParameters: GetSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
+        const response = await this.getSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Element types used by a container
      */
     async getSfvbCjsonUsedElementsRaw(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbElementsResponse>> {
@@ -7469,6 +7626,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse> {
         const response = await this.getSfvbFileUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One flow, the same object as its list entry, with its emails and postcards in step order.  A deleted flow is returned with deleted true. 
+     * Get a flow
+     */
+    async getSfvbFlowRaw(requestParameters: GetSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbFlow.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling getSfvbFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows/{flow_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * One flow, the same object as its list entry, with its emails and postcards in step order.  A deleted flow is returned with deleted true. 
+     * Get a flow
+     */
+    async getSfvbFlow(requestParameters: GetSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.getSfvbFlowRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -9994,6 +10196,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * One page of campaigns, newest first, each with its emails and postcards in step order, without their container JSON.  search matches the campaign name.  Deleted campaigns are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or archived), so a change to one of its emails reaches customers at once. 
+     * List the storefront\'s campaigns
+     */
+    async listSfvbCampaignsRaw(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaignsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbCampaigns.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.includeDeleted !== undefined) {
+            queryParameters['include_deleted'] = requestParameters.includeDeleted;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One page of campaigns, newest first, each with its emails and postcards in step order, without their container JSON.  search matches the campaign name.  Deleted campaigns are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or archived), so a change to one of its emails reaches customers at once. 
+     * List the storefront\'s campaigns
+     */
+    async listSfvbCampaigns(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaignsResponse> {
+        const response = await this.listSfvbCampaignsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * Version history for a container stored outside the file system
      */
@@ -10235,6 +10494,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse> {
         const response = await this.listSfvbFilesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One page of flows, newest first, each with its trigger and its emails and postcards in step order, without their container JSON.  search matches the flow name.  Deleted flows are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or inactive); a paused flow still holds enrolled customers, so it counts as live. 
+     * List the storefront\'s flows
+     */
+    async listSfvbFlowsRaw(requestParameters: ListSfvbFlowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlowsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbFlows.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.includeDeleted !== undefined) {
+            queryParameters['include_deleted'] = requestParameters.includeDeleted;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One page of flows, newest first, each with its trigger and its emails and postcards in step order, without their container JSON.  search matches the flow name.  Deleted flows are left out unless include_deleted is true.  live is true unless the status sends nothing (draft or inactive); a paused flow still holds enrolled customers, so it counts as live. 
+     * List the storefront\'s flows
+     */
+    async listSfvbFlows(requestParameters: ListSfvbFlowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlowsResponse> {
+        const response = await this.listSfvbFlowsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
