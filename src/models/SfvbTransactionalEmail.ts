@@ -20,11 +20,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbTransactionalEmail {
     /**
-     * The body container a draft replaces, such as receipt_body.cjson.
+     * The body container a draft replaces, such as receipt_body.cjson.  Present only when the theme has the file.
      * @type {string}
      * @memberof SfvbTransactionalEmail
      */
     body_file_name?: string;
+    /**
+     * The full theme file path of the body container, such as /themes/Elements/core/emails/receipt_body.cjson.  Read it with the files endpoint.  Present only when the theme has the file.
+     * @type {string}
+     * @memberof SfvbTransactionalEmail
+     */
+    body_path?: string;
     /**
      * The HTML template file, such as receipt_html.vm.
      * @type {string}
@@ -67,6 +73,7 @@ export function SfvbTransactionalEmailFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'body_file_name': !exists(json, 'body_file_name') ? undefined : json['body_file_name'],
+        'body_path': !exists(json, 'body_path') ? undefined : json['body_path'],
         'file_name': !exists(json, 'file_name') ? undefined : json['file_name'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'text_file_name': !exists(json, 'text_file_name') ? undefined : json['text_file_name'],
@@ -83,6 +90,7 @@ export function SfvbTransactionalEmailToJSON(value?: SfvbTransactionalEmail | nu
     return {
         
         'body_file_name': value.body_file_name,
+        'body_path': value.body_path,
         'file_name': value.file_name,
         'name': value.name,
         'text_file_name': value.text_file_name,
