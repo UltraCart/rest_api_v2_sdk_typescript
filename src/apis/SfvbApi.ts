@@ -84,12 +84,18 @@ import {
     SfvbElementsResponse,
     SfvbElementsResponseFromJSON,
     SfvbElementsResponseToJSON,
+    SfvbEmail,
+    SfvbEmailFromJSON,
+    SfvbEmailToJSON,
     SfvbEmailRenderRequest,
     SfvbEmailRenderRequestFromJSON,
     SfvbEmailRenderRequestToJSON,
     SfvbEmailRenderResponse,
     SfvbEmailRenderResponseFromJSON,
     SfvbEmailRenderResponseToJSON,
+    SfvbEmailUpdateRequest,
+    SfvbEmailUpdateRequestFromJSON,
+    SfvbEmailUpdateRequestToJSON,
     SfvbEventsAuthRequest,
     SfvbEventsAuthRequestFromJSON,
     SfvbEventsAuthRequestToJSON,
@@ -752,6 +758,11 @@ export interface GetSfvbContainerVersionRequest {
 
 export interface GetSfvbElementRequest {
     elementType: string;
+}
+
+export interface GetSfvbEmailRequest {
+    storefrontOid: number;
+    emailUuid: string;
 }
 
 export interface GetSfvbEventsRequest {
@@ -1480,6 +1491,13 @@ export interface UpdateSfvbCommsSendingDomainRequest {
 
 export interface UpdateSfvbCommsTwilioAccountRequest {
     twilioAccount: SfvbCommsTwilioAccount;
+}
+
+export interface UpdateSfvbEmailRequest {
+    storefrontOid: number;
+    emailUuid: string;
+    ifMatch: string;
+    emailUpdateRequest: SfvbEmailUpdateRequest;
 }
 
 export interface UpdateSfvbItemAttributeBatchRequest {
@@ -2439,6 +2457,23 @@ export interface SfvbApiInterface {
      * Configuration schema and field card for one element type
      */
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
+
+    /**
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * @summary Get a flow or campaign email\'s subject and preview text
+     * @param {number} storefrontOid 
+     * @param {string} emailUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbEmailRaw(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>>;
+
+    /**
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * Get a flow or campaign email\'s subject and preview text
+     */
+    getSfvbEmail(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
 
     /**
      * The signed-in person\'s events after the cursor, oldest first.  Events are kept 72 hours; an older cursor returns resync_required, and then the caller re-lists what it was waiting on.  Events about one sign-in\'s requests, such as approvals, are only returned to that sign-in.  limit is 1 to 500, default 100. 
@@ -4719,6 +4754,25 @@ export interface SfvbApiInterface {
      * Update the Twilio account
      */
     updateSfvbCommsTwilioAccount(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
+
+    /**
+     * A field left out keeps its value.  Each is 5 to 150 characters on one line.  Send the hash_sha256 you read as If-Match.  An email in a sending flow or campaign needs sfvb_publish, as a body push does.  The merchant\'s content review rule applies, so an email waiting for review or rejected goes back to needing review.  An email suspended for spam is refused with sfvb.email_suspended. 
+     * @summary Change a flow or campaign email\'s subject or preview text
+     * @param {number} storefrontOid 
+     * @param {string} emailUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbEmailUpdateRequest} emailUpdateRequest The subject or preview text to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbEmailRaw(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>>;
+
+    /**
+     * A field left out keeps its value.  Each is 5 to 150 characters on one line.  Send the hash_sha256 you read as If-Match.  An email in a sending flow or campaign needs sfvb_publish, as a body push does.  The merchant\'s content review rule applies, so an email waiting for review or rejected goes back to needing review.  An email suspended for spam is refused with sfvb.email_suspended. 
+     * Change a flow or campaign email\'s subject or preview text
+     */
+    updateSfvbEmail(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
 
     /**
      * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
@@ -7353,6 +7407,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse> {
         const response = await this.getSfvbElementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * Get a flow or campaign email\'s subject and preview text
+     */
+    async getSfvbEmailRaw(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbEmail.');
+        }
+
+        if (requestParameters.emailUuid === null || requestParameters.emailUuid === undefined) {
+            throw new runtime.RequiredError('emailUuid','Required parameter requestParameters.emailUuid was null or undefined when calling getSfvbEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/emails/{email_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_uuid"}}`, encodeURIComponent(String(requestParameters.emailUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEmailFromJSON(jsonValue));
+    }
+
+    /**
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * Get a flow or campaign email\'s subject and preview text
+     */
+    async getSfvbEmail(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail> {
+        const response = await this.getSfvbEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -13761,6 +13860,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbCommsTwilioAccount(requestParameters: UpdateSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
         const response = await this.updateSfvbCommsTwilioAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out keeps its value.  Each is 5 to 150 characters on one line.  Send the hash_sha256 you read as If-Match.  An email in a sending flow or campaign needs sfvb_publish, as a body push does.  The merchant\'s content review rule applies, so an email waiting for review or rejected goes back to needing review.  An email suspended for spam is refused with sfvb.email_suspended. 
+     * Change a flow or campaign email\'s subject or preview text
+     */
+    async updateSfvbEmailRaw(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbEmail.');
+        }
+
+        if (requestParameters.emailUuid === null || requestParameters.emailUuid === undefined) {
+            throw new runtime.RequiredError('emailUuid','Required parameter requestParameters.emailUuid was null or undefined when calling updateSfvbEmail.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbEmail.');
+        }
+
+        if (requestParameters.emailUpdateRequest === null || requestParameters.emailUpdateRequest === undefined) {
+            throw new runtime.RequiredError('emailUpdateRequest','Required parameter requestParameters.emailUpdateRequest was null or undefined when calling updateSfvbEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/emails/{email_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_uuid"}}`, encodeURIComponent(String(requestParameters.emailUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbEmailUpdateRequestToJSON(requestParameters.emailUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEmailFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out keeps its value.  Each is 5 to 150 characters on one line.  Send the hash_sha256 you read as If-Match.  An email in a sending flow or campaign needs sfvb_publish, as a body push does.  The merchant\'s content review rule applies, so an email waiting for review or rejected goes back to needing review.  An email suspended for spam is refused with sfvb.email_suspended. 
+     * Change a flow or campaign email\'s subject or preview text
+     */
+    async updateSfvbEmail(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail> {
+        const response = await this.updateSfvbEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

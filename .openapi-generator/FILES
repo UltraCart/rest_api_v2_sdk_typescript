@@ -1026,8 +1026,10 @@ src/models/SfvbContainerWriteRequest.ts
 src/models/SfvbElement.ts
 src/models/SfvbElementSchemaResponse.ts
 src/models/SfvbElementsResponse.ts
+src/models/SfvbEmail.ts
 src/models/SfvbEmailRenderRequest.ts
 src/models/SfvbEmailRenderResponse.ts
+src/models/SfvbEmailUpdateRequest.ts
 src/models/SfvbErrorDetail.ts
 src/models/SfvbEvent.ts
 src/models/SfvbEventsAuthRequest.ts
