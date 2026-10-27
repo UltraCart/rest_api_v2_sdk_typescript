@@ -429,6 +429,9 @@ import {
     SfvbSecretRequestsResponse,
     SfvbSecretRequestsResponseFromJSON,
     SfvbSecretRequestsResponseToJSON,
+    SfvbSequence,
+    SfvbSequenceFromJSON,
+    SfvbSequenceToJSON,
     SfvbServerLogDetail,
     SfvbServerLogDetailFromJSON,
     SfvbServerLogDetailToJSON,
@@ -1005,6 +1008,12 @@ export interface GetSfvbRedirectsRequest {
 
 export interface GetSfvbSecretRequestRequest {
     requestId: string;
+}
+
+export interface GetSfvbSequenceRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    waiting?: boolean;
 }
 
 export interface GetSfvbServerLogRequest {
@@ -3307,6 +3316,24 @@ export interface SfvbApiInterface {
      * List this sign-in\'s secret requests
      */
     getSfvbSecretRequests(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequestsResponse>;
+
+    /**
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * @summary Get a campaign\'s or flow\'s steps as a tree
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {boolean} [waiting] Include how many customers are waiting on each step
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSequenceRaw(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequence>>;
+
+    /**
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * Get a campaign\'s or flow\'s steps as a tree
+     */
+    getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence>;
 
     /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
@@ -9773,6 +9800,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbSecretRequests(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequestsResponse> {
         const response = await this.getSfvbSecretRequestsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * Get a campaign\'s or flow\'s steps as a tree
+     */
+    async getSfvbSequenceRaw(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequence>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSequence.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling getSfvbSequence.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.waiting !== undefined) {
+            queryParameters['waiting'] = requestParameters.waiting;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSequenceFromJSON(jsonValue));
+    }
+
+    /**
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * Get a campaign\'s or flow\'s steps as a tree
+     */
+    async getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence> {
+        const response = await this.getSfvbSequenceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

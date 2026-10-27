@@ -1196,6 +1196,9 @@ src/models/SfvbSecretRequest.ts
 src/models/SfvbSecretRequestCreate.ts
 src/models/SfvbSecretRequestsResponse.ts
 src/models/SfvbSecretSink.ts
+src/models/SfvbSequence.ts
+src/models/SfvbSequenceBranch.ts
+src/models/SfvbSequenceStep.ts
 src/models/SfvbServerLog.ts
 src/models/SfvbServerLogDetail.ts
 src/models/SfvbServerLogEntry.ts
