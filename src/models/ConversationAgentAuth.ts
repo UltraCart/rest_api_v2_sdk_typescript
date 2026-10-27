@@ -111,6 +111,12 @@ export interface ConversationAgentAuth {
      */
     pbx_jwt?: string;
     /**
+     * Status the agent starts in when the CRM loads
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_startup_activity?: ConversationAgentAuthPbxStartupActivityEnum;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationAgentAuth
@@ -169,6 +175,16 @@ export interface ConversationAgentAuth {
 
 
 /**
+ * @export
+ */
+export const ConversationAgentAuthPbxStartupActivityEnum = {
+    Available: 'available',
+    Unavailable: 'unavailable'
+} as const;
+export type ConversationAgentAuthPbxStartupActivityEnum = typeof ConversationAgentAuthPbxStartupActivityEnum[keyof typeof ConversationAgentAuthPbxStartupActivityEnum];
+
+
+/**
  * Check if a given object implements the ConversationAgentAuth interface.
  */
 export function instanceOfConversationAgentAuth(value: object): boolean {
@@ -200,6 +216,7 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'parent_merchant_id': !exists(json, 'parent_merchant_id') ? undefined : json['parent_merchant_id'],
         'pbx_admin': !exists(json, 'pbx_admin') ? undefined : json['pbx_admin'],
         'pbx_jwt': !exists(json, 'pbx_jwt') ? undefined : json['pbx_jwt'],
+        'pbx_startup_activity': !exists(json, 'pbx_startup_activity') ? undefined : json['pbx_startup_activity'],
         'pbx_supervisor': !exists(json, 'pbx_supervisor') ? undefined : json['pbx_supervisor'],
         'pbx_user': !exists(json, 'pbx_user') ? undefined : json['pbx_user'],
         'pbx_voice_identity': !exists(json, 'pbx_voice_identity') ? undefined : json['pbx_voice_identity'],
@@ -234,6 +251,7 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'parent_merchant_id': value.parent_merchant_id,
         'pbx_admin': value.pbx_admin,
         'pbx_jwt': value.pbx_jwt,
+        'pbx_startup_activity': value.pbx_startup_activity,
         'pbx_supervisor': value.pbx_supervisor,
         'pbx_user': value.pbx_user,
         'pbx_voice_identity': value.pbx_voice_identity,

@@ -110,6 +110,12 @@ export interface ConversationPbxAgent {
      */
     shared_conversation_pbx_voicemail_mailbox_uuid?: string;
     /**
+     * Status the agent starts in when the CRM loads. Missing means available.
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    startup_activity?: ConversationPbxAgentStartupActivityEnum;
+    /**
      * Twilio taskrouter worker Id
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -174,6 +180,15 @@ export type ConversationPbxAgentCallRoutingPreferenceEnum = typeof ConversationP
 /**
  * @export
  */
+export const ConversationPbxAgentStartupActivityEnum = {
+    Available: 'available',
+    Unavailable: 'unavailable'
+} as const;
+export type ConversationPbxAgentStartupActivityEnum = typeof ConversationPbxAgentStartupActivityEnum[keyof typeof ConversationPbxAgentStartupActivityEnum];
+
+/**
+ * @export
+ */
 export const ConversationPbxAgentUnavailableSayVoiceEnum = {
     Man: 'man',
     Woman: 'woman'
@@ -215,6 +230,7 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
         'preferred_hardware_phone_uuid': !exists(json, 'preferred_hardware_phone_uuid') ? undefined : json['preferred_hardware_phone_uuid'],
         'record_outgoing_automatically': !exists(json, 'record_outgoing_automatically') ? undefined : json['record_outgoing_automatically'],
         'shared_conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'shared_conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['shared_conversation_pbx_voicemail_mailbox_uuid'],
+        'startup_activity': !exists(json, 'startup_activity') ? undefined : json['startup_activity'],
         'twilio_taskrouter_worker_id': !exists(json, 'twilio_taskrouter_worker_id') ? undefined : json['twilio_taskrouter_worker_id'],
         'unavailable_play_audio_uuid': !exists(json, 'unavailable_play_audio_uuid') ? undefined : json['unavailable_play_audio_uuid'],
         'unavailable_say': !exists(json, 'unavailable_say') ? undefined : json['unavailable_say'],
@@ -250,6 +266,7 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
         'preferred_hardware_phone_uuid': value.preferred_hardware_phone_uuid,
         'record_outgoing_automatically': value.record_outgoing_automatically,
         'shared_conversation_pbx_voicemail_mailbox_uuid': value.shared_conversation_pbx_voicemail_mailbox_uuid,
+        'startup_activity': value.startup_activity,
         'twilio_taskrouter_worker_id': value.twilio_taskrouter_worker_id,
         'unavailable_play_audio_uuid': value.unavailable_play_audio_uuid,
         'unavailable_say': value.unavailable_say,
