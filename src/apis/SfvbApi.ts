@@ -105,6 +105,9 @@ import {
     SfvbEmailRenderResponse,
     SfvbEmailRenderResponseFromJSON,
     SfvbEmailRenderResponseToJSON,
+    SfvbEmailReviewRequest,
+    SfvbEmailReviewRequestFromJSON,
+    SfvbEmailReviewRequestToJSON,
     SfvbEmailUpdateRequest,
     SfvbEmailUpdateRequestFromJSON,
     SfvbEmailUpdateRequestToJSON,
@@ -1473,6 +1476,12 @@ export interface RevertSfvbFileRequest {
     ifMatch: string;
     fileRevertRequest: SfvbFileRevertRequest;
     approvalId?: string;
+}
+
+export interface ReviewSfvbEmailRequest {
+    storefrontOid: number;
+    emailUuid: string;
+    emailReviewRequest: SfvbEmailReviewRequest;
 }
 
 export interface RevokeSfvbSecretRequestRequest {
@@ -4727,6 +4736,24 @@ export interface SfvbApiInterface {
      * Revert a storefront file to an earlier version
      */
     revertSfvbFile(requestParameters: RevertSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
+     * Starts a review the way the admin\'s Request Review does.  One test copy of the email goes to the signed-in user, and to no one else, and the review runs in the background, so read the email again for pending_review and then the ruling.  Refused with sfvb.review_not_needed when it doesn\'t need review, is already waiting for one, or was rejected and not changed since.  An email in a flow triggered by an order or an auto order needs order_id, a test order.  Needs a signed-in user, not an API key alone. 
+     * @summary Request a content review of a flow or campaign email
+     * @param {number} storefrontOid 
+     * @param {string} emailUuid 
+     * @param {SfvbEmailReviewRequest} emailReviewRequest The test order, for an email in an order-triggered flow
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    reviewSfvbEmailRaw(requestParameters: ReviewSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>>;
+
+    /**
+     * Starts a review the way the admin\'s Request Review does.  One test copy of the email goes to the signed-in user, and to no one else, and the review runs in the background, so read the email again for pending_review and then the ruling.  Refused with sfvb.review_not_needed when it doesn\'t need review, is already waiting for one, or was rejected and not changed since.  An email in a flow triggered by an order or an auto order needs order_id, a test order.  Needs a signed-in user, not an API key alone. 
+     * Request a content review of a flow or campaign email
+     */
+    reviewSfvbEmail(requestParameters: ReviewSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
 
     /**
      * Every handle of the request that no write has used up stops working at once, and its value is deleted.  A handle a write is using right now is left to that write.  Use it when the plan changed, or a handle may have leaked. 
@@ -13835,6 +13862,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async revertSfvbFile(requestParameters: RevertSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.revertSfvbFileRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Starts a review the way the admin\'s Request Review does.  One test copy of the email goes to the signed-in user, and to no one else, and the review runs in the background, so read the email again for pending_review and then the ruling.  Refused with sfvb.review_not_needed when it doesn\'t need review, is already waiting for one, or was rejected and not changed since.  An email in a flow triggered by an order or an auto order needs order_id, a test order.  Needs a signed-in user, not an API key alone. 
+     * Request a content review of a flow or campaign email
+     */
+    async reviewSfvbEmailRaw(requestParameters: ReviewSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling reviewSfvbEmail.');
+        }
+
+        if (requestParameters.emailUuid === null || requestParameters.emailUuid === undefined) {
+            throw new runtime.RequiredError('emailUuid','Required parameter requestParameters.emailUuid was null or undefined when calling reviewSfvbEmail.');
+        }
+
+        if (requestParameters.emailReviewRequest === null || requestParameters.emailReviewRequest === undefined) {
+            throw new runtime.RequiredError('emailReviewRequest','Required parameter requestParameters.emailReviewRequest was null or undefined when calling reviewSfvbEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/emails/{email_uuid}/review`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_uuid"}}`, encodeURIComponent(String(requestParameters.emailUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbEmailReviewRequestToJSON(requestParameters.emailReviewRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbEmailFromJSON(jsonValue));
+    }
+
+    /**
+     * Starts a review the way the admin\'s Request Review does.  One test copy of the email goes to the signed-in user, and to no one else, and the review runs in the background, so read the email again for pending_review and then the ruling.  Refused with sfvb.review_not_needed when it doesn\'t need review, is already waiting for one, or was rejected and not changed since.  An email in a flow triggered by an order or an auto order needs order_id, a test order.  Needs a signed-in user, not an API key alone. 
+     * Request a content review of a flow or campaign email
+     */
+    async reviewSfvbEmail(requestParameters: ReviewSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail> {
+        const response = await this.reviewSfvbEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

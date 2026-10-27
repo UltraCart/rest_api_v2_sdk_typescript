@@ -1008,6 +1008,7 @@ export * from './SfvbElementsResponse';
 export * from './SfvbEmail';
 export * from './SfvbEmailRenderRequest';
 export * from './SfvbEmailRenderResponse';
+export * from './SfvbEmailReviewRequest';
 export * from './SfvbEmailUpdateRequest';
 export * from './SfvbErrorDetail';
 export * from './SfvbEvent';

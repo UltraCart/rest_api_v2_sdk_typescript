@@ -44,6 +44,12 @@ export interface SfvbEmail {
      */
     live?: boolean;
     /**
+     * What a write did beyond the fields asked for, such as a step label it could not refresh.  Only on a write.
+     * @type {Array<string>}
+     * @memberof SfvbEmail
+     */
+    notes?: Array<string>;
+    /**
      * True while a change waits for review.  An edit puts it back to needing review.
      * @type {boolean}
      * @memberof SfvbEmail
@@ -118,6 +124,7 @@ export function SfvbEmailFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'email_uuid': !exists(json, 'email_uuid') ? undefined : json['email_uuid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
+        'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'pending_review': !exists(json, 'pending_review') ? undefined : json['pending_review'],
         'preview_text': !exists(json, 'preview_text') ? undefined : json['preview_text'],
         'rejected': !exists(json, 'rejected') ? undefined : json['rejected'],
@@ -142,6 +149,7 @@ export function SfvbEmailToJSON(value?: SfvbEmail | null): any {
         'email_uuid': value.email_uuid,
         'hash_sha256': value.hash_sha256,
         'live': value.live,
+        'notes': value.notes,
         'pending_review': value.pending_review,
         'preview_text': value.preview_text,
         'rejected': value.rejected,

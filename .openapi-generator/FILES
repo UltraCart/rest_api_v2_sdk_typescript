@@ -1036,6 +1036,7 @@ src/models/SfvbElementsResponse.ts
 src/models/SfvbEmail.ts
 src/models/SfvbEmailRenderRequest.ts
 src/models/SfvbEmailRenderResponse.ts
+src/models/SfvbEmailReviewRequest.ts
 src/models/SfvbEmailUpdateRequest.ts
 src/models/SfvbErrorDetail.ts
 src/models/SfvbEvent.ts
