@@ -27,6 +27,9 @@ import {
     SfvbApprovalsResponse,
     SfvbApprovalsResponseFromJSON,
     SfvbApprovalsResponseToJSON,
+    SfvbArchiveRequest,
+    SfvbArchiveRequestFromJSON,
+    SfvbArchiveRequestToJSON,
     SfvbBlogPostDetail,
     SfvbBlogPostDetailFromJSON,
     SfvbBlogPostDetailToJSON,
@@ -42,9 +45,18 @@ import {
     SfvbCampaign,
     SfvbCampaignFromJSON,
     SfvbCampaignToJSON,
+    SfvbCampaignWriteRequest,
+    SfvbCampaignWriteRequestFromJSON,
+    SfvbCampaignWriteRequestToJSON,
     SfvbCampaignsResponse,
     SfvbCampaignsResponseFromJSON,
     SfvbCampaignsResponseToJSON,
+    SfvbCommsListsResponse,
+    SfvbCommsListsResponseFromJSON,
+    SfvbCommsListsResponseToJSON,
+    SfvbCommsSegmentsResponse,
+    SfvbCommsSegmentsResponseFromJSON,
+    SfvbCommsSegmentsResponseToJSON,
     SfvbCommsSendingDomain,
     SfvbCommsSendingDomainFromJSON,
     SfvbCommsSendingDomainToJSON,
@@ -156,6 +168,12 @@ import {
     SfvbFlow,
     SfvbFlowFromJSON,
     SfvbFlowToJSON,
+    SfvbFlowStatusRequest,
+    SfvbFlowStatusRequestFromJSON,
+    SfvbFlowStatusRequestToJSON,
+    SfvbFlowWriteRequest,
+    SfvbFlowWriteRequestFromJSON,
+    SfvbFlowWriteRequestToJSON,
     SfvbFlowsResponse,
     SfvbFlowsResponseFromJSON,
     SfvbFlowsResponseToJSON,
@@ -503,6 +521,20 @@ export interface AddSfvbPageItemsRequest {
     pageItemsAddRequest: SfvbPageItemsAddRequest;
 }
 
+export interface ArchiveSfvbCampaignRequest {
+    storefrontOid: number;
+    campaignUuid: string;
+    ifMatch: string;
+    archiveRequest: SfvbArchiveRequest;
+}
+
+export interface ArchiveSfvbFlowRequest {
+    storefrontOid: number;
+    flowUuid: string;
+    ifMatch: string;
+    archiveRequest: SfvbArchiveRequest;
+}
+
 export interface ArchiveSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPathOid: number;
@@ -525,8 +557,28 @@ export interface ClearSfvbLibraryScreenshotRequest {
     ifMatch: string;
 }
 
+export interface CloneSfvbCampaignRequest {
+    storefrontOid: number;
+    campaignUuid: string;
+}
+
+export interface CloneSfvbFlowRequest {
+    storefrontOid: number;
+    flowUuid: string;
+}
+
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
+}
+
+export interface CreateSfvbCampaignRequest {
+    storefrontOid: number;
+    campaignWriteRequest: SfvbCampaignWriteRequest;
+}
+
+export interface CreateSfvbFlowRequest {
+    storefrontOid: number;
+    flowWriteRequest: SfvbFlowWriteRequest;
 }
 
 export interface CreateSfvbLibraryEntryRequest {
@@ -1079,6 +1131,14 @@ export interface ListSfvbCampaignsRequest {
     includeDeleted?: boolean;
 }
 
+export interface ListSfvbCommsListsRequest {
+    storefrontOid: number;
+}
+
+export interface ListSfvbCommsSegmentsRequest {
+    storefrontOid: number;
+}
+
 export interface ListSfvbContainerVersionsRequest {
     storefrontOid: number;
     ownerType?: string;
@@ -1484,6 +1544,13 @@ export interface UpdateSfvbBlogPostRequest {
     blogPostRequest: SfvbBlogPostRequest;
 }
 
+export interface UpdateSfvbCampaignRequest {
+    storefrontOid: number;
+    campaignUuid: string;
+    ifMatch: string;
+    campaignWriteRequest: SfvbCampaignWriteRequest;
+}
+
 export interface UpdateSfvbCommsSendingDomainRequest {
     domain: string;
     sendingDomain: SfvbCommsSendingDomain;
@@ -1498,6 +1565,20 @@ export interface UpdateSfvbEmailRequest {
     emailUuid: string;
     ifMatch: string;
     emailUpdateRequest: SfvbEmailUpdateRequest;
+}
+
+export interface UpdateSfvbFlowRequest {
+    storefrontOid: number;
+    flowUuid: string;
+    ifMatch: string;
+    flowWriteRequest: SfvbFlowWriteRequest;
+}
+
+export interface UpdateSfvbFlowStatusRequest {
+    storefrontOid: number;
+    flowUuid: string;
+    ifMatch: string;
+    flowStatusRequest: SfvbFlowStatusRequest;
 }
 
 export interface UpdateSfvbItemAttributeBatchRequest {
@@ -1594,6 +1675,44 @@ export interface SfvbApiInterface {
     addSfvbPageItems(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
 
     /**
+     * Archiving alone never stops a send, so archiving a scheduled campaign also sets it back to draft, and notes says so.  A campaign whose send is under way is refused with sfvb.campaign_sending.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish. 
+     * @summary Archive or unarchive a campaign
+     * @param {number} storefrontOid 
+     * @param {string} campaignUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbArchiveRequest} archiveRequest Whether to archive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    archiveSfvbCampaignRaw(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>>;
+
+    /**
+     * Archiving alone never stops a send, so archiving a scheduled campaign also sets it back to draft, and notes says so.  A campaign whose send is under way is refused with sfvb.campaign_sending.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish. 
+     * Archive or unarchive a campaign
+     */
+    archiveSfvbCampaign(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
+     * A flow that is still enrolling customers is refused, because archiving would only hide it.  Set its status to inactive first.  Send the hash_sha256 you read as If-Match. 
+     * @summary Archive or unarchive a flow
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbArchiveRequest} archiveRequest Whether to archive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    archiveSfvbFlowRaw(requestParameters: ArchiveSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * A flow that is still enrolling customers is refused, because archiving would only hide it.  Set its status to inactive first.  Send the hash_sha256 you read as If-Match. 
+     * Archive or unarchive a flow
+     */
+    archiveSfvbFlow(requestParameters: ArchiveSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
+
+    /**
      * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
      * @summary Archive an upsell path
      * @param {number} storefrontOid 
@@ -1664,6 +1783,40 @@ export interface SfvbApiInterface {
     clearSfvbLibraryScreenshot(requestParameters: ClearSfvbLibraryScreenshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived and never scheduled.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * @summary Copy a campaign on the same storefront
+     * @param {number} storefrontOid 
+     * @param {string} campaignUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    cloneSfvbCampaignRaw(requestParameters: CloneSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>>;
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived and never scheduled.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a campaign on the same storefront
+     */
+    cloneSfvbCampaign(requestParameters: CloneSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived.  It enrolls nobody until it is turned on.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * @summary Copy a flow on the same storefront
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    cloneSfvbFlowRaw(requestParameters: CloneSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived.  It enrolls nobody until it is turned on.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a flow on the same storefront
+     */
+    cloneSfvbFlow(requestParameters: CloneSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * @summary Compile CJSON to Velocity
      * @param {SfvbCompileRequest} compileRequest CJSON to compile
@@ -1678,6 +1831,40 @@ export interface SfvbApiInterface {
      * Compile CJSON to Velocity
      */
     compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse>;
+
+    /**
+     * A new draft campaign with an empty communication sequence.  name is required.  The sender defaults to the storefront\'s marketing sending settings.  Nothing here starts a campaign. 
+     * @summary Create a draft campaign
+     * @param {number} storefrontOid 
+     * @param {SfvbCampaignWriteRequest} campaignWriteRequest The campaign to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    createSfvbCampaignRaw(requestParameters: CreateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>>;
+
+    /**
+     * A new draft campaign with an empty communication sequence.  name is required.  The sender defaults to the storefront\'s marketing sending settings.  Nothing here starts a campaign. 
+     * Create a draft campaign
+     */
+    createSfvbCampaign(requestParameters: CreateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
+     * A new draft flow with an empty communication sequence.  name and trigger_type are required.  A list or segment trigger needs trigger_parameter, the uuid of a list or segment on this storefront.  The sender defaults to the storefront\'s marketing sending settings.  A draft flow enrolls nobody until it is turned on. 
+     * @summary Create a draft flow
+     * @param {number} storefrontOid 
+     * @param {SfvbFlowWriteRequest} flowWriteRequest The flow to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    createSfvbFlowRaw(requestParameters: CreateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * A new draft flow with an empty communication sequence.  name and trigger_type are required.  A list or segment trigger needs trigger_parameter, the uuid of a list or segment on this storefront.  The sender defaults to the storefront\'s marketing sending settings.  A draft flow enrolls nobody until it is turned on. 
+     * Create a draft flow
+     */
+    createSfvbFlow(requestParameters: CreateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
 
     /**
      * Creates a private draft owned by the calling user.  The fragment is one widget and its children, and it must validate.  Images it references on this storefront are copied into the entry before this returns, so it installs anywhere with its images.  The fragment is scanned; card skimming or obfuscation signals are refused outright.  Nothing other merchants or shoppers see changes, so sfvb_write is enough.  Publish it to share it.  An optional screenshot takes a staged PNG key, exactly as the library screenshot endpoint does; a refused screenshot refuses the whole create. 
@@ -3545,6 +3732,38 @@ export interface SfvbApiInterface {
     listSfvbCampaigns(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaignsResponse>;
 
     /**
+     * Each list\'s uuid, name and member count, by name, for a campaign\'s memberships or a list trigger.  Never its members.  Archived lists are left out. 
+     * @summary List the storefront\'s email lists
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbCommsListsRaw(requestParameters: ListSfvbCommsListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListsResponse>>;
+
+    /**
+     * Each list\'s uuid, name and member count, by name, for a campaign\'s memberships or a list trigger.  Never its members.  Archived lists are left out. 
+     * List the storefront\'s email lists
+     */
+    listSfvbCommsLists(requestParameters: ListSfvbCommsListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListsResponse>;
+
+    /**
+     * Each segment\'s uuid, name and member count at its last rebuild, by name, for a campaign\'s memberships or a segment trigger.  Never its members or its rule.  Archived segments are left out. 
+     * @summary List the storefront\'s segments
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbCommsSegmentsRaw(requestParameters: ListSfvbCommsSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentsResponse>>;
+
+    /**
+     * Each segment\'s uuid, name and member count at its last rebuild, by name, for a campaign\'s memberships or a segment trigger.  Never its members or its rule.  Archived segments are left out. 
+     * List the storefront\'s segments
+     */
+    listSfvbCommsSegments(requestParameters: ListSfvbCommsSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentsResponse>;
+
+    /**
      * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * @summary Version history for a container stored outside the file system
      * @param {number} storefrontOid 
@@ -4723,6 +4942,25 @@ export interface SfvbApiInterface {
     updateSfvbBlogPost(requestParameters: UpdateSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
 
     /**
+     * A field left out keeps its value; memberships replaces the whole set.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish, and a change to a scheduled one applies to the send that is coming.  notes lists any emails a sending domain change put back to needing review. 
+     * @summary Change a campaign
+     * @param {number} storefrontOid 
+     * @param {string} campaignUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCampaignWriteRequest} campaignWriteRequest The fields to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCampaignRaw(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>>;
+
+    /**
+     * A field left out keeps its value; memberships replaces the whole set.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish, and a change to a scheduled one applies to the send that is coming.  notes lists any emails a sending domain change put back to needing review. 
+     * Change a campaign
+     */
+    updateSfvbCampaign(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
      * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
      * @summary Update a sending domain
      * @param {string} domain 
@@ -4773,6 +5011,44 @@ export interface SfvbApiInterface {
      * Change a flow or campaign email\'s subject or preview text
      */
     updateSfvbEmail(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
+
+    /**
+     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * @summary Change a flow
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbFlowWriteRequest} flowWriteRequest The fields to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbFlowRaw(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * Change a flow
+     */
+    updateSfvbFlow(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
+
+    /**
+     * active enrolls customers as they trigger the flow from now on, and they receive its emails.  inactive stops new enrollments.  Always needs sfvb_publish.  Send the hash_sha256 you read as If-Match. 
+     * @summary Turn a flow on or off
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {string} ifMatch hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbFlowStatusRequest} flowStatusRequest The status to set
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbFlowStatusRaw(requestParameters: UpdateSfvbFlowStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
+
+    /**
+     * active enrolls customers as they trigger the flow from now on, and they receive its emails.  inactive stops new enrollments.  Always needs sfvb_publish.  Send the hash_sha256 you read as If-Match. 
+     * Turn a flow on or off
+     */
+    updateSfvbFlowStatus(requestParameters: UpdateSfvbFlowStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
 
     /**
      * Applies exactly the change rows of a dry run, given its plan_hash, each with its merchant_item_oid and current_sha256.  Each item is saved once with all of its rows; a row whose value changed since the dry run is skipped as stale and never overwritten, and an item that cannot be saved does not stop the others.  Only the named attributes change.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved item.attribute_batch request for exactly these rows in the Approval-Id header. 
@@ -5040,6 +5316,126 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Archiving alone never stops a send, so archiving a scheduled campaign also sets it back to draft, and notes says so.  A campaign whose send is under way is refused with sfvb.campaign_sending.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish. 
+     * Archive or unarchive a campaign
+     */
+    async archiveSfvbCampaignRaw(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling archiveSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignUuid === null || requestParameters.campaignUuid === undefined) {
+            throw new runtime.RequiredError('campaignUuid','Required parameter requestParameters.campaignUuid was null or undefined when calling archiveSfvbCampaign.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling archiveSfvbCampaign.');
+        }
+
+        if (requestParameters.archiveRequest === null || requestParameters.archiveRequest === undefined) {
+            throw new runtime.RequiredError('archiveRequest','Required parameter requestParameters.archiveRequest was null or undefined when calling archiveSfvbCampaign.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns/{campaign_uuid}/archive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"campaign_uuid"}}`, encodeURIComponent(String(requestParameters.campaignUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbArchiveRequestToJSON(requestParameters.archiveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * Archiving alone never stops a send, so archiving a scheduled campaign also sets it back to draft, and notes says so.  A campaign whose send is under way is refused with sfvb.campaign_sending.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish. 
+     * Archive or unarchive a campaign
+     */
+    async archiveSfvbCampaign(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
+        const response = await this.archiveSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A flow that is still enrolling customers is refused, because archiving would only hide it.  Set its status to inactive first.  Send the hash_sha256 you read as If-Match. 
+     * Archive or unarchive a flow
+     */
+    async archiveSfvbFlowRaw(requestParameters: ArchiveSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling archiveSfvbFlow.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling archiveSfvbFlow.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling archiveSfvbFlow.');
+        }
+
+        if (requestParameters.archiveRequest === null || requestParameters.archiveRequest === undefined) {
+            throw new runtime.RequiredError('archiveRequest','Required parameter requestParameters.archiveRequest was null or undefined when calling archiveSfvbFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows/{flow_uuid}/archive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbArchiveRequestToJSON(requestParameters.archiveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * A flow that is still enrolling customers is refused, because archiving would only hide it.  Set its status to inactive first.  Send the hash_sha256 you read as If-Match. 
+     * Archive or unarchive a flow
+     */
+    async archiveSfvbFlow(requestParameters: ArchiveSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.archiveSfvbFlowRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Files the path out of the default list.  An archived path does not run.  Archiving one that is switched on is a live change and needs sfvb_publish. 
      * Archive an upsell path
      */
@@ -5238,6 +5634,96 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived and never scheduled.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a campaign on the same storefront
+     */
+    async cloneSfvbCampaignRaw(requestParameters: CloneSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling cloneSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignUuid === null || requestParameters.campaignUuid === undefined) {
+            throw new runtime.RequiredError('campaignUuid','Required parameter requestParameters.campaignUuid was null or undefined when calling cloneSfvbCampaign.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns/{campaign_uuid}/clone`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"campaign_uuid"}}`, encodeURIComponent(String(requestParameters.campaignUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived and never scheduled.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a campaign on the same storefront
+     */
+    async cloneSfvbCampaign(requestParameters: CloneSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
+        const response = await this.cloneSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived.  It enrolls nobody until it is turned on.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a flow on the same storefront
+     */
+    async cloneSfvbFlowRaw(requestParameters: CloneSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling cloneSfvbFlow.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling cloneSfvbFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows/{flow_uuid}/clone`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * A draft copy with copies of its emails and postcards, named Copy of and the original name, never archived.  It enrolls nobody until it is turned on.  Steps keep their settings, including a paused rate limiter or an experiment winner, and notes names each one. 
+     * Copy a flow on the same storefront
+     */
+    async cloneSfvbFlow(requestParameters: CloneSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.cloneSfvbFlowRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * Compile CJSON to Velocity
      */
@@ -5278,6 +5764,102 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse> {
         const response = await this.compileSfvbCjsonRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new draft campaign with an empty communication sequence.  name is required.  The sender defaults to the storefront\'s marketing sending settings.  Nothing here starts a campaign. 
+     * Create a draft campaign
+     */
+    async createSfvbCampaignRaw(requestParameters: CreateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling createSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignWriteRequest === null || requestParameters.campaignWriteRequest === undefined) {
+            throw new runtime.RequiredError('campaignWriteRequest','Required parameter requestParameters.campaignWriteRequest was null or undefined when calling createSfvbCampaign.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCampaignWriteRequestToJSON(requestParameters.campaignWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * A new draft campaign with an empty communication sequence.  name is required.  The sender defaults to the storefront\'s marketing sending settings.  Nothing here starts a campaign. 
+     * Create a draft campaign
+     */
+    async createSfvbCampaign(requestParameters: CreateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
+        const response = await this.createSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new draft flow with an empty communication sequence.  name and trigger_type are required.  A list or segment trigger needs trigger_parameter, the uuid of a list or segment on this storefront.  The sender defaults to the storefront\'s marketing sending settings.  A draft flow enrolls nobody until it is turned on. 
+     * Create a draft flow
+     */
+    async createSfvbFlowRaw(requestParameters: CreateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling createSfvbFlow.');
+        }
+
+        if (requestParameters.flowWriteRequest === null || requestParameters.flowWriteRequest === undefined) {
+            throw new runtime.RequiredError('flowWriteRequest','Required parameter requestParameters.flowWriteRequest was null or undefined when calling createSfvbFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFlowWriteRequestToJSON(requestParameters.flowWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * A new draft flow with an empty communication sequence.  name and trigger_type are required.  A list or segment trigger needs trigger_parameter, the uuid of a list or segment on this storefront.  The sender defaults to the storefront\'s marketing sending settings.  A draft flow enrolls nobody until it is turned on. 
+     * Create a draft flow
+     */
+    async createSfvbFlow(requestParameters: CreateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.createSfvbFlowRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10352,6 +10934,88 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Each list\'s uuid, name and member count, by name, for a campaign\'s memberships or a list trigger.  Never its members.  Archived lists are left out. 
+     * List the storefront\'s email lists
+     */
+    async listSfvbCommsListsRaw(requestParameters: ListSfvbCommsListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbCommsLists.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsListsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each list\'s uuid, name and member count, by name, for a campaign\'s memberships or a list trigger.  Never its members.  Archived lists are left out. 
+     * List the storefront\'s email lists
+     */
+    async listSfvbCommsLists(requestParameters: ListSfvbCommsListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListsResponse> {
+        const response = await this.listSfvbCommsListsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each segment\'s uuid, name and member count at its last rebuild, by name, for a campaign\'s memberships or a segment trigger.  Never its members or its rule.  Archived segments are left out. 
+     * List the storefront\'s segments
+     */
+    async listSfvbCommsSegmentsRaw(requestParameters: ListSfvbCommsSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbCommsSegments.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSegmentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each segment\'s uuid, name and member count at its last rebuild, by name, for a campaign\'s memberships or a segment trigger.  Never its members or its rule.  Archived segments are left out. 
+     * List the storefront\'s segments
+     */
+    async listSfvbCommsSegments(requestParameters: ListSfvbCommsSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentsResponse> {
+        const response = await this.listSfvbCommsSegmentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * Version history for a container stored outside the file system
      */
@@ -13772,6 +14436,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * A field left out keeps its value; memberships replaces the whole set.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish, and a change to a scheduled one applies to the send that is coming.  notes lists any emails a sending domain change put back to needing review. 
+     * Change a campaign
+     */
+    async updateSfvbCampaignRaw(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCampaign>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignUuid === null || requestParameters.campaignUuid === undefined) {
+            throw new runtime.RequiredError('campaignUuid','Required parameter requestParameters.campaignUuid was null or undefined when calling updateSfvbCampaign.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCampaign.');
+        }
+
+        if (requestParameters.campaignWriteRequest === null || requestParameters.campaignWriteRequest === undefined) {
+            throw new runtime.RequiredError('campaignWriteRequest','Required parameter requestParameters.campaignWriteRequest was null or undefined when calling updateSfvbCampaign.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaigns/{campaign_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"campaign_uuid"}}`, encodeURIComponent(String(requestParameters.campaignUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCampaignWriteRequestToJSON(requestParameters.campaignWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCampaignFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out keeps its value; memberships replaces the whole set.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A scheduled, sending or sent campaign needs sfvb_publish, and a change to a scheduled one applies to the send that is coming.  notes lists any emails a sending domain change put back to needing review. 
+     * Change a campaign
+     */
+    async updateSfvbCampaign(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
+        const response = await this.updateSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
      * Update a sending domain
      */
@@ -13920,6 +14644,126 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbEmail(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail> {
         const response = await this.updateSfvbEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * Change a flow
+     */
+    async updateSfvbFlowRaw(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbFlow.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling updateSfvbFlow.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbFlow.');
+        }
+
+        if (requestParameters.flowWriteRequest === null || requestParameters.flowWriteRequest === undefined) {
+            throw new runtime.RequiredError('flowWriteRequest','Required parameter requestParameters.flowWriteRequest was null or undefined when calling updateSfvbFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows/{flow_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFlowWriteRequestToJSON(requestParameters.flowWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * Change a flow
+     */
+    async updateSfvbFlow(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.updateSfvbFlowRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * active enrolls customers as they trigger the flow from now on, and they receive its emails.  inactive stops new enrollments.  Always needs sfvb_publish.  Send the hash_sha256 you read as If-Match. 
+     * Turn a flow on or off
+     */
+    async updateSfvbFlowStatusRaw(requestParameters: UpdateSfvbFlowStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbFlowStatus.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling updateSfvbFlowStatus.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbFlowStatus.');
+        }
+
+        if (requestParameters.flowStatusRequest === null || requestParameters.flowStatusRequest === undefined) {
+            throw new runtime.RequiredError('flowStatusRequest','Required parameter requestParameters.flowStatusRequest was null or undefined when calling updateSfvbFlowStatus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flows/{flow_uuid}/status`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFlowStatusRequestToJSON(requestParameters.flowStatusRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowFromJSON(jsonValue));
+    }
+
+    /**
+     * active enrolls customers as they trigger the flow from now on, and they receive its emails.  inactive stops new enrollments.  Always needs sfvb_publish.  Send the hash_sha256 you read as If-Match. 
+     * Turn a flow on or off
+     */
+    async updateSfvbFlowStatus(requestParameters: UpdateSfvbFlowStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {
+        const response = await this.updateSfvbFlowStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

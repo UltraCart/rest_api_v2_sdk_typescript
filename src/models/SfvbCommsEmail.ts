@@ -80,6 +80,24 @@ export interface SfvbCommsEmail {
      */
     transactional?: boolean;
     /**
+     * For an email in an experiment step, the variant name.  Absent otherwise.
+     * @type {string}
+     * @memberof SfvbCommsEmail
+     */
+    variant_name?: string;
+    /**
+     * For an email in an experiment step, the share of customers it is sent to.
+     * @type {number}
+     * @memberof SfvbCommsEmail
+     */
+    variant_percentage?: number;
+    /**
+     * For an email in an experiment step, true when the experiment chose it as the winner.
+     * @type {boolean}
+     * @memberof SfvbCommsEmail
+     */
+    variant_winner?: boolean;
+    /**
      * The email version.
      * @type {number}
      * @memberof SfvbCommsEmail
@@ -118,6 +136,9 @@ export function SfvbCommsEmailFromJSONTyped(json: any, ignoreDiscriminator: bool
         'step_uuid': !exists(json, 'step_uuid') ? undefined : json['step_uuid'],
         'subject': !exists(json, 'subject') ? undefined : json['subject'],
         'transactional': !exists(json, 'transactional') ? undefined : json['transactional'],
+        'variant_name': !exists(json, 'variant_name') ? undefined : json['variant_name'],
+        'variant_percentage': !exists(json, 'variant_percentage') ? undefined : json['variant_percentage'],
+        'variant_winner': !exists(json, 'variant_winner') ? undefined : json['variant_winner'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
@@ -141,6 +162,9 @@ export function SfvbCommsEmailToJSON(value?: SfvbCommsEmail | null): any {
         'step_uuid': value.step_uuid,
         'subject': value.subject,
         'transactional': value.transactional,
+        'variant_name': value.variant_name,
+        'variant_percentage': value.variant_percentage,
+        'variant_winner': value.variant_winner,
         'version': value.version,
     };
 }

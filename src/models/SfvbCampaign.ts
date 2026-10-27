@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    SfvbCampaignMembership,
+    SfvbCampaignMembershipFromJSON,
+    SfvbCampaignMembershipFromJSONTyped,
+    SfvbCampaignMembershipToJSON,
+} from './SfvbCampaignMembership';
+import {
     SfvbCommsEmail,
     SfvbCommsEmailFromJSON,
     SfvbCommsEmailFromJSONTyped,
@@ -63,17 +69,47 @@ export interface SfvbCampaign {
      */
     emails?: Array<SfvbCommsEmail>;
     /**
+     * True when a customer leaves the campaign once they buy from one of its emails.
+     * @type {boolean}
+     * @memberof SfvbCampaign
+     */
+    end_once_customer_purchases?: boolean;
+    /**
+     * True when a customer leaves the campaign once they buy from any source.
+     * @type {boolean}
+     * @memberof SfvbCampaign
+     */
+    end_once_customer_purchases_anywhere?: boolean;
+    /**
+     * Send this as If-Match when changing or archiving the campaign.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    hash_sha256?: string;
+    /**
      * True when the emails and postcards reach customers now, so a change to one shows at once.  False only in a status that sends nothing.
      * @type {boolean}
      * @memberof SfvbCampaign
      */
     live?: boolean;
     /**
+     * The lists and segments it sends to or leaves out.
+     * @type {Array<SfvbCampaignMembership>}
+     * @memberof SfvbCampaign
+     */
+    memberships?: Array<SfvbCampaignMembership>;
+    /**
      * The campaign name.
      * @type {string}
      * @memberof SfvbCampaign
      */
     name?: string;
+    /**
+     * What a write did beyond the fields it was asked to change, such as putting emails back to needing review or setting a scheduled campaign back to draft.  Only on a write.
+     * @type {Array<string>}
+     * @memberof SfvbCampaign
+     */
+    notes?: Array<string>;
     /**
      * Its postcards, in step order.
      * @type {Array<SfvbCommsPostcard>}
@@ -86,6 +122,24 @@ export interface SfvbCampaign {
      * @memberof SfvbCampaign
      */
     scheduled_dts?: string;
+    /**
+     * The sending domain uuid.  Defaults to the storefront's marketing sending domain.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    sending_domain_uuid?: string;
+    /**
+     * The from name.  Defaults to the storefront's marketing setting.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    sending_name?: string;
+    /**
+     * The part of the from address before the at sign.  Defaults to the storefront's marketing setting.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    sending_user?: string;
     /**
      * The status, such as draft, scheduled, sending, sent or archived.
      * @type {string}
@@ -126,10 +180,18 @@ export function SfvbCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
         'emails': !exists(json, 'emails') ? undefined : ((json['emails'] as Array<any>).map(SfvbCommsEmailFromJSON)),
+        'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
+        'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
+        'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(SfvbCampaignMembershipFromJSON)),
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'postcards': !exists(json, 'postcards') ? undefined : ((json['postcards'] as Array<any>).map(SfvbCommsPostcardFromJSON)),
         'scheduled_dts': !exists(json, 'scheduled_dts') ? undefined : json['scheduled_dts'],
+        'sending_domain_uuid': !exists(json, 'sending_domain_uuid') ? undefined : json['sending_domain_uuid'],
+        'sending_name': !exists(json, 'sending_name') ? undefined : json['sending_name'],
+        'sending_user': !exists(json, 'sending_user') ? undefined : json['sending_user'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
     };
@@ -149,10 +211,18 @@ export function SfvbCampaignToJSON(value?: SfvbCampaign | null): any {
         'created_dts': value.created_dts,
         'deleted': value.deleted,
         'emails': value.emails === undefined ? undefined : ((value.emails as Array<any>).map(SfvbCommsEmailToJSON)),
+        'end_once_customer_purchases': value.end_once_customer_purchases,
+        'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
+        'hash_sha256': value.hash_sha256,
         'live': value.live,
+        'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(SfvbCampaignMembershipToJSON)),
         'name': value.name,
+        'notes': value.notes,
         'postcards': value.postcards === undefined ? undefined : ((value.postcards as Array<any>).map(SfvbCommsPostcardToJSON)),
         'scheduled_dts': value.scheduled_dts,
+        'sending_domain_uuid': value.sending_domain_uuid,
+        'sending_name': value.sending_name,
+        'sending_user': value.sending_user,
         'status': value.status,
         'status_dts': value.status_dts,
     };

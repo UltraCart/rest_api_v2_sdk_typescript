@@ -1001,6 +1001,7 @@ src/models/SfvbApprovalParams.ts
 src/models/SfvbApprovalReview.ts
 src/models/SfvbApprovalReviewFinding.ts
 src/models/SfvbApprovalsResponse.ts
+src/models/SfvbArchiveRequest.ts
 src/models/SfvbBlogPost.ts
 src/models/SfvbBlogPostDetail.ts
 src/models/SfvbBlogPostImage.ts
@@ -1008,10 +1009,16 @@ src/models/SfvbBlogPostImageRequest.ts
 src/models/SfvbBlogPostRequest.ts
 src/models/SfvbBlogPostsResponse.ts
 src/models/SfvbCampaign.ts
+src/models/SfvbCampaignMembership.ts
+src/models/SfvbCampaignWriteRequest.ts
 src/models/SfvbCampaignsResponse.ts
 src/models/SfvbCommsDnsRecord.ts
 src/models/SfvbCommsEmail.ts
+src/models/SfvbCommsList.ts
+src/models/SfvbCommsListsResponse.ts
 src/models/SfvbCommsPostcard.ts
+src/models/SfvbCommsSegment.ts
+src/models/SfvbCommsSegmentsResponse.ts
 src/models/SfvbCommsSendingDomain.ts
 src/models/SfvbCommsSendingDomainsResponse.ts
 src/models/SfvbCommsTwilioAccount.ts
@@ -1056,6 +1063,8 @@ src/models/SfvbFileWriteRequest.ts
 src/models/SfvbFileWriteResponse.ts
 src/models/SfvbFilesResponse.ts
 src/models/SfvbFlow.ts
+src/models/SfvbFlowStatusRequest.ts
+src/models/SfvbFlowWriteRequest.ts
 src/models/SfvbFlowsResponse.ts
 src/models/SfvbI18nGlossary.ts
 src/models/SfvbI18nGlossaryRequest.ts

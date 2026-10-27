@@ -33,6 +33,12 @@ import {
  */
 export interface SfvbFlow {
     /**
+     * True when a customer may be in this flow more than once at a time.
+     * @type {boolean}
+     * @memberof SfvbFlow
+     */
+    allow_multiple_concurrent_enrollments?: boolean;
+    /**
      * The communication sequence the steps belong to.
      * @type {string}
      * @memberof SfvbFlow
@@ -57,11 +63,29 @@ export interface SfvbFlow {
      */
     emails?: Array<SfvbCommsEmail>;
     /**
+     * True when a customer leaves the flow once they buy from one of its emails.
+     * @type {boolean}
+     * @memberof SfvbFlow
+     */
+    end_once_customer_purchases?: boolean;
+    /**
+     * True when a customer leaves the flow once they buy from any source.
+     * @type {boolean}
+     * @memberof SfvbFlow
+     */
+    end_once_customer_purchases_anywhere?: boolean;
+    /**
      * The flow uuid.
      * @type {string}
      * @memberof SfvbFlow
      */
     flow_uuid?: string;
+    /**
+     * Send this as If-Match when changing, archiving or turning the flow on or off.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    hash_sha256?: string;
     /**
      * True when the emails and postcards reach customers now, so a change to one shows at once.  False only in a status that sends nothing.
      * @type {boolean}
@@ -75,11 +99,47 @@ export interface SfvbFlow {
      */
     name?: string;
     /**
+     * What a write did beyond the fields it was asked to change, such as putting emails back to needing review or setting a scheduled campaign back to draft.  Only on a write.
+     * @type {Array<string>}
+     * @memberof SfvbFlow
+     */
+    notes?: Array<string>;
+    /**
      * Its postcards, in step order.
      * @type {Array<SfvbCommsPostcard>}
      * @memberof SfvbFlow
      */
     postcards?: Array<SfvbCommsPostcard>;
+    /**
+     * Days before a customer may enter again, with after_days.
+     * @type {number}
+     * @memberof SfvbFlow
+     */
+    reentry_delay_days?: number;
+    /**
+     * Whether a customer may enter again, anytime, after_days or never.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    reentry_policy?: string;
+    /**
+     * The sending domain uuid.  Defaults to the storefront's marketing sending domain.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    sending_domain_uuid?: string;
+    /**
+     * The from name.  Defaults to the storefront's marketing setting.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    sending_name?: string;
+    /**
+     * The part of the from address before the at sign.  Defaults to the storefront's marketing setting.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    sending_user?: string;
     /**
      * The status, such as draft, active, paused, draining or inactive.
      * @type {string}
@@ -92,6 +152,12 @@ export interface SfvbFlow {
      * @memberof SfvbFlow
      */
     status_dts?: string;
+    /**
+     * The list or segment uuid, or other value, the trigger is limited to.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    trigger_parameter?: string;
     /**
      * The name of the trigger parameter, when the trigger takes one.
      * @type {string}
@@ -127,16 +193,27 @@ export function SfvbFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'allow_multiple_concurrent_enrollments': !exists(json, 'allow_multiple_concurrent_enrollments') ? undefined : json['allow_multiple_concurrent_enrollments'],
         'communication_sequence_uuid': !exists(json, 'communication_sequence_uuid') ? undefined : json['communication_sequence_uuid'],
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
         'emails': !exists(json, 'emails') ? undefined : ((json['emails'] as Array<any>).map(SfvbCommsEmailFromJSON)),
+        'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
+        'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
         'flow_uuid': !exists(json, 'flow_uuid') ? undefined : json['flow_uuid'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'postcards': !exists(json, 'postcards') ? undefined : ((json['postcards'] as Array<any>).map(SfvbCommsPostcardFromJSON)),
+        'reentry_delay_days': !exists(json, 'reentry_delay_days') ? undefined : json['reentry_delay_days'],
+        'reentry_policy': !exists(json, 'reentry_policy') ? undefined : json['reentry_policy'],
+        'sending_domain_uuid': !exists(json, 'sending_domain_uuid') ? undefined : json['sending_domain_uuid'],
+        'sending_name': !exists(json, 'sending_name') ? undefined : json['sending_name'],
+        'sending_user': !exists(json, 'sending_user') ? undefined : json['sending_user'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
+        'trigger_parameter': !exists(json, 'trigger_parameter') ? undefined : json['trigger_parameter'],
         'trigger_parameter_name': !exists(json, 'trigger_parameter_name') ? undefined : json['trigger_parameter_name'],
         'trigger_type': !exists(json, 'trigger_type') ? undefined : json['trigger_type'],
     };
@@ -151,16 +228,27 @@ export function SfvbFlowToJSON(value?: SfvbFlow | null): any {
     }
     return {
         
+        'allow_multiple_concurrent_enrollments': value.allow_multiple_concurrent_enrollments,
         'communication_sequence_uuid': value.communication_sequence_uuid,
         'created_dts': value.created_dts,
         'deleted': value.deleted,
         'emails': value.emails === undefined ? undefined : ((value.emails as Array<any>).map(SfvbCommsEmailToJSON)),
+        'end_once_customer_purchases': value.end_once_customer_purchases,
+        'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
         'flow_uuid': value.flow_uuid,
+        'hash_sha256': value.hash_sha256,
         'live': value.live,
         'name': value.name,
+        'notes': value.notes,
         'postcards': value.postcards === undefined ? undefined : ((value.postcards as Array<any>).map(SfvbCommsPostcardToJSON)),
+        'reentry_delay_days': value.reentry_delay_days,
+        'reentry_policy': value.reentry_policy,
+        'sending_domain_uuid': value.sending_domain_uuid,
+        'sending_name': value.sending_name,
+        'sending_user': value.sending_user,
         'status': value.status,
         'status_dts': value.status_dts,
+        'trigger_parameter': value.trigger_parameter,
         'trigger_parameter_name': value.trigger_parameter_name,
         'trigger_type': value.trigger_type,
     };
