@@ -1100,6 +1100,7 @@ src/models/SfvbItemRelatedRequest.ts
 src/models/SfvbItemResponse.ts
 src/models/SfvbItemSeo.ts
 src/models/SfvbItemSeoRequest.ts
+src/models/SfvbItemTags.ts
 src/models/SfvbItemVolumeDiscount.ts
 src/models/SfvbLibraryAiReview.ts
 src/models/SfvbLibraryContentManifest.ts

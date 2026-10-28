@@ -1072,6 +1072,7 @@ export * from './SfvbItemRelatedRequest';
 export * from './SfvbItemResponse';
 export * from './SfvbItemSeo';
 export * from './SfvbItemSeoRequest';
+export * from './SfvbItemTags';
 export * from './SfvbItemVolumeDiscount';
 export * from './SfvbLibraryAiReview';
 export * from './SfvbLibraryContentManifest';

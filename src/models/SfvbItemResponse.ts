@@ -31,6 +31,12 @@ import {
     SfvbItemSeoFromJSONTyped,
     SfvbItemSeoToJSON,
 } from './SfvbItemSeo';
+import {
+    SfvbItemTags,
+    SfvbItemTagsFromJSON,
+    SfvbItemTagsFromJSONTyped,
+    SfvbItemTagsToJSON,
+} from './SfvbItemTags';
 
 /**
  * 
@@ -81,6 +87,12 @@ export interface SfvbItemResponse {
      */
     seo?: SfvbItemSeo;
     /**
+     * 
+     * @type {SfvbItemTags}
+     * @memberof SfvbItemResponse
+     */
+    tags?: SfvbItemTags;
+    /**
      * What an itemtitle element renders.  This is the item's short description in the catalog, not a storefront only field, so changing it changes the item everywhere.
      * @type {string}
      * @memberof SfvbItemResponse
@@ -116,6 +128,7 @@ export function SfvbItemResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'merchant_item_oid': !exists(json, 'merchant_item_oid') ? undefined : json['merchant_item_oid'],
         'multimedia': !exists(json, 'multimedia') ? undefined : ((json['multimedia'] as Array<any>).map(SfvbItemMultimediaFromJSON)),
         'seo': !exists(json, 'seo') ? undefined : SfvbItemSeoFromJSON(json['seo']),
+        'tags': !exists(json, 'tags') ? undefined : SfvbItemTagsFromJSON(json['tags']),
         'title': !exists(json, 'title') ? undefined : json['title'],
     };
 }
@@ -136,6 +149,7 @@ export function SfvbItemResponseToJSON(value?: SfvbItemResponse | null): any {
         'merchant_item_oid': value.merchant_item_oid,
         'multimedia': value.multimedia === undefined ? undefined : ((value.multimedia as Array<any>).map(SfvbItemMultimediaToJSON)),
         'seo': SfvbItemSeoToJSON(value.seo),
+        'tags': SfvbItemTagsToJSON(value.tags),
         'title': value.title,
     };
 }
