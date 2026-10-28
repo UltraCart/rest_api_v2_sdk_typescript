@@ -69,7 +69,7 @@ export interface AutoOrderItem {
      */
     arbitrary_percentage_discount?: number;
     /**
-     * Arbitrary quantity to rebill
+     * Quantity to rebill.  When set, every rebill uses this quantity instead of original_quantity.  Set this field to change the quantity on an active auto order; the merchant auto order editor updates this same field.  Each rebill charges the unit price multiplied by this quantity.
      * @type {number}
      * @memberof AutoOrderItem
      */
@@ -81,7 +81,7 @@ export interface AutoOrderItem {
      */
     arbitrary_schedule_days?: number;
     /**
-     * Arbitrary unit cost that rebills of this item should occur at
+     * Arbitrary unit cost that rebills of this item should occur at.  This is a price per unit.  Each rebill charges it multiplied by the rebill quantity (arbitrary_quantity, or original_quantity when arbitrary_quantity is null).
      * @type {number}
      * @memberof AutoOrderItem
      */
@@ -189,7 +189,7 @@ export interface AutoOrderItem {
      */
     original_item_id?: string;
     /**
-     * The original quantity purchased
+     * The quantity purchased on the original order.  Rebills use this quantity only when arbitrary_quantity is null.  To change the quantity on future rebills, set arbitrary_quantity instead.
      * @type {number}
      * @memberof AutoOrderItem
      */
