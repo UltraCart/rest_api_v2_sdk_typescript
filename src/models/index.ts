@@ -1171,6 +1171,8 @@ export * from './SfvbSecretSink';
 export * from './SfvbSequence';
 export * from './SfvbSequenceBranch';
 export * from './SfvbSequenceStep';
+export * from './SfvbSequenceStepUpdateRequest';
+export * from './SfvbSequenceStepUpdateResponse';
 export * from './SfvbServerLog';
 export * from './SfvbServerLogDetail';
 export * from './SfvbServerLogEntry';

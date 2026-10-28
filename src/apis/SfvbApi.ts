@@ -432,6 +432,12 @@ import {
     SfvbSequence,
     SfvbSequenceFromJSON,
     SfvbSequenceToJSON,
+    SfvbSequenceStepUpdateRequest,
+    SfvbSequenceStepUpdateRequestFromJSON,
+    SfvbSequenceStepUpdateRequestToJSON,
+    SfvbSequenceStepUpdateResponse,
+    SfvbSequenceStepUpdateResponseFromJSON,
+    SfvbSequenceStepUpdateResponseToJSON,
     SfvbServerLogDetail,
     SfvbServerLogDetailFromJSON,
     SfvbServerLogDetailToJSON,
@@ -1617,6 +1623,14 @@ export interface UpdateSfvbRedirectRequest {
     redirectId: number;
     ifMatch: string;
     redirectRequest: SfvbRedirectRequest;
+}
+
+export interface UpdateSfvbSequenceStepRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    stepUuid: string;
+    ifMatch: string;
+    sequenceStepUpdateRequest: SfvbSequenceStepUpdateRequest;
 }
 
 export interface UpdateSfvbUpsellOfferRequest {
@@ -3318,7 +3332,7 @@ export interface SfvbApiInterface {
     getSfvbSecretRequests(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequestsResponse>;
 
     /**
-     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, the emails, postcard, lists or items it names, and the hash_sha256 to send as If-Match when changing it.  waiting adds how many customers are waiting on each step now.  Read only. 
      * @summary Get a campaign\'s or flow\'s steps as a tree
      * @param {number} storefrontOid 
      * @param {string} sequenceUuid 
@@ -3330,7 +3344,7 @@ export interface SfvbApiInterface {
     getSfvbSequenceRaw(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequence>>;
 
     /**
-     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, the emails, postcard, lists or items it names, and the hash_sha256 to send as If-Match when changing it.  waiting adds how many customers are waiting on each step now.  Read only. 
      * Get a campaign\'s or flow\'s steps as a tree
      */
     getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence>;
@@ -5159,6 +5173,26 @@ export interface SfvbApiInterface {
      * Change a redirect rule
      */
     updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
+
+    /**
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * @summary Change one step\'s settings or audience filter
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} stepUuid 
+     * @param {string} ifMatch The step\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbSequenceStepUpdateRequest} sequenceStepUpdateRequest The settings, the filter, or both
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbSequenceStepRaw(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepUpdateResponse>>;
+
+    /**
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Change one step\'s settings or audience filter
+     */
+    updateSfvbSequenceStep(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepUpdateResponse>;
 
     /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
@@ -9804,7 +9838,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, the emails, postcard, lists or items it names, and the hash_sha256 to send as If-Match when changing it.  waiting adds how many customers are waiting on each step now.  Read only. 
      * Get a campaign\'s or flow\'s steps as a tree
      */
     async getSfvbSequenceRaw(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequence>> {
@@ -9844,7 +9878,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, and the emails, postcard, lists or items it names.  waiting adds how many customers are waiting on each step now.  Read only. 
+     * The communication sequence named by a campaign\'s or flow\'s communication_sequence_uuid, with its steps from the start in order.  Only condition, split and InboxGeek steps branch, and each holds its two sides in branches.  Each step has its type, the admin\'s label, its settings (a webhook\'s header and parameter values masked), its audience filter, the emails, postcard, lists or items it names, and the hash_sha256 to send as If-Match when changing it.  waiting adds how many customers are waiting on each step now.  Read only. 
      * Get a campaign\'s or flow\'s steps as a tree
      */
     async getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence> {
@@ -15091,6 +15125,70 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse> {
         const response = await this.updateSfvbRedirectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Change one step\'s settings or audience filter
+     */
+    async updateSfvbSequenceStepRaw(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepUpdateResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling updateSfvbSequenceStep.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling updateSfvbSequenceStep.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceStepUpdateRequest === null || requestParameters.sequenceStepUpdateRequest === undefined) {
+            throw new runtime.RequiredError('sequenceStepUpdateRequest','Required parameter requestParameters.sequenceStepUpdateRequest was null or undefined when calling updateSfvbSequenceStep.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps/{step_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSequenceStepUpdateRequestToJSON(requestParameters.sequenceStepUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSequenceStepUpdateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Change one step\'s settings or audience filter
+     */
+    async updateSfvbSequenceStep(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepUpdateResponse> {
+        const response = await this.updateSfvbSequenceStepRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

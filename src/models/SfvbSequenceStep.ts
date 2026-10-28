@@ -69,6 +69,12 @@ export interface SfvbSequenceStep {
      */
     filter_profile_equation_json?: string;
     /**
+     * The hash of the step's type, stored settings and audience filter.  Send it back as If-Match when changing the step.
+     * @type {string}
+     * @memberof SfvbSequenceStep
+     */
+    hash_sha256?: string;
+    /**
      * The items it names, for a cart or rate limiter step.
      * @type {Array<string>}
      * @memberof SfvbSequenceStep
@@ -158,6 +164,7 @@ export function SfvbSequenceStepFromJSONTyped(json: any, ignoreDiscriminator: bo
         'disabled': !exists(json, 'disabled') ? undefined : json['disabled'],
         'email_uuids': !exists(json, 'email_uuids') ? undefined : json['email_uuids'],
         'filter_profile_equation_json': !exists(json, 'filter_profile_equation_json') ? undefined : json['filter_profile_equation_json'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'item_ids': !exists(json, 'item_ids') ? undefined : json['item_ids'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'list_uuids': !exists(json, 'list_uuids') ? undefined : json['list_uuids'],
@@ -187,6 +194,7 @@ export function SfvbSequenceStepToJSON(value?: SfvbSequenceStep | null): any {
         'disabled': value.disabled,
         'email_uuids': value.email_uuids,
         'filter_profile_equation_json': value.filter_profile_equation_json,
+        'hash_sha256': value.hash_sha256,
         'item_ids': value.item_ids,
         'label': value.label,
         'list_uuids': value.list_uuids,
