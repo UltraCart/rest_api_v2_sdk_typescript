@@ -92,11 +92,23 @@ export interface SfvbApprovalParams {
      */
     rule_count?: number;
     /**
+     * The communication sequence, for sequence_step.delete.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    sequence_uuid?: string;
+    /**
      * For experiment.start of a page experiment, the page body name.  Defaults to body.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
     slot?: string;
+    /**
+     * The step to remove, for sequence_step.delete.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    step_uuid?: string;
     /**
      * For upsell.enable, what to switch on.
      * @type {string}
@@ -172,7 +184,9 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'request_sha256': !exists(json, 'request_sha256') ? undefined : json['request_sha256'],
         'rows_sha256': !exists(json, 'rows_sha256') ? undefined : json['rows_sha256'],
         'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
+        'sequence_uuid': !exists(json, 'sequence_uuid') ? undefined : json['sequence_uuid'],
         'slot': !exists(json, 'slot') ? undefined : json['slot'],
+        'step_uuid': !exists(json, 'step_uuid') ? undefined : json['step_uuid'],
         'upsell_kind': !exists(json, 'upsell_kind') ? undefined : json['upsell_kind'],
         'upsell_oid': !exists(json, 'upsell_oid') ? undefined : json['upsell_oid'],
         'version': !exists(json, 'version') ? undefined : json['version'],
@@ -202,7 +216,9 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'request_sha256': value.request_sha256,
         'rows_sha256': value.rows_sha256,
         'rule_count': value.rule_count,
+        'sequence_uuid': value.sequence_uuid,
         'slot': value.slot,
+        'step_uuid': value.step_uuid,
         'upsell_kind': value.upsell_kind,
         'upsell_oid': value.upsell_oid,
         'version': value.version,

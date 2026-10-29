@@ -438,6 +438,9 @@ import {
     SfvbSequenceStepCreateResponse,
     SfvbSequenceStepCreateResponseFromJSON,
     SfvbSequenceStepCreateResponseToJSON,
+    SfvbSequenceStepDeleteResponse,
+    SfvbSequenceStepDeleteResponseFromJSON,
+    SfvbSequenceStepDeleteResponseToJSON,
     SfvbSequenceStepUpdateRequest,
     SfvbSequenceStepUpdateRequestFromJSON,
     SfvbSequenceStepUpdateRequestToJSON,
@@ -686,6 +689,14 @@ export interface DeleteSfvbRedirectsRequest {
 
 export interface DeleteSfvbSecretRequestRequest {
     requestId: string;
+}
+
+export interface DeleteSfvbSequenceStepRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    stepUuid: string;
+    ifMatch: string;
+    approvalId?: string;
 }
 
 export interface DetachSfvbBlogPostImageRequest {
@@ -2191,6 +2202,26 @@ export interface SfvbApiInterface {
      * Cancel a pending secret request
      */
     deleteSfvbSecretRequest(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
+
+    /**
+     * Removes the step from its list and links the step before it to the step after it, in one transaction.  An email, experiment or postcard step\'s email or postcard is archived with it.  Refused while any customer is waiting on the step, for the begin, end, continue and merge markers, for a condition, split or inboxgeek step with steps on a side, and for a step whose email a resend step re-sends.  Send the step\'s hash_sha256 as If-Match.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.delete approval (Approval-Id); a draft or inactive one needs neither.  An email or postcard another step still uses is left as it is. 
+     * @summary Remove one step
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} stepUuid 
+     * @param {string} ifMatch The step\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {string} [approvalId] When the sequence is live, the approval_id of an approved sequence_step.delete request for this step.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbSequenceStepRaw(requestParameters: DeleteSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepDeleteResponse>>;
+
+    /**
+     * Removes the step from its list and links the step before it to the step after it, in one transaction.  An email, experiment or postcard step\'s email or postcard is archived with it.  Refused while any customer is waiting on the step, for the begin, end, continue and merge markers, for a condition, split or inboxgeek step with steps on a side, and for a step whose email a resend step re-sends.  Send the step\'s hash_sha256 as If-Match.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.delete approval (Approval-Id); a draft or inactive one needs neither.  An email or postcard another step still uses is left as it is. 
+     * Remove one step
+     */
+    deleteSfvbSequenceStep(requestParameters: DeleteSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepDeleteResponse>;
 
     /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
@@ -3704,11 +3735,11 @@ export interface SfvbApiInterface {
     insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
      * @summary Add an email step, with its new email
      * @param {number} storefrontOid 
      * @param {string} sequenceUuid 
-     * @param {string} ifMatch The hash_sha256 of the step it goes after, or of the branching step.  Required; 428 when absent, 412 when stale.
+     * @param {string} ifMatch The hash_sha256 of the step it goes after, or of the branching step, or * for the first step of a sequence with no steps.  Required; 428 when absent, 412 when stale.
      * @param {SfvbSequenceStepCreateRequest} sequenceStepCreateRequest Where the step goes, and the new email\&#39;s subject and preview text
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3717,7 +3748,7 @@ export interface SfvbApiInterface {
     insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>>;
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
      * Add an email step, with its new email
      */
     insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse>;
@@ -6754,6 +6785,67 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbSecretRequest(requestParameters: DeleteSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
         const response = await this.deleteSfvbSecretRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Removes the step from its list and links the step before it to the step after it, in one transaction.  An email, experiment or postcard step\'s email or postcard is archived with it.  Refused while any customer is waiting on the step, for the begin, end, continue and merge markers, for a condition, split or inboxgeek step with steps on a side, and for a step whose email a resend step re-sends.  Send the step\'s hash_sha256 as If-Match.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.delete approval (Approval-Id); a draft or inactive one needs neither.  An email or postcard another step still uses is left as it is. 
+     * Remove one step
+     */
+    async deleteSfvbSequenceStepRaw(requestParameters: DeleteSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepDeleteResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling deleteSfvbSequenceStep.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling deleteSfvbSequenceStep.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbSequenceStep.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps/{step_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSequenceStepDeleteResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes the step from its list and links the step before it to the step after it, in one transaction.  An email, experiment or postcard step\'s email or postcard is archived with it.  Refused while any customer is waiting on the step, for the begin, end, continue and merge markers, for a condition, split or inboxgeek step with steps on a side, and for a step whose email a resend step re-sends.  Send the step\'s hash_sha256 as If-Match.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.delete approval (Approval-Id); a draft or inactive one needs neither.  An email or postcard another step still uses is left as it is. 
+     * Remove one step
+     */
+    async deleteSfvbSequenceStep(requestParameters: DeleteSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepDeleteResponse> {
+        const response = await this.deleteSfvbSequenceStepRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10849,7 +10941,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
      * Add an email step, with its new email
      */
     async insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>> {
@@ -10900,7 +10992,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
      * Add an email step, with its new email
      */
     async insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse> {

@@ -1174,6 +1174,7 @@ export * from './SfvbSequenceBranch';
 export * from './SfvbSequenceStep';
 export * from './SfvbSequenceStepCreateRequest';
 export * from './SfvbSequenceStepCreateResponse';
+export * from './SfvbSequenceStepDeleteResponse';
 export * from './SfvbSequenceStepUpdateRequest';
 export * from './SfvbSequenceStepUpdateResponse';
 export * from './SfvbServerLog';
