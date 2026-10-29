@@ -1200,6 +1200,8 @@ src/models/SfvbSecretSink.ts
 src/models/SfvbSequence.ts
 src/models/SfvbSequenceBranch.ts
 src/models/SfvbSequenceStep.ts
+src/models/SfvbSequenceStepCreateRequest.ts
+src/models/SfvbSequenceStepCreateResponse.ts
 src/models/SfvbSequenceStepUpdateRequest.ts
 src/models/SfvbSequenceStepUpdateResponse.ts
 src/models/SfvbServerLog.ts

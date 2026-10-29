@@ -432,6 +432,12 @@ import {
     SfvbSequence,
     SfvbSequenceFromJSON,
     SfvbSequenceToJSON,
+    SfvbSequenceStepCreateRequest,
+    SfvbSequenceStepCreateRequestFromJSON,
+    SfvbSequenceStepCreateRequestToJSON,
+    SfvbSequenceStepCreateResponse,
+    SfvbSequenceStepCreateResponseFromJSON,
+    SfvbSequenceStepCreateResponseToJSON,
     SfvbSequenceStepUpdateRequest,
     SfvbSequenceStepUpdateRequestFromJSON,
     SfvbSequenceStepUpdateRequestToJSON,
@@ -1116,6 +1122,13 @@ export interface InsertSfvbRedirectRequest {
 
 export interface InsertSfvbSecretRequestRequest {
     secretRequest: SfvbSecretRequestCreate;
+}
+
+export interface InsertSfvbSequenceStepRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    ifMatch: string;
+    sequenceStepCreateRequest: SfvbSequenceStepCreateRequest;
 }
 
 export interface InsertSfvbUpsellOfferRequest {
@@ -3689,6 +3702,25 @@ export interface SfvbApiInterface {
      * Ask a person to enter secret values
      */
     insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
+
+    /**
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * @summary Add an email step, with its new email
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} ifMatch The hash_sha256 of the step it goes after, or of the branching step.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbSequenceStepCreateRequest} sequenceStepCreateRequest Where the step goes, and the new email\&#39;s subject and preview text
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>>;
+
+    /**
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email
+     */
+    insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse>;
 
     /**
      * Every item it names must exist, and every shipping method, payment method and loyalty tier must be one the merchant has.  Put it on a path with a path update to have it shown.  It must be created with active false, and switched on with the enable call, which needs approval.  upsell_item_id_javascript or offsite_content_url needs sfvb_publish.  Its page content is its container, written with the container endpoints and owner type upsell. 
@@ -10813,6 +10845,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest> {
         const response = await this.insertSfvbSecretRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email
+     */
+    async insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling insertSfvbSequenceStep.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling insertSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceStepCreateRequest === null || requestParameters.sequenceStepCreateRequest === undefined) {
+            throw new runtime.RequiredError('sequenceStepCreateRequest','Required parameter requestParameters.sequenceStepCreateRequest was null or undefined when calling insertSfvbSequenceStep.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSequenceStepCreateRequestToJSON(requestParameters.sequenceStepCreateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSequenceStepCreateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email
+     */
+    async insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse> {
+        const response = await this.insertSfvbSequenceStepRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

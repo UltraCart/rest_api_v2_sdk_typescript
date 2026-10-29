@@ -228,6 +228,7 @@ export const OrderPaymentPaymentMethodEnum = {
     Walmart: 'Walmart',
     ShopCom: 'Shop.com',
     Sezzle: 'Sezzle',
+    Truemed: 'Truemed',
     Venmo: 'Venmo',
     ApplePay: 'Apple Pay',
     GooglePay: 'Google Pay',
