@@ -38,6 +38,12 @@ export interface ItemPaymentProcessing {
      */
     credit_card_transaction_type?: string;
     /**
+     * HSA/FSA eligibility. eligible_with_lmn means the customer needs a Letter of Medical Necessity. Kept in sync automatically when Truemed is configured. Empty string clears it, null value will not update the field
+     * @type {string}
+     * @memberof ItemPaymentProcessing
+     */
+    hsa_fsa_eligibility?: string;
+    /**
      * True if no real-time charge should be performed on this item.
      * @type {boolean}
      * @memberof ItemPaymentProcessing
@@ -81,6 +87,7 @@ export function ItemPaymentProcessingFromJSONTyped(json: any, ignoreDiscriminato
         'block_prepaid': !exists(json, 'block_prepaid') ? undefined : json['block_prepaid'],
         'block_refunds': !exists(json, 'block_refunds') ? undefined : json['block_refunds'],
         'credit_card_transaction_type': !exists(json, 'credit_card_transaction_type') ? undefined : json['credit_card_transaction_type'],
+        'hsa_fsa_eligibility': !exists(json, 'hsa_fsa_eligibility') ? undefined : json['hsa_fsa_eligibility'],
         'no_realtime_charge': !exists(json, 'no_realtime_charge') ? undefined : json['no_realtime_charge'],
         'payment_method_validity': !exists(json, 'payment_method_validity') ? undefined : json['payment_method_validity'],
         'rotating_transaction_gateway_codes': !exists(json, 'rotating_transaction_gateway_codes') ? undefined : json['rotating_transaction_gateway_codes'],
@@ -99,6 +106,7 @@ export function ItemPaymentProcessingToJSON(value?: ItemPaymentProcessing | null
         'block_prepaid': value.block_prepaid,
         'block_refunds': value.block_refunds,
         'credit_card_transaction_type': value.credit_card_transaction_type,
+        'hsa_fsa_eligibility': value.hsa_fsa_eligibility,
         'no_realtime_charge': value.no_realtime_charge,
         'payment_method_validity': value.payment_method_validity,
         'rotating_transaction_gateway_codes': value.rotating_transaction_gateway_codes,
