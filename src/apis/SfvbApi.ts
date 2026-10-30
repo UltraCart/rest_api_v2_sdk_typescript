@@ -54,6 +54,12 @@ import {
     SfvbCommsListsResponse,
     SfvbCommsListsResponseFromJSON,
     SfvbCommsListsResponseToJSON,
+    SfvbCommsSegmentResponse,
+    SfvbCommsSegmentResponseFromJSON,
+    SfvbCommsSegmentResponseToJSON,
+    SfvbCommsSegmentWriteRequest,
+    SfvbCommsSegmentWriteRequestFromJSON,
+    SfvbCommsSegmentWriteRequestToJSON,
     SfvbCommsSegmentsResponse,
     SfvbCommsSegmentsResponseFromJSON,
     SfvbCommsSegmentsResponseToJSON,
@@ -818,6 +824,11 @@ export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
 }
 
+export interface GetSfvbCommsSegmentRequest {
+    storefrontOid: number;
+    segmentUuid: string;
+}
+
 export interface GetSfvbCommsSendingDomainRequest {
     domain: string;
 }
@@ -1111,6 +1122,11 @@ export interface InsertSfvbApprovalRequest {
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface InsertSfvbCommsSegmentRequest {
+    storefrontOid: number;
+    segmentWriteRequest: SfvbCommsSegmentWriteRequest;
 }
 
 export interface InsertSfvbCommsSendingDomainRequest {
@@ -1597,6 +1613,14 @@ export interface UpdateSfvbCampaignRequest {
     campaignUuid: string;
     ifMatch: string;
     campaignWriteRequest: SfvbCampaignWriteRequest;
+}
+
+export interface UpdateSfvbCommsSegmentRequest {
+    storefrontOid: number;
+    segmentUuid: string;
+    ifMatch: string;
+    segmentWriteRequest: SfvbCommsSegmentWriteRequest;
+    approvalId?: string;
 }
 
 export interface UpdateSfvbCommsSendingDomainRequest {
@@ -2619,6 +2643,23 @@ export interface SfvbApiInterface {
      * Element types used by a container
      */
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
+
+    /**
+     * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
+     * @summary Read one segment, with its rule
+     * @param {number} storefrontOid 
+     * @param {string} segmentUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSegmentRaw(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>>;
+
+    /**
+     * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
+     * Read one segment, with its rule
+     */
+    getSfvbCommsSegment(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse>;
 
     /**
      * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
@@ -3651,6 +3692,23 @@ export interface SfvbApiInterface {
      * Create a blog post
      */
     insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * A new segment with the name, rule and folder given.  The rule needs at least one group, each with at least one function of a rule type the segment rebuild knows, and any list or segment it names must be on this storefront.  The segment starts empty and rebuilds in the background; member_count is out of date until rebuild_required is false. 
+     * @summary Create a segment
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsSegmentWriteRequest} segmentWriteRequest The new segment\&#39;s name, rule and folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsSegmentRaw(requestParameters: InsertSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>>;
+
+    /**
+     * A new segment with the name, rule and folder given.  The rule needs at least one group, each with at least one function of a rule type the segment rebuild knows, and any list or segment it names must be on this storefront.  The segment starts empty and rebuilds in the background; member_count is out of date until rebuild_required is false. 
+     * Create a segment
+     */
+    insertSfvbCommsSegment(requestParameters: InsertSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse>;
 
     /**
      * Adds a domain to send email from.  An amazon domain starts verification with Amazon SES and returns the DNS records to publish; the person signed in also gets them by email.  A mailgun domain needs mailgun_api_key as a secret handle made for the domain (POST secrets, sink mailgun.domain.api_key), never the key itself.  UltraCart sets up its webhooks on the Mailgun domain with the key; if Mailgun refuses, nothing is saved and the handle is given back unused. 
@@ -5090,6 +5148,26 @@ export interface SfvbApiInterface {
      * Change a campaign
      */
     updateSfvbCampaign(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
+     * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
+     * @summary Change a segment\'s name, rule or folder
+     * @param {number} storefrontOid 
+     * @param {string} segmentUuid 
+     * @param {string} ifMatch The segment\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsSegmentWriteRequest} segmentWriteRequest The fields to change
+     * @param {string} [approvalId] When the rule changes and a live campaign or flow uses the segment, the approval_id of an approved segment.update request for this change.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsSegmentRaw(requestParameters: UpdateSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>>;
+
+    /**
+     * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
+     * Change a segment\'s name, rule or folder
+     */
+    updateSfvbCommsSegment(requestParameters: UpdateSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse>;
 
     /**
      * Only a mailgun domain\'s mailgun_api_key can change.  Send it as a secret handle made for the domain to replace it, or as the mask it was read with to keep it.  A new key sets up UltraCart\'s webhooks again with it; if Mailgun refuses, nothing is saved and the handle is given back unused. 
@@ -7939,6 +8017,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
+     * Read one segment, with its rule
+     */
+    async getSfvbCommsSegmentRaw(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsSegment.');
+        }
+
+        if (requestParameters.segmentUuid === null || requestParameters.segmentUuid === undefined) {
+            throw new runtime.RequiredError('segmentUuid','Required parameter requestParameters.segmentUuid was null or undefined when calling getSfvbCommsSegment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments/{segment_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"segment_uuid"}}`, encodeURIComponent(String(requestParameters.segmentUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSegmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
+     * Read one segment, with its rule
+     */
+    async getSfvbCommsSegment(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse> {
+        const response = await this.getSfvbCommsSegmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
      * Read a sending domain
      */
@@ -10709,6 +10832,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.insertSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new segment with the name, rule and folder given.  The rule needs at least one group, each with at least one function of a rule type the segment rebuild knows, and any list or segment it names must be on this storefront.  The segment starts empty and rebuilds in the background; member_count is out of date until rebuild_required is false. 
+     * Create a segment
+     */
+    async insertSfvbCommsSegmentRaw(requestParameters: InsertSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCommsSegment.');
+        }
+
+        if (requestParameters.segmentWriteRequest === null || requestParameters.segmentWriteRequest === undefined) {
+            throw new runtime.RequiredError('segmentWriteRequest','Required parameter requestParameters.segmentWriteRequest was null or undefined when calling insertSfvbCommsSegment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsSegmentWriteRequestToJSON(requestParameters.segmentWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSegmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A new segment with the name, rule and folder given.  The rule needs at least one group, each with at least one function of a rule type the segment rebuild knows, and any list or segment it names must be on this storefront.  The segment starts empty and rebuilds in the background; member_count is out of date until rebuild_required is false. 
+     * Create a segment
+     */
+    async insertSfvbCommsSegment(requestParameters: InsertSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse> {
+        const response = await this.insertSfvbCommsSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -14865,6 +15036,70 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbCampaign(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
         const response = await this.updateSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
+     * Change a segment\'s name, rule or folder
+     */
+    async updateSfvbCommsSegmentRaw(requestParameters: UpdateSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsSegment.');
+        }
+
+        if (requestParameters.segmentUuid === null || requestParameters.segmentUuid === undefined) {
+            throw new runtime.RequiredError('segmentUuid','Required parameter requestParameters.segmentUuid was null or undefined when calling updateSfvbCommsSegment.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsSegment.');
+        }
+
+        if (requestParameters.segmentWriteRequest === null || requestParameters.segmentWriteRequest === undefined) {
+            throw new runtime.RequiredError('segmentWriteRequest','Required parameter requestParameters.segmentWriteRequest was null or undefined when calling updateSfvbCommsSegment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments/{segment_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"segment_uuid"}}`, encodeURIComponent(String(requestParameters.segmentUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsSegmentWriteRequestToJSON(requestParameters.segmentWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSegmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
+     * Change a segment\'s name, rule or folder
+     */
+    async updateSfvbCommsSegment(requestParameters: UpdateSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse> {
+        const response = await this.updateSfvbCommsSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

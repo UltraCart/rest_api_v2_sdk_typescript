@@ -20,6 +20,12 @@ import {
     SfvbApprovalParamsToJSON,
 } from './SfvbApprovalParams';
 import {
+    SfvbCommsSegmentWriteRequest,
+    SfvbCommsSegmentWriteRequestFromJSON,
+    SfvbCommsSegmentWriteRequestFromJSONTyped,
+    SfvbCommsSegmentWriteRequestToJSON,
+} from './SfvbCommsSegmentWriteRequest';
+import {
     SfvbExperimentStartRequest,
     SfvbExperimentStartRequestFromJSON,
     SfvbExperimentStartRequestFromJSONTyped,
@@ -98,6 +104,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     redirect_rows?: Array<SfvbRedirectDeleteRow>;
+    /**
+     * 
+     * @type {SfvbCommsSegmentWriteRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    segment_update?: SfvbCommsSegmentWriteRequest;
 }
 
 
@@ -117,7 +129,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     ItemPricing: 'item.pricing',
     TwilioAccountDelete: 'twilio_account.delete',
     SendingDomainDelete: 'sending_domain.delete',
-    SequenceStepDelete: 'sequence_step.delete'
+    SequenceStepDelete: 'sequence_step.delete',
+    SegmentUpdate: 'segment.update'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -149,6 +162,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
+        'segment_update': !exists(json, 'segment_update') ? undefined : SfvbCommsSegmentWriteRequestFromJSON(json['segment_update']),
     };
 }
 
@@ -169,6 +183,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'params': SfvbApprovalParamsToJSON(value.params),
         'reason': value.reason,
         'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),
+        'segment_update': SfvbCommsSegmentWriteRequestToJSON(value.segment_update),
     };
 }
 

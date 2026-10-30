@@ -92,6 +92,12 @@ export interface SfvbApprovalParams {
      */
     rule_count?: number;
     /**
+     * The segment whose rule changes, for segment.update.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    segment_uuid?: string;
+    /**
      * The communication sequence, for sequence_step.delete.
      * @type {string}
      * @memberof SfvbApprovalParams
@@ -184,6 +190,7 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'request_sha256': !exists(json, 'request_sha256') ? undefined : json['request_sha256'],
         'rows_sha256': !exists(json, 'rows_sha256') ? undefined : json['rows_sha256'],
         'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
+        'segment_uuid': !exists(json, 'segment_uuid') ? undefined : json['segment_uuid'],
         'sequence_uuid': !exists(json, 'sequence_uuid') ? undefined : json['sequence_uuid'],
         'slot': !exists(json, 'slot') ? undefined : json['slot'],
         'step_uuid': !exists(json, 'step_uuid') ? undefined : json['step_uuid'],
@@ -216,6 +223,7 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'request_sha256': value.request_sha256,
         'rows_sha256': value.rows_sha256,
         'rule_count': value.rule_count,
+        'segment_uuid': value.segment_uuid,
         'sequence_uuid': value.sequence_uuid,
         'slot': value.slot,
         'step_uuid': value.step_uuid,

@@ -1018,6 +1018,10 @@ src/models/SfvbCommsList.ts
 src/models/SfvbCommsListsResponse.ts
 src/models/SfvbCommsPostcard.ts
 src/models/SfvbCommsSegment.ts
+src/models/SfvbCommsSegmentDetail.ts
+src/models/SfvbCommsSegmentResponse.ts
+src/models/SfvbCommsSegmentUsedBy.ts
+src/models/SfvbCommsSegmentWriteRequest.ts
 src/models/SfvbCommsSegmentsResponse.ts
 src/models/SfvbCommsSendingDomain.ts
 src/models/SfvbCommsSendingDomainsResponse.ts
