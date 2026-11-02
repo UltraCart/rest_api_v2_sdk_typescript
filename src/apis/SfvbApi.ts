@@ -51,6 +51,9 @@ import {
     SfvbCampaignsResponse,
     SfvbCampaignsResponseFromJSON,
     SfvbCampaignsResponseToJSON,
+    SfvbCodeLibraryEmailsResponse,
+    SfvbCodeLibraryEmailsResponseFromJSON,
+    SfvbCodeLibraryEmailsResponseToJSON,
     SfvbCommsListsResponse,
     SfvbCommsListsResponseFromJSON,
     SfvbCommsListsResponseToJSON,
@@ -447,6 +450,12 @@ import {
     SfvbSequenceStepDeleteResponse,
     SfvbSequenceStepDeleteResponseFromJSON,
     SfvbSequenceStepDeleteResponseToJSON,
+    SfvbSequenceStepMoveRequest,
+    SfvbSequenceStepMoveRequestFromJSON,
+    SfvbSequenceStepMoveRequestToJSON,
+    SfvbSequenceStepMoveResponse,
+    SfvbSequenceStepMoveResponseFromJSON,
+    SfvbSequenceStepMoveResponseToJSON,
     SfvbSequenceStepUpdateRequest,
     SfvbSequenceStepUpdateRequestFromJSON,
     SfvbSequenceStepUpdateRequestToJSON,
@@ -1189,6 +1198,11 @@ export interface ListSfvbCampaignsRequest {
     includeDeleted?: boolean;
 }
 
+export interface ListSfvbCodeLibraryEmailsRequest {
+    storefrontOid: number;
+    search?: string;
+}
+
 export interface ListSfvbCommsListsRequest {
     storefrontOid: number;
 }
@@ -1296,6 +1310,15 @@ export interface ListSfvbUpsellPathsRequest {
     statsWeekdays?: string;
     maxResults?: number;
     offset?: number;
+}
+
+export interface MoveSfvbSequenceStepRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    stepUuid: string;
+    ifMatch: string;
+    sequenceStepMoveRequest: SfvbSequenceStepMoveRequest;
+    approvalId?: string;
 }
 
 export interface MoveSfvbUpsellPathRequest {
@@ -1679,6 +1702,7 @@ export interface UpdateSfvbSequenceStepRequest {
     stepUuid: string;
     ifMatch: string;
     sequenceStepUpdateRequest: SfvbSequenceStepUpdateRequest;
+    approvalId?: string;
 }
 
 export interface UpdateSfvbUpsellOfferRequest {
@@ -3793,12 +3817,12 @@ export interface SfvbApiInterface {
     insertSfvbSecretRequest(requestParameters: InsertSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
-     * @summary Add an email step, with its new email
+     * type email (the default) creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  The email has no body yet, and gets the content review flags the admin gives a new email here.  With library_item_oid the email starts from a code library email item instead (listSfvbCodeLibraryEmails): its body with new element ids, and its subject and preview text where the request gives none.  The item must be this account\'s own, shared with it, or published, approved by UltraCart and free; it must pass the library content scanner and the email container rules, and executable elements need acknowledge_executable true.  Its PNG, JPEG and GIF image files are copied into the storefront first, never over an existing file; any other file is skipped and listed.  type wait adds a wait step with config_json as its settings: delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), or a delay_until option; a wait that would pass customers on at once is refused.  type post_card creates a new postcard with the admin\'s default front and back and adds the postcard step that mails it, together; the step starts disabled, so nothing is printed or mailed until it is turned on with set-config, and the response names the front and back containers.  Any goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the new step, as the admin\'s editor adds them.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * @summary Add an email step, with its new email, a wait step, or a postcard step, with its new postcard
      * @param {number} storefrontOid 
      * @param {string} sequenceUuid 
      * @param {string} ifMatch The hash_sha256 of the step it goes after, or of the branching step, or * for the first step of a sequence with no steps.  Required; 428 when absent, 412 when stale.
-     * @param {SfvbSequenceStepCreateRequest} sequenceStepCreateRequest Where the step goes, and the new email\&#39;s subject and preview text
+     * @param {SfvbSequenceStepCreateRequest} sequenceStepCreateRequest Where the step goes, and the new email\&#39;s subject and preview text or code library item, the wait\&#39;s config_json, or the postcard step\&#39;s name
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -3806,8 +3830,8 @@ export interface SfvbApiInterface {
     insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>>;
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
-     * Add an email step, with its new email
+     * type email (the default) creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  The email has no body yet, and gets the content review flags the admin gives a new email here.  With library_item_oid the email starts from a code library email item instead (listSfvbCodeLibraryEmails): its body with new element ids, and its subject and preview text where the request gives none.  The item must be this account\'s own, shared with it, or published, approved by UltraCart and free; it must pass the library content scanner and the email container rules, and executable elements need acknowledge_executable true.  Its PNG, JPEG and GIF image files are copied into the storefront first, never over an existing file; any other file is skipped and listed.  type wait adds a wait step with config_json as its settings: delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), or a delay_until option; a wait that would pass customers on at once is refused.  type post_card creates a new postcard with the admin\'s default front and back and adds the postcard step that mails it, together; the step starts disabled, so nothing is printed or mailed until it is turned on with set-config, and the response names the front and back containers.  Any goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the new step, as the admin\'s editor adds them.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email, a wait step, or a postcard step, with its new postcard
      */
     insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse>;
 
@@ -3901,6 +3925,23 @@ export interface SfvbApiInterface {
      * List the storefront\'s campaigns
      */
     listSfvbCampaigns(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaignsResponse>;
+
+    /**
+     * The code library is the one the admin\'s \"start from library\" uses; it isn\'t the Visual Builder element library.  Lists the email items this account may use, by title: its own (source owned), those shared with it (shared), and those published for everyone, approved by UltraCart and free (public).  search matches part of the title, with case.  Each kind is capped at 100 items, and truncated says when there were more.  Send an item\'s library_item_oid on the step insert to start a new email from it. 
+     * @summary Email items from the code library that can start a new email step
+     * @param {number} storefrontOid 
+     * @param {string} [search] Part of the title to match, with case.  Up to 100 characters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbCodeLibraryEmailsRaw(requestParameters: ListSfvbCodeLibraryEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailsResponse>>;
+
+    /**
+     * The code library is the one the admin\'s \"start from library\" uses; it isn\'t the Visual Builder element library.  Lists the email items this account may use, by title: its own (source owned), those shared with it (shared), and those published for everyone, approved by UltraCart and free (public).  search matches part of the title, with case.  Each kind is capped at 100 items, and truncated says when there were more.  Send an item\'s library_item_oid on the step insert to start a new email from it. 
+     * Email items from the code library that can start a new email step
+     */
+    listSfvbCodeLibraryEmails(requestParameters: ListSfvbCodeLibraryEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailsResponse>;
 
     /**
      * Each list\'s uuid, name and member count, by name, for a campaign\'s memberships or a list trigger.  Never its members.  Archived lists are left out. 
@@ -4231,6 +4272,27 @@ export interface SfvbApiInterface {
      * List upsell paths
      */
     listSfvbUpsellPaths(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPathsResponse>;
+
+    /**
+     * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
+     * @summary Move one step
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} stepUuid 
+     * @param {string} ifMatch The moved step\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbSequenceStepMoveRequest} sequenceStepMoveRequest Where the step moves, and the hash of the step it goes next to
+     * @param {string} [approvalId] When the sequence is live, the approval_id of an approved sequence_step.move request for exactly this move.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    moveSfvbSequenceStepRaw(requestParameters: MoveSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepMoveResponse>>;
+
+    /**
+     * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
+     * Move one step
+     */
+    moveSfvbSequenceStep(requestParameters: MoveSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepMoveResponse>;
 
     /**
      * Up, down, to the top or to the bottom of the storefront\'s paths.  Order decides which running path a shopper meets first, so moving a running path needs sfvb_publish. 
@@ -5316,13 +5378,14 @@ export interface SfvbApiInterface {
     updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
-     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, experiment, resend, webhook, begin, end, continue and merge steps are refused.  On a post_card step only disabled, name and info change, and not its filter.  A sequence whose campaign or flow is live needs sfvb_publish.  Turning a post_card step on, live or not, needs an approved sequence_step.enable_postcard approval (Approval-Id): once on, it mails printed cards whenever the campaign or flow runs. 
      * @summary Change one step\'s settings or audience filter
      * @param {number} storefrontOid 
      * @param {string} sequenceUuid 
      * @param {string} stepUuid 
      * @param {string} ifMatch The step\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
      * @param {SfvbSequenceStepUpdateRequest} sequenceStepUpdateRequest The settings, the filter, or both
+     * @param {string} [approvalId] When the change turns a post_card step on, the approval_id of an approved sequence_step.enable_postcard request for this step.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -5330,7 +5393,7 @@ export interface SfvbApiInterface {
     updateSfvbSequenceStepRaw(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepUpdateResponse>>;
 
     /**
-     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, experiment, resend, webhook, begin, end, continue and merge steps are refused.  On a post_card step only disabled, name and info change, and not its filter.  A sequence whose campaign or flow is live needs sfvb_publish.  Turning a post_card step on, live or not, needs an approved sequence_step.enable_postcard approval (Approval-Id): once on, it mails printed cards whenever the campaign or flow runs. 
      * Change one step\'s settings or audience filter
      */
     updateSfvbSequenceStep(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepUpdateResponse>;
@@ -11112,8 +11175,8 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
-     * Add an email step, with its new email
+     * type email (the default) creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  The email has no body yet, and gets the content review flags the admin gives a new email here.  With library_item_oid the email starts from a code library email item instead (listSfvbCodeLibraryEmails): its body with new element ids, and its subject and preview text where the request gives none.  The item must be this account\'s own, shared with it, or published, approved by UltraCart and free; it must pass the library content scanner and the email container rules, and executable elements need acknowledge_executable true.  Its PNG, JPEG and GIF image files are copied into the storefront first, never over an existing file; any other file is skipped and listed.  type wait adds a wait step with config_json as its settings: delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), or a delay_until option; a wait that would pass customers on at once is refused.  type post_card creates a new postcard with the admin\'s default front and back and adds the postcard step that mails it, together; the step starts disabled, so nothing is printed or mailed until it is turned on with set-config, and the response names the front and back containers.  Any goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the new step, as the admin\'s editor adds them.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email, a wait step, or a postcard step, with its new postcard
      */
     async insertSfvbSequenceStepRaw(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepCreateResponse>> {
         if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
@@ -11163,8 +11226,8 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  It goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the email, as the admin\'s editor adds them.  The email has no body yet, and gets the content review flags the admin gives a new email here.  A sequence whose campaign or flow is live needs sfvb_publish. 
-     * Add an email step, with its new email
+     * type email (the default) creates a new email with the subject and preview text and adds the email step that sends it, together, so a failure leaves neither.  The email has no body yet, and gets the content review flags the admin gives a new email here.  With library_item_oid the email starts from a code library email item instead (listSfvbCodeLibraryEmails): its body with new element ids, and its subject and preview text where the request gives none.  The item must be this account\'s own, shared with it, or published, approved by UltraCart and free; it must pass the library content scanner and the email container rules, and executable elements need acknowledge_executable true.  Its PNG, JPEG and GIF image files are copied into the storefront first, never over an existing file; any other file is skipped and listed.  type wait adds a wait step with config_json as its settings: delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), or a delay_until option; a wait that would pass customers on at once is refused.  type post_card creates a new postcard with the admin\'s default front and back and adds the postcard step that mails it, together; the step starts disabled, so nothing is printed or mailed until it is turned on with set-config, and the response names the front and back containers.  Any goes right after after_step_uuid, or first on one side of a condition, split or inboxgeek step (branch_step_uuid with side).  Send that step\'s hash_sha256 as If-Match.  A sequence with no steps yet takes neither place and If-Match *, and gets begin and end steps around the new step, as the admin\'s editor adds them.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Add an email step, with its new email, a wait step, or a postcard step, with its new postcard
      */
     async insertSfvbSequenceStep(requestParameters: InsertSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepCreateResponse> {
         const response = await this.insertSfvbSequenceStepRaw(requestParameters, initOverrides);
@@ -11422,6 +11485,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbCampaigns(requestParameters: ListSfvbCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaignsResponse> {
         const response = await this.listSfvbCampaignsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The code library is the one the admin\'s \"start from library\" uses; it isn\'t the Visual Builder element library.  Lists the email items this account may use, by title: its own (source owned), those shared with it (shared), and those published for everyone, approved by UltraCart and free (public).  search matches part of the title, with case.  Each kind is capped at 100 items, and truncated says when there were more.  Send an item\'s library_item_oid on the step insert to start a new email from it. 
+     * Email items from the code library that can start a new email step
+     */
+    async listSfvbCodeLibraryEmailsRaw(requestParameters: ListSfvbCodeLibraryEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbCodeLibraryEmails.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/code_library/emails`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCodeLibraryEmailsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The code library is the one the admin\'s \"start from library\" uses; it isn\'t the Visual Builder element library.  Lists the email items this account may use, by title: its own (source owned), those shared with it (shared), and those published for everyone, approved by UltraCart and free (public).  search matches part of the title, with case.  Each kind is capped at 100 items, and truncated says when there were more.  Send an item\'s library_item_oid on the step insert to start a new email from it. 
+     * Email items from the code library that can start a new email step
+     */
+    async listSfvbCodeLibraryEmails(requestParameters: ListSfvbCodeLibraryEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailsResponse> {
+        const response = await this.listSfvbCodeLibraryEmailsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -12330,6 +12438,74 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbUpsellPaths(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPathsResponse> {
         const response = await this.listSfvbUpsellPathsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
+     * Move one step
+     */
+    async moveSfvbSequenceStepRaw(requestParameters: MoveSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepMoveResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling moveSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling moveSfvbSequenceStep.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling moveSfvbSequenceStep.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling moveSfvbSequenceStep.');
+        }
+
+        if (requestParameters.sequenceStepMoveRequest === null || requestParameters.sequenceStepMoveRequest === undefined) {
+            throw new runtime.RequiredError('sequenceStepMoveRequest','Required parameter requestParameters.sequenceStepMoveRequest was null or undefined when calling moveSfvbSequenceStep.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps/{step_uuid}/move`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSequenceStepMoveRequestToJSON(requestParameters.sequenceStepMoveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSequenceStepMoveResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
+     * Move one step
+     */
+    async moveSfvbSequenceStep(requestParameters: MoveSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepMoveResponse> {
+        const response = await this.moveSfvbSequenceStepRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -15548,7 +15724,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, experiment, resend, webhook, begin, end, continue and merge steps are refused.  On a post_card step only disabled, name and info change, and not its filter.  A sequence whose campaign or flow is live needs sfvb_publish.  Turning a post_card step on, live or not, needs an approved sequence_step.enable_postcard approval (Approval-Id): once on, it mails printed cards whenever the campaign or flow runs. 
      * Change one step\'s settings or audience filter
      */
     async updateSfvbSequenceStepRaw(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSequenceStepUpdateResponse>> {
@@ -15582,6 +15758,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
         }
 
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
             headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
@@ -15603,7 +15783,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, postcard, experiment, resend, webhook, begin, end, continue and merge steps are refused.  A sequence whose campaign or flow is live needs sfvb_publish. 
+     * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  Email, experiment, resend, webhook, begin, end, continue and merge steps are refused.  On a post_card step only disabled, name and info change, and not its filter.  A sequence whose campaign or flow is live needs sfvb_publish.  Turning a post_card step on, live or not, needs an approved sequence_step.enable_postcard approval (Approval-Id): once on, it mails printed cards whenever the campaign or flow runs. 
      * Change one step\'s settings or audience filter
      */
     async updateSfvbSequenceStep(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepUpdateResponse> {

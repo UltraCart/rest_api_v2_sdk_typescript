@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbSequenceStepCreateRequest {
     /**
+     * With library_item_oid, true once the caller has seen that the item carries executable content (script, html, embed, css or velocity elements) and still wants it.  An item with any is refused without it.
+     * @type {boolean}
+     * @memberof SfvbSequenceStepCreateRequest
+     */
+    acknowledge_executable?: boolean;
+    /**
      * The step the new step follows, in the same list.  Not an end, continue or merge step.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
@@ -32,7 +38,25 @@ export interface SfvbSequenceStepCreateRequest {
      */
     branch_step_uuid?: string;
     /**
-     * The new email's preview text, 5 to 150 characters.
+     * A wait step's settings, as the admin saves them and set-config changes them, namely delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), and optionally the delay_until_* options.  Not for an email step.
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateRequest
+     */
+    config_json?: string;
+    /**
+     * An email item from the code library (#1589) to start the new email from, taking its body, with new element ids, and its subject and preview text unless subject or preview_text is given.  The item must be this account's own, shared with it, or published, approved by UltraCart and free.  Only for an email step.  The items are listed by the code library email read.
+     * @type {number}
+     * @memberof SfvbSequenceStepCreateRequest
+     */
+    library_item_oid?: number;
+    /**
+     * A post_card step's name, shown in the admin, 1 to 100 characters on one line.  Postcard by default.  Only for a post_card step.
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateRequest
+     */
+    name?: string;
+    /**
+     * The new email's preview text, 5 to 150 characters.  Optional with library_item_oid, whose preview text is used when this is left out.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
      */
@@ -44,13 +68,13 @@ export interface SfvbSequenceStepCreateRequest {
      */
     side?: string;
     /**
-     * The new email's subject line, 5 to 150 characters.
+     * The new email's subject line, 5 to 150 characters.  Optional with library_item_oid, whose subject is used when this is left out.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
      */
     subject?: string;
     /**
-     * The kind of step.  Only email for now.
+     * The kind of step, one of email (the default), wait or post_card.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
      */
@@ -78,8 +102,12 @@ export function SfvbSequenceStepCreateRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'acknowledge_executable': !exists(json, 'acknowledge_executable') ? undefined : json['acknowledge_executable'],
         'after_step_uuid': !exists(json, 'after_step_uuid') ? undefined : json['after_step_uuid'],
         'branch_step_uuid': !exists(json, 'branch_step_uuid') ? undefined : json['branch_step_uuid'],
+        'config_json': !exists(json, 'config_json') ? undefined : json['config_json'],
+        'library_item_oid': !exists(json, 'library_item_oid') ? undefined : json['library_item_oid'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'preview_text': !exists(json, 'preview_text') ? undefined : json['preview_text'],
         'side': !exists(json, 'side') ? undefined : json['side'],
         'subject': !exists(json, 'subject') ? undefined : json['subject'],
@@ -96,8 +124,12 @@ export function SfvbSequenceStepCreateRequestToJSON(value?: SfvbSequenceStepCrea
     }
     return {
         
+        'acknowledge_executable': value.acknowledge_executable,
         'after_step_uuid': value.after_step_uuid,
         'branch_step_uuid': value.branch_step_uuid,
+        'config_json': value.config_json,
+        'library_item_oid': value.library_item_oid,
+        'name': value.name,
         'preview_text': value.preview_text,
         'side': value.side,
         'subject': value.subject,

@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbApprovalParams {
     /**
+     * For sequence_step.move, the step it moves after.  Or branch_step_uuid with side.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    after_step_uuid?: string;
+    /**
      * For item.attribute_batch, the attributes the batch would change.  Set by the server.
      * @type {Array<string>}
      * @memberof SfvbApprovalParams
@@ -31,6 +37,12 @@ export interface SfvbApprovalParams {
      * @memberof SfvbApprovalParams
      */
     blog_post_oid?: number;
+    /**
+     * For sequence_step.move, the condition, split or inboxgeek step it moves to the start of a side of.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    branch_step_uuid?: string;
     /**
      * For file.put_script, the SHA-256 of the exact bytes approved.  Set by the server, never by the caller.  The write must send bytes with this hash.
      * @type {string}
@@ -98,11 +110,17 @@ export interface SfvbApprovalParams {
      */
     segment_uuid?: string;
     /**
-     * The communication sequence, for sequence_step.delete.
+     * The communication sequence, for sequence_step.delete and sequence_step.move.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
     sequence_uuid?: string;
+    /**
+     * For sequence_step.move with branch_step_uuid, the side's label from the sequence read.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    side?: string;
     /**
      * For experiment.start of a page experiment, the page body name.  Defaults to body.
      * @type {string}
@@ -110,7 +128,7 @@ export interface SfvbApprovalParams {
      */
     slot?: string;
     /**
-     * The step to remove, for sequence_step.delete.
+     * The step to remove, for sequence_step.delete, or to move, for sequence_step.move.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -178,8 +196,10 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'after_step_uuid': !exists(json, 'after_step_uuid') ? undefined : json['after_step_uuid'],
         'attribute_names': !exists(json, 'attribute_names') ? undefined : json['attribute_names'],
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
+        'branch_step_uuid': !exists(json, 'branch_step_uuid') ? undefined : json['branch_step_uuid'],
         'content_sha256': !exists(json, 'content_sha256') ? undefined : json['content_sha256'],
         'domain': !exists(json, 'domain') ? undefined : json['domain'],
         'esp_twilio_uuid': !exists(json, 'esp_twilio_uuid') ? undefined : json['esp_twilio_uuid'],
@@ -192,6 +212,7 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
         'segment_uuid': !exists(json, 'segment_uuid') ? undefined : json['segment_uuid'],
         'sequence_uuid': !exists(json, 'sequence_uuid') ? undefined : json['sequence_uuid'],
+        'side': !exists(json, 'side') ? undefined : json['side'],
         'slot': !exists(json, 'slot') ? undefined : json['slot'],
         'step_uuid': !exists(json, 'step_uuid') ? undefined : json['step_uuid'],
         'upsell_kind': !exists(json, 'upsell_kind') ? undefined : json['upsell_kind'],
@@ -211,8 +232,10 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
     }
     return {
         
+        'after_step_uuid': value.after_step_uuid,
         'attribute_names': value.attribute_names,
         'blog_post_oid': value.blog_post_oid,
+        'branch_step_uuid': value.branch_step_uuid,
         'content_sha256': value.content_sha256,
         'domain': value.domain,
         'esp_twilio_uuid': value.esp_twilio_uuid,
@@ -225,6 +248,7 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'rule_count': value.rule_count,
         'segment_uuid': value.segment_uuid,
         'sequence_uuid': value.sequence_uuid,
+        'side': value.side,
         'slot': value.slot,
         'step_uuid': value.step_uuid,
         'upsell_kind': value.upsell_kind,

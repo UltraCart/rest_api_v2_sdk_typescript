@@ -27,17 +27,59 @@ import {
  */
 export interface SfvbSequenceStepCreateResponse {
     /**
+     * A post_card step's back, the container with owner type postcardback and this owner id.
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    back_container_uuid?: string;
+    /**
      * The new email's uuid.  Its body is the email container with this owner id.
      * @type {string}
      * @memberof SfvbSequenceStepCreateResponse
      */
     email_uuid?: string;
     /**
+     * A post_card step's front, the container with owner type postcardfront and this owner id.
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    front_container_uuid?: string;
+    /**
+     * The library item's files whose path already held a file, which was kept, not replaced.
+     * @type {Array<string>}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    library_files_kept?: Array<string>;
+    /**
+     * The library item's files that weren't written because they aren't a PNG, JPEG or GIF image whose bytes match its name.  Only those images are copied from a library item.
+     * @type {Array<string>}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    library_files_skipped?: Array<string>;
+    /**
+     * Storefront file paths the library item's files were written to.  A file already at its path is kept as it is and listed in library_files_kept instead.
+     * @type {Array<string>}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    library_files_written?: Array<string>;
+    /**
+     * The code library email item the new email started from (#1589), when one was given.
+     * @type {number}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    library_item_oid?: number;
+    /**
      * What to do next, such as writing the body, and customers already waiting on the step before it.
      * @type {Array<string>}
      * @memberof SfvbSequenceStepCreateResponse
      */
     notes?: Array<string>;
+    /**
+     * A post_card step's new postcard (#1644).
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateResponse
+     */
+    postcard_uuid?: string;
     /**
      * True when the new email must pass content review before it sends.
      * @type {boolean}
@@ -73,8 +115,15 @@ export function SfvbSequenceStepCreateResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
+        'back_container_uuid': !exists(json, 'back_container_uuid') ? undefined : json['back_container_uuid'],
         'email_uuid': !exists(json, 'email_uuid') ? undefined : json['email_uuid'],
+        'front_container_uuid': !exists(json, 'front_container_uuid') ? undefined : json['front_container_uuid'],
+        'library_files_kept': !exists(json, 'library_files_kept') ? undefined : json['library_files_kept'],
+        'library_files_skipped': !exists(json, 'library_files_skipped') ? undefined : json['library_files_skipped'],
+        'library_files_written': !exists(json, 'library_files_written') ? undefined : json['library_files_written'],
+        'library_item_oid': !exists(json, 'library_item_oid') ? undefined : json['library_item_oid'],
         'notes': !exists(json, 'notes') ? undefined : json['notes'],
+        'postcard_uuid': !exists(json, 'postcard_uuid') ? undefined : json['postcard_uuid'],
         'requires_review': !exists(json, 'requires_review') ? undefined : json['requires_review'],
         'step': !exists(json, 'step') ? undefined : SfvbSequenceStepFromJSON(json['step']),
     };
@@ -89,8 +138,15 @@ export function SfvbSequenceStepCreateResponseToJSON(value?: SfvbSequenceStepCre
     }
     return {
         
+        'back_container_uuid': value.back_container_uuid,
         'email_uuid': value.email_uuid,
+        'front_container_uuid': value.front_container_uuid,
+        'library_files_kept': value.library_files_kept,
+        'library_files_skipped': value.library_files_skipped,
+        'library_files_written': value.library_files_written,
+        'library_item_oid': value.library_item_oid,
         'notes': value.notes,
+        'postcard_uuid': value.postcard_uuid,
         'requires_review': value.requires_review,
         'step': SfvbSequenceStepToJSON(value.step),
     };

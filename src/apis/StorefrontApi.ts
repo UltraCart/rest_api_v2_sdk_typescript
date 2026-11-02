@@ -2072,7 +2072,7 @@ export interface StorefrontApiInterface {
     getEmailCampaigns(requestParameters: GetEmailCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCampaignsResponse>;
 
     /**
-     * 
+     * Lists only the campaigns with stats recorded in the last stat_days days, with those stats summed.  A campaign with no stats in that window isn\'t listed; getEmailCampaigns lists every campaign. 
      * @summary Get email campaigns with stats
      * @param {number} storefrontOid 
      * @param {string} statDays 
@@ -2083,6 +2083,7 @@ export interface StorefrontApiInterface {
     getEmailCampaignsWithStatsRaw(requestParameters: GetEmailCampaignsWithStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCampaignsResponse>>;
 
     /**
+     * Lists only the campaigns with stats recorded in the last stat_days days, with those stats summed.  A campaign with no stats in that window isn\'t listed; getEmailCampaigns lists every campaign. 
      * Get email campaigns with stats
      */
     getEmailCampaignsWithStats(requestParameters: GetEmailCampaignsWithStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCampaignsResponse>;
@@ -6333,6 +6334,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
+     * Lists only the campaigns with stats recorded in the last stat_days days, with those stats summed.  A campaign with no stats in that window isn\'t listed; getEmailCampaigns lists every campaign. 
      * Get email campaigns with stats
      */
     async getEmailCampaignsWithStatsRaw(requestParameters: GetEmailCampaignsWithStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCampaignsResponse>> {
@@ -6372,6 +6374,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
+     * Lists only the campaigns with stats recorded in the last stat_days days, with those stats summed.  A campaign with no stats in that window isn\'t listed; getEmailCampaigns lists every campaign. 
      * Get email campaigns with stats
      */
     async getEmailCampaignsWithStats(requestParameters: GetEmailCampaignsWithStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCampaignsResponse> {
