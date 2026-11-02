@@ -1165,6 +1165,8 @@ src/models/SfvbPageResponse.ts
 src/models/SfvbPageSelectors.ts
 src/models/SfvbPageSettingsRequest.ts
 src/models/SfvbPageSummary.ts
+src/models/SfvbPostcardProofRequest.ts
+src/models/SfvbPostcardProofResponse.ts
 src/models/SfvbPreviewAccessRequest.ts
 src/models/SfvbPreviewAccessResponse.ts
 src/models/SfvbPreviewSessionRequest.ts

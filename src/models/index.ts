@@ -1137,6 +1137,8 @@ export * from './SfvbPageResponse';
 export * from './SfvbPageSelectors';
 export * from './SfvbPageSettingsRequest';
 export * from './SfvbPageSummary';
+export * from './SfvbPostcardProofRequest';
+export * from './SfvbPostcardProofResponse';
 export * from './SfvbPreviewAccessRequest';
 export * from './SfvbPreviewAccessResponse';
 export * from './SfvbPreviewSessionRequest';

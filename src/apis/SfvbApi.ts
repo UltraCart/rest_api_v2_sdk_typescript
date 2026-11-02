@@ -363,6 +363,12 @@ import {
     SfvbPageSettingsRequest,
     SfvbPageSettingsRequestFromJSON,
     SfvbPageSettingsRequestToJSON,
+    SfvbPostcardProofRequest,
+    SfvbPostcardProofRequestFromJSON,
+    SfvbPostcardProofRequestToJSON,
+    SfvbPostcardProofResponse,
+    SfvbPostcardProofResponseFromJSON,
+    SfvbPostcardProofResponseToJSON,
     SfvbPreviewAccessRequest,
     SfvbPreviewAccessRequestFromJSON,
     SfvbPreviewAccessRequestToJSON,
@@ -1325,6 +1331,13 @@ export interface MoveSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPathOid: number;
     moveRequest: SfvbUpsellPathMoveRequest;
+}
+
+export interface ProofSfvbSequencePostcardRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    stepUuid: string;
+    postcardProofRequest: SfvbPostcardProofRequest;
 }
 
 export interface PublishSfvbLibraryEntryRequest {
@@ -4311,6 +4324,25 @@ export interface SfvbApiInterface {
      * Move an upsell path
      */
     moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * Renders both sides of the step\'s postcard as a send renders them, then has the print vendor render the card as a dry run.  Returns the HTML of each side, the PNG image of each side that the vendor prints from, the vendor\'s thumbnails and its proof PDF.  The QR code is the short link a send prints.  No card is printed or mailed, nothing is billed, the step is not changed, and no coupon is created.  A unique coupon code shows as PREVIEW-UNIQUE.  The image urls are public.  html_only returns the HTML alone, with no vendor render.  An order must be a test order.  cart_item_ids fills the cart a cart flow card shows.  Works whether the step is on or off. 
+     * @summary Proof a postcard step without mailing it
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} stepUuid 
+     * @param {SfvbPostcardProofRequest} postcardProofRequest Who the card is addressed to, and the order or cart it shows
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    proofSfvbSequencePostcardRaw(requestParameters: ProofSfvbSequencePostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPostcardProofResponse>>;
+
+    /**
+     * Renders both sides of the step\'s postcard as a send renders them, then has the print vendor render the card as a dry run.  Returns the HTML of each side, the PNG image of each side that the vendor prints from, the vendor\'s thumbnails and its proof PDF.  The QR code is the short link a send prints.  No card is printed or mailed, nothing is billed, the step is not changed, and no coupon is created.  A unique coupon code shows as PREVIEW-UNIQUE.  The image urls are public.  html_only returns the HTML alone, with no vendor render.  An order must be a test order.  cart_item_ids fills the cart a cart flow card shows.  Works whether the step is on or off. 
+     * Proof a postcard step without mailing it
+     */
+    proofSfvbSequencePostcard(requestParameters: ProofSfvbSequencePostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPostcardProofResponse>;
 
     /**
      * Freezes the draft as a published revision at its revision_number and sets who can see it.  Owner only, with the draft\'s hash_sha256 as If-Match.  Always needs sfvb_publish, because it changes what other merchants can install.  Images, fonts, stylesheets and media must be relative paths, and credential shaped strings are refused.  Public also needs the library publisher property on the account and no executable content at all - no script, html, embed, css or velocity elements.  After those checks an automated AI review reads the fragment, which can take up to about a minute.  A clear violation both of its models agree on refuses any publish with sfvb.library_ai_review_blocked.  A public publish also needs its approval, otherwise sfvb.library_ai_review_inconclusive.  The result is in content_manifest.ai_review. 
@@ -12558,6 +12590,62 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async moveSfvbUpsellPath(requestParameters: MoveSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.moveSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Renders both sides of the step\'s postcard as a send renders them, then has the print vendor render the card as a dry run.  Returns the HTML of each side, the PNG image of each side that the vendor prints from, the vendor\'s thumbnails and its proof PDF.  The QR code is the short link a send prints.  No card is printed or mailed, nothing is billed, the step is not changed, and no coupon is created.  A unique coupon code shows as PREVIEW-UNIQUE.  The image urls are public.  html_only returns the HTML alone, with no vendor render.  An order must be a test order.  cart_item_ids fills the cart a cart flow card shows.  Works whether the step is on or off. 
+     * Proof a postcard step without mailing it
+     */
+    async proofSfvbSequencePostcardRaw(requestParameters: ProofSfvbSequencePostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPostcardProofResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling proofSfvbSequencePostcard.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling proofSfvbSequencePostcard.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling proofSfvbSequencePostcard.');
+        }
+
+        if (requestParameters.postcardProofRequest === null || requestParameters.postcardProofRequest === undefined) {
+            throw new runtime.RequiredError('postcardProofRequest','Required parameter requestParameters.postcardProofRequest was null or undefined when calling proofSfvbSequencePostcard.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps/{step_uuid}/postcard_proof`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPostcardProofRequestToJSON(requestParameters.postcardProofRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPostcardProofResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Renders both sides of the step\'s postcard as a send renders them, then has the print vendor render the card as a dry run.  Returns the HTML of each side, the PNG image of each side that the vendor prints from, the vendor\'s thumbnails and its proof PDF.  The QR code is the short link a send prints.  No card is printed or mailed, nothing is billed, the step is not changed, and no coupon is created.  A unique coupon code shows as PREVIEW-UNIQUE.  The image urls are public.  html_only returns the HTML alone, with no vendor render.  An order must be a test order.  cart_item_ids fills the cart a cart flow card shows.  Works whether the step is on or off. 
+     * Proof a postcard step without mailing it
+     */
+    async proofSfvbSequencePostcard(requestParameters: ProofSfvbSequencePostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPostcardProofResponse> {
+        const response = await this.proofSfvbSequencePostcardRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
