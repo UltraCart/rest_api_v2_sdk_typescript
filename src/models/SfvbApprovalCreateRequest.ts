@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    SfvbAffiliateNetworkRequest,
+    SfvbAffiliateNetworkRequestFromJSON,
+    SfvbAffiliateNetworkRequestFromJSONTyped,
+    SfvbAffiliateNetworkRequestToJSON,
+} from './SfvbAffiliateNetworkRequest';
+import {
     SfvbApprovalParams,
     SfvbApprovalParamsFromJSON,
     SfvbApprovalParamsFromJSONTyped,
@@ -49,6 +55,18 @@ import {
     SfvbRedirectDeleteRowFromJSONTyped,
     SfvbRedirectDeleteRowToJSON,
 } from './SfvbRedirectDeleteRow';
+import {
+    SfvbSmartAttributionRequest,
+    SfvbSmartAttributionRequestFromJSON,
+    SfvbSmartAttributionRequestFromJSONTyped,
+    SfvbSmartAttributionRequestToJSON,
+} from './SfvbSmartAttributionRequest';
+import {
+    SfvbTrackingProviderRequest,
+    SfvbTrackingProviderRequestFromJSON,
+    SfvbTrackingProviderRequestFromJSONTyped,
+    SfvbTrackingProviderRequestToJSON,
+} from './SfvbTrackingProviderRequest';
 
 /**
  * 
@@ -63,7 +81,13 @@ export interface SfvbApprovalCreateRequest {
      */
     action?: SfvbApprovalCreateRequestActionEnum;
     /**
-     * For a file.put_script write, the exact script to be written, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
+     * 
+     * @type {SfvbAffiliateNetworkRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    affiliate_network?: SfvbAffiliateNetworkRequest;
+    /**
+     * For a file.put_script write, the exact script to be written, at most 256 KB.  For tracking_html.put, the exact HTML the write will send, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
      * @type {string}
      * @memberof SfvbApprovalCreateRequest
      */
@@ -110,6 +134,18 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     segment_update?: SfvbCommsSegmentWriteRequest;
+    /**
+     * 
+     * @type {SfvbSmartAttributionRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    smart_attribution?: SfvbSmartAttributionRequest;
+    /**
+     * 
+     * @type {SfvbTrackingProviderRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    tracking_provider?: SfvbTrackingProviderRequest;
 }
 
 
@@ -132,7 +168,13 @@ export const SfvbApprovalCreateRequestActionEnum = {
     SequenceStepDelete: 'sequence_step.delete',
     SequenceStepMove: 'sequence_step.move',
     SequenceStepEnablePostcard: 'sequence_step.enable_postcard',
-    SegmentUpdate: 'segment.update'
+    SegmentUpdate: 'segment.update',
+    SmartAttributionChange: 'smart_attribution.change',
+    SmartAttributionDelete: 'smart_attribution.delete',
+    TrackingProviderChange: 'tracking_provider.change',
+    TrackingHtmlPut: 'tracking_html.put',
+    AffiliateNetworkChange: 'affiliate_network.change',
+    AffiliateNetworkDelete: 'affiliate_network.delete'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -157,6 +199,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'affiliate_network': !exists(json, 'affiliate_network') ? undefined : SfvbAffiliateNetworkRequestFromJSON(json['affiliate_network']),
         'content': !exists(json, 'content') ? undefined : json['content'],
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
@@ -165,6 +208,8 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
         'segment_update': !exists(json, 'segment_update') ? undefined : SfvbCommsSegmentWriteRequestFromJSON(json['segment_update']),
+        'smart_attribution': !exists(json, 'smart_attribution') ? undefined : SfvbSmartAttributionRequestFromJSON(json['smart_attribution']),
+        'tracking_provider': !exists(json, 'tracking_provider') ? undefined : SfvbTrackingProviderRequestFromJSON(json['tracking_provider']),
     };
 }
 
@@ -178,6 +223,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
     return {
         
         'action': value.action,
+        'affiliate_network': SfvbAffiliateNetworkRequestToJSON(value.affiliate_network),
         'content': value.content,
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
@@ -186,6 +232,8 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'reason': value.reason,
         'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),
         'segment_update': SfvbCommsSegmentWriteRequestToJSON(value.segment_update),
+        'smart_attribution': SfvbSmartAttributionRequestToJSON(value.smart_attribution),
+        'tracking_provider': SfvbTrackingProviderRequestToJSON(value.tracking_provider),
     };
 }
 

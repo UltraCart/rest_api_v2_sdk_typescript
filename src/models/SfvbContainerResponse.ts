@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbErrorDetail,
+    SfvbErrorDetailFromJSON,
+    SfvbErrorDetailFromJSONTyped,
+    SfvbErrorDetailToJSON,
+} from './SfvbErrorDetail';
+
 /**
  * 
  * @export
@@ -61,6 +68,12 @@ export interface SfvbContainerResponse {
      * @memberof SfvbContainerResponse
      */
     owner_type?: SfvbContainerResponseOwnerTypeEnum;
+    /**
+     * Quality warnings from validating this write.  The write succeeded; each one says what to look at, such as a postcard QR code URL with a fragment.  Absent when there are none.
+     * @type {Array<SfvbErrorDetail>}
+     * @memberof SfvbContainerResponse
+     */
+    warnings?: Array<SfvbErrorDetail>;
 }
 
 
@@ -105,6 +118,7 @@ export function SfvbContainerResponseFromJSONTyped(json: any, ignoreDiscriminato
         'merchant_item_id': !exists(json, 'merchant_item_id') ? undefined : json['merchant_item_id'],
         'owner_object_id': !exists(json, 'owner_object_id') ? undefined : json['owner_object_id'],
         'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
+        'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(SfvbErrorDetailFromJSON)),
     };
 }
 
@@ -124,6 +138,7 @@ export function SfvbContainerResponseToJSON(value?: SfvbContainerResponse | null
         'merchant_item_id': value.merchant_item_id,
         'owner_object_id': value.owner_object_id,
         'owner_type': value.owner_type,
+        'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(SfvbErrorDetailToJSON)),
     };
 }
 

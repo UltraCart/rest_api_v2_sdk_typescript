@@ -18,6 +18,15 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SfvbAffiliateNetwork,
+    SfvbAffiliateNetworkFromJSON,
+    SfvbAffiliateNetworkToJSON,
+    SfvbAffiliateNetworkRequest,
+    SfvbAffiliateNetworkRequestFromJSON,
+    SfvbAffiliateNetworkRequestToJSON,
+    SfvbAffiliateNetworksResponse,
+    SfvbAffiliateNetworksResponseFromJSON,
+    SfvbAffiliateNetworksResponseToJSON,
     SfvbApproval,
     SfvbApprovalFromJSON,
     SfvbApprovalToJSON,
@@ -480,6 +489,12 @@ import {
     SfvbSiteAttributesResponse,
     SfvbSiteAttributesResponseFromJSON,
     SfvbSiteAttributesResponseToJSON,
+    SfvbSmartAttribution,
+    SfvbSmartAttributionFromJSON,
+    SfvbSmartAttributionToJSON,
+    SfvbSmartAttributionRequest,
+    SfvbSmartAttributionRequestFromJSON,
+    SfvbSmartAttributionRequestToJSON,
     SfvbStorefrontsResponse,
     SfvbStorefrontsResponseFromJSON,
     SfvbStorefrontsResponseToJSON,
@@ -510,6 +525,33 @@ import {
     SfvbThemesResponse,
     SfvbThemesResponseFromJSON,
     SfvbThemesResponseToJSON,
+    SfvbTrackingAdvancedRequest,
+    SfvbTrackingAdvancedRequestFromJSON,
+    SfvbTrackingAdvancedRequestToJSON,
+    SfvbTrackingHtml,
+    SfvbTrackingHtmlFromJSON,
+    SfvbTrackingHtmlToJSON,
+    SfvbTrackingHtmlRequest,
+    SfvbTrackingHtmlRequestFromJSON,
+    SfvbTrackingHtmlRequestToJSON,
+    SfvbTrackingHtmlResponse,
+    SfvbTrackingHtmlResponseFromJSON,
+    SfvbTrackingHtmlResponseToJSON,
+    SfvbTrackingPrivacyRequest,
+    SfvbTrackingPrivacyRequestFromJSON,
+    SfvbTrackingPrivacyRequestToJSON,
+    SfvbTrackingProvider,
+    SfvbTrackingProviderFromJSON,
+    SfvbTrackingProviderToJSON,
+    SfvbTrackingProviderRequest,
+    SfvbTrackingProviderRequestFromJSON,
+    SfvbTrackingProviderRequestToJSON,
+    SfvbTrackingProvidersResponse,
+    SfvbTrackingProvidersResponseFromJSON,
+    SfvbTrackingProvidersResponseToJSON,
+    SfvbTrackingSettingsResponse,
+    SfvbTrackingSettingsResponseFromJSON,
+    SfvbTrackingSettingsResponseToJSON,
     SfvbTransactionalEmailsResponse,
     SfvbTransactionalEmailsResponseFromJSON,
     SfvbTransactionalEmailsResponseToJSON,
@@ -531,6 +573,15 @@ import {
     SfvbUpsellPathsResponse,
     SfvbUpsellPathsResponseFromJSON,
     SfvbUpsellPathsResponseToJSON,
+    SfvbUtmShortcode,
+    SfvbUtmShortcodeFromJSON,
+    SfvbUtmShortcodeToJSON,
+    SfvbUtmShortcodeRequest,
+    SfvbUtmShortcodeRequestFromJSON,
+    SfvbUtmShortcodeRequestToJSON,
+    SfvbUtmShortcodesResponse,
+    SfvbUtmShortcodesResponseFromJSON,
+    SfvbUtmShortcodesResponseToJSON,
     SfvbValidateRequest,
     SfvbValidateRequestFromJSON,
     SfvbValidateRequestToJSON,
@@ -637,6 +688,13 @@ export interface CreateSfvbPreviewSessionRequest {
     storefrontOid: number;
 }
 
+export interface DeleteSfvbAffiliateNetworkRequest {
+    storefrontOid: number;
+    affiliateNetworkOid: number;
+    ifMatch: string;
+    approvalId: string;
+}
+
 export interface DeleteSfvbApprovalRequest {
     approvalId: string;
 }
@@ -720,6 +778,24 @@ export interface DeleteSfvbSequenceStepRequest {
     approvalId?: string;
 }
 
+export interface DeleteSfvbSmartAttributionRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    approvalId?: string;
+}
+
+export interface DeleteSfvbTrackingProviderRequest {
+    storefrontOid: number;
+    provider: string;
+    ifMatch: string;
+}
+
+export interface DeleteSfvbUtmShortcodeRequest {
+    storefrontOid: number;
+    shortcodeOid: number;
+    ifMatch: string;
+}
+
 export interface DetachSfvbBlogPostImageRequest {
     storefrontOid: number;
     blogPostOid: number;
@@ -797,6 +873,10 @@ export interface EnableSfvbI18nLanguageRequest {
     languageEnableRequest: SfvbI18nLanguageEnableRequest;
 }
 
+export interface EnableSfvbSmartAttributionRequest {
+    storefrontOid: number;
+}
+
 export interface EnableSfvbUpsellOfferRequest {
     storefrontOid: number;
     upsellOfferOid: number;
@@ -819,6 +899,15 @@ export interface EndSfvbExperimentRequest {
 export interface FavoriteSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+}
+
+export interface GetSfvbAffiliateNetworkRequest {
+    storefrontOid: number;
+    affiliateNetworkOid: number;
+}
+
+export interface GetSfvbAffiliateNetworksRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbApprovalRequest {
@@ -1075,6 +1164,10 @@ export interface GetSfvbSiteAttributesRequest {
     storefrontOid: number;
 }
 
+export interface GetSfvbSmartAttributionRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbTestOrdersRequest {
     storefrontOid: number;
     limit?: number;
@@ -1095,6 +1188,29 @@ export interface GetSfvbThemeAttributesRequest {
 export interface GetSfvbThemeJobRequest {
     storefrontOid: number;
     jobId: number;
+}
+
+export interface GetSfvbTrackingHtmlRequest {
+    storefrontOid: number;
+    slot: string;
+}
+
+export interface GetSfvbTrackingHtmlSlotsRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbTrackingProviderRequest {
+    storefrontOid: number;
+    provider: string;
+}
+
+export interface GetSfvbTrackingProvidersRequest {
+    storefrontOid: number;
+    configured?: boolean;
+}
+
+export interface GetSfvbTrackingSettingsRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbTransactionalEmailsRequest {
@@ -1119,6 +1235,16 @@ export interface GetSfvbUpsellPathRequest {
     statsWeekdays?: string;
 }
 
+export interface GetSfvbUtmShortcodeRequest {
+    storefrontOid: number;
+    shortcodeOid: number;
+}
+
+export interface GetSfvbUtmShortcodesRequest {
+    storefrontOid: number;
+    q?: string;
+}
+
 export interface IgnoreSfvbNotFoundEntryRequest {
     storefrontOid: number;
     notFoundId: string;
@@ -1127,6 +1253,12 @@ export interface IgnoreSfvbNotFoundEntryRequest {
 export interface ImportSfvbRedirectsRequest {
     storefrontOid: number;
     redirectImportRequest: SfvbRedirectImportRequest;
+}
+
+export interface InsertSfvbAffiliateNetworkRequest {
+    storefrontOid: number;
+    affiliateNetworkRequest: SfvbAffiliateNetworkRequest;
+    approvalId?: string;
 }
 
 export interface InsertSfvbApprovalRequest {
@@ -1181,6 +1313,11 @@ export interface InsertSfvbUpsellOfferRequest {
 export interface InsertSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPath: SfvbUpsellPath;
+}
+
+export interface InsertSfvbUtmShortcodeRequest {
+    storefrontOid: number;
+    utmShortcodeRequest: SfvbUtmShortcodeRequest;
 }
 
 export interface InstallSfvbLibraryEntryRequest {
@@ -1638,6 +1775,14 @@ export interface UnshareSfvbLibraryEntryRequest {
     merchantId: string;
 }
 
+export interface UpdateSfvbAffiliateNetworkRequest {
+    storefrontOid: number;
+    affiliateNetworkOid: number;
+    ifMatch: string;
+    affiliateNetworkRequest: SfvbAffiliateNetworkRequest;
+    approvalId?: string;
+}
+
 export interface UpdateSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
@@ -1718,6 +1863,41 @@ export interface UpdateSfvbSequenceStepRequest {
     approvalId?: string;
 }
 
+export interface UpdateSfvbSmartAttributionRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    smartAttributionRequest: SfvbSmartAttributionRequest;
+    approvalId?: string;
+}
+
+export interface UpdateSfvbTrackingAdvancedRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    trackingAdvancedRequest: SfvbTrackingAdvancedRequest;
+}
+
+export interface UpdateSfvbTrackingHtmlRequest {
+    storefrontOid: number;
+    slot: string;
+    ifMatch: string;
+    trackingHtmlRequest: SfvbTrackingHtmlRequest;
+    approvalId?: string;
+}
+
+export interface UpdateSfvbTrackingPrivacyRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    trackingPrivacyRequest: SfvbTrackingPrivacyRequest;
+}
+
+export interface UpdateSfvbTrackingProviderRequest {
+    storefrontOid: number;
+    provider: string;
+    ifMatch: string;
+    trackingProviderRequest: SfvbTrackingProviderRequest;
+    approvalId?: string;
+}
+
 export interface UpdateSfvbUpsellOfferRequest {
     storefrontOid: number;
     upsellOfferOid: number;
@@ -1730,6 +1910,13 @@ export interface UpdateSfvbUpsellPathRequest {
     upsellPathOid: number;
     ifMatch: string;
     upsellPath: SfvbUpsellPath;
+}
+
+export interface UpdateSfvbUtmShortcodeRequest {
+    storefrontOid: number;
+    shortcodeOid: number;
+    ifMatch: string;
+    utmShortcodeRequest: SfvbUtmShortcodeRequest;
 }
 
 export interface UploadSfvbFileRequest {
@@ -2034,6 +2221,25 @@ export interface SfvbApiInterface {
     createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
 
     /**
+     * Visits from the network stop being recognized and its pixel stops firing.  Refused with 409 while Smart Attribution names the network as a platform.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish and an approved affiliate_network.delete request (Approval-Id). 
+     * @summary Delete an affiliate network
+     * @param {number} storefrontOid 
+     * @param {number} affiliateNetworkOid 
+     * @param {string} ifMatch The network\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {string} approvalId The approval_id of an approved affiliate_network.delete request for this network.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbAffiliateNetworkRaw(requestParameters: DeleteSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Visits from the network stop being recognized and its pixel stops firing.  Refused with 409 while Smart Attribution names the network as a platform.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish and an approved affiliate_network.delete request (Approval-Id). 
+     * Delete an affiliate network
+     */
+    deleteSfvbAffiliateNetwork(requestParameters: DeleteSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
      * @summary Cancel a pending approval request
      * @param {string} approvalId 
@@ -2285,6 +2491,60 @@ export interface SfvbApiInterface {
     deleteSfvbSequenceStep(requestParameters: DeleteSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepDeleteResponse>;
 
     /**
+     * Every platform goes back to being sent conversions as it was before Smart Attribution, and the settings are gone.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish and an approved smart_attribution.delete request (Approval-Id).  An unconfigured storefront is 404. 
+     * @summary Delete a storefront\'s Smart Attribution configuration
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the Smart Attribution read.  428 when absent, 412 when stale.
+     * @param {string} [approvalId] The approval_id of an approved smart_attribution.delete request.  Required.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbSmartAttributionRaw(requestParameters: DeleteSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Every platform goes back to being sent conversions as it was before Smart Attribution, and the settings are gone.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish and an approved smart_attribution.delete request (Approval-Id).  An unconfigured storefront is 404. 
+     * Delete a storefront\'s Smart Attribution configuration
+     */
+    deleteSfvbSmartAttribution(requestParameters: DeleteSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * @summary Clear one tracking provider
+     * @param {number} storefrontOid 
+     * @param {string} provider 
+     * @param {string} ifMatch The provider\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbTrackingProviderRaw(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>>;
+
+    /**
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clear one tracking provider
+     */
+    deleteSfvbTrackingProvider(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider>;
+
+    /**
+     * The shortcode stops attributing at once.  A link that uses it as a path segment still opens its page, without the UTM values.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish. 
+     * @summary Delete a UTM shortcode
+     * @param {number} storefrontOid 
+     * @param {number} shortcodeOid 
+     * @param {string} ifMatch The shortcode\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbUtmShortcodeRaw(requestParameters: DeleteSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * The shortcode stops attributing at once.  A link that uses it as a path segment still opens its page, without the UTM values.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish. 
+     * Delete a UTM shortcode
+     */
+    deleteSfvbUtmShortcode(requestParameters: DeleteSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * @summary Detach an image from a blog post
      * @param {number} storefrontOid 
@@ -2530,6 +2790,22 @@ export interface SfvbApiInterface {
     enableSfvbI18nLanguage(requestParameters: EnableSfvbI18nLanguageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbI18nLanguagesResponse>;
 
     /**
+     * What the admin\'s Enable button saves: report_only, position_based, a 40/20/40 split, a 7 day lookback and every detected platform.  report_only records decisions and changes nothing any platform is sent.  A storefront that already has a configuration is 409 sfvb.smart_attribution_configured.  Needs sfvb_publish. 
+     * @summary Turn Smart Attribution on in report_only mode
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    enableSfvbSmartAttributionRaw(requestParameters: EnableSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>>;
+
+    /**
+     * What the admin\'s Enable button saves: report_only, position_based, a 40/20/40 split, a 7 day lookback and every detected platform.  report_only records decisions and changes nothing any platform is sent.  A storefront that already has a configuration is 409 sfvb.smart_attribution_configured.  Needs sfvb_publish. 
+     * Turn Smart Attribution on in report_only mode
+     */
+    enableSfvbSmartAttribution(requestParameters: EnableSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution>;
+
+    /**
      * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
      * @summary Enable an upsell offer
      * @param {number} storefrontOid 
@@ -2600,6 +2876,39 @@ export interface SfvbApiInterface {
      * Favorite a library entry
      */
     favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * The network with its conversion_pixel, and the hash_sha256 an update or delete sends back as If-Match. 
+     * @summary Read one affiliate network
+     * @param {number} storefrontOid 
+     * @param {number} affiliateNetworkOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbAffiliateNetworkRaw(requestParameters: GetSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>>;
+
+    /**
+     * The network with its conversion_pixel, and the hash_sha256 an update or delete sends back as If-Match. 
+     * Read one affiliate network
+     */
+    getSfvbAffiliateNetwork(requestParameters: GetSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork>;
+
+    /**
+     * Every affiliate network pixel, by name, with its settings and hash_sha256.  conversion_pixel is left out; its size and hash are shown.  Read one network for it. 
+     * @summary List a storefront\'s affiliate networks
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbAffiliateNetworksRaw(requestParameters: GetSfvbAffiliateNetworksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetworksResponse>>;
+
+    /**
+     * Every affiliate network pixel, by name, with its settings and hash_sha256.  conversion_pixel is left out; its size and hash are shown.  Read one network for it. 
+     * List a storefront\'s affiliate networks
+     */
+    getSfvbAffiliateNetworks(requestParameters: GetSfvbAffiliateNetworksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetworksResponse>;
 
     /**
      * Poll this every interval_seconds after requesting an approval.  status is pending until the person decides, then approved or denied, and expired if nobody acts in 10 minutes.  Once the gated call has used it, status is used and outcome says whether the call succeeded.  Used with no outcome means the result is unknown, so check the target - never repeat the call. 
@@ -3506,6 +3815,22 @@ export interface SfvbApiInterface {
     getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse>;
 
     /**
+     * The mode, model, global credit split, lookback and platforms, the platforms detected from the tracking integrations that are not configured yet, and the hash_sha256 a change or delete sends back as If-Match.  When configured is false the values are the defaults an enable would save. 
+     * @summary Read a storefront\'s Smart Attribution configuration
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSmartAttributionRaw(requestParameters: GetSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>>;
+
+    /**
+     * The mode, model, global credit split, lookback and platforms, the platforms detected from the tracking integrations that are not configured yet, and the hash_sha256 a change or delete sends back as If-Match.  When configured is false the values are the defaults an enable would save. 
+     * Read a storefront\'s Smart Attribution configuration
+     */
+    getSfvbSmartAttribution(requestParameters: GetSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution>;
+
+    /**
      * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
      * @summary List recent test orders
      * @param {number} storefrontOid 
@@ -3575,6 +3900,89 @@ export interface SfvbApiInterface {
     getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
 
     /**
+     * The HTML with its Velocity tokens as stored, and the hash_sha256 a write sends back as If-Match. 
+     * @summary Read one custom tracking HTML slot
+     * @param {number} storefrontOid 
+     * @param {string} slot tracking or conversion
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingHtmlRaw(requestParameters: GetSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtml>>;
+
+    /**
+     * The HTML with its Velocity tokens as stored, and the hash_sha256 a write sends back as If-Match. 
+     * Read one custom tracking HTML slot
+     */
+    getSfvbTrackingHtml(requestParameters: GetSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtml>;
+
+    /**
+     * tracking (every page but the receipt) and conversion (the receipt only), each with its size and hash_sha256.  Read one slot for its content. 
+     * @summary List a storefront\'s custom tracking HTML slots
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingHtmlSlotsRaw(requestParameters: GetSfvbTrackingHtmlSlotsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlResponse>>;
+
+    /**
+     * tracking (every page but the receipt) and conversion (the receipt only), each with its size and hash_sha256.  Read one slot for its content. 
+     * List a storefront\'s custom tracking HTML slots
+     */
+    getSfvbTrackingHtmlSlots(requestParameters: GetSfvbTrackingHtmlSlotsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlResponse>;
+
+    /**
+     * The provider as the list shows it, with the hash_sha256 a change or clear sends back as If-Match. 
+     * @summary Read one tracking provider
+     * @param {number} storefrontOid 
+     * @param {string} provider 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingProviderRaw(requestParameters: GetSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>>;
+
+    /**
+     * The provider as the list shows it, with the hash_sha256 a change or clear sends back as If-Match. 
+     * Read one tracking provider
+     */
+    getSfvbTrackingProvider(requestParameters: GetSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider>;
+
+    /**
+     * Every provider on the admin\'s Google and Other tabs, with each field\'s type and value, its consent gate, events, OAuth connection state and hash_sha256.  A secret\'s value is never returned, only whether one is set, its mask and the sink to request a handle for.  configured=true lists only the providers that are on. 
+     * @summary List a storefront\'s tracking providers
+     * @param {number} storefrontOid 
+     * @param {boolean} [configured] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingProvidersRaw(requestParameters: GetSfvbTrackingProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvidersResponse>>;
+
+    /**
+     * Every provider on the admin\'s Google and Other tabs, with each field\'s type and value, its consent gate, events, OAuth connection state and hash_sha256.  A secret\'s value is never returned, only whether one is set, its mask and the sink to request a handle for.  configured=true lists only the providers that are on. 
+     * List a storefront\'s tracking providers
+     */
+    getSfvbTrackingProviders(requestParameters: GetSfvbTrackingProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvidersResponse>;
+
+    /**
+     * The five privacy rules (which shoppers each applies to) and the advanced conversion settings, each section with the hash_sha256 a write sends back as If-Match.  The order hash secret key is shared by every storefront on the account and is reported only as set or not. 
+     * @summary Read a storefront\'s privacy rules and advanced conversion settings
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingSettingsRaw(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>>;
+
+    /**
+     * The five privacy rules (which shoppers each applies to) and the advanced conversion settings, each section with the hash_sha256 a write sends back as If-Match.  The order hash secret key is shared by every storefront on the account and is reported only as set or not. 
+     * Read a storefront\'s privacy rules and advanced conversion settings
+     */
+    getSfvbTrackingSettings(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse>;
+
+    /**
      * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
      * @summary List the transactional emails a storefront sends
      * @param {number} storefrontOid 
@@ -3631,6 +4039,40 @@ export interface SfvbApiInterface {
      * Get an upsell path
      */
     getSfvbUpsellPath(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * The shortcode with the hash_sha256 an update or delete sends back as If-Match.  A deleted shortcode is 404. 
+     * @summary Read one UTM shortcode
+     * @param {number} storefrontOid 
+     * @param {number} shortcodeOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbUtmShortcodeRaw(requestParameters: GetSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>>;
+
+    /**
+     * The shortcode with the hash_sha256 an update or delete sends back as If-Match.  A deleted shortcode is 404. 
+     * Read one UTM shortcode
+     */
+    getSfvbUtmShortcode(requestParameters: GetSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode>;
+
+    /**
+     * Every live shortcode, sorted by code, each with its hash_sha256.  q matches the code or the description, ignoring case. 
+     * @summary List a storefront\'s UTM shortcodes
+     * @param {number} storefrontOid 
+     * @param {string} [q] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbUtmShortcodesRaw(requestParameters: GetSfvbUtmShortcodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcodesResponse>>;
+
+    /**
+     * Every live shortcode, sorted by code, each with its hash_sha256.  q matches the code or the description, ignoring case. 
+     * List a storefront\'s UTM shortcodes
+     */
+    getSfvbUtmShortcodes(requestParameters: GetSfvbUtmShortcodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcodesResponse>;
 
     /**
      * The visual builder release channel is per merchant, so a CLI holding cached schema or element data should compare against this to know when it has gone stale. 
@@ -3697,7 +4139,25 @@ export interface SfvbApiInterface {
     importSfvbRedirects(requestParameters: ImportSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectImportResponse>;
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
+     * network_name, parameter_name and parameter_value are required; the rest start from the admin\'s defaults.  Internal affiliate oids must be the account\'s own.  Needs sfvb_publish.  A network with a conversion_pixel that a custom or server_to_server network will use needs an approved affiliate_network.change request for exactly this create (Approval-Id), which UltraCart reviews first.  dry_run says whether it needs one, without saving. 
+     * @summary Add an affiliate network
+     * @param {number} storefrontOid 
+     * @param {SfvbAffiliateNetworkRequest} affiliateNetworkRequest The network
+     * @param {string} [approvalId] For a network with a conversion pixel it will use, the approval_id of an approved affiliate_network.change request for exactly this create.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbAffiliateNetworkRaw(requestParameters: InsertSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>>;
+
+    /**
+     * network_name, parameter_name and parameter_value are required; the rest start from the admin\'s defaults.  Internal affiliate oids must be the account\'s own.  Needs sfvb_publish.  A network with a conversion_pixel that a custom or server_to_server network will use needs an approved affiliate_network.change request for exactly this create (Approval-Id), which UltraCart reviews first.  dry_run says whether it needs one, without saving. 
+     * Add an affiliate network
+     */
+    insertSfvbAffiliateNetwork(requestParameters: InsertSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork>;
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert; for tracking_html.put send the HTML as content and params.slot; for affiliate_network.change send affiliate_network.  These three start as reviewing while UltraCart\'s scanner and two AI models read the content, then become pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same content. 
      * @summary Request a human approval
      * @param {SfvbApprovalCreateRequest} approvalRequest The request
      * @param {number} [storefrontOid] The storefront the action runs on.  Required for storefront actions, left out for account-wide ones.
@@ -3708,7 +4168,7 @@ export interface SfvbApiInterface {
     insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>>;
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert; for tracking_html.put send the HTML as content and params.slot; for affiliate_network.change send affiliate_network.  These three start as reviewing while UltraCart\'s scanner and two AI models read the content, then become pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same content. 
      * Request a human approval
      */
     insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval>;
@@ -3881,6 +4341,23 @@ export interface SfvbApiInterface {
      * Create an upsell path
      */
     insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * code is letters, digits, underscore and hyphen, 1 to 50 characters, and at least one UTM or ITM value is required.  A code another live shortcode has, ignoring case, is 409 sfvb.utm_shortcode_exists.  A code that is one of the account\'s affiliate short codes is 409 sfvb.utm_shortcode_affiliate_conflict, because the storefront checks those first and this one would never fire.  Up to 5,000 per storefront.  Needs sfvb_write only, because no link sent before it existed changes. 
+     * @summary Create a UTM shortcode
+     * @param {number} storefrontOid 
+     * @param {SfvbUtmShortcodeRequest} utmShortcodeRequest The shortcode
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbUtmShortcodeRaw(requestParameters: InsertSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>>;
+
+    /**
+     * code is letters, digits, underscore and hyphen, 1 to 50 characters, and at least one UTM or ITM value is required.  A code another live shortcode has, ignoring case, is 409 sfvb.utm_shortcode_exists.  A code that is one of the account\'s affiliate short codes is 409 sfvb.utm_shortcode_affiliate_conflict, because the storefront checks those first and this one would never fire.  Up to 5,000 per storefront.  Needs sfvb_write only, because no link sent before it existed changes. 
+     * Create a UTM shortcode
+     */
+    insertSfvbUtmShortcode(requestParameters: InsertSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode>;
 
     /**
      * Copies the fragment\'s referenced files into the storefront file system and returns a receipt with the CJSON\'s paths resolved, ready to place.  It never places the CJSON.  Read content_manifest first; executable content needs acknowledge_executable true.  A file that already exists with different content is a conflict - on_conflict fail (the default) refuses with 409 and writes nothing, skip keeps the existing file, overwrite replaces it.  A recipient installs a published revision.  This writes, which is why it is a POST, and it requires sfvb_publish because the files land in the shared storefront file system, which is served to shoppers whichever theme is active. 
@@ -5207,6 +5684,26 @@ export interface SfvbApiInterface {
     unshareSfvbLibraryEntry(requestParameters: UnshareSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryUnshareResult>;
 
     /**
+     * A partial update: only the fields sent change.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Changing the conversion_pixel, or the conversion_type, of a network whose pixel will be used needs an approved affiliate_network.change request for exactly this change (Approval-Id), which UltraCart reviews first.  Other fields, and emptying the pixel, need none.  dry_run says whether it needs one, without saving. 
+     * @summary Change an affiliate network
+     * @param {number} storefrontOid 
+     * @param {number} affiliateNetworkOid 
+     * @param {string} ifMatch The network\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbAffiliateNetworkRequest} affiliateNetworkRequest The change
+     * @param {string} [approvalId] When the change sets a conversion pixel the network will use, the approval_id of an approved affiliate_network.change request for exactly this change.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbAffiliateNetworkRaw(requestParameters: UpdateSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>>;
+
+    /**
+     * A partial update: only the fields sent change.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Changing the conversion_pixel, or the conversion_type, of a network whose pixel will be used needs an approved affiliate_network.change request for exactly this change (Approval-Id), which UltraCart reviews first.  Other fields, and emptying the pixel, need none.  dry_run says whether it needs one, without saving. 
+     * Change an affiliate network
+     */
+    updateSfvbAffiliateNetwork(requestParameters: UpdateSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork>;
+
+    /**
      * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
      * @summary Change a blog post
      * @param {number} storefrontOid 
@@ -5431,6 +5928,101 @@ export interface SfvbApiInterface {
     updateSfvbSequenceStep(requestParameters: UpdateSfvbSequenceStepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequenceStepUpdateResponse>;
 
     /**
+     * A partial update of the mode, model, global split and lookback.  platforms, when sent, replaces the whole list.  The global split must total exactly 1 and the lookback is 7 to 365.  On an unconfigured storefront it creates the configuration.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, and when the mode is active or the change makes it active, an approved smart_attribution.change request for exactly this change (Approval-Id), because active mode decides which conversions each platform is sent.  A change that stores what is already stored returns the configuration unchanged and uses no approval. 
+     * @summary Change a storefront\'s Smart Attribution configuration
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the Smart Attribution read.  428 when absent, 412 when stale.
+     * @param {SfvbSmartAttributionRequest} smartAttributionRequest The change
+     * @param {string} [approvalId] When the mode is or becomes active, the approval_id of an approved smart_attribution.change request for this change.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbSmartAttributionRaw(requestParameters: UpdateSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>>;
+
+    /**
+     * A partial update of the mode, model, global split and lookback.  platforms, when sent, replaces the whole list.  The global split must total exactly 1 and the lookback is 7 to 365.  On an unconfigured storefront it creates the configuration.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, and when the mode is active or the change makes it active, an approved smart_attribution.change request for exactly this change (Approval-Id), because active mode decides which conversions each platform is sent.  A change that stores what is already stored returns the configuration unchanged and uses no approval. 
+     * Change a storefront\'s Smart Attribution configuration
+     */
+    updateSfvbSmartAttribution(requestParameters: UpdateSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution>;
+
+    /**
+     * A partial update.  Fields left out keep their value, and a text setting is cleared by naming it in unset.  URLs are a path starting with / or an absolute http or https URL, and one over its limit is refused rather than cut short.  The currency must be one the read lists.  The order hash secret key cannot be changed here.  Every field is checked before any is written.  Send the advanced hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the settings apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * @summary Change a storefront\'s advanced conversion settings
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch The advanced hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbTrackingAdvancedRequest} trackingAdvancedRequest The settings to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbTrackingAdvancedRaw(requestParameters: UpdateSfvbTrackingAdvancedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>>;
+
+    /**
+     * A partial update.  Fields left out keep their value, and a text setting is cleared by naming it in unset.  URLs are a path starting with / or an absolute http or https URL, and one over its limit is refused rather than cut short.  The currency must be one the read lists.  The order hash secret key cannot be changed here.  Every field is checked before any is written.  Send the advanced hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the settings apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s advanced conversion settings
+     */
+    updateSfvbTrackingAdvanced(requestParameters: UpdateSfvbTrackingAdvancedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse>;
+
+    /**
+     * Replaces the whole slot, at most 256 KB.  Content the storefront\'s templates may not use is refused with its lines.  Send the slot\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Any HTML but an empty string needs an approved tracking_html.put request for exactly this content (Approval-Id), which UltraCart reviews first.  An empty string empties the slot without one.  dry_run says whether the write needs one, without saving. 
+     * @summary Write one custom tracking HTML slot
+     * @param {number} storefrontOid 
+     * @param {string} slot tracking or conversion
+     * @param {string} ifMatch The slot\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbTrackingHtmlRequest} trackingHtmlRequest The content
+     * @param {string} [approvalId] For any content but an empty string, the approval_id of an approved tracking_html.put request for exactly this content.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbTrackingHtmlRaw(requestParameters: UpdateSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtml>>;
+
+    /**
+     * Replaces the whole slot, at most 256 KB.  Content the storefront\'s templates may not use is refused with its lines.  Send the slot\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Any HTML but an empty string needs an approved tracking_html.put request for exactly this content (Approval-Id), which UltraCart reviews first.  An empty string empties the slot without one.  dry_run says whether the write needs one, without saving. 
+     * Write one custom tracking HTML slot
+     */
+    updateSfvbTrackingHtml(requestParameters: UpdateSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtml>;
+
+    /**
+     * A partial update.  Each rule named is set to all, eea, non_us or off, and rules left out keep their value.  Every rule is checked before any is written.  Send the privacy hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the rules apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * @summary Change a storefront\'s privacy rules
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch The privacy hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbTrackingPrivacyRequest} trackingPrivacyRequest The rules to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbTrackingPrivacyRaw(requestParameters: UpdateSfvbTrackingPrivacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>>;
+
+    /**
+     * A partial update.  Each rule named is set to all, eea, non_us or off, and rules left out keep their value.  Every rule is checked before any is written.  Send the privacy hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the rules apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s privacy rules
+     */
+    updateSfvbTrackingPrivacy(requestParameters: UpdateSfvbTrackingPrivacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse>;
+
+    /**
+     * A partial update of the provider\'s fields, secrets (as secret handles), consent gate, events and, for google_analytics, wholesale account numbers.  Every value is checked for its field\'s type before anything is written.  Send the provider\'s hash_sha256 as If-Match.  dry_run reports the changes without saving.  Needs sfvb_publish.  Turning the provider on, loosening its consent gate, or turning on Google Tag Gateway (which also needs accept_cost true) needs an approved tracking_provider.change request for exactly this change (Approval-Id).  OAuth connections are made in the admin. 
+     * @summary Change one tracking provider
+     * @param {number} storefrontOid 
+     * @param {string} provider 
+     * @param {string} ifMatch The provider\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbTrackingProviderRequest} trackingProviderRequest The change
+     * @param {string} [approvalId] When the change turns the provider on, loosens its consent gate or turns on Google Tag Gateway, the approval_id of an approved tracking_provider.change request for this change.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbTrackingProviderRaw(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>>;
+
+    /**
+     * A partial update of the provider\'s fields, secrets (as secret handles), consent gate, events and, for google_analytics, wholesale account numbers.  Every value is checked for its field\'s type before anything is written.  Send the provider\'s hash_sha256 as If-Match.  dry_run reports the changes without saving.  Needs sfvb_publish.  Turning the provider on, loosening its consent gate, or turning on Google Tag Gateway (which also needs accept_cost true) needs an approved tracking_provider.change request for exactly this change (Approval-Id).  OAuth connections are made in the admin. 
+     * Change one tracking provider
+     */
+    updateSfvbTrackingProvider(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider>;
+
+    /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * @summary Update an upsell offer
      * @param {number} storefrontOid 
@@ -5467,6 +6059,25 @@ export interface SfvbApiInterface {
      * Update an upsell path
      */
     updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath>;
+
+    /**
+     * A partial update.  Fields left out keep their value, and an empty string clears a value.  A changed code is checked like a new one.  The creation date is kept.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, because links already in emails and ads that use the code are attributed differently from now on. 
+     * @summary Change a UTM shortcode
+     * @param {number} storefrontOid 
+     * @param {number} shortcodeOid 
+     * @param {string} ifMatch The shortcode\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {SfvbUtmShortcodeRequest} utmShortcodeRequest The change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbUtmShortcodeRaw(requestParameters: UpdateSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>>;
+
+    /**
+     * A partial update.  Fields left out keep their value, and an empty string clears a value.  A changed code is checked like a new one.  The creation date is kept.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, because links already in emails and ads that use the code are attributed differently from now on. 
+     * Change a UTM shortcode
+     */
+    updateSfvbUtmShortcode(requestParameters: UpdateSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode>;
 
     /**
      * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
@@ -6321,6 +6932,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Visits from the network stop being recognized and its pixel stops firing.  Refused with 409 while Smart Attribution names the network as a platform.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish and an approved affiliate_network.delete request (Approval-Id). 
+     * Delete an affiliate network
+     */
+    async deleteSfvbAffiliateNetworkRaw(requestParameters: DeleteSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.affiliateNetworkOid === null || requestParameters.affiliateNetworkOid === undefined) {
+            throw new runtime.RequiredError('affiliateNetworkOid','Required parameter requestParameters.affiliateNetworkOid was null or undefined when calling deleteSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.approvalId === null || requestParameters.approvalId === undefined) {
+            throw new runtime.RequiredError('approvalId','Required parameter requestParameters.approvalId was null or undefined when calling deleteSfvbAffiliateNetwork.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/affiliate_networks/{affiliate_network_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"affiliate_network_oid"}}`, encodeURIComponent(String(requestParameters.affiliateNetworkOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Visits from the network stop being recognized and its pixel stops firing.  Refused with 409 while Smart Attribution names the network as a platform.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish and an approved affiliate_network.delete request (Approval-Id). 
+     * Delete an affiliate network
+     */
+    async deleteSfvbAffiliateNetwork(requestParameters: DeleteSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbAffiliateNetworkRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Withdraws a request nobody has decided yet, which frees one of the five pending slots a sign-in has.  A request that was already decided, used or expired cannot be cancelled. 
      * Cancel a pending approval request
      */
@@ -7023,6 +7694,163 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Every platform goes back to being sent conversions as it was before Smart Attribution, and the settings are gone.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish and an approved smart_attribution.delete request (Approval-Id).  An unconfigured storefront is 404. 
+     * Delete a storefront\'s Smart Attribution configuration
+     */
+    async deleteSfvbSmartAttributionRaw(requestParameters: DeleteSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbSmartAttribution.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbSmartAttribution.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/smart_attribution`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Every platform goes back to being sent conversions as it was before Smart Attribution, and the settings are gone.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish and an approved smart_attribution.delete request (Approval-Id).  An unconfigured storefront is 404. 
+     * Delete a storefront\'s Smart Attribution configuration
+     */
+    async deleteSfvbSmartAttribution(requestParameters: DeleteSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbSmartAttributionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clear one tracking provider
+     */
+    async deleteSfvbTrackingProviderRaw(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling deleteSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbTrackingProvider.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/providers/{provider}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingProviderFromJSON(jsonValue));
+    }
+
+    /**
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clear one tracking provider
+     */
+    async deleteSfvbTrackingProvider(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider> {
+        const response = await this.deleteSfvbTrackingProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The shortcode stops attributing at once.  A link that uses it as a path segment still opens its page, without the UTM values.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish. 
+     * Delete a UTM shortcode
+     */
+    async deleteSfvbUtmShortcodeRaw(requestParameters: DeleteSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.shortcodeOid === null || requestParameters.shortcodeOid === undefined) {
+            throw new runtime.RequiredError('shortcodeOid','Required parameter requestParameters.shortcodeOid was null or undefined when calling deleteSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbUtmShortcode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/utm_shortcodes/{shortcode_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"shortcode_oid"}}`, encodeURIComponent(String(requestParameters.shortcodeOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * The shortcode stops attributing at once.  A link that uses it as a path segment still opens its page, without the UTM values.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish. 
+     * Delete a UTM shortcode
+     */
+    async deleteSfvbUtmShortcode(requestParameters: DeleteSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteSfvbUtmShortcodeRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Name exactly one of default_image, code or blog_post_multimedia_oid.  Removes the image from the post and deletes its stored copy.  Take it out of the body too, or the body keeps a broken image.  A post that is not a draft needs sfvb_publish. 
      * Detach an image from a blog post
      */
@@ -7708,6 +8536,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * What the admin\'s Enable button saves: report_only, position_based, a 40/20/40 split, a 7 day lookback and every detected platform.  report_only records decisions and changes nothing any platform is sent.  A storefront that already has a configuration is 409 sfvb.smart_attribution_configured.  Needs sfvb_publish. 
+     * Turn Smart Attribution on in report_only mode
+     */
+    async enableSfvbSmartAttributionRaw(requestParameters: EnableSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling enableSfvbSmartAttribution.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/smart_attribution/enable`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSmartAttributionFromJSON(jsonValue));
+    }
+
+    /**
+     * What the admin\'s Enable button saves: report_only, position_based, a 40/20/40 split, a 7 day lookback and every detected platform.  report_only records decisions and changes nothing any platform is sent.  A storefront that already has a configuration is 409 sfvb.smart_attribution_configured.  Needs sfvb_publish. 
+     * Turn Smart Attribution on in report_only mode
+     */
+    async enableSfvbSmartAttribution(requestParameters: EnableSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution> {
+        const response = await this.enableSfvbSmartAttributionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Switches the offer on.  The only way to switch one on - create and update refuse active true on an offer that is off.  Needs sfvb_publish and the approval of the person who signed in the CLI, an approved upsell.enable request for this offer (see POST /sfvb/approvals).  An offer that is already on is returned unchanged, and no approval is used. 
      * Enable an upsell offer
      */
@@ -7899,6 +8768,92 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async favoriteSfvbLibraryEntry(requestParameters: FavoriteSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.favoriteSfvbLibraryEntryRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * The network with its conversion_pixel, and the hash_sha256 an update or delete sends back as If-Match. 
+     * Read one affiliate network
+     */
+    async getSfvbAffiliateNetworkRaw(requestParameters: GetSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.affiliateNetworkOid === null || requestParameters.affiliateNetworkOid === undefined) {
+            throw new runtime.RequiredError('affiliateNetworkOid','Required parameter requestParameters.affiliateNetworkOid was null or undefined when calling getSfvbAffiliateNetwork.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/affiliate_networks/{affiliate_network_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"affiliate_network_oid"}}`, encodeURIComponent(String(requestParameters.affiliateNetworkOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbAffiliateNetworkFromJSON(jsonValue));
+    }
+
+    /**
+     * The network with its conversion_pixel, and the hash_sha256 an update or delete sends back as If-Match. 
+     * Read one affiliate network
+     */
+    async getSfvbAffiliateNetwork(requestParameters: GetSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork> {
+        const response = await this.getSfvbAffiliateNetworkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every affiliate network pixel, by name, with its settings and hash_sha256.  conversion_pixel is left out; its size and hash are shown.  Read one network for it. 
+     * List a storefront\'s affiliate networks
+     */
+    async getSfvbAffiliateNetworksRaw(requestParameters: GetSfvbAffiliateNetworksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetworksResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbAffiliateNetworks.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/affiliate_networks`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbAffiliateNetworksResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every affiliate network pixel, by name, with its settings and hash_sha256.  conversion_pixel is left out; its size and hash are shown.  Read one network for it. 
+     * List a storefront\'s affiliate networks
+     */
+    async getSfvbAffiliateNetworks(requestParameters: GetSfvbAffiliateNetworksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetworksResponse> {
+        const response = await this.getSfvbAffiliateNetworksRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -10319,6 +11274,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The mode, model, global credit split, lookback and platforms, the platforms detected from the tracking integrations that are not configured yet, and the hash_sha256 a change or delete sends back as If-Match.  When configured is false the values are the defaults an enable would save. 
+     * Read a storefront\'s Smart Attribution configuration
+     */
+    async getSfvbSmartAttributionRaw(requestParameters: GetSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSmartAttribution.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/smart_attribution`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSmartAttributionFromJSON(jsonValue));
+    }
+
+    /**
+     * The mode, model, global credit split, lookback and platforms, the platforms detected from the tracking integrations that are not configured yet, and the hash_sha256 a change or delete sends back as If-Match.  When configured is false the values are the defaults an enable would save. 
+     * Read a storefront\'s Smart Attribution configuration
+     */
+    async getSfvbSmartAttribution(requestParameters: GetSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution> {
+        const response = await this.getSfvbSmartAttributionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Test orders on this account only, newest first, with no customer details, so an agent can render the order pages (receipt, order tracking, digital downloads, auto order pages) with one.  Use an order_id as a render\'s context_order_id; a real customer\'s order is refused there.  The last 7 days are searched, widening to 30 and then 90 until enough are found.  digital_items and auto_order keep only orders with downloads or an auto order.  limit is 1 to 25, default 10. 
      * List recent test orders
      */
@@ -10505,6 +11501,223 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The HTML with its Velocity tokens as stored, and the hash_sha256 a write sends back as If-Match. 
+     * Read one custom tracking HTML slot
+     */
+    async getSfvbTrackingHtmlRaw(requestParameters: GetSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtml>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.slot === null || requestParameters.slot === undefined) {
+            throw new runtime.RequiredError('slot','Required parameter requestParameters.slot was null or undefined when calling getSfvbTrackingHtml.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/html/{slot}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"slot"}}`, encodeURIComponent(String(requestParameters.slot))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingHtmlFromJSON(jsonValue));
+    }
+
+    /**
+     * The HTML with its Velocity tokens as stored, and the hash_sha256 a write sends back as If-Match. 
+     * Read one custom tracking HTML slot
+     */
+    async getSfvbTrackingHtml(requestParameters: GetSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtml> {
+        const response = await this.getSfvbTrackingHtmlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * tracking (every page but the receipt) and conversion (the receipt only), each with its size and hash_sha256.  Read one slot for its content. 
+     * List a storefront\'s custom tracking HTML slots
+     */
+    async getSfvbTrackingHtmlSlotsRaw(requestParameters: GetSfvbTrackingHtmlSlotsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingHtmlSlots.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/html`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingHtmlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * tracking (every page but the receipt) and conversion (the receipt only), each with its size and hash_sha256.  Read one slot for its content. 
+     * List a storefront\'s custom tracking HTML slots
+     */
+    async getSfvbTrackingHtmlSlots(requestParameters: GetSfvbTrackingHtmlSlotsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlResponse> {
+        const response = await this.getSfvbTrackingHtmlSlotsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The provider as the list shows it, with the hash_sha256 a change or clear sends back as If-Match. 
+     * Read one tracking provider
+     */
+    async getSfvbTrackingProviderRaw(requestParameters: GetSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling getSfvbTrackingProvider.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/providers/{provider}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingProviderFromJSON(jsonValue));
+    }
+
+    /**
+     * The provider as the list shows it, with the hash_sha256 a change or clear sends back as If-Match. 
+     * Read one tracking provider
+     */
+    async getSfvbTrackingProvider(requestParameters: GetSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider> {
+        const response = await this.getSfvbTrackingProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every provider on the admin\'s Google and Other tabs, with each field\'s type and value, its consent gate, events, OAuth connection state and hash_sha256.  A secret\'s value is never returned, only whether one is set, its mask and the sink to request a handle for.  configured=true lists only the providers that are on. 
+     * List a storefront\'s tracking providers
+     */
+    async getSfvbTrackingProvidersRaw(requestParameters: GetSfvbTrackingProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvidersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingProviders.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.configured !== undefined) {
+            queryParameters['configured'] = requestParameters.configured;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/providers`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingProvidersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every provider on the admin\'s Google and Other tabs, with each field\'s type and value, its consent gate, events, OAuth connection state and hash_sha256.  A secret\'s value is never returned, only whether one is set, its mask and the sink to request a handle for.  configured=true lists only the providers that are on. 
+     * List a storefront\'s tracking providers
+     */
+    async getSfvbTrackingProviders(requestParameters: GetSfvbTrackingProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvidersResponse> {
+        const response = await this.getSfvbTrackingProvidersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The five privacy rules (which shoppers each applies to) and the advanced conversion settings, each section with the hash_sha256 a write sends back as If-Match.  The order hash secret key is shared by every storefront on the account and is reported only as set or not. 
+     * Read a storefront\'s privacy rules and advanced conversion settings
+     */
+    async getSfvbTrackingSettingsRaw(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The five privacy rules (which shoppers each applies to) and the advanced conversion settings, each section with the hash_sha256 a write sends back as If-Match.  The order hash secret key is shared by every storefront on the account and is reported only as set or not. 
+     * Read a storefront\'s privacy rules and advanced conversion settings
+     */
+    async getSfvbTrackingSettings(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse> {
+        const response = await this.getSfvbTrackingSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
      * List the transactional emails a storefront sends
      */
@@ -10664,6 +11877,96 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbUpsellPath(requestParameters: GetSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.getSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The shortcode with the hash_sha256 an update or delete sends back as If-Match.  A deleted shortcode is 404. 
+     * Read one UTM shortcode
+     */
+    async getSfvbUtmShortcodeRaw(requestParameters: GetSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.shortcodeOid === null || requestParameters.shortcodeOid === undefined) {
+            throw new runtime.RequiredError('shortcodeOid','Required parameter requestParameters.shortcodeOid was null or undefined when calling getSfvbUtmShortcode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/utm_shortcodes/{shortcode_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"shortcode_oid"}}`, encodeURIComponent(String(requestParameters.shortcodeOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUtmShortcodeFromJSON(jsonValue));
+    }
+
+    /**
+     * The shortcode with the hash_sha256 an update or delete sends back as If-Match.  A deleted shortcode is 404. 
+     * Read one UTM shortcode
+     */
+    async getSfvbUtmShortcode(requestParameters: GetSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode> {
+        const response = await this.getSfvbUtmShortcodeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every live shortcode, sorted by code, each with its hash_sha256.  q matches the code or the description, ignoring case. 
+     * List a storefront\'s UTM shortcodes
+     */
+    async getSfvbUtmShortcodesRaw(requestParameters: GetSfvbUtmShortcodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcodesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbUtmShortcodes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/utm_shortcodes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUtmShortcodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every live shortcode, sorted by code, each with its hash_sha256.  q matches the code or the description, ignoring case. 
+     * List a storefront\'s UTM shortcodes
+     */
+    async getSfvbUtmShortcodes(requestParameters: GetSfvbUtmShortcodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcodesResponse> {
+        const response = await this.getSfvbUtmShortcodesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10835,7 +12138,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
+     * network_name, parameter_name and parameter_value are required; the rest start from the admin\'s defaults.  Internal affiliate oids must be the account\'s own.  Needs sfvb_publish.  A network with a conversion_pixel that a custom or server_to_server network will use needs an approved affiliate_network.change request for exactly this create (Approval-Id), which UltraCart reviews first.  dry_run says whether it needs one, without saving. 
+     * Add an affiliate network
+     */
+    async insertSfvbAffiliateNetworkRaw(requestParameters: InsertSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.affiliateNetworkRequest === null || requestParameters.affiliateNetworkRequest === undefined) {
+            throw new runtime.RequiredError('affiliateNetworkRequest','Required parameter requestParameters.affiliateNetworkRequest was null or undefined when calling insertSfvbAffiliateNetwork.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/affiliate_networks`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbAffiliateNetworkRequestToJSON(requestParameters.affiliateNetworkRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbAffiliateNetworkFromJSON(jsonValue));
+    }
+
+    /**
+     * network_name, parameter_name and parameter_value are required; the rest start from the admin\'s defaults.  Internal affiliate oids must be the account\'s own.  Needs sfvb_publish.  A network with a conversion_pixel that a custom or server_to_server network will use needs an approved affiliate_network.change request for exactly this create (Approval-Id), which UltraCart reviews first.  dry_run says whether it needs one, without saving. 
+     * Add an affiliate network
+     */
+    async insertSfvbAffiliateNetwork(requestParameters: InsertSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork> {
+        const response = await this.insertSfvbAffiliateNetworkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert; for tracking_html.put send the HTML as content and params.slot; for affiliate_network.change send affiliate_network.  These three start as reviewing while UltraCart\'s scanner and two AI models read the content, then become pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same content. 
      * Request a human approval
      */
     async insertSfvbApprovalRaw(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>> {
@@ -10874,7 +12229,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert.  The request starts as reviewing while UltraCart\'s scanner and two AI models read it, then becomes pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same bytes. 
+     * Asks the person who signed in the CLI to approve one gated action on one exact target.  Name the storefront with the storefront_oid query parameter.  The target is checked the way the action will check it, so nobody is asked to approve a call that would fail.  Show the person approval_url and user_code, poll GET approvals/{approval_id} every interval_seconds, and once it is approved repeat the gated call with the approval_id in the Approval-Id header.  Asking again for the same thing returns the pending request (200) rather than a new one (201).  A request lapses after 10 minutes.  Requires a token that resolves to a user, so use the device authorization flow.  For file.put_script send the script as content, or params.version for a revert; for tracking_html.put send the HTML as content and params.slot; for affiliate_network.change send affiliate_network.  These three start as reviewing while UltraCart\'s scanner and two AI models read the content, then become pending with the review attached, or refused.  Keep polling, and show approval_url only once it is pending.  Only the hash is kept, so the write must send the same content. 
      * Request a human approval
      */
     async insertSfvbApproval(requestParameters: InsertSfvbApprovalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval> {
@@ -11359,6 +12714,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbUpsellPath(requestParameters: InsertSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.insertSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * code is letters, digits, underscore and hyphen, 1 to 50 characters, and at least one UTM or ITM value is required.  A code another live shortcode has, ignoring case, is 409 sfvb.utm_shortcode_exists.  A code that is one of the account\'s affiliate short codes is 409 sfvb.utm_shortcode_affiliate_conflict, because the storefront checks those first and this one would never fire.  Up to 5,000 per storefront.  Needs sfvb_write only, because no link sent before it existed changes. 
+     * Create a UTM shortcode
+     */
+    async insertSfvbUtmShortcodeRaw(requestParameters: InsertSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.utmShortcodeRequest === null || requestParameters.utmShortcodeRequest === undefined) {
+            throw new runtime.RequiredError('utmShortcodeRequest','Required parameter requestParameters.utmShortcodeRequest was null or undefined when calling insertSfvbUtmShortcode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/utm_shortcodes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUtmShortcodeRequestToJSON(requestParameters.utmShortcodeRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUtmShortcodeFromJSON(jsonValue));
+    }
+
+    /**
+     * code is letters, digits, underscore and hyphen, 1 to 50 characters, and at least one UTM or ITM value is required.  A code another live shortcode has, ignoring case, is 409 sfvb.utm_shortcode_exists.  A code that is one of the account\'s affiliate short codes is 409 sfvb.utm_shortcode_affiliate_conflict, because the storefront checks those first and this one would never fire.  Up to 5,000 per storefront.  Needs sfvb_write only, because no link sent before it existed changes. 
+     * Create a UTM shortcode
+     */
+    async insertSfvbUtmShortcode(requestParameters: InsertSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode> {
+        const response = await this.insertSfvbUtmShortcodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -15192,6 +16595,70 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * A partial update: only the fields sent change.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Changing the conversion_pixel, or the conversion_type, of a network whose pixel will be used needs an approved affiliate_network.change request for exactly this change (Approval-Id), which UltraCart reviews first.  Other fields, and emptying the pixel, need none.  dry_run says whether it needs one, without saving. 
+     * Change an affiliate network
+     */
+    async updateSfvbAffiliateNetworkRaw(requestParameters: UpdateSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbAffiliateNetwork>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.affiliateNetworkOid === null || requestParameters.affiliateNetworkOid === undefined) {
+            throw new runtime.RequiredError('affiliateNetworkOid','Required parameter requestParameters.affiliateNetworkOid was null or undefined when calling updateSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbAffiliateNetwork.');
+        }
+
+        if (requestParameters.affiliateNetworkRequest === null || requestParameters.affiliateNetworkRequest === undefined) {
+            throw new runtime.RequiredError('affiliateNetworkRequest','Required parameter requestParameters.affiliateNetworkRequest was null or undefined when calling updateSfvbAffiliateNetwork.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/affiliate_networks/{affiliate_network_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"affiliate_network_oid"}}`, encodeURIComponent(String(requestParameters.affiliateNetworkOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbAffiliateNetworkRequestToJSON(requestParameters.affiliateNetworkRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbAffiliateNetworkFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update: only the fields sent change.  Send the network\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Changing the conversion_pixel, or the conversion_type, of a network whose pixel will be used needs an approved affiliate_network.change request for exactly this change (Approval-Id), which UltraCart reviews first.  Other fields, and emptying the pixel, need none.  dry_run says whether it needs one, without saving. 
+     * Change an affiliate network
+     */
+    async updateSfvbAffiliateNetwork(requestParameters: UpdateSfvbAffiliateNetworkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbAffiliateNetwork> {
+        const response = await this.updateSfvbAffiliateNetworkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Only the fields sent change; tags, when sent, replaces every tag.  The post\'s images and attributes are left alone.  Publish or unpublish with visibility.  A post that is not a draft before or after the change needs sfvb_publish.  The same content rules as create apply. 
      * Change a blog post
      */
@@ -15880,6 +17347,306 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * A partial update of the mode, model, global split and lookback.  platforms, when sent, replaces the whole list.  The global split must total exactly 1 and the lookback is 7 to 365.  On an unconfigured storefront it creates the configuration.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, and when the mode is active or the change makes it active, an approved smart_attribution.change request for exactly this change (Approval-Id), because active mode decides which conversions each platform is sent.  A change that stores what is already stored returns the configuration unchanged and uses no approval. 
+     * Change a storefront\'s Smart Attribution configuration
+     */
+    async updateSfvbSmartAttributionRaw(requestParameters: UpdateSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSmartAttribution>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbSmartAttribution.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbSmartAttribution.');
+        }
+
+        if (requestParameters.smartAttributionRequest === null || requestParameters.smartAttributionRequest === undefined) {
+            throw new runtime.RequiredError('smartAttributionRequest','Required parameter requestParameters.smartAttributionRequest was null or undefined when calling updateSfvbSmartAttribution.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/smart_attribution`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSmartAttributionRequestToJSON(requestParameters.smartAttributionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSmartAttributionFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update of the mode, model, global split and lookback.  platforms, when sent, replaces the whole list.  The global split must total exactly 1 and the lookback is 7 to 365.  On an unconfigured storefront it creates the configuration.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, and when the mode is active or the change makes it active, an approved smart_attribution.change request for exactly this change (Approval-Id), because active mode decides which conversions each platform is sent.  A change that stores what is already stored returns the configuration unchanged and uses no approval. 
+     * Change a storefront\'s Smart Attribution configuration
+     */
+    async updateSfvbSmartAttribution(requestParameters: UpdateSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSmartAttribution> {
+        const response = await this.updateSfvbSmartAttributionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Fields left out keep their value, and a text setting is cleared by naming it in unset.  URLs are a path starting with / or an absolute http or https URL, and one over its limit is refused rather than cut short.  The currency must be one the read lists.  The order hash secret key cannot be changed here.  Every field is checked before any is written.  Send the advanced hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the settings apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s advanced conversion settings
+     */
+    async updateSfvbTrackingAdvancedRaw(requestParameters: UpdateSfvbTrackingAdvancedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbTrackingAdvanced.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbTrackingAdvanced.');
+        }
+
+        if (requestParameters.trackingAdvancedRequest === null || requestParameters.trackingAdvancedRequest === undefined) {
+            throw new runtime.RequiredError('trackingAdvancedRequest','Required parameter requestParameters.trackingAdvancedRequest was null or undefined when calling updateSfvbTrackingAdvanced.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/advanced`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTrackingAdvancedRequestToJSON(requestParameters.trackingAdvancedRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Fields left out keep their value, and a text setting is cleared by naming it in unset.  URLs are a path starting with / or an absolute http or https URL, and one over its limit is refused rather than cut short.  The currency must be one the read lists.  The order hash secret key cannot be changed here.  Every field is checked before any is written.  Send the advanced hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the settings apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s advanced conversion settings
+     */
+    async updateSfvbTrackingAdvanced(requestParameters: UpdateSfvbTrackingAdvancedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse> {
+        const response = await this.updateSfvbTrackingAdvancedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Replaces the whole slot, at most 256 KB.  Content the storefront\'s templates may not use is refused with its lines.  Send the slot\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Any HTML but an empty string needs an approved tracking_html.put request for exactly this content (Approval-Id), which UltraCart reviews first.  An empty string empties the slot without one.  dry_run says whether the write needs one, without saving. 
+     * Write one custom tracking HTML slot
+     */
+    async updateSfvbTrackingHtmlRaw(requestParameters: UpdateSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtml>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.slot === null || requestParameters.slot === undefined) {
+            throw new runtime.RequiredError('slot','Required parameter requestParameters.slot was null or undefined when calling updateSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.trackingHtmlRequest === null || requestParameters.trackingHtmlRequest === undefined) {
+            throw new runtime.RequiredError('trackingHtmlRequest','Required parameter requestParameters.trackingHtmlRequest was null or undefined when calling updateSfvbTrackingHtml.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/html/{slot}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"slot"}}`, encodeURIComponent(String(requestParameters.slot))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTrackingHtmlRequestToJSON(requestParameters.trackingHtmlRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingHtmlFromJSON(jsonValue));
+    }
+
+    /**
+     * Replaces the whole slot, at most 256 KB.  Content the storefront\'s templates may not use is refused with its lines.  Send the slot\'s hash_sha256 as If-Match.  Needs sfvb_publish.  Any HTML but an empty string needs an approved tracking_html.put request for exactly this content (Approval-Id), which UltraCart reviews first.  An empty string empties the slot without one.  dry_run says whether the write needs one, without saving. 
+     * Write one custom tracking HTML slot
+     */
+    async updateSfvbTrackingHtml(requestParameters: UpdateSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtml> {
+        const response = await this.updateSfvbTrackingHtmlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Each rule named is set to all, eea, non_us or off, and rules left out keep their value.  Every rule is checked before any is written.  Send the privacy hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the rules apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s privacy rules
+     */
+    async updateSfvbTrackingPrivacyRaw(requestParameters: UpdateSfvbTrackingPrivacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbTrackingPrivacy.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbTrackingPrivacy.');
+        }
+
+        if (requestParameters.trackingPrivacyRequest === null || requestParameters.trackingPrivacyRequest === undefined) {
+            throw new runtime.RequiredError('trackingPrivacyRequest','Required parameter requestParameters.trackingPrivacyRequest was null or undefined when calling updateSfvbTrackingPrivacy.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/privacy`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTrackingPrivacyRequestToJSON(requestParameters.trackingPrivacyRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Each rule named is set to all, eea, non_us or off, and rules left out keep their value.  Every rule is checked before any is written.  Send the privacy hash_sha256 you read as If-Match.  dry_run reports the changes without saving.  Always needs sfvb_publish, because the rules apply to shoppers as soon as they are saved.  The admin saves the whole tab, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s privacy rules
+     */
+    async updateSfvbTrackingPrivacy(requestParameters: UpdateSfvbTrackingPrivacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse> {
+        const response = await this.updateSfvbTrackingPrivacyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update of the provider\'s fields, secrets (as secret handles), consent gate, events and, for google_analytics, wholesale account numbers.  Every value is checked for its field\'s type before anything is written.  Send the provider\'s hash_sha256 as If-Match.  dry_run reports the changes without saving.  Needs sfvb_publish.  Turning the provider on, loosening its consent gate, or turning on Google Tag Gateway (which also needs accept_cost true) needs an approved tracking_provider.change request for exactly this change (Approval-Id).  OAuth connections are made in the admin. 
+     * Change one tracking provider
+     */
+    async updateSfvbTrackingProviderRaw(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling updateSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbTrackingProvider.');
+        }
+
+        if (requestParameters.trackingProviderRequest === null || requestParameters.trackingProviderRequest === undefined) {
+            throw new runtime.RequiredError('trackingProviderRequest','Required parameter requestParameters.trackingProviderRequest was null or undefined when calling updateSfvbTrackingProvider.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/providers/{provider}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTrackingProviderRequestToJSON(requestParameters.trackingProviderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingProviderFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update of the provider\'s fields, secrets (as secret handles), consent gate, events and, for google_analytics, wholesale account numbers.  Every value is checked for its field\'s type before anything is written.  Send the provider\'s hash_sha256 as If-Match.  dry_run reports the changes without saving.  Needs sfvb_publish.  Turning the provider on, loosening its consent gate, or turning on Google Tag Gateway (which also needs accept_cost true) needs an approved tracking_provider.change request for exactly this change (Approval-Id).  OAuth connections are made in the admin. 
+     * Change one tracking provider
+     */
+    async updateSfvbTrackingProvider(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider> {
+        const response = await this.updateSfvbTrackingProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
      * Update an upsell offer
      */
@@ -15996,6 +17763,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbUpsellPath(requestParameters: UpdateSfvbUpsellPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPath> {
         const response = await this.updateSfvbUpsellPathRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Fields left out keep their value, and an empty string clears a value.  A changed code is checked like a new one.  The creation date is kept.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, because links already in emails and ads that use the code are attributed differently from now on. 
+     * Change a UTM shortcode
+     */
+    async updateSfvbUtmShortcodeRaw(requestParameters: UpdateSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbUtmShortcode>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.shortcodeOid === null || requestParameters.shortcodeOid === undefined) {
+            throw new runtime.RequiredError('shortcodeOid','Required parameter requestParameters.shortcodeOid was null or undefined when calling updateSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbUtmShortcode.');
+        }
+
+        if (requestParameters.utmShortcodeRequest === null || requestParameters.utmShortcodeRequest === undefined) {
+            throw new runtime.RequiredError('utmShortcodeRequest','Required parameter requestParameters.utmShortcodeRequest was null or undefined when calling updateSfvbUtmShortcode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/utm_shortcodes/{shortcode_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"shortcode_oid"}}`, encodeURIComponent(String(requestParameters.shortcodeOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbUtmShortcodeRequestToJSON(requestParameters.utmShortcodeRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbUtmShortcodeFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Fields left out keep their value, and an empty string clears a value.  A changed code is checked like a new one.  The creation date is kept.  Send the hash_sha256 you read as If-Match.  Needs sfvb_publish, because links already in emails and ads that use the code are attributed differently from now on. 
+     * Change a UTM shortcode
+     */
+    async updateSfvbUtmShortcode(requestParameters: UpdateSfvbUtmShortcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUtmShortcode> {
+        const response = await this.updateSfvbUtmShortcodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

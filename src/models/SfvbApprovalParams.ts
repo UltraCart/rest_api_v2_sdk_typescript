@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbApprovalParams {
     /**
+     * The affiliate network, for affiliate_network.change and affiliate_network.delete.  0 or left out for affiliate_network.change of a network the create call will add.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    affiliate_network_oid?: number;
+    /**
      * For sequence_step.move, the step it moves after.  Or branch_step_uuid with side.
      * @type {string}
      * @memberof SfvbApprovalParams
@@ -44,7 +50,7 @@ export interface SfvbApprovalParams {
      */
     branch_step_uuid?: string;
     /**
-     * For file.put_script, the SHA-256 of the exact bytes approved.  Set by the server, never by the caller.  The write must send bytes with this hash.
+     * For file.put_script and tracking_html.put, the SHA-256 of the exact bytes approved, and for affiliate_network.change the SHA-256 of the conversion pixel.  Set by the server, never by the caller.  The write must send bytes with this hash.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -86,7 +92,7 @@ export interface SfvbApprovalParams {
      */
     path?: string;
     /**
-     * For experiment.start of a url experiment, the hash of the checked experiment approved, and for item.pricing the hash of the change.  Set by the server.  The gated call must send the same.
+     * For experiment.start of a url experiment, the hash of the checked experiment approved, for item.pricing, tracking_provider.change and affiliate_network.change the hash of the change, and for smart_attribution.change the hash of the configuration the change would store.  Set by the server.  The gated call must send the same.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -122,7 +128,7 @@ export interface SfvbApprovalParams {
      */
     side?: string;
     /**
-     * For experiment.start of a page experiment, the page body name.  Defaults to body.
+     * For experiment.start of a page experiment, the page body name, which defaults to body.  For tracking_html.put, tracking or conversion.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -133,6 +139,12 @@ export interface SfvbApprovalParams {
      * @memberof SfvbApprovalParams
      */
     step_uuid?: string;
+    /**
+     * The tracking provider key, for tracking_provider.change.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    tracking_provider?: string;
     /**
      * For upsell.enable, what to switch on.
      * @type {string}
@@ -196,6 +208,7 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'affiliate_network_oid': !exists(json, 'affiliate_network_oid') ? undefined : json['affiliate_network_oid'],
         'after_step_uuid': !exists(json, 'after_step_uuid') ? undefined : json['after_step_uuid'],
         'attribute_names': !exists(json, 'attribute_names') ? undefined : json['attribute_names'],
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
@@ -215,6 +228,7 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'side': !exists(json, 'side') ? undefined : json['side'],
         'slot': !exists(json, 'slot') ? undefined : json['slot'],
         'step_uuid': !exists(json, 'step_uuid') ? undefined : json['step_uuid'],
+        'tracking_provider': !exists(json, 'tracking_provider') ? undefined : json['tracking_provider'],
         'upsell_kind': !exists(json, 'upsell_kind') ? undefined : json['upsell_kind'],
         'upsell_oid': !exists(json, 'upsell_oid') ? undefined : json['upsell_oid'],
         'version': !exists(json, 'version') ? undefined : json['version'],
@@ -232,6 +246,7 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
     }
     return {
         
+        'affiliate_network_oid': value.affiliate_network_oid,
         'after_step_uuid': value.after_step_uuid,
         'attribute_names': value.attribute_names,
         'blog_post_oid': value.blog_post_oid,
@@ -251,6 +266,7 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'side': value.side,
         'slot': value.slot,
         'step_uuid': value.step_uuid,
+        'tracking_provider': value.tracking_provider,
         'upsell_kind': value.upsell_kind,
         'upsell_oid': value.upsell_oid,
         'version': value.version,
