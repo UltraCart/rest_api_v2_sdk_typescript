@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.221
+## ultracart_rest_api_v2_typescript@4.1.222
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.221 --save
+npm install ultracart_rest_api_v2_typescript@4.1.222 --save
 ```
 
 ```typescript
@@ -84,6 +84,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.222 | 11/03/2026 | sfvb internal testing |
 | 4.1.221 | 11/02/2026 | sfvb internal testing |
 | 4.1.220 | 11/02/2026 | sfvb internal testing |
 | 4.1.219 | 10/30/2026 | item - field for hsa/fsa eligibility |

@@ -130,6 +130,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     TwilioAccountDelete: 'twilio_account.delete',
     SendingDomainDelete: 'sending_domain.delete',
     SequenceStepDelete: 'sequence_step.delete',
+    SequenceStepMove: 'sequence_step.move',
+    SequenceStepEnablePostcard: 'sequence_step.enable_postcard',
     SegmentUpdate: 'segment.update'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
