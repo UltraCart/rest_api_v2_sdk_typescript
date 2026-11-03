@@ -24,7 +24,7 @@ export interface SfvbTrackingProviderConsent {
      * @type {boolean}
      * @memberof SfvbTrackingProviderConsent
      */
-    _false?: boolean;
+    disabled?: boolean;
     /**
      * Which shoppers the gate applies to.  all, eea or non_us.
      * @type {string}
@@ -60,7 +60,7 @@ export function SfvbTrackingProviderConsentFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        '_false': !exists(json, 'false') ? undefined : json['false'],
+        'disabled': !exists(json, 'disabled') ? undefined : json['disabled'],
         'region': !exists(json, 'region') ? undefined : json['region'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
@@ -75,7 +75,7 @@ export function SfvbTrackingProviderConsentToJSON(value?: SfvbTrackingProviderCo
     }
     return {
         
-        'false': value._false,
+        'disabled': value.disabled,
         'region': value.region,
         'type': value.type,
     };

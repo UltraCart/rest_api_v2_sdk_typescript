@@ -20,17 +20,17 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbTrackingProviderEvent {
     /**
+     * True when the event is sent to the provider.
+     * @type {boolean}
+     * @memberof SfvbTrackingProviderEvent
+     */
+    enabled?: boolean;
+    /**
      * AddPaymentInfo, AddToCart, AddToWishlist, CompleteRegistration, InitiateCheckout, Lead, Search or ViewContent.
      * @type {string}
      * @memberof SfvbTrackingProviderEvent
      */
     name?: string;
-    /**
-     * True when the event is sent to the provider.
-     * @type {boolean}
-     * @memberof SfvbTrackingProviderEvent
-     */
-    _true?: boolean;
 }
 
 
@@ -54,8 +54,8 @@ export function SfvbTrackingProviderEventFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'enabled': !exists(json, 'enabled') ? undefined : json['enabled'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        '_true': !exists(json, 'true') ? undefined : json['true'],
     };
 }
 
@@ -68,8 +68,8 @@ export function SfvbTrackingProviderEventToJSON(value?: SfvbTrackingProviderEven
     }
     return {
         
+        'enabled': value.enabled,
         'name': value.name,
-        'true': value._true,
     };
 }
 
