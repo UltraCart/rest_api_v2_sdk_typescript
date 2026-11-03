@@ -62,6 +62,12 @@ export interface OauthTokenResponse {
      */
     refresh_token?: string;
     /**
+     * Seconds until the refresh token expires.  Returned only by applications that rotate refresh tokens, which return a new refresh token on every refresh.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    refresh_token_expires_in?: string;
+    /**
      * The scope of permissions associated with teh access token
      * @type {string}
      * @memberof OauthTokenResponse
@@ -112,6 +118,7 @@ export function OauthTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'expires_in': !exists(json, 'expires_in') ? undefined : json['expires_in'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'refresh_token': !exists(json, 'refresh_token') ? undefined : json['refresh_token'],
+        'refresh_token_expires_in': !exists(json, 'refresh_token_expires_in') ? undefined : json['refresh_token_expires_in'],
         'scope': !exists(json, 'scope') ? undefined : json['scope'],
         'token_type': !exists(json, 'token_type') ? undefined : json['token_type'],
     };
@@ -133,6 +140,7 @@ export function OauthTokenResponseToJSON(value?: OauthTokenResponse | null): any
         'expires_in': value.expires_in,
         'merchant_id': value.merchant_id,
         'refresh_token': value.refresh_token,
+        'refresh_token_expires_in': value.refresh_token_expires_in,
         'scope': value.scope,
         'token_type': value.token_type,
     };
