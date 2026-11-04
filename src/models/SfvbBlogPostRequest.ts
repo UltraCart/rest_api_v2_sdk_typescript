@@ -38,6 +38,12 @@ export interface SfvbBlogPostRequest {
      */
     body?: string;
     /**
+     * On an update, true to run every check the write would run and save nothing.  A refusal comes back exactly as it would on the real write.
+     * @type {boolean}
+     * @memberof SfvbBlogPostRequest
+     */
+    dry_run?: boolean;
+    /**
      * The post excerpt as HTML, up to 256 KB.  Held to the same rule as body.
      * @type {string}
      * @memberof SfvbBlogPostRequest
@@ -128,6 +134,7 @@ export function SfvbBlogPostRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'allow_comments': !exists(json, 'allow_comments') ? undefined : json['allow_comments'],
         'author': !exists(json, 'author') ? undefined : json['author'],
         'body': !exists(json, 'body') ? undefined : json['body'],
+        'dry_run': !exists(json, 'dry_run') ? undefined : json['dry_run'],
         'excerpt': !exists(json, 'excerpt') ? undefined : json['excerpt'],
         'publication_dts': !exists(json, 'publication_dts') ? undefined : json['publication_dts'],
         'seo_description': !exists(json, 'seo_description') ? undefined : json['seo_description'],
@@ -152,6 +159,7 @@ export function SfvbBlogPostRequestToJSON(value?: SfvbBlogPostRequest | null): a
         'allow_comments': value.allow_comments,
         'author': value.author,
         'body': value.body,
+        'dry_run': value.dry_run,
         'excerpt': value.excerpt,
         'publication_dts': value.publication_dts,
         'seo_description': value.seo_description,

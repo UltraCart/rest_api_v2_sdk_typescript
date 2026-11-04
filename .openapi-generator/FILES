@@ -1233,6 +1233,9 @@ src/models/SfvbSitemapsResponse.ts
 src/models/SfvbSmartAttribution.ts
 src/models/SfvbSmartAttributionPlatform.ts
 src/models/SfvbSmartAttributionRequest.ts
+src/models/SfvbStepCounts.ts
+src/models/SfvbStepDispatchLog.ts
+src/models/SfvbStepDispatchLogsResponse.ts
 src/models/SfvbStorefront.ts
 src/models/SfvbStorefrontsResponse.ts
 src/models/SfvbTemplate.ts

@@ -57,6 +57,12 @@ export interface SfvbBlogPostDetail {
      */
     created_dts?: string;
     /**
+     * True when this is the result of a dry run and nothing was saved.  The post is shown as it is stored.
+     * @type {boolean}
+     * @memberof SfvbBlogPostDetail
+     */
+    dry_run?: boolean;
+    /**
      * The post excerpt as HTML, exactly as stored.
      * @type {string}
      * @memberof SfvbBlogPostDetail
@@ -162,6 +168,7 @@ export function SfvbBlogPostDetailFromJSONTyped(json: any, ignoreDiscriminator: 
         'blog_post_oid': !exists(json, 'blog_post_oid') ? undefined : json['blog_post_oid'],
         'body': !exists(json, 'body') ? undefined : json['body'],
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
+        'dry_run': !exists(json, 'dry_run') ? undefined : json['dry_run'],
         'excerpt': !exists(json, 'excerpt') ? undefined : json['excerpt'],
         'images': !exists(json, 'images') ? undefined : ((json['images'] as Array<any>).map(SfvbBlogPostImageFromJSON)),
         'last_modified_dts': !exists(json, 'last_modified_dts') ? undefined : json['last_modified_dts'],
@@ -192,6 +199,7 @@ export function SfvbBlogPostDetailToJSON(value?: SfvbBlogPostDetail | null): any
         'blog_post_oid': value.blog_post_oid,
         'body': value.body,
         'created_dts': value.created_dts,
+        'dry_run': value.dry_run,
         'excerpt': value.excerpt,
         'images': value.images === undefined ? undefined : ((value.images as Array<any>).map(SfvbBlogPostImageToJSON)),
         'last_modified_dts': value.last_modified_dts,

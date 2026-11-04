@@ -498,6 +498,9 @@ import {
     SfvbSmartAttributionRequest,
     SfvbSmartAttributionRequestFromJSON,
     SfvbSmartAttributionRequestToJSON,
+    SfvbStepDispatchLogsResponse,
+    SfvbStepDispatchLogsResponseFromJSON,
+    SfvbStepDispatchLogsResponseToJSON,
     SfvbStorefrontsResponse,
     SfvbStorefrontsResponseFromJSON,
     SfvbStorefrontsResponseToJSON,
@@ -1155,6 +1158,15 @@ export interface GetSfvbSequenceRequest {
     storefrontOid: number;
     sequenceUuid: string;
     waiting?: boolean;
+}
+
+export interface GetSfvbSequenceStepDispatchLogsRequest {
+    storefrontOid: number;
+    sequenceUuid: string;
+    stepUuid: string;
+    since?: string;
+    limit?: number;
+    offset?: number;
 }
 
 export interface GetSfvbServerLogRequest {
@@ -3786,6 +3798,27 @@ export interface SfvbApiInterface {
      * Get a campaign\'s or flow\'s steps as a tree
      */
     getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence>;
+
+    /**
+     * Why customers were sent, skipped or ended at this step, newest first, as the admin\'s Dispatch Logs screen shows it, with the step\'s counts.  An email step\'s counts are its email\'s; any other step\'s are its own over 90 days.  Email addresses and phone numbers in the text are masked.  since is 15m, 2h or 7d, or an ISO-8601 time, default 7d; entries are kept 90 days.  limit is 1 to 200, default 50; send next_offset as offset for the next page.  Read only. 
+     * @summary Read a flow or campaign step\'s dispatch log and counts
+     * @param {number} storefrontOid 
+     * @param {string} sequenceUuid 
+     * @param {string} stepUuid 
+     * @param {string} [since] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSequenceStepDispatchLogsRaw(requestParameters: GetSfvbSequenceStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbStepDispatchLogsResponse>>;
+
+    /**
+     * Why customers were sent, skipped or ended at this step, newest first, as the admin\'s Dispatch Logs screen shows it, with the step\'s counts.  An email step\'s counts are its email\'s; any other step\'s are its own over 90 days.  Email addresses and phone numbers in the text are masked.  since is 15m, 2h or 7d, or an ISO-8601 time, default 7d; entries are kept 90 days.  limit is 1 to 200, default 50; send next_offset as offset for the next page.  Read only. 
+     * Read a flow or campaign step\'s dispatch log and counts
+     */
+    getSfvbSequenceStepDispatchLogs(requestParameters: GetSfvbSequenceStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbStepDispatchLogsResponse>;
 
     /**
      * One render\'s server log with its lines, each with a level, a category such as VELOCITY or FLOW, and the message.  log_id comes from the list, or from the X-UltraCart-Storefront-Log-Id header a page sends inside an SFVB preview session.  min_level is debug, info, warn or error, default debug. 
@@ -11203,6 +11236,67 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbSequence(requestParameters: GetSfvbSequenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSequence> {
         const response = await this.getSfvbSequenceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Why customers were sent, skipped or ended at this step, newest first, as the admin\'s Dispatch Logs screen shows it, with the step\'s counts.  An email step\'s counts are its email\'s; any other step\'s are its own over 90 days.  Email addresses and phone numbers in the text are masked.  since is 15m, 2h or 7d, or an ISO-8601 time, default 7d; entries are kept 90 days.  limit is 1 to 200, default 50; send next_offset as offset for the next page.  Read only. 
+     * Read a flow or campaign step\'s dispatch log and counts
+     */
+    async getSfvbSequenceStepDispatchLogsRaw(requestParameters: GetSfvbSequenceStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbStepDispatchLogsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSequenceStepDispatchLogs.');
+        }
+
+        if (requestParameters.sequenceUuid === null || requestParameters.sequenceUuid === undefined) {
+            throw new runtime.RequiredError('sequenceUuid','Required parameter requestParameters.sequenceUuid was null or undefined when calling getSfvbSequenceStepDispatchLogs.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling getSfvbSequenceStepDispatchLogs.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sequences/{sequence_uuid}/steps/{step_uuid}/dispatch_logs`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"sequence_uuid"}}`, encodeURIComponent(String(requestParameters.sequenceUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbStepDispatchLogsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Why customers were sent, skipped or ended at this step, newest first, as the admin\'s Dispatch Logs screen shows it, with the step\'s counts.  An email step\'s counts are its email\'s; any other step\'s are its own over 90 days.  Email addresses and phone numbers in the text are masked.  since is 15m, 2h or 7d, or an ISO-8601 time, default 7d; entries are kept 90 days.  limit is 1 to 200, default 50; send next_offset as offset for the next page.  Read only. 
+     * Read a flow or campaign step\'s dispatch log and counts
+     */
+    async getSfvbSequenceStepDispatchLogs(requestParameters: GetSfvbSequenceStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbStepDispatchLogsResponse> {
+        const response = await this.getSfvbSequenceStepDispatchLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
