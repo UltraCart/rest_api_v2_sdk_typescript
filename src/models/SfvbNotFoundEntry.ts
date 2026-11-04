@@ -44,6 +44,12 @@ export interface SfvbNotFoundEntry {
      */
     first_seen_dts?: string;
     /**
+     * True when the entry is marked fixed or mapped.  The next hit on the path clears it.
+     * @type {boolean}
+     * @memberof SfvbNotFoundEntry
+     */
+    fixed?: boolean;
+    /**
      * Every recorded hit, bots included.
      * @type {number}
      * @memberof SfvbNotFoundEntry
@@ -112,6 +118,7 @@ export function SfvbNotFoundEntryFromJSONTyped(json: any, ignoreDiscriminator: b
         'bot_share': !exists(json, 'bot_share') ? undefined : json['bot_share'],
         'counted_hits': !exists(json, 'counted_hits') ? undefined : json['counted_hits'],
         'first_seen_dts': !exists(json, 'first_seen_dts') ? undefined : json['first_seen_dts'],
+        'fixed': !exists(json, 'fixed') ? undefined : json['fixed'],
         'hits': !exists(json, 'hits') ? undefined : json['hits'],
         'ignored': !exists(json, 'ignored') ? undefined : json['ignored'],
         'last_seen_dts': !exists(json, 'last_seen_dts') ? undefined : json['last_seen_dts'],
@@ -135,6 +142,7 @@ export function SfvbNotFoundEntryToJSON(value?: SfvbNotFoundEntry | null): any {
         'bot_share': value.bot_share,
         'counted_hits': value.counted_hits,
         'first_seen_dts': value.first_seen_dts,
+        'fixed': value.fixed,
         'hits': value.hits,
         'ignored': value.ignored,
         'last_seen_dts': value.last_seen_dts,

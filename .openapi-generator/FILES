@@ -1146,6 +1146,7 @@ src/models/SfvbNotFoundEntryResponse.ts
 src/models/SfvbNotFoundHit.ts
 src/models/SfvbNotFoundPage.ts
 src/models/SfvbNotFoundResponse.ts
+src/models/SfvbNotFoundSummary.ts
 src/models/SfvbPageAttribute.ts
 src/models/SfvbPageAttributeUpdate.ts
 src/models/SfvbPageAttributeUpdateRequest.ts
@@ -1195,6 +1196,8 @@ src/models/SfvbRedirectImportResponse.ts
 src/models/SfvbRedirectImportRow.ts
 src/models/SfvbRedirectImportRowResult.ts
 src/models/SfvbRedirectRequest.ts
+src/models/SfvbRedirectResolveBatchRequest.ts
+src/models/SfvbRedirectResolveBatchResponse.ts
 src/models/SfvbRedirectResolveResponse.ts
 src/models/SfvbRedirectResolveStep.ts
 src/models/SfvbRedirectResponse.ts
@@ -1227,6 +1230,9 @@ src/models/SfvbSiteAttribute.ts
 src/models/SfvbSiteAttributeUpdate.ts
 src/models/SfvbSiteAttributeUpdateRequest.ts
 src/models/SfvbSiteAttributesResponse.ts
+src/models/SfvbSiteSeo.ts
+src/models/SfvbSiteSeoChange.ts
+src/models/SfvbSiteSeoRequest.ts
 src/models/SfvbSitemap.ts
 src/models/SfvbSitemapFile.ts
 src/models/SfvbSitemapsResponse.ts

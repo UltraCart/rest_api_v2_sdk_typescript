@@ -56,6 +56,12 @@ import {
     SfvbRedirectDeleteRowToJSON,
 } from './SfvbRedirectDeleteRow';
 import {
+    SfvbSiteSeoRequest,
+    SfvbSiteSeoRequestFromJSON,
+    SfvbSiteSeoRequestFromJSONTyped,
+    SfvbSiteSeoRequestToJSON,
+} from './SfvbSiteSeoRequest';
+import {
     SfvbSmartAttributionRequest,
     SfvbSmartAttributionRequestFromJSON,
     SfvbSmartAttributionRequestFromJSONTyped,
@@ -136,6 +142,12 @@ export interface SfvbApprovalCreateRequest {
     segment_update?: SfvbCommsSegmentWriteRequest;
     /**
      * 
+     * @type {SfvbSiteSeoRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    site_seo?: SfvbSiteSeoRequest;
+    /**
+     * 
      * @type {SfvbSmartAttributionRequest}
      * @memberof SfvbApprovalCreateRequest
      */
@@ -174,7 +186,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     TrackingProviderChange: 'tracking_provider.change',
     TrackingHtmlPut: 'tracking_html.put',
     AffiliateNetworkChange: 'affiliate_network.change',
-    AffiliateNetworkDelete: 'affiliate_network.delete'
+    AffiliateNetworkDelete: 'affiliate_network.delete',
+    SiteSeoChange: 'site_seo.change'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -208,6 +221,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
         'segment_update': !exists(json, 'segment_update') ? undefined : SfvbCommsSegmentWriteRequestFromJSON(json['segment_update']),
+        'site_seo': !exists(json, 'site_seo') ? undefined : SfvbSiteSeoRequestFromJSON(json['site_seo']),
         'smart_attribution': !exists(json, 'smart_attribution') ? undefined : SfvbSmartAttributionRequestFromJSON(json['smart_attribution']),
         'tracking_provider': !exists(json, 'tracking_provider') ? undefined : SfvbTrackingProviderRequestFromJSON(json['tracking_provider']),
     };
@@ -232,6 +246,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'reason': value.reason,
         'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),
         'segment_update': SfvbCommsSegmentWriteRequestToJSON(value.segment_update),
+        'site_seo': SfvbSiteSeoRequestToJSON(value.site_seo),
         'smart_attribution': SfvbSmartAttributionRequestToJSON(value.smart_attribution),
         'tracking_provider': SfvbTrackingProviderRequestToJSON(value.tracking_provider),
     };

@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbRedirectRequest {
     /**
+     * True to leave the rule's source out of the generated sitemap.  On a create, left out means false, as in the admin.  On an update, left out keeps the rule's value.
+     * @type {boolean}
+     * @memberof SfvbRedirectRequest
+     */
+    exclude_from_sitemap?: boolean;
+    /**
      * Why the rule exists, up to 500 characters.
      * @type {string}
      * @memberof SfvbRedirectRequest
@@ -72,6 +78,7 @@ export function SfvbRedirectRequestFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'note': !exists(json, 'note') ? undefined : json['note'],
         'over_live_page': !exists(json, 'over_live_page') ? undefined : json['over_live_page'],
         'source': !exists(json, 'source') ? undefined : json['source'],
@@ -89,6 +96,7 @@ export function SfvbRedirectRequestToJSON(value?: SfvbRedirectRequest | null): a
     }
     return {
         
+        'exclude_from_sitemap': value.exclude_from_sitemap,
         'note': value.note,
         'over_live_page': value.over_live_page,
         'source': value.source,

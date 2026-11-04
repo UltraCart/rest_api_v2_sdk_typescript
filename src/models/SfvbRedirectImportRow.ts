@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbRedirectImportRow {
     /**
+     * True to leave the rule's source out of the generated sitemap.  Left out means false, as in the admin.
+     * @type {boolean}
+     * @memberof SfvbRedirectImportRow
+     */
+    exclude_from_sitemap?: boolean;
+    /**
      * Why the rule exists.
      * @type {string}
      * @memberof SfvbRedirectImportRow
@@ -60,6 +66,7 @@ export function SfvbRedirectImportRowFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'note': !exists(json, 'note') ? undefined : json['note'],
         'source': !exists(json, 'source') ? undefined : json['source'],
         'target': !exists(json, 'target') ? undefined : json['target'],
@@ -75,6 +82,7 @@ export function SfvbRedirectImportRowToJSON(value?: SfvbRedirectImportRow | null
     }
     return {
         
+        'exclude_from_sitemap': value.exclude_from_sitemap,
         'note': value.note,
         'source': value.source,
         'target': value.target,
