@@ -86,6 +86,12 @@ export interface SfvbTrackingProviderField {
      */
     type?: string;
     /**
+     * Present only when this storefront can't turn the field on, and why.  Turning it off still works.
+     * @type {string}
+     * @memberof SfvbTrackingProviderField
+     */
+    unavailable_reason?: string;
+    /**
      * The stored value.  Booleans are true or false.  Null when blank.  Never present for a secret.
      * @type {string}
      * @memberof SfvbTrackingProviderField
@@ -131,6 +137,7 @@ export function SfvbTrackingProviderFieldFromJSONTyped(json: any, ignoreDiscrimi
         'set': !exists(json, 'set') ? undefined : json['set'],
         'sink': !exists(json, 'sink') ? undefined : json['sink'],
         'type': !exists(json, 'type') ? undefined : json['type'],
+        'unavailable_reason': !exists(json, 'unavailable_reason') ? undefined : json['unavailable_reason'],
         'value': !exists(json, 'value') ? undefined : json['value'],
         'writable': !exists(json, 'writable') ? undefined : json['writable'],
     };
@@ -156,6 +163,7 @@ export function SfvbTrackingProviderFieldToJSON(value?: SfvbTrackingProviderFiel
         'set': value.set,
         'sink': value.sink,
         'type': value.type,
+        'unavailable_reason': value.unavailable_reason,
         'value': value.value,
         'writable': value.writable,
     };

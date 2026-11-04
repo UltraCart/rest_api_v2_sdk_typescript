@@ -63,6 +63,12 @@ export interface SfvbTrackingProvider {
      */
     admin_path?: string;
     /**
+     * On a dry run, whether the real write needs an approved tracking_provider.change request.
+     * @type {boolean}
+     * @memberof SfvbTrackingProvider
+     */
+    approval_needed?: boolean;
+    /**
      * On a write, each setting it changed, or would change on a dry run.  Secrets read only set or cleared.
      * @type {Array<SfvbTrackingChange>}
      * @memberof SfvbTrackingProvider
@@ -176,6 +182,7 @@ export function SfvbTrackingProviderFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'admin_path': !exists(json, 'admin_path') ? undefined : json['admin_path'],
+        'approval_needed': !exists(json, 'approval_needed') ? undefined : json['approval_needed'],
         'changes': !exists(json, 'changes') ? undefined : ((json['changes'] as Array<any>).map(SfvbTrackingChangeFromJSON)),
         'configured': !exists(json, 'configured') ? undefined : json['configured'],
         'consent': !exists(json, 'consent') ? undefined : SfvbTrackingProviderConsentFromJSON(json['consent']),
@@ -204,6 +211,7 @@ export function SfvbTrackingProviderToJSON(value?: SfvbTrackingProvider | null):
     return {
         
         'admin_path': value.admin_path,
+        'approval_needed': value.approval_needed,
         'changes': value.changes === undefined ? undefined : ((value.changes as Array<any>).map(SfvbTrackingChangeToJSON)),
         'configured': value.configured,
         'consent': SfvbTrackingProviderConsentToJSON(value.consent),
