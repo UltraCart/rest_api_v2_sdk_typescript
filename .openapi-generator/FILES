@@ -1201,6 +1201,7 @@ src/models/SfvbRedirectResponse.ts
 src/models/SfvbRedirectsResponse.ts
 src/models/SfvbRenderRequest.ts
 src/models/SfvbRenderResponse.ts
+src/models/SfvbRobotsTxt.ts
 src/models/SfvbSecretHandle.ts
 src/models/SfvbSecretKind.ts
 src/models/SfvbSecretKindsResponse.ts
@@ -1226,6 +1227,9 @@ src/models/SfvbSiteAttribute.ts
 src/models/SfvbSiteAttributeUpdate.ts
 src/models/SfvbSiteAttributeUpdateRequest.ts
 src/models/SfvbSiteAttributesResponse.ts
+src/models/SfvbSitemap.ts
+src/models/SfvbSitemapFile.ts
+src/models/SfvbSitemapsResponse.ts
 src/models/SfvbSmartAttribution.ts
 src/models/SfvbSmartAttributionPlatform.ts
 src/models/SfvbSmartAttributionRequest.ts

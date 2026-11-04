@@ -489,6 +489,9 @@ import {
     SfvbSiteAttributesResponse,
     SfvbSiteAttributesResponseFromJSON,
     SfvbSiteAttributesResponseToJSON,
+    SfvbSitemapsResponse,
+    SfvbSitemapsResponseFromJSON,
+    SfvbSitemapsResponseToJSON,
     SfvbSmartAttribution,
     SfvbSmartAttributionFromJSON,
     SfvbSmartAttributionToJSON,
@@ -1161,6 +1164,10 @@ export interface GetSfvbServerLogRequest {
 }
 
 export interface GetSfvbSiteAttributesRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbSitemapsRequest {
     storefrontOid: number;
 }
 
@@ -3813,6 +3820,22 @@ export interface SfvbApiInterface {
      * Read a storefront\'s site attributes
      */
     getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse>;
+
+    /**
+     * The sitemaps the admin SEO Sitemaps screen lists, with their child files and build times, the Sitemap lines robots.txt serves, and whether Prevent Indexing is on.  Read only.  The files are rebuilt nightly, so a page change shows in them after the next build. 
+     * @summary Read a storefront\'s sitemaps and robots.txt
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSitemapsRaw(requestParameters: GetSfvbSitemapsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSitemapsResponse>>;
+
+    /**
+     * The sitemaps the admin SEO Sitemaps screen lists, with their child files and build times, the Sitemap lines robots.txt serves, and whether Prevent Indexing is on.  Read only.  The files are rebuilt nightly, so a page change shows in them after the next build. 
+     * Read a storefront\'s sitemaps and robots.txt
+     */
+    getSfvbSitemaps(requestParameters: GetSfvbSitemapsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSitemapsResponse>;
 
     /**
      * The mode, model, global credit split, lookback and platforms, the platforms detected from the tracking integrations that are not configured yet, and the hash_sha256 a change or delete sends back as If-Match.  When configured is false the values are the defaults an enable would save. 
@@ -11270,6 +11293,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse> {
         const response = await this.getSfvbSiteAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The sitemaps the admin SEO Sitemaps screen lists, with their child files and build times, the Sitemap lines robots.txt serves, and whether Prevent Indexing is on.  Read only.  The files are rebuilt nightly, so a page change shows in them after the next build. 
+     * Read a storefront\'s sitemaps and robots.txt
+     */
+    async getSfvbSitemapsRaw(requestParameters: GetSfvbSitemapsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSitemapsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSitemaps.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/sitemaps`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSitemapsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The sitemaps the admin SEO Sitemaps screen lists, with their child files and build times, the Sitemap lines robots.txt serves, and whether Prevent Indexing is on.  Read only.  The files are rebuilt nightly, so a page change shows in them after the next build. 
+     * Read a storefront\'s sitemaps and robots.txt
+     */
+    async getSfvbSitemaps(requestParameters: GetSfvbSitemapsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSitemapsResponse> {
+        const response = await this.getSfvbSitemapsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
