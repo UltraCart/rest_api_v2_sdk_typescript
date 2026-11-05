@@ -81,6 +81,9 @@ import {
     SfvbCommsListsResponse,
     SfvbCommsListsResponseFromJSON,
     SfvbCommsListsResponseToJSON,
+    SfvbCommsMembersResponse,
+    SfvbCommsMembersResponseFromJSON,
+    SfvbCommsMembersResponseToJSON,
     SfvbCommsSegmentResponse,
     SfvbCommsSegmentResponseFromJSON,
     SfvbCommsSegmentResponseToJSON,
@@ -396,6 +399,9 @@ import {
     SfvbPostcardProofResponse,
     SfvbPostcardProofResponseFromJSON,
     SfvbPostcardProofResponseToJSON,
+    SfvbPostcardTrackingResponse,
+    SfvbPostcardTrackingResponseFromJSON,
+    SfvbPostcardTrackingResponseToJSON,
     SfvbPreviewAccessRequest,
     SfvbPreviewAccessRequestFromJSON,
     SfvbPreviewAccessRequestToJSON,
@@ -588,6 +594,12 @@ import {
     SfvbTrackingSettingsResponse,
     SfvbTrackingSettingsResponseFromJSON,
     SfvbTrackingSettingsResponseToJSON,
+    SfvbTransactionalEmailResponse,
+    SfvbTransactionalEmailResponseFromJSON,
+    SfvbTransactionalEmailResponseToJSON,
+    SfvbTransactionalEmailUpdateRequest,
+    SfvbTransactionalEmailUpdateRequestFromJSON,
+    SfvbTransactionalEmailUpdateRequestToJSON,
     SfvbTransactionalEmailsResponse,
     SfvbTransactionalEmailsResponseFromJSON,
     SfvbTransactionalEmailsResponseToJSON,
@@ -1012,9 +1024,25 @@ export interface GetSfvbCommsListRequest {
     listUuid: string;
 }
 
+export interface GetSfvbCommsListMembersRequest {
+    storefrontOid: number;
+    listUuid: string;
+    page?: number;
+    pageSize?: number;
+    showCustomerData?: boolean;
+}
+
 export interface GetSfvbCommsSegmentRequest {
     storefrontOid: number;
     segmentUuid: string;
+}
+
+export interface GetSfvbCommsSegmentMembersRequest {
+    storefrontOid: number;
+    segmentUuid: string;
+    page?: number;
+    pageSize?: number;
+    showCustomerData?: boolean;
 }
 
 export interface GetSfvbCommsSendingDomainRequest {
@@ -1199,6 +1227,14 @@ export interface GetSfvbPageSelectorsRequest {
     path: string;
 }
 
+export interface GetSfvbPostcardTrackingRequest {
+    storefrontOid: number;
+    postcardUuid: string;
+    page?: number;
+    pageSize?: number;
+    showCustomerData?: boolean;
+}
+
 export interface GetSfvbPreviewUrlRequest {
     storefrontOid: number;
     previewSessionId: string;
@@ -1316,6 +1352,11 @@ export interface GetSfvbTrackingProvidersRequest {
 
 export interface GetSfvbTrackingSettingsRequest {
     storefrontOid: number;
+}
+
+export interface GetSfvbTransactionalEmailRequest {
+    storefrontOid: number;
+    fileName: string;
 }
 
 export interface GetSfvbTransactionalEmailsRequest {
@@ -2036,6 +2077,14 @@ export interface UpdateSfvbTrackingProviderRequest {
     provider: string;
     ifMatch: string;
     trackingProviderRequest: SfvbTrackingProviderRequest;
+    approvalId?: string;
+}
+
+export interface UpdateSfvbTransactionalEmailRequest {
+    storefrontOid: number;
+    fileName: string;
+    ifMatch: string;
+    transactionalEmailUpdateRequest: SfvbTransactionalEmailUpdateRequest;
     approvalId?: string;
 }
 
@@ -3288,6 +3337,26 @@ export interface SfvbApiInterface {
     getSfvbCommsList(requestParameters: GetSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse>;
 
     /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * @summary Read one page of a list\'s members
+     * @param {number} storefrontOid 
+     * @param {string} listUuid 
+     * @param {number} [page] The page, from 1
+     * @param {number} [pageSize] Members per page, 1 to 100 (default 50)
+     * @param {boolean} [showCustomerData] True to return the real email addresses instead of masked ones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsListMembersRaw(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsMembersResponse>>;
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a list\'s members
+     */
+    getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse>;
+
+    /**
      * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
      * @summary Read one segment, with its rule
      * @param {number} storefrontOid 
@@ -3303,6 +3372,26 @@ export interface SfvbApiInterface {
      * Read one segment, with its rule
      */
     getSfvbCommsSegment(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse>;
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * @summary Read one page of a segment\'s members
+     * @param {number} storefrontOid 
+     * @param {string} segmentUuid 
+     * @param {number} [page] The page, from 1
+     * @param {number} [pageSize] Members per page, 1 to 100 (default 50)
+     * @param {boolean} [showCustomerData] True to return the real email addresses instead of masked ones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSegmentMembersRaw(requestParameters: GetSfvbCommsSegmentMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsMembersResponse>>;
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a segment\'s members
+     */
+    getSfvbCommsSegmentMembers(requestParameters: GetSfvbCommsSegmentMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse>;
 
     /**
      * One sending domain as stored.  To check an amazon domain\'s DNS again, use the status call. 
@@ -3925,6 +4014,26 @@ export interface SfvbApiInterface {
     getSfvbPageSelectors(requestParameters: GetSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors>;
 
     /**
+     * Every printed card mailed for the postcard, newest first, with its status, cost, dates and the order it converted to.  Recipients are masked (the name an initial, the street lines hidden, city, state and postal code kept) and the vendor\'s status text is left out, unless show_customer_data is true, which needs the sfvb_publish scope and is logged.  The return address is the merchant\'s own.  Read only. 
+     * @summary Read one page of the cards mailed for a postcard
+     * @param {number} storefrontOid 
+     * @param {string} postcardUuid 
+     * @param {number} [page] The page, from 1
+     * @param {number} [pageSize] Cards per page, 1 to 100 (default 50)
+     * @param {boolean} [showCustomerData] True to return the recipients\&#39; real names and street addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbPostcardTrackingRaw(requestParameters: GetSfvbPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPostcardTrackingResponse>>;
+
+    /**
+     * Every printed card mailed for the postcard, newest first, with its status, cost, dates and the order it converted to.  Recipients are masked (the name an initial, the street lines hidden, city, state and postal code kept) and the vendor\'s status text is left out, unless show_customer_data is true, which needs the sfvb_publish scope and is logged.  The return address is the merchant\'s own.  Read only. 
+     * Read one page of the cards mailed for a postcard
+     */
+    getSfvbPostcardTracking(requestParameters: GetSfvbPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPostcardTrackingResponse>;
+
+    /**
      * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * @summary URL that renders a preview session
      * @param {number} storefrontOid 
@@ -4347,6 +4456,23 @@ export interface SfvbApiInterface {
      * Read a storefront\'s privacy rules and advanced conversion settings
      */
     getSfvbTrackingSettings(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse>;
+
+    /**
+     * file_name is the template file from the transactional email list, such as receipt_html.vm, or its display name.  The sender is shared by every storefront on the same screen branding theme (sender_shared_with); a sender that sends through the merchant\'s own mail server shows smtp true and never its credentials.  hash_sha256 is the If-Match for an update.  The template itself is a theme file. 
+     * @summary Read a transactional email\'s subject, delivery options and sender
+     * @param {number} storefrontOid 
+     * @param {string} fileName 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTransactionalEmailRaw(requestParameters: GetSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailResponse>>;
+
+    /**
+     * file_name is the template file from the transactional email list, such as receipt_html.vm, or its display name.  The sender is shared by every storefront on the same screen branding theme (sender_shared_with); a sender that sends through the merchant\'s own mail server shows smtp true and never its credentials.  hash_sha256 is the If-Match for an update.  The template itself is a theme file. 
+     * Read a transactional email\'s subject, delivery options and sender
+     */
+    getSfvbTransactionalEmail(requestParameters: GetSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailResponse>;
 
     /**
      * The order, shipment, auto order and other transactional emails this storefront sends, with their template files and the body container a draft replaces.  Forgot password and chat verification are not listed, because they have no preview. 
@@ -6495,6 +6621,26 @@ export interface SfvbApiInterface {
      * Change one tracking provider
      */
     updateSfvbTrackingProvider(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider>;
+
+    /**
+     * A field left out stays as it is.  It goes to every matching order from the moment it is saved, so every change needs sfvb_publish, the email\'s hash_sha256 as If-Match, and an approved transactional_email.update request for exactly this change (params.path the template file).  dry_run checks and shows the change without writing or using an approval.  Delivery options are named by name.  A sender change reaches every storefront on the same screen branding theme, and is refused for one that sends through the merchant\'s own mail server. 
+     * @summary Change a transactional email\'s subject, delivery options or sender
+     * @param {number} storefrontOid 
+     * @param {string} fileName 
+     * @param {string} ifMatch The email\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbTransactionalEmailUpdateRequest} transactionalEmailUpdateRequest The fields to change
+     * @param {string} [approvalId] The approval_id of an approved transactional_email.update request for exactly this change.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbTransactionalEmailRaw(requestParameters: UpdateSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailResponse>>;
+
+    /**
+     * A field left out stays as it is.  It goes to every matching order from the moment it is saved, so every change needs sfvb_publish, the email\'s hash_sha256 as If-Match, and an approved transactional_email.update request for exactly this change (params.path the template file).  dry_run checks and shows the change without writing or using an approval.  Delivery options are named by name.  A sender change reaches every storefront on the same screen branding theme, and is refused for one that sends through the merchant\'s own mail server. 
+     * Change a transactional email\'s subject, delivery options or sender
+     */
+    updateSfvbTransactionalEmail(requestParameters: UpdateSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailResponse>;
 
     /**
      * A full replace.  Send back the whole offer you read, changed, with its hash_sha256 in If-Match.  Read only fields are ignored and a writable field left out is cleared.  Changing an offer that is switched on, or changing upsell_item_id_javascript or offsite_content_url, needs sfvb_publish.  An update cannot switch an offer on; that is the enable call, which needs approval.  Settings the API does not show, such as the offer\'s screenshots, are kept. 
@@ -9969,6 +10115,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a list\'s members
+     */
+    async getSfvbCommsListMembersRaw(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsMembersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsListMembers.');
+        }
+
+        if (requestParameters.listUuid === null || requestParameters.listUuid === undefined) {
+            throw new runtime.RequiredError('listUuid','Required parameter requestParameters.listUuid was null or undefined when calling getSfvbCommsListMembers.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.showCustomerData !== undefined) {
+            queryParameters['show_customer_data'] = requestParameters.showCustomerData;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists/{list_uuid}/members`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"list_uuid"}}`, encodeURIComponent(String(requestParameters.listUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsMembersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a list\'s members
+     */
+    async getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse> {
+        const response = await this.getSfvbCommsListMembersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
      * Read one segment, with its rule
      */
@@ -10010,6 +10213,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCommsSegment(requestParameters: GetSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse> {
         const response = await this.getSfvbCommsSegmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a segment\'s members
+     */
+    async getSfvbCommsSegmentMembersRaw(requestParameters: GetSfvbCommsSegmentMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsMembersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsSegmentMembers.');
+        }
+
+        if (requestParameters.segmentUuid === null || requestParameters.segmentUuid === undefined) {
+            throw new runtime.RequiredError('segmentUuid','Required parameter requestParameters.segmentUuid was null or undefined when calling getSfvbCommsSegmentMembers.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.showCustomerData !== undefined) {
+            queryParameters['show_customer_data'] = requestParameters.showCustomerData;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments/{segment_uuid}/members`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"segment_uuid"}}`, encodeURIComponent(String(requestParameters.segmentUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsMembersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each member\'s customer uuid, email and the date they joined.  Email addresses are masked (w***a@example.com) and customer_data is masked, unless show_customer_data is true, which returns the real addresses and needs the sfvb_publish scope.  Every such read is logged.  Ask for them only when the merchant needs a person\'s address.  Read only. 
+     * Read one page of a segment\'s members
+     */
+    async getSfvbCommsSegmentMembers(requestParameters: GetSfvbCommsSegmentMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse> {
+        const response = await this.getSfvbCommsSegmentMembersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -11681,6 +11941,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Every printed card mailed for the postcard, newest first, with its status, cost, dates and the order it converted to.  Recipients are masked (the name an initial, the street lines hidden, city, state and postal code kept) and the vendor\'s status text is left out, unless show_customer_data is true, which needs the sfvb_publish scope and is logged.  The return address is the merchant\'s own.  Read only. 
+     * Read one page of the cards mailed for a postcard
+     */
+    async getSfvbPostcardTrackingRaw(requestParameters: GetSfvbPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPostcardTrackingResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPostcardTracking.');
+        }
+
+        if (requestParameters.postcardUuid === null || requestParameters.postcardUuid === undefined) {
+            throw new runtime.RequiredError('postcardUuid','Required parameter requestParameters.postcardUuid was null or undefined when calling getSfvbPostcardTracking.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.showCustomerData !== undefined) {
+            queryParameters['show_customer_data'] = requestParameters.showCustomerData;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/postcards/{postcard_uuid}/tracking`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"postcard_uuid"}}`, encodeURIComponent(String(requestParameters.postcardUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPostcardTrackingResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every printed card mailed for the postcard, newest first, with its status, cost, dates and the order it converted to.  Recipients are masked (the name an initial, the street lines hidden, city, state and postal code kept) and the vendor\'s status text is left out, unless show_customer_data is true, which needs the sfvb_publish scope and is logged.  The return address is the merchant\'s own.  Read only. 
+     * Read one page of the cards mailed for a postcard
+     */
+    async getSfvbPostcardTracking(requestParameters: GetSfvbPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPostcardTrackingResponse> {
+        const response = await this.getSfvbPostcardTrackingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * URL that renders a preview session
      */
@@ -12800,6 +13117,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbTrackingSettings(requestParameters: GetSfvbTrackingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingSettingsResponse> {
         const response = await this.getSfvbTrackingSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * file_name is the template file from the transactional email list, such as receipt_html.vm, or its display name.  The sender is shared by every storefront on the same screen branding theme (sender_shared_with); a sender that sends through the merchant\'s own mail server shows smtp true and never its credentials.  hash_sha256 is the If-Match for an update.  The template itself is a theme file. 
+     * Read a transactional email\'s subject, delivery options and sender
+     */
+    async getSfvbTransactionalEmailRaw(requestParameters: GetSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
+            throw new runtime.RequiredError('fileName','Required parameter requestParameters.fileName was null or undefined when calling getSfvbTransactionalEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/transactional_emails/{file_name}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTransactionalEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * file_name is the template file from the transactional email list, such as receipt_html.vm, or its display name.  The sender is shared by every storefront on the same screen branding theme (sender_shared_with); a sender that sends through the merchant\'s own mail server shows smtp true and never its credentials.  hash_sha256 is the If-Match for an update.  The template itself is a theme file. 
+     * Read a transactional email\'s subject, delivery options and sender
+     */
+    async getSfvbTransactionalEmail(requestParameters: GetSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailResponse> {
+        const response = await this.getSfvbTransactionalEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -19053,6 +19415,70 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbTrackingProvider(requestParameters: UpdateSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider> {
         const response = await this.updateSfvbTrackingProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out stays as it is.  It goes to every matching order from the moment it is saved, so every change needs sfvb_publish, the email\'s hash_sha256 as If-Match, and an approved transactional_email.update request for exactly this change (params.path the template file).  dry_run checks and shows the change without writing or using an approval.  Delivery options are named by name.  A sender change reaches every storefront on the same screen branding theme, and is refused for one that sends through the merchant\'s own mail server. 
+     * Change a transactional email\'s subject, delivery options or sender
+     */
+    async updateSfvbTransactionalEmailRaw(requestParameters: UpdateSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTransactionalEmailResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
+            throw new runtime.RequiredError('fileName','Required parameter requestParameters.fileName was null or undefined when calling updateSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbTransactionalEmail.');
+        }
+
+        if (requestParameters.transactionalEmailUpdateRequest === null || requestParameters.transactionalEmailUpdateRequest === undefined) {
+            throw new runtime.RequiredError('transactionalEmailUpdateRequest','Required parameter requestParameters.transactionalEmailUpdateRequest was null or undefined when calling updateSfvbTransactionalEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/transactional_emails/{file_name}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTransactionalEmailUpdateRequestToJSON(requestParameters.transactionalEmailUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTransactionalEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out stays as it is.  It goes to every matching order from the moment it is saved, so every change needs sfvb_publish, the email\'s hash_sha256 as If-Match, and an approved transactional_email.update request for exactly this change (params.path the template file).  dry_run checks and shows the change without writing or using an approval.  Delivery options are named by name.  A sender change reaches every storefront on the same screen branding theme, and is refused for one that sends through the merchant\'s own mail server. 
+     * Change a transactional email\'s subject, delivery options or sender
+     */
+    async updateSfvbTransactionalEmail(requestParameters: UpdateSfvbTransactionalEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTransactionalEmailResponse> {
+        const response = await this.updateSfvbTransactionalEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

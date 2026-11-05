@@ -73,6 +73,12 @@ import {
     SfvbTrackingProviderRequestFromJSONTyped,
     SfvbTrackingProviderRequestToJSON,
 } from './SfvbTrackingProviderRequest';
+import {
+    SfvbTransactionalEmailUpdateRequest,
+    SfvbTransactionalEmailUpdateRequestFromJSON,
+    SfvbTransactionalEmailUpdateRequestFromJSONTyped,
+    SfvbTransactionalEmailUpdateRequestToJSON,
+} from './SfvbTransactionalEmailUpdateRequest';
 
 /**
  * 
@@ -158,6 +164,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     tracking_provider?: SfvbTrackingProviderRequest;
+    /**
+     * 
+     * @type {SfvbTransactionalEmailUpdateRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    transactional_email?: SfvbTransactionalEmailUpdateRequest;
 }
 
 
@@ -187,7 +199,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     TrackingHtmlPut: 'tracking_html.put',
     AffiliateNetworkChange: 'affiliate_network.change',
     AffiliateNetworkDelete: 'affiliate_network.delete',
-    SiteSeoChange: 'site_seo.change'
+    SiteSeoChange: 'site_seo.change',
+    TransactionalEmailUpdate: 'transactional_email.update'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -224,6 +237,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'site_seo': !exists(json, 'site_seo') ? undefined : SfvbSiteSeoRequestFromJSON(json['site_seo']),
         'smart_attribution': !exists(json, 'smart_attribution') ? undefined : SfvbSmartAttributionRequestFromJSON(json['smart_attribution']),
         'tracking_provider': !exists(json, 'tracking_provider') ? undefined : SfvbTrackingProviderRequestFromJSON(json['tracking_provider']),
+        'transactional_email': !exists(json, 'transactional_email') ? undefined : SfvbTransactionalEmailUpdateRequestFromJSON(json['transactional_email']),
     };
 }
 
@@ -249,6 +263,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'site_seo': SfvbSiteSeoRequestToJSON(value.site_seo),
         'smart_attribution': SfvbSmartAttributionRequestToJSON(value.smart_attribution),
         'tracking_provider': SfvbTrackingProviderRequestToJSON(value.tracking_provider),
+        'transactional_email': SfvbTransactionalEmailUpdateRequestToJSON(value.transactional_email),
     };
 }
 

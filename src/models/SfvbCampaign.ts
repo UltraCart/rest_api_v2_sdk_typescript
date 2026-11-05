@@ -141,6 +141,12 @@ export interface SfvbCampaign {
      */
     sending_user?: string;
     /**
+     * The number this campaign's SMS steps send from.  Without one, every SMS step skips every customer, whatever the account's SMS settings say.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    sms_phone_number?: string;
+    /**
      * The status, such as draft, scheduled, sending, sent or archived.
      * @type {string}
      * @memberof SfvbCampaign
@@ -192,6 +198,7 @@ export function SfvbCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'sending_domain_uuid': !exists(json, 'sending_domain_uuid') ? undefined : json['sending_domain_uuid'],
         'sending_name': !exists(json, 'sending_name') ? undefined : json['sending_name'],
         'sending_user': !exists(json, 'sending_user') ? undefined : json['sending_user'],
+        'sms_phone_number': !exists(json, 'sms_phone_number') ? undefined : json['sms_phone_number'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
     };
@@ -223,6 +230,7 @@ export function SfvbCampaignToJSON(value?: SfvbCampaign | null): any {
         'sending_domain_uuid': value.sending_domain_uuid,
         'sending_name': value.sending_name,
         'sending_user': value.sending_user,
+        'sms_phone_number': value.sms_phone_number,
         'status': value.status,
         'status_dts': value.status_dts,
     };

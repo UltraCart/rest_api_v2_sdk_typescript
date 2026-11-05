@@ -141,6 +141,12 @@ export interface SfvbFlow {
      */
     sending_user?: string;
     /**
+     * The number this flow's SMS steps send from.  Without one, every SMS step skips every customer, whatever the account's SMS settings say.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    sms_phone_number?: string;
+    /**
      * The status, such as draft, active, paused, draining or inactive.
      * @type {string}
      * @memberof SfvbFlow
@@ -211,6 +217,7 @@ export function SfvbFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'sending_domain_uuid': !exists(json, 'sending_domain_uuid') ? undefined : json['sending_domain_uuid'],
         'sending_name': !exists(json, 'sending_name') ? undefined : json['sending_name'],
         'sending_user': !exists(json, 'sending_user') ? undefined : json['sending_user'],
+        'sms_phone_number': !exists(json, 'sms_phone_number') ? undefined : json['sms_phone_number'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
         'trigger_parameter': !exists(json, 'trigger_parameter') ? undefined : json['trigger_parameter'],
@@ -246,6 +253,7 @@ export function SfvbFlowToJSON(value?: SfvbFlow | null): any {
         'sending_domain_uuid': value.sending_domain_uuid,
         'sending_name': value.sending_name,
         'sending_user': value.sending_user,
+        'sms_phone_number': value.sms_phone_number,
         'status': value.status,
         'status_dts': value.status_dts,
         'trigger_parameter': value.trigger_parameter,

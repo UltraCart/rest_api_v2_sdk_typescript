@@ -1029,6 +1029,8 @@ src/models/SfvbCommsListDetail.ts
 src/models/SfvbCommsListResponse.ts
 src/models/SfvbCommsListWriteRequest.ts
 src/models/SfvbCommsListsResponse.ts
+src/models/SfvbCommsMember.ts
+src/models/SfvbCommsMembersResponse.ts
 src/models/SfvbCommsPostcard.ts
 src/models/SfvbCommsSegment.ts
 src/models/SfvbCommsSegmentDetail.ts
@@ -1177,8 +1179,11 @@ src/models/SfvbPageResponse.ts
 src/models/SfvbPageSelectors.ts
 src/models/SfvbPageSettingsRequest.ts
 src/models/SfvbPageSummary.ts
+src/models/SfvbPostcardAddress.ts
+src/models/SfvbPostcardCard.ts
 src/models/SfvbPostcardProofRequest.ts
 src/models/SfvbPostcardProofResponse.ts
+src/models/SfvbPostcardTrackingResponse.ts
 src/models/SfvbPreviewAccessRequest.ts
 src/models/SfvbPreviewAccessResponse.ts
 src/models/SfvbPreviewSessionRequest.ts
@@ -1287,8 +1292,14 @@ src/models/SfvbTrackingProviderSecrets.ts
 src/models/SfvbTrackingProvidersResponse.ts
 src/models/SfvbTrackingSettingsResponse.ts
 src/models/SfvbTrackingWholesaleTier.ts
+src/models/SfvbTransactionalChange.ts
+src/models/SfvbTransactionalDeliveryOption.ts
 src/models/SfvbTransactionalEmail.ts
+src/models/SfvbTransactionalEmailDetail.ts
+src/models/SfvbTransactionalEmailResponse.ts
+src/models/SfvbTransactionalEmailUpdateRequest.ts
 src/models/SfvbTransactionalEmailsResponse.ts
+src/models/SfvbTransactionalSender.ts
 src/models/SfvbUpsellItemLogic.ts
 src/models/SfvbUpsellItemLogicItem.ts
 src/models/SfvbUpsellOffer.ts
