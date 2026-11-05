@@ -63,6 +63,12 @@ import {
     SfvbCodeLibraryEmailsResponse,
     SfvbCodeLibraryEmailsResponseFromJSON,
     SfvbCodeLibraryEmailsResponseToJSON,
+    SfvbCommsClicksResponse,
+    SfvbCommsClicksResponseFromJSON,
+    SfvbCommsClicksResponseToJSON,
+    SfvbCommsDashboardResponse,
+    SfvbCommsDashboardResponseFromJSON,
+    SfvbCommsDashboardResponseToJSON,
     SfvbCommsFolderResponse,
     SfvbCommsFolderResponseFromJSON,
     SfvbCommsFolderResponseToJSON,
@@ -84,6 +90,18 @@ import {
     SfvbCommsMembersResponse,
     SfvbCommsMembersResponseFromJSON,
     SfvbCommsMembersResponseToJSON,
+    SfvbCommsPlanResponse,
+    SfvbCommsPlanResponseFromJSON,
+    SfvbCommsPlanResponseToJSON,
+    SfvbCommsProviderImportRequest,
+    SfvbCommsProviderImportRequestFromJSON,
+    SfvbCommsProviderImportRequestToJSON,
+    SfvbCommsProviderImportResponse,
+    SfvbCommsProviderImportResponseFromJSON,
+    SfvbCommsProviderImportResponseToJSON,
+    SfvbCommsProvidersResponse,
+    SfvbCommsProvidersResponseFromJSON,
+    SfvbCommsProvidersResponseToJSON,
     SfvbCommsSegmentResponse,
     SfvbCommsSegmentResponseFromJSON,
     SfvbCommsSegmentResponseToJSON,
@@ -99,6 +117,33 @@ import {
     SfvbCommsSendingDomainsResponse,
     SfvbCommsSendingDomainsResponseFromJSON,
     SfvbCommsSendingDomainsResponseToJSON,
+    SfvbCommsSequenceStatsResponse,
+    SfvbCommsSequenceStatsResponseFromJSON,
+    SfvbCommsSequenceStatsResponseToJSON,
+    SfvbCommsSettingsResponse,
+    SfvbCommsSettingsResponseFromJSON,
+    SfvbCommsSettingsResponseToJSON,
+    SfvbCommsSettingsUpdateRequest,
+    SfvbCommsSettingsUpdateRequestFromJSON,
+    SfvbCommsSettingsUpdateRequestToJSON,
+    SfvbCommsTemplateResponse,
+    SfvbCommsTemplateResponseFromJSON,
+    SfvbCommsTemplateResponseToJSON,
+    SfvbCommsTemplatesResponse,
+    SfvbCommsTemplatesResponseFromJSON,
+    SfvbCommsTemplatesResponseToJSON,
+    SfvbCommsTestEmailRequest,
+    SfvbCommsTestEmailRequestFromJSON,
+    SfvbCommsTestEmailRequestToJSON,
+    SfvbCommsTestPostcardRequest,
+    SfvbCommsTestPostcardRequestFromJSON,
+    SfvbCommsTestPostcardRequestToJSON,
+    SfvbCommsTestSendResponse,
+    SfvbCommsTestSendResponseFromJSON,
+    SfvbCommsTestSendResponseToJSON,
+    SfvbCommsTestSmsRequest,
+    SfvbCommsTestSmsRequestFromJSON,
+    SfvbCommsTestSmsRequestToJSON,
     SfvbCommsTwilioAccount,
     SfvbCommsTwilioAccountFromJSON,
     SfvbCommsTwilioAccountToJSON,
@@ -1010,6 +1055,18 @@ export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
 }
 
+export interface GetSfvbCommsDashboardStatsRequest {
+    storefrontOid: number;
+    days?: number;
+}
+
+export interface GetSfvbCommsEmailClicksRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    emailUuid: string;
+    days?: number;
+}
+
 export interface GetSfvbCommsFolderRequest {
     storefrontOid: number;
     folderUuid: string;
@@ -1032,6 +1089,14 @@ export interface GetSfvbCommsListMembersRequest {
     showCustomerData?: boolean;
 }
 
+export interface GetSfvbCommsPlanRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbCommsProvidersRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbCommsSegmentRequest {
     storefrontOid: number;
     segmentUuid: string;
@@ -1047,6 +1112,25 @@ export interface GetSfvbCommsSegmentMembersRequest {
 
 export interface GetSfvbCommsSendingDomainRequest {
     domain: string;
+}
+
+export interface GetSfvbCommsSequenceStatsRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    days?: number;
+}
+
+export interface GetSfvbCommsSettingsRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbCommsTemplateRequest {
+    storefrontOid: number;
+    emailTemplateOid: number;
+}
+
+export interface GetSfvbCommsTemplatesRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbContainerRequest {
@@ -1394,6 +1478,12 @@ export interface GetSfvbUtmShortcodesRequest {
 export interface IgnoreSfvbNotFoundEntryRequest {
     storefrontOid: number;
     notFoundId: string;
+}
+
+export interface ImportSfvbCommsProviderListsRequest {
+    storefrontOid: number;
+    providerImportRequest: SfvbCommsProviderImportRequest;
+    approvalId?: string;
 }
 
 export interface ImportSfvbRedirectsRequest {
@@ -1909,6 +1999,28 @@ export interface StartSfvbExperimentRequest {
     approvalId?: string;
 }
 
+export interface TestSfvbCommsEmailRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    stepUuid: string;
+    testEmailRequest: SfvbCommsTestEmailRequest;
+}
+
+export interface TestSfvbCommsPostcardRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    stepUuid: string;
+    testPostcardRequest: SfvbCommsTestPostcardRequest;
+    approvalId?: string;
+}
+
+export interface TestSfvbCommsSmsRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    stepUuid: string;
+    testSmsRequest: SfvbCommsTestSmsRequest;
+}
+
 export interface UnarchiveSfvbUpsellPathRequest {
     storefrontOid: number;
     upsellPathOid: number;
@@ -1982,6 +2094,13 @@ export interface UpdateSfvbCommsSegmentRequest {
 export interface UpdateSfvbCommsSendingDomainRequest {
     domain: string;
     sendingDomain: SfvbCommsSendingDomain;
+}
+
+export interface UpdateSfvbCommsSettingsRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    commsSettingsUpdateRequest: SfvbCommsSettingsUpdateRequest;
+    approvalId?: string;
 }
 
 export interface UpdateSfvbCommsTwilioAccountRequest {
@@ -3287,6 +3406,42 @@ export interface SfvbApiInterface {
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
 
     /**
+     * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
+     * @summary Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
+     * @param {number} storefrontOid 
+     * @param {number} [days] The window for the rows, 1 to 365 days (default 30).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsDashboardStatsRaw(requestParameters: GetSfvbCommsDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsDashboardResponse>>;
+
+    /**
+     * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
+     * Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
+     */
+    getSfvbCommsDashboardStats(requestParameters: GetSfvbCommsDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsDashboardResponse>;
+
+    /**
+     * The email must be sent by an email or experiment step of this flow\'s or campaign\'s sequence; any other is 404.  Most clicked first, over the last days (1 to 365, default 30).  Read only. 
+     * @summary Read each link in one email and how often it was clicked
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} emailUuid 
+     * @param {number} [days] The window, 1 to 365 days (default 30).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsEmailClicksRaw(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsClicksResponse>>;
+
+    /**
+     * The email must be sent by an email or experiment step of this flow\'s or campaign\'s sequence; any other is 404.  Most clicked first, over the last days (1 to 365, default 30).  Read only. 
+     * Read each link in one email and how often it was clicked
+     */
+    getSfvbCommsEmailClicks(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsClicksResponse>;
+
+    /**
      * The folder, with the name and uuid of each list and segment filed in it. 
      * @summary Read one list and segment folder
      * @param {number} storefrontOid 
@@ -3357,6 +3512,38 @@ export interface SfvbApiInterface {
     getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse>;
 
     /**
+     * The plan, its customer and email caps, what has been sent against them, and the spam pause, with notes on anything that stops sends.  Account-wide.  Never a price, fee or upgrade option; the plan is changed in the admin.  Read only. 
+     * @summary Read the account\'s communications plan and sending health
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsPlanRaw(requestParameters: GetSfvbCommsPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsPlanResponse>>;
+
+    /**
+     * The plan, its customer and email caps, what has been sent against them, and the spam pause, with notes on anything that stops sends.  Account-wide.  Never a price, fee or upgrade option; the plan is changed in the admin.  Read only. 
+     * Read the account\'s communications plan and sending health
+     */
+    getSfvbCommsPlan(requestParameters: GetSfvbCommsPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsPlanResponse>;
+
+    /**
+     * Each provider that can share list members, connected or not, with a connected one\'s lists.  Each call asks the providers themselves, so it is rate limited.  No credential or connect URL is returned.  import_allowed says whether the account may import.  Read only. 
+     * @summary List the email providers the account can import lists from
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsProvidersRaw(requestParameters: GetSfvbCommsProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsProvidersResponse>>;
+
+    /**
+     * Each provider that can share list members, connected or not, with a connected one\'s lists.  Each call asks the providers themselves, so it is rate limited.  No credential or connect URL is returned.  import_allowed says whether the account may import.  Read only. 
+     * List the email providers the account can import lists from
+     */
+    getSfvbCommsProviders(requestParameters: GetSfvbCommsProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsProvidersResponse>;
+
+    /**
      * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
      * @summary Read one segment, with its rule
      * @param {number} storefrontOid 
@@ -3423,6 +3610,73 @@ export interface SfvbApiInterface {
      * List the sending domains
      */
     getSfvbCommsSendingDomains(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomainsResponse>;
+
+    /**
+     * overall covers all time; each email, SMS, postcard and branch step covers the last days (1 to 365, default 30).  Each step reports only the counts its channel records and names the rest in not_measured, so a missing count is never zero.  Bounces, opens and spam are counts here, not separate reports.  Read only. 
+     * @summary Read a flow\'s or campaign\'s counts, overall and step by step
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {number} [days] The window for the step counts, 1 to 365 days (default 30).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSequenceStatsRaw(requestParameters: GetSfvbCommsSequenceStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceStatsResponse>>;
+
+    /**
+     * overall covers all time; each email, SMS, postcard and branch step covers the last days (1 to 365, default 30).  Each step reports only the counts its channel records and names the rest in not_measured, so a missing count is never zero.  Bounces, opens and spam are counts here, not separate reports.  Read only. 
+     * Read a flow\'s or campaign\'s counts, overall and step by step
+     */
+    getSfvbCommsSequenceStats(requestParameters: GetSfvbCommsSequenceStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceStatsResponse>;
+
+    /**
+     * The postcard return address, the default marketing and transactional senders, and the default SMS number, with what each one drives in notes.  Read only.  hash_sha256 is the If-Match for an update. 
+     * @summary Read a storefront\'s communications settings
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsSettingsRaw(requestParameters: GetSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSettingsResponse>>;
+
+    /**
+     * The postcard return address, the default marketing and transactional senders, and the default SMS number, with what each one drives in notes.  Read only.  hash_sha256 is the If-Match for an update. 
+     * Read a storefront\'s communications settings
+     */
+    getSfvbCommsSettings(requestParameters: GetSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSettingsResponse>;
+
+    /**
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * @summary Read one saved email template\'s body
+     * @param {number} storefrontOid 
+     * @param {number} emailTemplateOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsTemplateRaw(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplateResponse>>;
+
+    /**
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * Read one saved email template\'s body
+     */
+    getSfvbCommsTemplate(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplateResponse>;
+
+    /**
+     * One list: UltraCart\'s system templates and this storefront\'s saved ones (each with email_template_oid), then base templates, the active theme\'s files an email renders inside (each with path).  Read only. 
+     * @summary List the email templates a new email can start from
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsTemplatesRaw(requestParameters: GetSfvbCommsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplatesResponse>>;
+
+    /**
+     * One list: UltraCart\'s system templates and this storefront\'s saved ones (each with email_template_oid), then base templates, the active theme\'s files an email renders inside (each with path).  Read only. 
+     * List the email templates a new email can start from
+     */
+    getSfvbCommsTemplates(requestParameters: GetSfvbCommsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplatesResponse>;
 
     /**
      * The account\'s Twilio account, used for SMS and the phone system, or none.  An account has at most one.  auth_token is always a mask. 
@@ -4612,6 +4866,24 @@ export interface SfvbApiInterface {
      * Ignore a 404 path
      */
     ignoreSfvbNotFoundEntry(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry>;
+
+    /**
+     * Each list becomes a new list of the same name on this storefront and every member is subscribed, in the background; the signed-in user is emailed when it finishes.  Needs the account to be allowed to import, sfvb_publish, and an approved comms_list.import request for exactly these lists.  At most 20 lists.  dry_run checks the provider and the list ids and names what would be created, without importing or using an approval. 
+     * @summary Import lists from another email provider
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsProviderImportRequest} providerImportRequest The provider and lists to import
+     * @param {string} [approvalId] The approval_id of an approved comms_list.import request for exactly these lists.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    importSfvbCommsProviderListsRaw(requestParameters: ImportSfvbCommsProviderListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsProviderImportResponse>>;
+
+    /**
+     * Each list becomes a new list of the same name on this storefront and every member is subscribed, in the background; the signed-in user is emailed when it finishes.  Needs the account to be allowed to import, sfvb_publish, and an approved comms_list.import request for exactly these lists.  At most 20 lists.  dry_run checks the provider and the list ids and names what would be created, without importing or using an approval. 
+     * Import lists from another email provider
+     */
+    importSfvbCommsProviderLists(requestParameters: ImportSfvbCommsProviderListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsProviderImportResponse>;
 
     /**
      * Applies exactly the rows of a dry run, given its plan_hash, in one transaction.  Refused with 412 when the rows or the storefront\'s rules changed since the dry run, and refused when any row has a blocking finding.  Always needs sfvb_publish. 
@@ -6140,6 +6412,64 @@ export interface SfvbApiInterface {
     startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
 
     /**
+     * to_email must be the email address of a user on this account; a test is never sent to customers or anyone else.  It reaches a real inbox and counts against the plan\'s email quota.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 10 an hour and 50 a day.  The email render shows the same email without sending it. 
+     * @summary Send one test of an email step\'s email to a user on this account
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} stepUuid 
+     * @param {SfvbCommsTestEmailRequest} testEmailRequest The email and the recipient
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    testSfvbCommsEmailRaw(requestParameters: TestSfvbCommsEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>>;
+
+    /**
+     * to_email must be the email address of a user on this account; a test is never sent to customers or anyone else.  It reaches a real inbox and counts against the plan\'s email quota.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 10 an hour and 50 a day.  The email render shows the same email without sending it. 
+     * Send one test of an email step\'s email to a user on this account
+     */
+    testSfvbCommsEmail(requestParameters: TestSfvbCommsEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse>;
+
+    /**
+     * It is printed and mailed at the account\'s cost and can\'t be recalled.  mail_card must be true; the postcard proof shows the card without mailing it.  Postcards must be turned on for the account by UltraCart.  Needs sfvb_publish, the sign-in of a person, and an approved postcard.test_mail request for exactly this card and address, with a fresh code every time.  dry_run checks everything and shows the cost.  Rate limited per merchant to 3 an hour and 10 a day.  The answer says whether a card was mailed. 
+     * @summary Print and mail one real test postcard
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} stepUuid 
+     * @param {SfvbCommsTestPostcardRequest} testPostcardRequest The address and mail_card
+     * @param {string} [approvalId] The approval_id of an approved postcard.test_mail request for exactly this card and address.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    testSfvbCommsPostcardRaw(requestParameters: TestSfvbCommsPostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>>;
+
+    /**
+     * It is printed and mailed at the account\'s cost and can\'t be recalled.  mail_card must be true; the postcard proof shows the card without mailing it.  Postcards must be turned on for the account by UltraCart.  Needs sfvb_publish, the sign-in of a person, and an approved postcard.test_mail request for exactly this card and address, with a fresh code every time.  dry_run checks everything and shows the cost.  Rate limited per merchant to 3 an hour and 10 a day.  The answer says whether a card was mailed. 
+     * Print and mail one real test postcard
+     */
+    testSfvbCommsPostcard(requestParameters: TestSfvbCommsPostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse>;
+
+    /**
+     * to_phone must be the cell phone of a user on this account, in E.164 form.  It is billed per segment through the account\'s Twilio account, from the flow\'s or campaign\'s SMS number; with none it is refused.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 5 an hour and 20 a day. 
+     * @summary Send one test of an SMS step to a user on this account
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} stepUuid 
+     * @param {SfvbCommsTestSmsRequest} testSmsRequest The recipient
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    testSfvbCommsSmsRaw(requestParameters: TestSfvbCommsSmsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>>;
+
+    /**
+     * to_phone must be the cell phone of a user on this account, in E.164 form.  It is billed per segment through the account\'s Twilio account, from the flow\'s or campaign\'s SMS number; with none it is refused.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 5 an hour and 20 a day. 
+     * Send one test of an SMS step to a user on this account
+     */
+    testSfvbCommsSms(requestParameters: TestSfvbCommsSmsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse>;
+
+    /**
      * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * @summary Unarchive an upsell path
      * @param {number} storefrontOid 
@@ -6357,6 +6687,25 @@ export interface SfvbApiInterface {
      * Update a sending domain
      */
     updateSfvbCommsSendingDomain(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain>;
+
+    /**
+     * A field left out stays as it is.  A return address change needs sfvb_write and If-Match.  A change to the default marketing or transactional sender, or the default SMS number, also needs sfvb_publish and an approved comms_settings.update request for exactly this change.  A sending domain must be on this account and the SMS number on one of its Twilio accounts.  dry_run checks and shows the change without writing or using an approval. 
+     * @summary Change a storefront\'s communications settings
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch The settings\&#39; hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsSettingsUpdateRequest} commsSettingsUpdateRequest The settings to change
+     * @param {string} [approvalId] The approval_id of an approved comms_settings.update request for exactly this change, when a sender or the SMS number changes.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsSettingsRaw(requestParameters: UpdateSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSettingsResponse>>;
+
+    /**
+     * A field left out stays as it is.  A return address change needs sfvb_write and If-Match.  A change to the default marketing or transactional sender, or the default SMS number, also needs sfvb_publish and an approved comms_settings.update request for exactly this change.  A sending domain must be on this account and the SMS number on one of its Twilio accounts.  dry_run checks and shows the change without writing or using an approval. 
+     * Change a storefront\'s communications settings
+     */
+    updateSfvbCommsSettings(requestParameters: UpdateSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSettingsResponse>;
 
     /**
      * Changes the account\'s Twilio account.  Leave a field out to keep it.  Send auth_token as the mask it was read with to keep it, or as a secret handle made for the account SID to replace it.  A new account_sid needs a new auth_token with it.  A new token is checked with Twilio and UltraCart\'s API key, TwiML apps and voice encryption key are made again; if Twilio refuses, nothing is saved and the handle is given back unused.  phone_numbers, when sent, replaces the list. 
@@ -9984,6 +10333,104 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
+     * Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
+     */
+    async getSfvbCommsDashboardStatsRaw(requestParameters: GetSfvbCommsDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsDashboardResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsDashboardStats.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.days !== undefined) {
+            queryParameters['days'] = requestParameters.days;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/stats/dashboard`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsDashboardResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
+     * Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
+     */
+    async getSfvbCommsDashboardStats(requestParameters: GetSfvbCommsDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsDashboardResponse> {
+        const response = await this.getSfvbCommsDashboardStatsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The email must be sent by an email or experiment step of this flow\'s or campaign\'s sequence; any other is 404.  Most clicked first, over the last days (1 to 365, default 30).  Read only. 
+     * Read each link in one email and how often it was clicked
+     */
+    async getSfvbCommsEmailClicksRaw(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsClicksResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsEmailClicks.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getSfvbCommsEmailClicks.');
+        }
+
+        if (requestParameters.emailUuid === null || requestParameters.emailUuid === undefined) {
+            throw new runtime.RequiredError('emailUuid','Required parameter requestParameters.emailUuid was null or undefined when calling getSfvbCommsEmailClicks.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.days !== undefined) {
+            queryParameters['days'] = requestParameters.days;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/sequences/{commseq_uuid}/emails/{email_uuid}/clicks`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"email_uuid"}}`, encodeURIComponent(String(requestParameters.emailUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsClicksResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The email must be sent by an email or experiment step of this flow\'s or campaign\'s sequence; any other is 404.  Most clicked first, over the last days (1 to 365, default 30).  Read only. 
+     * Read each link in one email and how often it was clicked
+     */
+    async getSfvbCommsEmailClicks(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsClicksResponse> {
+        const response = await this.getSfvbCommsEmailClicksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The folder, with the name and uuid of each list and segment filed in it. 
      * Read one list and segment folder
      */
@@ -10172,6 +10619,88 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The plan, its customer and email caps, what has been sent against them, and the spam pause, with notes on anything that stops sends.  Account-wide.  Never a price, fee or upgrade option; the plan is changed in the admin.  Read only. 
+     * Read the account\'s communications plan and sending health
+     */
+    async getSfvbCommsPlanRaw(requestParameters: GetSfvbCommsPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsPlanResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsPlan.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/plan`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsPlanResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The plan, its customer and email caps, what has been sent against them, and the spam pause, with notes on anything that stops sends.  Account-wide.  Never a price, fee or upgrade option; the plan is changed in the admin.  Read only. 
+     * Read the account\'s communications plan and sending health
+     */
+    async getSfvbCommsPlan(requestParameters: GetSfvbCommsPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsPlanResponse> {
+        const response = await this.getSfvbCommsPlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each provider that can share list members, connected or not, with a connected one\'s lists.  Each call asks the providers themselves, so it is rate limited.  No credential or connect URL is returned.  import_allowed says whether the account may import.  Read only. 
+     * List the email providers the account can import lists from
+     */
+    async getSfvbCommsProvidersRaw(requestParameters: GetSfvbCommsProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsProvidersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsProviders.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/providers`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsProvidersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each provider that can share list members, connected or not, with a connected one\'s lists.  Each call asks the providers themselves, so it is rate limited.  No credential or connect URL is returned.  import_allowed says whether the account may import.  Read only. 
+     * List the email providers the account can import lists from
+     */
+    async getSfvbCommsProviders(requestParameters: GetSfvbCommsProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsProvidersResponse> {
+        const response = await this.getSfvbCommsProvidersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
      * Read one segment, with its rule
      */
@@ -10348,6 +10877,182 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCommsSendingDomains(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomainsResponse> {
         const response = await this.getSfvbCommsSendingDomainsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * overall covers all time; each email, SMS, postcard and branch step covers the last days (1 to 365, default 30).  Each step reports only the counts its channel records and names the rest in not_measured, so a missing count is never zero.  Bounces, opens and spam are counts here, not separate reports.  Read only. 
+     * Read a flow\'s or campaign\'s counts, overall and step by step
+     */
+    async getSfvbCommsSequenceStatsRaw(requestParameters: GetSfvbCommsSequenceStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceStatsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsSequenceStats.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getSfvbCommsSequenceStats.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.days !== undefined) {
+            queryParameters['days'] = requestParameters.days;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/sequences/{commseq_uuid}/stats`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceStatsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * overall covers all time; each email, SMS, postcard and branch step covers the last days (1 to 365, default 30).  Each step reports only the counts its channel records and names the rest in not_measured, so a missing count is never zero.  Bounces, opens and spam are counts here, not separate reports.  Read only. 
+     * Read a flow\'s or campaign\'s counts, overall and step by step
+     */
+    async getSfvbCommsSequenceStats(requestParameters: GetSfvbCommsSequenceStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceStatsResponse> {
+        const response = await this.getSfvbCommsSequenceStatsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The postcard return address, the default marketing and transactional senders, and the default SMS number, with what each one drives in notes.  Read only.  hash_sha256 is the If-Match for an update. 
+     * Read a storefront\'s communications settings
+     */
+    async getSfvbCommsSettingsRaw(requestParameters: GetSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/settings`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The postcard return address, the default marketing and transactional senders, and the default SMS number, with what each one drives in notes.  Read only.  hash_sha256 is the If-Match for an update. 
+     * Read a storefront\'s communications settings
+     */
+    async getSfvbCommsSettings(requestParameters: GetSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSettingsResponse> {
+        const response = await this.getSfvbCommsSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * Read one saved email template\'s body
+     */
+    async getSfvbCommsTemplateRaw(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplateResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsTemplate.');
+        }
+
+        if (requestParameters.emailTemplateOid === null || requestParameters.emailTemplateOid === undefined) {
+            throw new runtime.RequiredError('emailTemplateOid','Required parameter requestParameters.emailTemplateOid was null or undefined when calling getSfvbCommsTemplate.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/templates/{email_template_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_template_oid"}}`, encodeURIComponent(String(requestParameters.emailTemplateOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTemplateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * Read one saved email template\'s body
+     */
+    async getSfvbCommsTemplate(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplateResponse> {
+        const response = await this.getSfvbCommsTemplateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One list: UltraCart\'s system templates and this storefront\'s saved ones (each with email_template_oid), then base templates, the active theme\'s files an email renders inside (each with path).  Read only. 
+     * List the email templates a new email can start from
+     */
+    async getSfvbCommsTemplatesRaw(requestParameters: GetSfvbCommsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplatesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsTemplates.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/templates`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTemplatesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One list: UltraCart\'s system templates and this storefront\'s saved ones (each with email_template_oid), then base templates, the active theme\'s files an email renders inside (each with path).  Read only. 
+     * List the email templates a new email can start from
+     */
+    async getSfvbCommsTemplates(requestParameters: GetSfvbCommsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplatesResponse> {
+        const response = await this.getSfvbCommsTemplatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -13534,6 +14239,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async ignoreSfvbNotFoundEntry(requestParameters: IgnoreSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry> {
         const response = await this.ignoreSfvbNotFoundEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each list becomes a new list of the same name on this storefront and every member is subscribed, in the background; the signed-in user is emailed when it finishes.  Needs the account to be allowed to import, sfvb_publish, and an approved comms_list.import request for exactly these lists.  At most 20 lists.  dry_run checks the provider and the list ids and names what would be created, without importing or using an approval. 
+     * Import lists from another email provider
+     */
+    async importSfvbCommsProviderListsRaw(requestParameters: ImportSfvbCommsProviderListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsProviderImportResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling importSfvbCommsProviderLists.');
+        }
+
+        if (requestParameters.providerImportRequest === null || requestParameters.providerImportRequest === undefined) {
+            throw new runtime.RequiredError('providerImportRequest','Required parameter requestParameters.providerImportRequest was null or undefined when calling importSfvbCommsProviderLists.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/providers/import`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsProviderImportRequestToJSON(requestParameters.providerImportRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsProviderImportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each list becomes a new list of the same name on this storefront and every member is subscribed, in the background; the signed-in user is emailed when it finishes.  Needs the account to be allowed to import, sfvb_publish, and an approved comms_list.import request for exactly these lists.  At most 20 lists.  dry_run checks the provider and the list ids and names what would be created, without importing or using an approval. 
+     * Import lists from another email provider
+     */
+    async importSfvbCommsProviderLists(requestParameters: ImportSfvbCommsProviderListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsProviderImportResponse> {
+        const response = await this.importSfvbCommsProviderListsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -17952,6 +18709,178 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * to_email must be the email address of a user on this account; a test is never sent to customers or anyone else.  It reaches a real inbox and counts against the plan\'s email quota.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 10 an hour and 50 a day.  The email render shows the same email without sending it. 
+     * Send one test of an email step\'s email to a user on this account
+     */
+    async testSfvbCommsEmailRaw(requestParameters: TestSfvbCommsEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling testSfvbCommsEmail.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling testSfvbCommsEmail.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling testSfvbCommsEmail.');
+        }
+
+        if (requestParameters.testEmailRequest === null || requestParameters.testEmailRequest === undefined) {
+            throw new runtime.RequiredError('testEmailRequest','Required parameter requestParameters.testEmailRequest was null or undefined when calling testSfvbCommsEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/sequences/{commseq_uuid}/steps/{step_uuid}/test_email`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsTestEmailRequestToJSON(requestParameters.testEmailRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTestSendResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * to_email must be the email address of a user on this account; a test is never sent to customers or anyone else.  It reaches a real inbox and counts against the plan\'s email quota.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 10 an hour and 50 a day.  The email render shows the same email without sending it. 
+     * Send one test of an email step\'s email to a user on this account
+     */
+    async testSfvbCommsEmail(requestParameters: TestSfvbCommsEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse> {
+        const response = await this.testSfvbCommsEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * It is printed and mailed at the account\'s cost and can\'t be recalled.  mail_card must be true; the postcard proof shows the card without mailing it.  Postcards must be turned on for the account by UltraCart.  Needs sfvb_publish, the sign-in of a person, and an approved postcard.test_mail request for exactly this card and address, with a fresh code every time.  dry_run checks everything and shows the cost.  Rate limited per merchant to 3 an hour and 10 a day.  The answer says whether a card was mailed. 
+     * Print and mail one real test postcard
+     */
+    async testSfvbCommsPostcardRaw(requestParameters: TestSfvbCommsPostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling testSfvbCommsPostcard.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling testSfvbCommsPostcard.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling testSfvbCommsPostcard.');
+        }
+
+        if (requestParameters.testPostcardRequest === null || requestParameters.testPostcardRequest === undefined) {
+            throw new runtime.RequiredError('testPostcardRequest','Required parameter requestParameters.testPostcardRequest was null or undefined when calling testSfvbCommsPostcard.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/sequences/{commseq_uuid}/steps/{step_uuid}/test_postcard`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsTestPostcardRequestToJSON(requestParameters.testPostcardRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTestSendResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * It is printed and mailed at the account\'s cost and can\'t be recalled.  mail_card must be true; the postcard proof shows the card without mailing it.  Postcards must be turned on for the account by UltraCart.  Needs sfvb_publish, the sign-in of a person, and an approved postcard.test_mail request for exactly this card and address, with a fresh code every time.  dry_run checks everything and shows the cost.  Rate limited per merchant to 3 an hour and 10 a day.  The answer says whether a card was mailed. 
+     * Print and mail one real test postcard
+     */
+    async testSfvbCommsPostcard(requestParameters: TestSfvbCommsPostcardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse> {
+        const response = await this.testSfvbCommsPostcardRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * to_phone must be the cell phone of a user on this account, in E.164 form.  It is billed per segment through the account\'s Twilio account, from the flow\'s or campaign\'s SMS number; with none it is refused.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 5 an hour and 20 a day. 
+     * Send one test of an SMS step to a user on this account
+     */
+    async testSfvbCommsSmsRaw(requestParameters: TestSfvbCommsSmsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTestSendResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling testSfvbCommsSms.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling testSfvbCommsSms.');
+        }
+
+        if (requestParameters.stepUuid === null || requestParameters.stepUuid === undefined) {
+            throw new runtime.RequiredError('stepUuid','Required parameter requestParameters.stepUuid was null or undefined when calling testSfvbCommsSms.');
+        }
+
+        if (requestParameters.testSmsRequest === null || requestParameters.testSmsRequest === undefined) {
+            throw new runtime.RequiredError('testSmsRequest','Required parameter requestParameters.testSmsRequest was null or undefined when calling testSfvbCommsSms.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/sequences/{commseq_uuid}/steps/{step_uuid}/test_sms`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"step_uuid"}}`, encodeURIComponent(String(requestParameters.stepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsTestSmsRequestToJSON(requestParameters.testSmsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsTestSendResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * to_phone must be the cell phone of a user on this account, in E.164 form.  It is billed per segment through the account\'s Twilio account, from the flow\'s or campaign\'s SMS number; with none it is refused.  Needs sfvb_publish and the sign-in of a person.  Rate limited per merchant to 5 an hour and 20 a day. 
+     * Send one test of an SMS step to a user on this account
+     */
+    async testSfvbCommsSms(requestParameters: TestSfvbCommsSmsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTestSendResponse> {
+        const response = await this.testSfvbCommsSmsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Brings the path back into the default list.  A path that is switched on is refused, because unarchiving it would start it without approval - disable it, unarchive it, then enable it. 
      * Unarchive an upsell path
      */
@@ -18591,6 +19520,66 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbCommsSendingDomain(requestParameters: UpdateSfvbCommsSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSendingDomain> {
         const response = await this.updateSfvbCommsSendingDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out stays as it is.  A return address change needs sfvb_write and If-Match.  A change to the default marketing or transactional sender, or the default SMS number, also needs sfvb_publish and an approved comms_settings.update request for exactly this change.  A sending domain must be on this account and the SMS number on one of its Twilio accounts.  dry_run checks and shows the change without writing or using an approval. 
+     * Change a storefront\'s communications settings
+     */
+    async updateSfvbCommsSettingsRaw(requestParameters: UpdateSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSettingsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsSettings.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsSettings.');
+        }
+
+        if (requestParameters.commsSettingsUpdateRequest === null || requestParameters.commsSettingsUpdateRequest === undefined) {
+            throw new runtime.RequiredError('commsSettingsUpdateRequest','Required parameter requestParameters.commsSettingsUpdateRequest was null or undefined when calling updateSfvbCommsSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/settings`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsSettingsUpdateRequestToJSON(requestParameters.commsSettingsUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSettingsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out stays as it is.  A return address change needs sfvb_write and If-Match.  A change to the default marketing or transactional sender, or the default SMS number, also needs sfvb_publish and an approved comms_settings.update request for exactly this change.  A sending domain must be on this account and the SMS number on one of its Twilio accounts.  dry_run checks and shows the change without writing or using an approval. 
+     * Change a storefront\'s communications settings
+     */
+    async updateSfvbCommsSettings(requestParameters: UpdateSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSettingsResponse> {
+        const response = await this.updateSfvbCommsSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

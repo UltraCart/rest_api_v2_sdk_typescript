@@ -27,6 +27,12 @@ import {
  */
 export interface ItemContentMultimedia {
     /**
+     * AI generated alt text for the image.  StoreFront uses this when description is empty.
+     * @type {string}
+     * @memberof ItemContentMultimedia
+     */
+    ai_alt_text?: string;
+    /**
      * URL where the image can be downloaded from the cloud
      * @type {string}
      * @memberof ItemContentMultimedia
@@ -158,6 +164,7 @@ export function ItemContentMultimediaFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'ai_alt_text': !exists(json, 'ai_alt_text') ? undefined : json['ai_alt_text'],
         'cloud_url': !exists(json, 'cloud_url') ? undefined : json['cloud_url'],
         'cloud_url_expiration': !exists(json, 'cloud_url_expiration') ? undefined : json['cloud_url_expiration'],
         'code': !exists(json, 'code') ? undefined : json['code'],
@@ -186,6 +193,7 @@ export function ItemContentMultimediaToJSON(value?: ItemContentMultimedia | null
     }
     return {
         
+        'ai_alt_text': value.ai_alt_text,
         'cloud_url': value.cloud_url,
         'cloud_url_expiration': value.cloud_url_expiration,
         'code': value.code,

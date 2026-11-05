@@ -26,11 +26,29 @@ import {
     SfvbApprovalParamsToJSON,
 } from './SfvbApprovalParams';
 import {
+    SfvbCommsProviderImportRequest,
+    SfvbCommsProviderImportRequestFromJSON,
+    SfvbCommsProviderImportRequestFromJSONTyped,
+    SfvbCommsProviderImportRequestToJSON,
+} from './SfvbCommsProviderImportRequest';
+import {
     SfvbCommsSegmentWriteRequest,
     SfvbCommsSegmentWriteRequestFromJSON,
     SfvbCommsSegmentWriteRequestFromJSONTyped,
     SfvbCommsSegmentWriteRequestToJSON,
 } from './SfvbCommsSegmentWriteRequest';
+import {
+    SfvbCommsSettingsUpdateRequest,
+    SfvbCommsSettingsUpdateRequestFromJSON,
+    SfvbCommsSettingsUpdateRequestFromJSONTyped,
+    SfvbCommsSettingsUpdateRequestToJSON,
+} from './SfvbCommsSettingsUpdateRequest';
+import {
+    SfvbCommsTestPostcardRequest,
+    SfvbCommsTestPostcardRequestFromJSON,
+    SfvbCommsTestPostcardRequestFromJSONTyped,
+    SfvbCommsTestPostcardRequestToJSON,
+} from './SfvbCommsTestPostcardRequest';
 import {
     SfvbExperimentStartRequest,
     SfvbExperimentStartRequestFromJSON,
@@ -99,6 +117,18 @@ export interface SfvbApprovalCreateRequest {
      */
     affiliate_network?: SfvbAffiliateNetworkRequest;
     /**
+     * 
+     * @type {SfvbCommsProviderImportRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    comms_list_import?: SfvbCommsProviderImportRequest;
+    /**
+     * 
+     * @type {SfvbCommsSettingsUpdateRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    comms_settings?: SfvbCommsSettingsUpdateRequest;
+    /**
      * For a file.put_script write, the exact script to be written, at most 256 KB.  For tracking_html.put, the exact HTML the write will send, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
      * @type {string}
      * @memberof SfvbApprovalCreateRequest
@@ -128,6 +158,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     params?: SfvbApprovalParams;
+    /**
+     * 
+     * @type {SfvbCommsTestPostcardRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    postcard_test_mail?: SfvbCommsTestPostcardRequest;
     /**
      * Why the agent wants to do this, in a sentence.  Shown to the person as unverified text, capped at 500 characters.
      * @type {string}
@@ -200,7 +236,10 @@ export const SfvbApprovalCreateRequestActionEnum = {
     AffiliateNetworkChange: 'affiliate_network.change',
     AffiliateNetworkDelete: 'affiliate_network.delete',
     SiteSeoChange: 'site_seo.change',
-    TransactionalEmailUpdate: 'transactional_email.update'
+    TransactionalEmailUpdate: 'transactional_email.update',
+    CommsSettingsUpdate: 'comms_settings.update',
+    CommsListImport: 'comms_list.import',
+    PostcardTestMail: 'postcard.test_mail'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -226,11 +265,14 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         
         'action': !exists(json, 'action') ? undefined : json['action'],
         'affiliate_network': !exists(json, 'affiliate_network') ? undefined : SfvbAffiliateNetworkRequestFromJSON(json['affiliate_network']),
+        'comms_list_import': !exists(json, 'comms_list_import') ? undefined : SfvbCommsProviderImportRequestFromJSON(json['comms_list_import']),
+        'comms_settings': !exists(json, 'comms_settings') ? undefined : SfvbCommsSettingsUpdateRequestFromJSON(json['comms_settings']),
         'content': !exists(json, 'content') ? undefined : json['content'],
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
         'item_pricing': !exists(json, 'item_pricing') ? undefined : SfvbItemPricingRequestFromJSON(json['item_pricing']),
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
+        'postcard_test_mail': !exists(json, 'postcard_test_mail') ? undefined : SfvbCommsTestPostcardRequestFromJSON(json['postcard_test_mail']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'redirect_rows': !exists(json, 'redirect_rows') ? undefined : ((json['redirect_rows'] as Array<any>).map(SfvbRedirectDeleteRowFromJSON)),
         'segment_update': !exists(json, 'segment_update') ? undefined : SfvbCommsSegmentWriteRequestFromJSON(json['segment_update']),
@@ -252,11 +294,14 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         
         'action': value.action,
         'affiliate_network': SfvbAffiliateNetworkRequestToJSON(value.affiliate_network),
+        'comms_list_import': SfvbCommsProviderImportRequestToJSON(value.comms_list_import),
+        'comms_settings': SfvbCommsSettingsUpdateRequestToJSON(value.comms_settings),
         'content': value.content,
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
         'item_pricing': SfvbItemPricingRequestToJSON(value.item_pricing),
         'params': SfvbApprovalParamsToJSON(value.params),
+        'postcard_test_mail': SfvbCommsTestPostcardRequestToJSON(value.postcard_test_mail),
         'reason': value.reason,
         'redirect_rows': value.redirect_rows === undefined ? undefined : ((value.redirect_rows as Array<any>).map(SfvbRedirectDeleteRowToJSON)),
         'segment_update': SfvbCommsSegmentWriteRequestToJSON(value.segment_update),
