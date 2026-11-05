@@ -87,6 +87,24 @@ export interface ItemAutoOrder {
      */
     auto_order_downgrade_items?: Array<string>;
     /**
+     * Day counts (1 to 365, at most 20) a customer may switch this auto-enrolled item to from MyAccount, for example [30, 60, 90].  Requires the advanced auto order settings to be enabled on the account.  Omit to leave unchanged; send an empty array to clear.
+     * @type {Array<number>}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_myaccount_frequency_day_counts?: Array<number>;
+    /**
+     * True if the MyAccount frequency change is only offered once the item is on its last auto order step.  Omit to leave unchanged.
+     * @type {boolean}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_myaccount_frequency_last_step_only?: boolean;
+    /**
+     * Standard schedules a customer may switch this auto-enrolled item to from MyAccount.  Requires the advanced auto order settings to be enabled on the account.  Omit to leave unchanged; send an empty array to clear.
+     * @type {Array<string>}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_myaccount_frequency_schedules?: Array<string>;
+    /**
      * True if the rebill processing of this item is paused
      * @type {boolean}
      * @memberof ItemAutoOrder
@@ -191,6 +209,9 @@ export function ItemAutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boole
         'auto_order_cancel_minimum_rebill_count': !exists(json, 'auto_order_cancel_minimum_rebill_count') ? undefined : json['auto_order_cancel_minimum_rebill_count'],
         'auto_order_cancel_minimum_rebill_value': !exists(json, 'auto_order_cancel_minimum_rebill_value') ? undefined : json['auto_order_cancel_minimum_rebill_value'],
         'auto_order_downgrade_items': !exists(json, 'auto_order_downgrade_items') ? undefined : json['auto_order_downgrade_items'],
+        'auto_order_myaccount_frequency_day_counts': !exists(json, 'auto_order_myaccount_frequency_day_counts') ? undefined : json['auto_order_myaccount_frequency_day_counts'],
+        'auto_order_myaccount_frequency_last_step_only': !exists(json, 'auto_order_myaccount_frequency_last_step_only') ? undefined : json['auto_order_myaccount_frequency_last_step_only'],
+        'auto_order_myaccount_frequency_schedules': !exists(json, 'auto_order_myaccount_frequency_schedules') ? undefined : json['auto_order_myaccount_frequency_schedules'],
         'auto_order_paused': !exists(json, 'auto_order_paused') ? undefined : json['auto_order_paused'],
         'auto_order_prohibit_expiring_cards': !exists(json, 'auto_order_prohibit_expiring_cards') ? undefined : json['auto_order_prohibit_expiring_cards'],
         'auto_order_schedules': !exists(json, 'auto_order_schedules') ? undefined : json['auto_order_schedules'],
@@ -225,6 +246,9 @@ export function ItemAutoOrderToJSON(value?: ItemAutoOrder | null): any {
         'auto_order_cancel_minimum_rebill_count': value.auto_order_cancel_minimum_rebill_count,
         'auto_order_cancel_minimum_rebill_value': value.auto_order_cancel_minimum_rebill_value,
         'auto_order_downgrade_items': value.auto_order_downgrade_items,
+        'auto_order_myaccount_frequency_day_counts': value.auto_order_myaccount_frequency_day_counts,
+        'auto_order_myaccount_frequency_last_step_only': value.auto_order_myaccount_frequency_last_step_only,
+        'auto_order_myaccount_frequency_schedules': value.auto_order_myaccount_frequency_schedules,
         'auto_order_paused': value.auto_order_paused,
         'auto_order_prohibit_expiring_cards': value.auto_order_prohibit_expiring_cards,
         'auto_order_schedules': value.auto_order_schedules,

@@ -1019,7 +1019,15 @@ src/models/SfvbCodeLibraryEmail.ts
 src/models/SfvbCodeLibraryEmailsResponse.ts
 src/models/SfvbCommsDnsRecord.ts
 src/models/SfvbCommsEmail.ts
+src/models/SfvbCommsFolder.ts
+src/models/SfvbCommsFolderItem.ts
+src/models/SfvbCommsFolderResponse.ts
+src/models/SfvbCommsFolderWriteRequest.ts
+src/models/SfvbCommsFoldersResponse.ts
 src/models/SfvbCommsList.ts
+src/models/SfvbCommsListDetail.ts
+src/models/SfvbCommsListResponse.ts
+src/models/SfvbCommsListWriteRequest.ts
 src/models/SfvbCommsListsResponse.ts
 src/models/SfvbCommsPostcard.ts
 src/models/SfvbCommsSegment.ts

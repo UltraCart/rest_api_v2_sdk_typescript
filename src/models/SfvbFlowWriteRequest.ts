@@ -74,13 +74,13 @@ export interface SfvbFlowWriteRequest {
      */
     sending_user?: string;
     /**
-     * The list or segment uuid for a list or segment trigger.  Create only.
+     * The list or segment uuid for a list or segment trigger.  Cleared when the trigger changes to one that takes none.
      * @type {string}
      * @memberof SfvbFlowWriteRequest
      */
     trigger_parameter?: string;
     /**
-     * What enrolls a customer, such as cart abandoned.  Create only.
+     * What enrolls a customer, such as cart abandoned.  Required to create.  On a change, only while the flow is off.
      * @type {string}
      * @memberof SfvbFlowWriteRequest
      */

@@ -63,6 +63,21 @@ import {
     SfvbCodeLibraryEmailsResponse,
     SfvbCodeLibraryEmailsResponseFromJSON,
     SfvbCodeLibraryEmailsResponseToJSON,
+    SfvbCommsFolderResponse,
+    SfvbCommsFolderResponseFromJSON,
+    SfvbCommsFolderResponseToJSON,
+    SfvbCommsFolderWriteRequest,
+    SfvbCommsFolderWriteRequestFromJSON,
+    SfvbCommsFolderWriteRequestToJSON,
+    SfvbCommsFoldersResponse,
+    SfvbCommsFoldersResponseFromJSON,
+    SfvbCommsFoldersResponseToJSON,
+    SfvbCommsListResponse,
+    SfvbCommsListResponseFromJSON,
+    SfvbCommsListResponseToJSON,
+    SfvbCommsListWriteRequest,
+    SfvbCommsListWriteRequestFromJSON,
+    SfvbCommsListWriteRequestToJSON,
     SfvbCommsListsResponse,
     SfvbCommsListsResponseFromJSON,
     SfvbCommsListsResponseToJSON,
@@ -642,6 +657,18 @@ export interface ArchiveSfvbCampaignRequest {
     archiveRequest: SfvbArchiveRequest;
 }
 
+export interface ArchiveSfvbCommsListRequest {
+    storefrontOid: number;
+    listUuid: string;
+    ifMatch: string;
+}
+
+export interface ArchiveSfvbCommsSegmentRequest {
+    storefrontOid: number;
+    segmentUuid: string;
+    ifMatch: string;
+}
+
 export interface ArchiveSfvbFlowRequest {
     storefrontOid: number;
     flowUuid: string;
@@ -724,6 +751,12 @@ export interface DeleteSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
     approvalId?: string;
+}
+
+export interface DeleteSfvbCommsFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
 }
 
 export interface DeleteSfvbCommsSendingDomainRequest {
@@ -963,6 +996,20 @@ export interface GetSfvbCampaignRequest {
 
 export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
+}
+
+export interface GetSfvbCommsFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+}
+
+export interface GetSfvbCommsFoldersRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbCommsListRequest {
+    storefrontOid: number;
+    listUuid: string;
 }
 
 export interface GetSfvbCommsSegmentRequest {
@@ -1327,6 +1374,16 @@ export interface InsertSfvbApprovalRequest {
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface InsertSfvbCommsFolderRequest {
+    storefrontOid: number;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
+}
+
+export interface InsertSfvbCommsListRequest {
+    storefrontOid: number;
+    listWriteRequest: SfvbCommsListWriteRequest;
 }
 
 export interface InsertSfvbCommsSegmentRequest {
@@ -1859,6 +1916,20 @@ export interface UpdateSfvbCampaignRequest {
     campaignWriteRequest: SfvbCampaignWriteRequest;
 }
 
+export interface UpdateSfvbCommsFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
+}
+
+export interface UpdateSfvbCommsListRequest {
+    storefrontOid: number;
+    listUuid: string;
+    ifMatch: string;
+    listWriteRequest: SfvbCommsListWriteRequest;
+}
+
 export interface UpdateSfvbCommsSegmentRequest {
     storefrontOid: number;
     segmentUuid: string;
@@ -2066,6 +2137,42 @@ export interface SfvbApiInterface {
      * Archive or unarchive a campaign
      */
     archiveSfvbCampaign(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
+
+    /**
+     * Hides the list from the lists list and the admin, and keeps its members.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the list\'s hash_sha256 as If-Match. 
+     * @summary Archive an email list
+     * @param {number} storefrontOid 
+     * @param {string} listUuid 
+     * @param {string} ifMatch The list\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    archiveSfvbCommsListRaw(requestParameters: ArchiveSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>>;
+
+    /**
+     * Hides the list from the lists list and the admin, and keeps its members.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the list\'s hash_sha256 as If-Match. 
+     * Archive an email list
+     */
+    archiveSfvbCommsList(requestParameters: ArchiveSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse>;
+
+    /**
+     * Hides the segment from the segments list and the admin.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the segment\'s hash_sha256 as If-Match. 
+     * @summary Archive a segment
+     * @param {number} storefrontOid 
+     * @param {string} segmentUuid 
+     * @param {string} ifMatch The segment\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    archiveSfvbCommsSegmentRaw(requestParameters: ArchiveSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>>;
+
+    /**
+     * Hides the segment from the segments list and the admin.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the segment\'s hash_sha256 as If-Match. 
+     * Archive a segment
+     */
+    archiveSfvbCommsSegment(requestParameters: ArchiveSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse>;
 
     /**
      * A flow that is still enrolling customers is refused, because archiving would only hide it.  Set its status to inactive first.  Send the hash_sha256 you read as If-Match. 
@@ -2342,6 +2449,24 @@ export interface SfvbApiInterface {
      * Delete a blog post
      */
     deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Its lists and segments are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * @summary Delete a list and segment folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbCommsFolderRaw(requestParameters: DeleteSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>>;
+
+    /**
+     * Its lists and segments are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a list and segment folder
+     */
+    deleteSfvbCommsFolder(requestParameters: DeleteSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse>;
 
     /**
      * Removes the domain from UltraCart and from Amazon SES.  Needs an approved sending_domain.delete request for it (POST approvals, params.domain). 
@@ -3111,6 +3236,56 @@ export interface SfvbApiInterface {
      * Element types used by a container
      */
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
+
+    /**
+     * The folder, with the name and uuid of each list and segment filed in it. 
+     * @summary Read one list and segment folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsFolderRaw(requestParameters: GetSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>>;
+
+    /**
+     * The folder, with the name and uuid of each list and segment filed in it. 
+     * Read one list and segment folder
+     */
+    getSfvbCommsFolder(requestParameters: GetSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse>;
+
+    /**
+     * Each folder with how many lists and segments are filed in it, whether the admin made it, and its hash_sha256. 
+     * @summary List the list and segment folders
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsFoldersRaw(requestParameters: GetSfvbCommsFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFoldersResponse>>;
+
+    /**
+     * Each folder with how many lists and segments are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the list and segment folders
+     */
+    getSfvbCommsFolders(requestParameters: GetSfvbCommsFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFoldersResponse>;
+
+    /**
+     * The list\'s name, folder, member count, public settings, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for a change or an archive.  Never its members. 
+     * @summary Read one email list
+     * @param {number} storefrontOid 
+     * @param {string} listUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsListRaw(requestParameters: GetSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>>;
+
+    /**
+     * The list\'s name, folder, member count, public settings, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for a change or an archive.  Never its members. 
+     * Read one email list
+     */
+    getSfvbCommsList(requestParameters: GetSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse>;
 
     /**
      * The segment\'s name, folder, rule, member count at its last rebuild, whether a rebuild is still due, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for an update.  Never its members, its Facebook audience, its ranking or its third party sync settings. 
@@ -4380,6 +4555,40 @@ export interface SfvbApiInterface {
      * Create a blog post
      */
     insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * A new, empty folder.  File a list or segment in it by setting its folder_uuid. 
+     * @summary Create a list and segment folder
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new folder\&#39;s name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsFolderRaw(requestParameters: InsertSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>>;
+
+    /**
+     * A new, empty folder.  File a list or segment in it by setting its folder_uuid. 
+     * Create a list and segment folder
+     */
+    insertSfvbCommsFolder(requestParameters: InsertSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse>;
+
+    /**
+     * A new, empty list with the name, folder and public settings given.  public_description is plain text, since subscribers see it on the email preferences page. 
+     * @summary Create an email list
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsListWriteRequest} listWriteRequest The new list\&#39;s name, folder and public settings
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsListRaw(requestParameters: InsertSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>>;
+
+    /**
+     * A new, empty list with the name, folder and public settings given.  public_description is plain text, since subscribers see it on the email preferences page. 
+     * Create an email list
+     */
+    insertSfvbCommsList(requestParameters: InsertSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse>;
 
     /**
      * A new segment with the name, rule and folder given.  The rule needs at least one group, each with at least one function of a rule type the segment rebuild knows, and any list or segment it names must be on this storefront.  The segment starts empty and rebuilds in the background; member_count is out of date until rebuild_required is false. 
@@ -5949,6 +6158,44 @@ export interface SfvbApiInterface {
     updateSfvbCampaign(requestParameters: UpdateSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign>;
 
     /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * @summary Rename a list and segment folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsFolderRaw(requestParameters: UpdateSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>>;
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a list and segment folder
+     */
+    updateSfvbCommsFolder(requestParameters: UpdateSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse>;
+
+    /**
+     * A field left out stays as it is; an empty folder_uuid or public_description clears it.  Send the list\'s hash_sha256 as If-Match; the change applies only while the name, folder and public settings are still what was read.  The members and member count are never changed here. 
+     * @summary Change an email list\'s name, folder or public settings
+     * @param {number} storefrontOid 
+     * @param {string} listUuid 
+     * @param {string} ifMatch The list\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsListWriteRequest} listWriteRequest The fields to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsListRaw(requestParameters: UpdateSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>>;
+
+    /**
+     * A field left out stays as it is; an empty folder_uuid or public_description clears it.  Send the list\'s hash_sha256 as If-Match; the change applies only while the name, folder and public settings are still what was read.  The members and member count are never changed here. 
+     * Change an email list\'s name, folder or public settings
+     */
+    updateSfvbCommsList(requestParameters: UpdateSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse>;
+
+    /**
      * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
      * @summary Change a segment\'s name, rule or folder
      * @param {number} storefrontOid 
@@ -6021,7 +6268,7 @@ export interface SfvbApiInterface {
     updateSfvbEmail(requestParameters: UpdateSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
 
     /**
-     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * A field left out keeps its value.  The trigger changes only while the flow is off (sfvb.flow_trigger_live otherwise), and customers already in the flow continue.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
      * @summary Change a flow
      * @param {number} storefrontOid 
      * @param {string} flowUuid 
@@ -6034,7 +6281,7 @@ export interface SfvbApiInterface {
     updateSfvbFlowRaw(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>>;
 
     /**
-     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * A field left out keeps its value.  The trigger changes only while the flow is off (sfvb.flow_trigger_live otherwise), and customers already in the flow continue.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
      * Change a flow
      */
     updateSfvbFlow(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow>;
@@ -6534,6 +6781,112 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async archiveSfvbCampaign(requestParameters: ArchiveSfvbCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCampaign> {
         const response = await this.archiveSfvbCampaignRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Hides the list from the lists list and the admin, and keeps its members.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the list\'s hash_sha256 as If-Match. 
+     * Archive an email list
+     */
+    async archiveSfvbCommsListRaw(requestParameters: ArchiveSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling archiveSfvbCommsList.');
+        }
+
+        if (requestParameters.listUuid === null || requestParameters.listUuid === undefined) {
+            throw new runtime.RequiredError('listUuid','Required parameter requestParameters.listUuid was null or undefined when calling archiveSfvbCommsList.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling archiveSfvbCommsList.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists/{list_uuid}/archive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"list_uuid"}}`, encodeURIComponent(String(requestParameters.listUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Hides the list from the lists list and the admin, and keeps its members.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the list\'s hash_sha256 as If-Match. 
+     * Archive an email list
+     */
+    async archiveSfvbCommsList(requestParameters: ArchiveSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse> {
+        const response = await this.archiveSfvbCommsListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Hides the segment from the segments list and the admin.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the segment\'s hash_sha256 as If-Match. 
+     * Archive a segment
+     */
+    async archiveSfvbCommsSegmentRaw(requestParameters: ArchiveSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSegmentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling archiveSfvbCommsSegment.');
+        }
+
+        if (requestParameters.segmentUuid === null || requestParameters.segmentUuid === undefined) {
+            throw new runtime.RequiredError('segmentUuid','Required parameter requestParameters.segmentUuid was null or undefined when calling archiveSfvbCommsSegment.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling archiveSfvbCommsSegment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/segments/{segment_uuid}/archive`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"segment_uuid"}}`, encodeURIComponent(String(requestParameters.segmentUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSegmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Hides the segment from the segments list and the admin.  Refused with sfvb.in_use_live, naming each one, while a live campaign or flow uses it; notes names any that use it but aren\'t live, which can no longer use it.  Send the segment\'s hash_sha256 as If-Match. 
+     * Archive a segment
+     */
+    async archiveSfvbCommsSegment(requestParameters: ArchiveSfvbCommsSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSegmentResponse> {
+        const response = await this.archiveSfvbCommsSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7304,6 +7657,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbBlogPostRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Its lists and segments are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a list and segment folder
+     */
+    async deleteSfvbCommsFolderRaw(requestParameters: DeleteSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbCommsFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling deleteSfvbCommsFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbCommsFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/list_segment_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Its lists and segments are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a list and segment folder
+     */
+    async deleteSfvbCommsFolder(requestParameters: DeleteSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse> {
+        const response = await this.deleteSfvbCommsFolderRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -9428,6 +9834,137 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse> {
         const response = await this.getSfvbCjsonUsedElementsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The folder, with the name and uuid of each list and segment filed in it. 
+     * Read one list and segment folder
+     */
+    async getSfvbCommsFolderRaw(requestParameters: GetSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling getSfvbCommsFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/list_segment_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The folder, with the name and uuid of each list and segment filed in it. 
+     * Read one list and segment folder
+     */
+    async getSfvbCommsFolder(requestParameters: GetSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse> {
+        const response = await this.getSfvbCommsFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each folder with how many lists and segments are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the list and segment folders
+     */
+    async getSfvbCommsFoldersRaw(requestParameters: GetSfvbCommsFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFoldersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsFolders.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/list_segment_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsFoldersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each folder with how many lists and segments are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the list and segment folders
+     */
+    async getSfvbCommsFolders(requestParameters: GetSfvbCommsFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFoldersResponse> {
+        const response = await this.getSfvbCommsFoldersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The list\'s name, folder, member count, public settings, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for a change or an archive.  Never its members. 
+     * Read one email list
+     */
+    async getSfvbCommsListRaw(requestParameters: GetSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsList.');
+        }
+
+        if (requestParameters.listUuid === null || requestParameters.listUuid === undefined) {
+            throw new runtime.RequiredError('listUuid','Required parameter requestParameters.listUuid was null or undefined when calling getSfvbCommsList.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists/{list_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"list_uuid"}}`, encodeURIComponent(String(requestParameters.listUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The list\'s name, folder, member count, public settings, and the campaigns and flows that use it, each with whether it is live.  hash_sha256 is the If-Match for a change or an archive.  Never its members. 
+     * Read one email list
+     */
+    async getSfvbCommsList(requestParameters: GetSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse> {
+        const response = await this.getSfvbCommsListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -12831,6 +13368,102 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.insertSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new, empty folder.  File a list or segment in it by setting its folder_uuid. 
+     * Create a list and segment folder
+     */
+    async insertSfvbCommsFolderRaw(requestParameters: InsertSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCommsFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling insertSfvbCommsFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/list_segment_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A new, empty folder.  File a list or segment in it by setting its folder_uuid. 
+     * Create a list and segment folder
+     */
+    async insertSfvbCommsFolder(requestParameters: InsertSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse> {
+        const response = await this.insertSfvbCommsFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new, empty list with the name, folder and public settings given.  public_description is plain text, since subscribers see it on the email preferences page. 
+     * Create an email list
+     */
+    async insertSfvbCommsListRaw(requestParameters: InsertSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCommsList.');
+        }
+
+        if (requestParameters.listWriteRequest === null || requestParameters.listWriteRequest === undefined) {
+            throw new runtime.RequiredError('listWriteRequest','Required parameter requestParameters.listWriteRequest was null or undefined when calling insertSfvbCommsList.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsListWriteRequestToJSON(requestParameters.listWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A new, empty list with the name, folder and public settings given.  public_description is plain text, since subscribers see it on the email preferences page. 
+     * Create an email list
+     */
+    async insertSfvbCommsList(requestParameters: InsertSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse> {
+        const response = await this.insertSfvbCommsListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -17368,6 +18001,126 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a list and segment folder
+     */
+    async updateSfvbCommsFolderRaw(requestParameters: UpdateSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling updateSfvbCommsFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling updateSfvbCommsFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/list_segment_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a list and segment folder
+     */
+    async updateSfvbCommsFolder(requestParameters: UpdateSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsFolderResponse> {
+        const response = await this.updateSfvbCommsFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A field left out stays as it is; an empty folder_uuid or public_description clears it.  Send the list\'s hash_sha256 as If-Match; the change applies only while the name, folder and public settings are still what was read.  The members and member count are never changed here. 
+     * Change an email list\'s name, folder or public settings
+     */
+    async updateSfvbCommsListRaw(requestParameters: UpdateSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsList.');
+        }
+
+        if (requestParameters.listUuid === null || requestParameters.listUuid === undefined) {
+            throw new runtime.RequiredError('listUuid','Required parameter requestParameters.listUuid was null or undefined when calling updateSfvbCommsList.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsList.');
+        }
+
+        if (requestParameters.listWriteRequest === null || requestParameters.listWriteRequest === undefined) {
+            throw new runtime.RequiredError('listWriteRequest','Required parameter requestParameters.listWriteRequest was null or undefined when calling updateSfvbCommsList.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/lists/{list_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"list_uuid"}}`, encodeURIComponent(String(requestParameters.listUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsListWriteRequestToJSON(requestParameters.listWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A field left out stays as it is; an empty folder_uuid or public_description clears it.  Send the list\'s hash_sha256 as If-Match; the change applies only while the name, folder and public settings are still what was read.  The members and member count are never changed here. 
+     * Change an email list\'s name, folder or public settings
+     */
+    async updateSfvbCommsList(requestParameters: UpdateSfvbCommsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsListResponse> {
+        const response = await this.updateSfvbCommsListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * A field left out stays as it is.  Send the segment\'s hash_sha256 as If-Match; the change applies only while the name, rule and folder are still what was read.  A changed rule is checked as on a create and starts a rebuild.  Changing the rule of a segment a live campaign or flow uses needs sfvb_publish and an approved segment.update approval (Approval-Id); a name or folder change, or a segment nothing live uses, needs neither. 
      * Change a segment\'s name, rule or folder
      */
@@ -17584,7 +18337,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * A field left out keeps its value.  The trigger changes only while the flow is off (sfvb.flow_trigger_live otherwise), and customers already in the flow continue.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
      * Change a flow
      */
     async updateSfvbFlowRaw(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlow>> {
@@ -17635,7 +18388,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A field left out keeps its value.  The trigger and the status are never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
+     * A field left out keeps its value.  The trigger changes only while the flow is off (sfvb.flow_trigger_live otherwise), and customers already in the flow continue.  The status is never changed here.  Send the hash_sha256 you read as If-Match.  A flow that is enrolling customers needs sfvb_publish. 
      * Change a flow
      */
     async updateSfvbFlow(requestParameters: UpdateSfvbFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlow> {

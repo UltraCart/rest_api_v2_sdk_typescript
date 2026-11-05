@@ -56,7 +56,7 @@ export interface SfvbStepCounts {
      */
     skipped?: number;
     /**
-     * email (the step's email, all time) or step (this step, the last 90 days).
+     * email (the step's email, all time), sequence (the begin step, customers who started the sequence, all time) or step (this step, the last 90 days).
      * @type {string}
      * @memberof SfvbStepCounts
      */
