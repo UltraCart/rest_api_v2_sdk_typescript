@@ -26,6 +26,12 @@ export interface SfvbEmail {
      */
     container_last_modified_dts?: string;
     /**
+     * The Velocity template the email body renders inside, as stored, such as templates/template_email.vm.  It is looked up in the storefront's active theme.
+     * @type {string}
+     * @memberof SfvbEmail
+     */
+    email_template_vm_path?: string;
+    /**
      * The email uuid.  The same uuid the email container (owner type email) and the email render take.
      * @type {string}
      * @memberof SfvbEmail
@@ -86,6 +92,24 @@ export interface SfvbEmail {
      */
     suspended_for_spam?: boolean;
     /**
+     * True when the file at template_path exists.  False means the email can't render.
+     * @type {boolean}
+     * @memberof SfvbEmail
+     */
+    template_exists?: boolean;
+    /**
+     * Why there is no template file, or null when there is one.
+     * @type {string}
+     * @memberof SfvbEmail
+     */
+    template_note?: string;
+    /**
+     * The theme file that template is, as the render finds it.  Read it with the files endpoints, whose read also reports valid and velocity_errors.  Null when it couldn't be worked out, with template_note saying why.
+     * @type {string}
+     * @memberof SfvbEmail
+     */
+    template_path?: string;
+    /**
      * True for a transactional email, which skips the marketing footer rules.
      * @type {boolean}
      * @memberof SfvbEmail
@@ -121,6 +145,7 @@ export function SfvbEmailFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'container_last_modified_dts': !exists(json, 'container_last_modified_dts') ? undefined : json['container_last_modified_dts'],
+        'email_template_vm_path': !exists(json, 'email_template_vm_path') ? undefined : json['email_template_vm_path'],
         'email_uuid': !exists(json, 'email_uuid') ? undefined : json['email_uuid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
@@ -131,6 +156,9 @@ export function SfvbEmailFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'requires_review': !exists(json, 'requires_review') ? undefined : json['requires_review'],
         'subject': !exists(json, 'subject') ? undefined : json['subject'],
         'suspended_for_spam': !exists(json, 'suspended_for_spam') ? undefined : json['suspended_for_spam'],
+        'template_exists': !exists(json, 'template_exists') ? undefined : json['template_exists'],
+        'template_note': !exists(json, 'template_note') ? undefined : json['template_note'],
+        'template_path': !exists(json, 'template_path') ? undefined : json['template_path'],
         'transactional': !exists(json, 'transactional') ? undefined : json['transactional'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
@@ -146,6 +174,7 @@ export function SfvbEmailToJSON(value?: SfvbEmail | null): any {
     return {
         
         'container_last_modified_dts': value.container_last_modified_dts,
+        'email_template_vm_path': value.email_template_vm_path,
         'email_uuid': value.email_uuid,
         'hash_sha256': value.hash_sha256,
         'live': value.live,
@@ -156,6 +185,9 @@ export function SfvbEmailToJSON(value?: SfvbEmail | null): any {
         'requires_review': value.requires_review,
         'subject': value.subject,
         'suspended_for_spam': value.suspended_for_spam,
+        'template_exists': value.template_exists,
+        'template_note': value.template_note,
+        'template_path': value.template_path,
         'transactional': value.transactional,
         'version': value.version,
     };

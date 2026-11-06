@@ -39,6 +39,12 @@ export interface SfvbCampaignWriteRequest {
      */
     end_once_customer_purchases_anywhere?: boolean;
     /**
+     * File it in this campaign folder.  An empty value takes it out of its folder.
+     * @type {string}
+     * @memberof SfvbCampaignWriteRequest
+     */
+    folder_uuid?: string;
+    /**
      * The lists and segments it sends to or leaves out.  Replaces the whole set.  An empty array clears it.
      * @type {Array<SfvbCampaignMembership>}
      * @memberof SfvbCampaignWriteRequest
@@ -99,6 +105,7 @@ export function SfvbCampaignWriteRequestFromJSONTyped(json: any, ignoreDiscrimin
         
         'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
         'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
+        'folder_uuid': !exists(json, 'folder_uuid') ? undefined : json['folder_uuid'],
         'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(SfvbCampaignMembershipFromJSON)),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'scheduled_dts': !exists(json, 'scheduled_dts') ? undefined : json['scheduled_dts'],
@@ -119,6 +126,7 @@ export function SfvbCampaignWriteRequestToJSON(value?: SfvbCampaignWriteRequest 
         
         'end_once_customer_purchases': value.end_once_customer_purchases,
         'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
+        'folder_uuid': value.folder_uuid,
         'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(SfvbCampaignMembershipToJSON)),
         'name': value.name,
         'scheduled_dts': value.scheduled_dts,

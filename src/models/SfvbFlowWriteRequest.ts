@@ -38,6 +38,12 @@ export interface SfvbFlowWriteRequest {
      */
     end_once_customer_purchases_anywhere?: boolean;
     /**
+     * File it in this flow folder.  An empty value takes it out of its folder.
+     * @type {string}
+     * @memberof SfvbFlowWriteRequest
+     */
+    folder_uuid?: string;
+    /**
      * The flow name, 1 to 250 characters.  Required to create.
      * @type {string}
      * @memberof SfvbFlowWriteRequest
@@ -122,6 +128,7 @@ export function SfvbFlowWriteRequestFromJSONTyped(json: any, ignoreDiscriminator
         'allow_multiple_concurrent_enrollments': !exists(json, 'allow_multiple_concurrent_enrollments') ? undefined : json['allow_multiple_concurrent_enrollments'],
         'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
         'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
+        'folder_uuid': !exists(json, 'folder_uuid') ? undefined : json['folder_uuid'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'reentry_delay_days': !exists(json, 'reentry_delay_days') ? undefined : json['reentry_delay_days'],
         'reentry_policy': !exists(json, 'reentry_policy') ? undefined : json['reentry_policy'],
@@ -145,6 +152,7 @@ export function SfvbFlowWriteRequestToJSON(value?: SfvbFlowWriteRequest | null):
         'allow_multiple_concurrent_enrollments': value.allow_multiple_concurrent_enrollments,
         'end_once_customer_purchases': value.end_once_customer_purchases,
         'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
+        'folder_uuid': value.folder_uuid,
         'name': value.name,
         'reentry_delay_days': value.reentry_delay_days,
         'reentry_policy': value.reentry_policy,

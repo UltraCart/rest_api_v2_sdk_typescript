@@ -26,7 +26,7 @@ export interface SfvbCommsStat {
      */
     bounced?: number;
     /**
-     * email, sms, postcard, branch or sequence.
+     * email, sms, postcard, branch or sequence, or step for a step type that records no counts of its own, with every count named in not_measured.
      * @type {string}
      * @memberof SfvbCommsStat
      */

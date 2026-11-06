@@ -81,6 +81,18 @@ export interface SfvbCampaign {
      */
     end_once_customer_purchases_anywhere?: boolean;
     /**
+     * That folder's name.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    folder_name?: string;
+    /**
+     * The campaign folder it is filed in, or none.
+     * @type {string}
+     * @memberof SfvbCampaign
+     */
+    folder_uuid?: string;
+    /**
      * Send this as If-Match when changing or archiving the campaign.
      * @type {string}
      * @memberof SfvbCampaign
@@ -188,6 +200,8 @@ export function SfvbCampaignFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'emails': !exists(json, 'emails') ? undefined : ((json['emails'] as Array<any>).map(SfvbCommsEmailFromJSON)),
         'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
         'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
+        'folder_name': !exists(json, 'folder_name') ? undefined : json['folder_name'],
+        'folder_uuid': !exists(json, 'folder_uuid') ? undefined : json['folder_uuid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
         'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(SfvbCampaignMembershipFromJSON)),
@@ -220,6 +234,8 @@ export function SfvbCampaignToJSON(value?: SfvbCampaign | null): any {
         'emails': value.emails === undefined ? undefined : ((value.emails as Array<any>).map(SfvbCommsEmailToJSON)),
         'end_once_customer_purchases': value.end_once_customer_purchases,
         'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
+        'folder_name': value.folder_name,
+        'folder_uuid': value.folder_uuid,
         'hash_sha256': value.hash_sha256,
         'live': value.live,
         'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(SfvbCampaignMembershipToJSON)),

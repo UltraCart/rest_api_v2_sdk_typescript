@@ -56,6 +56,12 @@ import {
     SfvbExperimentStartRequestToJSON,
 } from './SfvbExperimentStartRequest';
 import {
+    SfvbFlowBackfillRequest,
+    SfvbFlowBackfillRequestFromJSON,
+    SfvbFlowBackfillRequestFromJSONTyped,
+    SfvbFlowBackfillRequestToJSON,
+} from './SfvbFlowBackfillRequest';
+import {
     SfvbItemAttributeBatchRow,
     SfvbItemAttributeBatchRowFromJSON,
     SfvbItemAttributeBatchRowFromJSONTyped,
@@ -140,6 +146,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     experiment_start?: SfvbExperimentStartRequest;
+    /**
+     * 
+     * @type {SfvbFlowBackfillRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    flow_backfill?: SfvbFlowBackfillRequest;
     /**
      * For item.attribute_batch, exactly the rows the batch will send - the dry run's change rows, each with merchant_item_oid and current_sha256.  UltraCart keeps only their hash.
      * @type {Array<SfvbItemAttributeBatchRow>}
@@ -239,7 +251,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     TransactionalEmailUpdate: 'transactional_email.update',
     CommsSettingsUpdate: 'comms_settings.update',
     CommsListImport: 'comms_list.import',
-    PostcardTestMail: 'postcard.test_mail'
+    PostcardTestMail: 'postcard.test_mail',
+    FlowBackfill: 'flow.backfill'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 
@@ -269,6 +282,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'comms_settings': !exists(json, 'comms_settings') ? undefined : SfvbCommsSettingsUpdateRequestFromJSON(json['comms_settings']),
         'content': !exists(json, 'content') ? undefined : json['content'],
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
+        'flow_backfill': !exists(json, 'flow_backfill') ? undefined : SfvbFlowBackfillRequestFromJSON(json['flow_backfill']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
         'item_pricing': !exists(json, 'item_pricing') ? undefined : SfvbItemPricingRequestFromJSON(json['item_pricing']),
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
@@ -298,6 +312,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'comms_settings': SfvbCommsSettingsUpdateRequestToJSON(value.comms_settings),
         'content': value.content,
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
+        'flow_backfill': SfvbFlowBackfillRequestToJSON(value.flow_backfill),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
         'item_pricing': SfvbItemPricingRequestToJSON(value.item_pricing),
         'params': SfvbApprovalParamsToJSON(value.params),

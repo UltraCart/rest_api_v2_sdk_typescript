@@ -87,6 +87,9 @@ import {
     SfvbCommsListsResponse,
     SfvbCommsListsResponseFromJSON,
     SfvbCommsListsResponseToJSON,
+    SfvbCommsLookupResponse,
+    SfvbCommsLookupResponseFromJSON,
+    SfvbCommsLookupResponseToJSON,
     SfvbCommsMembersResponse,
     SfvbCommsMembersResponseFromJSON,
     SfvbCommsMembersResponseToJSON,
@@ -102,6 +105,12 @@ import {
     SfvbCommsProvidersResponse,
     SfvbCommsProvidersResponseFromJSON,
     SfvbCommsProvidersResponseToJSON,
+    SfvbCommsRulerValidateRequest,
+    SfvbCommsRulerValidateRequestFromJSON,
+    SfvbCommsRulerValidateRequestToJSON,
+    SfvbCommsRulerValidateResponse,
+    SfvbCommsRulerValidateResponseFromJSON,
+    SfvbCommsRulerValidateResponseToJSON,
     SfvbCommsSegmentResponse,
     SfvbCommsSegmentResponseFromJSON,
     SfvbCommsSegmentResponseToJSON,
@@ -117,6 +126,12 @@ import {
     SfvbCommsSendingDomainsResponse,
     SfvbCommsSendingDomainsResponseFromJSON,
     SfvbCommsSendingDomainsResponseToJSON,
+    SfvbCommsSequenceFolderResponse,
+    SfvbCommsSequenceFolderResponseFromJSON,
+    SfvbCommsSequenceFolderResponseToJSON,
+    SfvbCommsSequenceFoldersResponse,
+    SfvbCommsSequenceFoldersResponseFromJSON,
+    SfvbCommsSequenceFoldersResponseToJSON,
     SfvbCommsSequenceStatsResponse,
     SfvbCommsSequenceStatsResponseFromJSON,
     SfvbCommsSequenceStatsResponseToJSON,
@@ -150,6 +165,9 @@ import {
     SfvbCommsTwilioAccountResponse,
     SfvbCommsTwilioAccountResponseFromJSON,
     SfvbCommsTwilioAccountResponseToJSON,
+    SfvbCommsUnreferencedResponse,
+    SfvbCommsUnreferencedResponseFromJSON,
+    SfvbCommsUnreferencedResponseToJSON,
     SfvbCompileRequest,
     SfvbCompileRequestFromJSON,
     SfvbCompileRequestToJSON,
@@ -252,6 +270,12 @@ import {
     SfvbFlow,
     SfvbFlowFromJSON,
     SfvbFlowToJSON,
+    SfvbFlowBackfillRequest,
+    SfvbFlowBackfillRequestFromJSON,
+    SfvbFlowBackfillRequestToJSON,
+    SfvbFlowBackfillResponse,
+    SfvbFlowBackfillResponseFromJSON,
+    SfvbFlowBackfillResponseToJSON,
     SfvbFlowStatusRequest,
     SfvbFlowStatusRequestFromJSON,
     SfvbFlowStatusRequestToJSON,
@@ -744,6 +768,13 @@ export interface AttachSfvbBlogPostImageRequest {
     blogPostImageRequest: SfvbBlogPostImageRequest;
 }
 
+export interface BackfillSfvbCommsFlowRequest {
+    storefrontOid: number;
+    flowUuid: string;
+    flowBackfillRequest: SfvbFlowBackfillRequest;
+    approvalId?: string;
+}
+
 export interface CheckSfvbRedirectRequest {
     storefrontOid: number;
     redirectRequest: SfvbRedirectRequest;
@@ -808,6 +839,18 @@ export interface DeleteSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostOid: number;
     approvalId?: string;
+}
+
+export interface DeleteSfvbCommsCampaignFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
+}
+
+export interface DeleteSfvbCommsFlowFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
 }
 
 export interface DeleteSfvbCommsFolderRequest {
@@ -1055,6 +1098,15 @@ export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
 }
 
+export interface GetSfvbCommsCampaignFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+}
+
+export interface GetSfvbCommsCampaignFoldersRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbCommsDashboardStatsRequest {
     storefrontOid: number;
     days?: number;
@@ -1065,6 +1117,15 @@ export interface GetSfvbCommsEmailClicksRequest {
     commseqUuid: string;
     emailUuid: string;
     days?: number;
+}
+
+export interface GetSfvbCommsFlowFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+}
+
+export interface GetSfvbCommsFlowFoldersRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbCommsFolderRequest {
@@ -1087,6 +1148,10 @@ export interface GetSfvbCommsListMembersRequest {
     page?: number;
     pageSize?: number;
     showCustomerData?: boolean;
+}
+
+export interface GetSfvbCommsLookupRequest {
+    uuid: string;
 }
 
 export interface GetSfvbCommsPlanRequest {
@@ -1130,6 +1195,10 @@ export interface GetSfvbCommsTemplateRequest {
 }
 
 export interface GetSfvbCommsTemplatesRequest {
+    storefrontOid: number;
+}
+
+export interface GetSfvbCommsUnreferencedRequest {
     storefrontOid: number;
 }
 
@@ -1505,6 +1574,16 @@ export interface InsertSfvbApprovalRequest {
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface InsertSfvbCommsCampaignFolderRequest {
+    storefrontOid: number;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
+}
+
+export interface InsertSfvbCommsFlowFolderRequest {
+    storefrontOid: number;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
 }
 
 export interface InsertSfvbCommsFolderRequest {
@@ -2069,6 +2148,20 @@ export interface UpdateSfvbCampaignRequest {
     campaignWriteRequest: SfvbCampaignWriteRequest;
 }
 
+export interface UpdateSfvbCommsCampaignFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
+}
+
+export interface UpdateSfvbCommsFlowFolderRequest {
+    storefrontOid: number;
+    folderUuid: string;
+    ifMatch: string;
+    folderWriteRequest: SfvbCommsFolderWriteRequest;
+}
+
 export interface UpdateSfvbCommsFolderRequest {
     storefrontOid: number;
     folderUuid: string;
@@ -2238,6 +2331,11 @@ export interface ValidateSfvbCjsonRequest {
     validateRequest: SfvbValidateRequest;
 }
 
+export interface ValidateSfvbCommsRulerRequest {
+    storefrontOid: number;
+    rulerValidateRequest: SfvbCommsRulerValidateRequest;
+}
+
 export interface ValidateSfvbVelocityRequest {
     storefrontOid: number;
     themeOid: number;
@@ -2395,6 +2493,25 @@ export interface SfvbApiInterface {
      * Attach an image to a blog post
      */
     attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * Enrolls customers who would have met the flow\'s trigger before it existed: a segment trigger\'s members, or the orders of the last order_days_old days (1 to 90, default 5, every storefront on the account) for an order trigger, up to the plan\'s customer limit.  The flow must be on.  dry_run counts them and enrolls nobody.  A real backfill needs sfvb_publish, the sign-in of a person, and an approved flow.backfill request for exactly this flow and window; it runs in the background and mails each customer through the flow. 
+     * @summary Back populate a live flow, or count who it would enroll
+     * @param {number} storefrontOid 
+     * @param {string} flowUuid 
+     * @param {SfvbFlowBackfillRequest} flowBackfillRequest The window and dry_run
+     * @param {string} [approvalId] The approval_id of an approved flow.backfill request for exactly this flow and window.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    backfillSfvbCommsFlowRaw(requestParameters: BackfillSfvbCommsFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlowBackfillResponse>>;
+
+    /**
+     * Enrolls customers who would have met the flow\'s trigger before it existed: a segment trigger\'s members, or the orders of the last order_days_old days (1 to 90, default 5, every storefront on the account) for an order trigger, up to the plan\'s customer limit.  The flow must be on.  dry_run counts them and enrolls nobody.  A real backfill needs sfvb_publish, the sign-in of a person, and an approved flow.backfill request for exactly this flow and window; it runs in the background and mails each customer through the flow. 
+     * Back populate a live flow, or count who it would enroll
+     */
+    backfillSfvbCommsFlow(requestParameters: BackfillSfvbCommsFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlowBackfillResponse>;
 
     /**
      * Runs every check a create runs (loops, chains, duplicates, missing or external targets, system paths, live pages, the rule limit) and returns the findings.  Writes nothing. 
@@ -2617,6 +2734,42 @@ export interface SfvbApiInterface {
      * Delete a blog post
      */
     deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Its campaigns are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * @summary Delete a campaign folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbCommsCampaignFolderRaw(requestParameters: DeleteSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * Its campaigns are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a campaign folder
+     */
+    deleteSfvbCommsCampaignFolder(requestParameters: DeleteSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * Its flows are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * @summary Delete a flow folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbCommsFlowFolderRaw(requestParameters: DeleteSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * Its flows are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a flow folder
+     */
+    deleteSfvbCommsFlowFolder(requestParameters: DeleteSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
 
     /**
      * Its lists and segments are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
@@ -3406,6 +3559,39 @@ export interface SfvbApiInterface {
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
 
     /**
+     * The folder, with the name and uuid of each campaign filed in it. 
+     * @summary Read one campaign folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsCampaignFolderRaw(requestParameters: GetSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * The folder, with the name and uuid of each campaign filed in it. 
+     * Read one campaign folder
+     */
+    getSfvbCommsCampaignFolder(requestParameters: GetSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * Each campaign folder with how many campaigns are filed in it, whether the admin made it, and its hash_sha256. 
+     * @summary List the campaign folders
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsCampaignFoldersRaw(requestParameters: GetSfvbCommsCampaignFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFoldersResponse>>;
+
+    /**
+     * Each campaign folder with how many campaigns are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the campaign folders
+     */
+    getSfvbCommsCampaignFolders(requestParameters: GetSfvbCommsCampaignFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFoldersResponse>;
+
+    /**
      * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
      * @summary Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
      * @param {number} storefrontOid 
@@ -3440,6 +3626,39 @@ export interface SfvbApiInterface {
      * Read each link in one email and how often it was clicked
      */
     getSfvbCommsEmailClicks(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsClicksResponse>;
+
+    /**
+     * The folder, with the name and uuid of each flow filed in it. 
+     * @summary Read one flow folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsFlowFolderRaw(requestParameters: GetSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * The folder, with the name and uuid of each flow filed in it. 
+     * Read one flow folder
+     */
+    getSfvbCommsFlowFolder(requestParameters: GetSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * Each flow folder with how many flows are filed in it, whether the admin made it, and its hash_sha256. 
+     * @summary List the flow folders
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsFlowFoldersRaw(requestParameters: GetSfvbCommsFlowFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFoldersResponse>>;
+
+    /**
+     * Each flow folder with how many flows are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the flow folders
+     */
+    getSfvbCommsFlowFolders(requestParameters: GetSfvbCommsFlowFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFoldersResponse>;
 
     /**
      * The folder, with the name and uuid of each list and segment filed in it. 
@@ -3510,6 +3729,22 @@ export interface SfvbApiInterface {
      * Read one page of a list\'s members
      */
     getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse>;
+
+    /**
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * @summary Find which storefront a communications uuid lives on
+     * @param {string} uuid The uuid to find.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsLookupRaw(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsLookupResponse>>;
+
+    /**
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Find which storefront a communications uuid lives on
+     */
+    getSfvbCommsLookup(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsLookupResponse>;
 
     /**
      * The plan, its customer and email caps, what has been sent against them, and the spam pause, with notes on anything that stops sends.  Account-wide.  Never a price, fee or upgrade option; the plan is changed in the admin.  Read only. 
@@ -3646,7 +3881,7 @@ export interface SfvbApiInterface {
     getSfvbCommsSettings(requestParameters: GetSfvbCommsSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSettingsResponse>;
 
     /**
-     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints.  Read only. 
      * @summary Read one saved email template\'s body
      * @param {number} storefrontOid 
      * @param {number} emailTemplateOid 
@@ -3657,7 +3892,7 @@ export interface SfvbApiInterface {
     getSfvbCommsTemplateRaw(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplateResponse>>;
 
     /**
-     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints.  Read only. 
      * Read one saved email template\'s body
      */
     getSfvbCommsTemplate(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplateResponse>;
@@ -3692,6 +3927,22 @@ export interface SfvbApiInterface {
      * Read the Twilio account
      */
     getSfvbCommsTwilioAccount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
+
+    /**
+     * An email or postcard no step of any sequence on this storefront names, an off or archived flow\'s included, so nothing sends it.  The admin\'s add can leave one when its second call fails.  Most recently changed first.  Read only, nothing is deleted. 
+     * @summary List the emails and postcards on a storefront that no step names
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCommsUnreferencedRaw(requestParameters: GetSfvbCommsUnreferencedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsUnreferencedResponse>>;
+
+    /**
+     * An email or postcard no step of any sequence on this storefront names, an off or archived flow\'s included, so nothing sends it.  The admin\'s add can leave one when its second call fails.  Most recently changed first.  Read only, nothing is deleted. 
+     * List the emails and postcards on a storefront that no step names
+     */
+    getSfvbCommsUnreferenced(requestParameters: GetSfvbCommsUnreferencedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsUnreferencedResponse>;
 
     /**
      * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
@@ -3749,7 +4000,7 @@ export interface SfvbApiInterface {
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
 
     /**
-     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints, whose read reports valid and velocity_errors.  Find the uuid in the storefront\'s campaigns and flows. 
      * @summary Get a flow or campaign email\'s subject and preview text
      * @param {number} storefrontOid 
      * @param {string} emailUuid 
@@ -3760,7 +4011,7 @@ export interface SfvbApiInterface {
     getSfvbEmailRaw(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>>;
 
     /**
-     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints, whose read reports valid and velocity_errors.  Find the uuid in the storefront\'s campaigns and flows. 
      * Get a flow or campaign email\'s subject and preview text
      */
     getSfvbEmail(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail>;
@@ -4953,6 +5204,40 @@ export interface SfvbApiInterface {
      * Create a blog post
      */
     insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * A new, empty folder.  File a campaign in it by setting its folder_uuid. 
+     * @summary Create a campaign folder
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new folder\&#39;s name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsCampaignFolderRaw(requestParameters: InsertSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * A new, empty folder.  File a campaign in it by setting its folder_uuid. 
+     * Create a campaign folder
+     */
+    insertSfvbCommsCampaignFolder(requestParameters: InsertSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * A new, empty folder.  File a flow in it by setting its folder_uuid. 
+     * @summary Create a flow folder
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new folder\&#39;s name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCommsFlowFolderRaw(requestParameters: InsertSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * A new, empty folder.  File a flow in it by setting its folder_uuid. 
+     * Create a flow folder
+     */
+    insertSfvbCommsFlowFolder(requestParameters: InsertSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
 
     /**
      * A new, empty folder.  File a list or segment in it by setting its folder_uuid. 
@@ -6615,6 +6900,44 @@ export interface SfvbApiInterface {
 
     /**
      * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * @summary Rename a campaign folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsCampaignFolderRaw(requestParameters: UpdateSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a campaign folder
+     */
+    updateSfvbCommsCampaignFolder(requestParameters: UpdateSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * @summary Rename a flow folder
+     * @param {number} storefrontOid 
+     * @param {string} folderUuid 
+     * @param {string} ifMatch The folder\&#39;s hash_sha256 from the last read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbCommsFolderWriteRequest} folderWriteRequest The new name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbCommsFlowFolderRaw(requestParameters: UpdateSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>>;
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a flow folder
+     */
+    updateSfvbCommsFlowFolder(requestParameters: UpdateSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse>;
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
      * @summary Rename a list and segment folder
      * @param {number} storefrontOid 
      * @param {string} folderUuid 
@@ -7083,6 +7406,23 @@ export interface SfvbApiInterface {
     validateSfvbCjson(requestParameters: ValidateSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbValidationResponse>;
 
     /**
+     * Compiles the pattern the way an Is in BigQuery segment rule\'s bigquery_ruler is checked, and says whether it is valid and, if not, why.  An invalid pattern is a 200 with valid false.  Nothing is read or saved.  A segment create or update refuses a rule whose pattern doesn\'t compile, or whose bigquery_table_id isn\'t project.dataset.table. 
+     * @summary Check an Event Ruler pattern for an Is in BigQuery segment rule
+     * @param {number} storefrontOid 
+     * @param {SfvbCommsRulerValidateRequest} rulerValidateRequest The pattern to check
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    validateSfvbCommsRulerRaw(requestParameters: ValidateSfvbCommsRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsRulerValidateResponse>>;
+
+    /**
+     * Compiles the pattern the way an Is in BigQuery segment rule\'s bigquery_ruler is checked, and says whether it is valid and, if not, why.  An invalid pattern is a 200 with valid false.  Nothing is read or saved.  A segment create or update refuses a rule whose pattern doesn\'t compile, or whose bigquery_table_id isn\'t project.dataset.table. 
+     * Check an Event Ruler pattern for an Is in BigQuery segment rule
+     */
+    validateSfvbCommsRuler(requestParameters: ValidateSfvbCommsRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsRulerValidateResponse>;
+
+    /**
      * Theme scoped rather than stateless.  Validation builds a theme template context and evaluates against it.  Also applies the template sandbox, so an agent learns the rule before a write fails. 
      * @summary Validate a Velocity template against a theme
      * @param {number} storefrontOid 
@@ -7539,6 +7879,62 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async attachSfvbBlogPostImage(requestParameters: AttachSfvbBlogPostImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.attachSfvbBlogPostImageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Enrolls customers who would have met the flow\'s trigger before it existed: a segment trigger\'s members, or the orders of the last order_days_old days (1 to 90, default 5, every storefront on the account) for an order trigger, up to the plan\'s customer limit.  The flow must be on.  dry_run counts them and enrolls nobody.  A real backfill needs sfvb_publish, the sign-in of a person, and an approved flow.backfill request for exactly this flow and window; it runs in the background and mails each customer through the flow. 
+     * Back populate a live flow, or count who it would enroll
+     */
+    async backfillSfvbCommsFlowRaw(requestParameters: BackfillSfvbCommsFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFlowBackfillResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling backfillSfvbCommsFlow.');
+        }
+
+        if (requestParameters.flowUuid === null || requestParameters.flowUuid === undefined) {
+            throw new runtime.RequiredError('flowUuid','Required parameter requestParameters.flowUuid was null or undefined when calling backfillSfvbCommsFlow.');
+        }
+
+        if (requestParameters.flowBackfillRequest === null || requestParameters.flowBackfillRequest === undefined) {
+            throw new runtime.RequiredError('flowBackfillRequest','Required parameter requestParameters.flowBackfillRequest was null or undefined when calling backfillSfvbCommsFlow.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/flows/{flow_uuid}/backfill`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"flow_uuid"}}`, encodeURIComponent(String(requestParameters.flowUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFlowBackfillRequestToJSON(requestParameters.flowBackfillRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFlowBackfillResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Enrolls customers who would have met the flow\'s trigger before it existed: a segment trigger\'s members, or the orders of the last order_days_old days (1 to 90, default 5, every storefront on the account) for an order trigger, up to the plan\'s customer limit.  The flow must be on.  dry_run counts them and enrolls nobody.  A real backfill needs sfvb_publish, the sign-in of a person, and an approved flow.backfill request for exactly this flow and window; it runs in the background and mails each customer through the flow. 
+     * Back populate a live flow, or count who it would enroll
+     */
+    async backfillSfvbCommsFlow(requestParameters: BackfillSfvbCommsFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFlowBackfillResponse> {
+        const response = await this.backfillSfvbCommsFlowRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8152,6 +8548,112 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbBlogPost(requestParameters: DeleteSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbBlogPostRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Its campaigns are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a campaign folder
+     */
+    async deleteSfvbCommsCampaignFolderRaw(requestParameters: DeleteSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling deleteSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbCommsCampaignFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaign_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Its campaigns are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a campaign folder
+     */
+    async deleteSfvbCommsCampaignFolder(requestParameters: DeleteSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.deleteSfvbCommsCampaignFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Its flows are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a flow folder
+     */
+    async deleteSfvbCommsFlowFolderRaw(requestParameters: DeleteSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling deleteSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling deleteSfvbCommsFlowFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flow_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Its flows are kept and filed under no folder, as the admin does; items names each one.  Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be deleted here. 
+     * Delete a flow folder
+     */
+    async deleteSfvbCommsFlowFolder(requestParameters: DeleteSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.deleteSfvbCommsFlowFolderRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -10333,6 +10835,92 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The folder, with the name and uuid of each campaign filed in it. 
+     * Read one campaign folder
+     */
+    async getSfvbCommsCampaignFolderRaw(requestParameters: GetSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling getSfvbCommsCampaignFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaign_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The folder, with the name and uuid of each campaign filed in it. 
+     * Read one campaign folder
+     */
+    async getSfvbCommsCampaignFolder(requestParameters: GetSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.getSfvbCommsCampaignFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each campaign folder with how many campaigns are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the campaign folders
+     */
+    async getSfvbCommsCampaignFoldersRaw(requestParameters: GetSfvbCommsCampaignFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFoldersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsCampaignFolders.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaign_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFoldersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each campaign folder with how many campaigns are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the campaign folders
+     */
+    async getSfvbCommsCampaignFolders(requestParameters: GetSfvbCommsCampaignFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFoldersResponse> {
+        const response = await this.getSfvbCommsCampaignFoldersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * rows cover each flow and campaign with activity in the last days (1 to 365, default 30); daily is the account\'s last 31 days of sending, whatever the window.  Read only. 
      * Read every flow\'s and campaign\'s counts over a window, with the account\'s daily sending
      */
@@ -10427,6 +11015,92 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCommsEmailClicks(requestParameters: GetSfvbCommsEmailClicksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsClicksResponse> {
         const response = await this.getSfvbCommsEmailClicksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The folder, with the name and uuid of each flow filed in it. 
+     * Read one flow folder
+     */
+    async getSfvbCommsFlowFolderRaw(requestParameters: GetSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling getSfvbCommsFlowFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flow_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The folder, with the name and uuid of each flow filed in it. 
+     * Read one flow folder
+     */
+    async getSfvbCommsFlowFolder(requestParameters: GetSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.getSfvbCommsFlowFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each flow folder with how many flows are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the flow folders
+     */
+    async getSfvbCommsFlowFoldersRaw(requestParameters: GetSfvbCommsFlowFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFoldersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsFlowFolders.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flow_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFoldersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each flow folder with how many flows are filed in it, whether the admin made it, and its hash_sha256. 
+     * List the flow folders
+     */
+    async getSfvbCommsFlowFolders(requestParameters: GetSfvbCommsFlowFoldersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFoldersResponse> {
+        const response = await this.getSfvbCommsFlowFoldersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10615,6 +11289,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse> {
         const response = await this.getSfvbCommsListMembersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Find which storefront a communications uuid lives on
+     */
+    async getSfvbCommsLookupRaw(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsLookupResponse>> {
+        if (requestParameters.uuid === null || requestParameters.uuid === undefined) {
+            throw new runtime.RequiredError('uuid','Required parameter requestParameters.uuid was null or undefined when calling getSfvbCommsLookup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.uuid !== undefined) {
+            queryParameters['uuid'] = requestParameters.uuid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/comms/lookup`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsLookupResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Find which storefront a communications uuid lives on
+     */
+    async getSfvbCommsLookup(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsLookupResponse> {
+        const response = await this.getSfvbCommsLookupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10971,7 +11690,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints.  Read only. 
      * Read one saved email template\'s body
      */
     async getSfvbCommsTemplateRaw(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsTemplateResponse>> {
@@ -11007,7 +11726,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is named in email_template_vm_path, not shown.  Read only. 
+     * A system template or one saved on this storefront; any other is 404.  container_cjson is the body.  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints.  Read only. 
      * Read one saved email template\'s body
      */
     async getSfvbCommsTemplate(requestParameters: GetSfvbCommsTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTemplateResponse> {
@@ -11090,6 +11809,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbCommsTwilioAccount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
         const response = await this.getSfvbCommsTwilioAccountRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * An email or postcard no step of any sequence on this storefront names, an off or archived flow\'s included, so nothing sends it.  The admin\'s add can leave one when its second call fails.  Most recently changed first.  Read only, nothing is deleted. 
+     * List the emails and postcards on a storefront that no step names
+     */
+    async getSfvbCommsUnreferencedRaw(requestParameters: GetSfvbCommsUnreferencedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsUnreferencedResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCommsUnreferenced.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/unreferenced`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsUnreferencedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * An email or postcard no step of any sequence on this storefront names, an off or archived flow\'s included, so nothing sends it.  The admin\'s add can leave one when its second call fails.  Most recently changed first.  Read only, nothing is deleted. 
+     * List the emails and postcards on a storefront that no step names
+     */
+    async getSfvbCommsUnreferenced(requestParameters: GetSfvbCommsUnreferencedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsUnreferencedResponse> {
+        const response = await this.getSfvbCommsUnreferencedRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -11245,7 +12005,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints, whose read reports valid and velocity_errors.  Find the uuid in the storefront\'s campaigns and flows. 
      * Get a flow or campaign email\'s subject and preview text
      */
     async getSfvbEmailRaw(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbEmail>> {
@@ -11281,7 +12041,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  Find the uuid in the storefront\'s campaigns and flows. 
+     * The subject, preview text and hash_sha256 to send as If-Match when updating them, with whether the email is live and its review state.  The body is the email container (owner type email).  The Velocity template it renders inside is the theme file at template_path; read it with the files endpoints, whose read reports valid and velocity_errors.  Find the uuid in the storefront\'s campaigns and flows. 
      * Get a flow or campaign email\'s subject and preview text
      */
     async getSfvbEmail(requestParameters: GetSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmail> {
@@ -14487,6 +15247,102 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.insertSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new, empty folder.  File a campaign in it by setting its folder_uuid. 
+     * Create a campaign folder
+     */
+    async insertSfvbCommsCampaignFolderRaw(requestParameters: InsertSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling insertSfvbCommsCampaignFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaign_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A new, empty folder.  File a campaign in it by setting its folder_uuid. 
+     * Create a campaign folder
+     */
+    async insertSfvbCommsCampaignFolder(requestParameters: InsertSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.insertSfvbCommsCampaignFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A new, empty folder.  File a flow in it by setting its folder_uuid. 
+     * Create a flow folder
+     */
+    async insertSfvbCommsFlowFolderRaw(requestParameters: InsertSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling insertSfvbCommsFlowFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flow_folders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A new, empty folder.  File a flow in it by setting its folder_uuid. 
+     * Create a flow folder
+     */
+    async insertSfvbCommsFlowFolder(requestParameters: InsertSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.insertSfvbCommsFlowFolderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -19293,6 +20149,126 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
 
     /**
      * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a campaign folder
+     */
+    async updateSfvbCommsCampaignFolderRaw(requestParameters: UpdateSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling updateSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsCampaignFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling updateSfvbCommsCampaignFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/campaign_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a campaign folder
+     */
+    async updateSfvbCommsCampaignFolder(requestParameters: UpdateSfvbCommsCampaignFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.updateSfvbCommsCampaignFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a flow folder
+     */
+    async updateSfvbCommsFlowFolderRaw(requestParameters: UpdateSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsSequenceFolderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.folderUuid === null || requestParameters.folderUuid === undefined) {
+            throw new runtime.RequiredError('folderUuid','Required parameter requestParameters.folderUuid was null or undefined when calling updateSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling updateSfvbCommsFlowFolder.');
+        }
+
+        if (requestParameters.folderWriteRequest === null || requestParameters.folderWriteRequest === undefined) {
+            throw new runtime.RequiredError('folderWriteRequest','Required parameter requestParameters.folderWriteRequest was null or undefined when calling updateSfvbCommsFlowFolder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/flow_folders/{folder_uuid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"folder_uuid"}}`, encodeURIComponent(String(requestParameters.folderUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsFolderWriteRequestToJSON(requestParameters.folderWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsSequenceFolderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
+     * Rename a flow folder
+     */
+    async updateSfvbCommsFlowFolder(requestParameters: UpdateSfvbCommsFlowFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsSequenceFolderResponse> {
+        const response = await this.updateSfvbCommsFlowFolderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Send the folder\'s hash_sha256 as If-Match.  A folder the admin made itself (system_generated) can\'t be renamed here. 
      * Rename a list and segment folder
      */
     async updateSfvbCommsFolderRaw(requestParameters: UpdateSfvbCommsFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsFolderResponse>> {
@@ -20744,6 +21720,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async validateSfvbCjson(requestParameters: ValidateSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbValidationResponse> {
         const response = await this.validateSfvbCjsonRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Compiles the pattern the way an Is in BigQuery segment rule\'s bigquery_ruler is checked, and says whether it is valid and, if not, why.  An invalid pattern is a 200 with valid false.  Nothing is read or saved.  A segment create or update refuses a rule whose pattern doesn\'t compile, or whose bigquery_table_id isn\'t project.dataset.table. 
+     * Check an Event Ruler pattern for an Is in BigQuery segment rule
+     */
+    async validateSfvbCommsRulerRaw(requestParameters: ValidateSfvbCommsRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsRulerValidateResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling validateSfvbCommsRuler.');
+        }
+
+        if (requestParameters.rulerValidateRequest === null || requestParameters.rulerValidateRequest === undefined) {
+            throw new runtime.RequiredError('rulerValidateRequest','Required parameter requestParameters.rulerValidateRequest was null or undefined when calling validateSfvbCommsRuler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/comms/ruler/validate`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCommsRulerValidateRequestToJSON(requestParameters.rulerValidateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCommsRulerValidateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Compiles the pattern the way an Is in BigQuery segment rule\'s bigquery_ruler is checked, and says whether it is valid and, if not, why.  An invalid pattern is a 200 with valid false.  Nothing is read or saved.  A segment create or update refuses a rule whose pattern doesn\'t compile, or whose bigquery_table_id isn\'t project.dataset.table. 
+     * Check an Event Ruler pattern for an Is in BigQuery segment rule
+     */
+    async validateSfvbCommsRuler(requestParameters: ValidateSfvbCommsRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsRulerValidateResponse> {
+        const response = await this.validateSfvbCommsRulerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

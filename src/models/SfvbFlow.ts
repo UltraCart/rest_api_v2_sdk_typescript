@@ -81,6 +81,18 @@ export interface SfvbFlow {
      */
     flow_uuid?: string;
     /**
+     * That folder's name.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    folder_name?: string;
+    /**
+     * The flow folder it is filed in, or none.
+     * @type {string}
+     * @memberof SfvbFlow
+     */
+    folder_uuid?: string;
+    /**
      * Send this as If-Match when changing, archiving or turning the flow on or off.
      * @type {string}
      * @memberof SfvbFlow
@@ -207,6 +219,8 @@ export function SfvbFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'end_once_customer_purchases': !exists(json, 'end_once_customer_purchases') ? undefined : json['end_once_customer_purchases'],
         'end_once_customer_purchases_anywhere': !exists(json, 'end_once_customer_purchases_anywhere') ? undefined : json['end_once_customer_purchases_anywhere'],
         'flow_uuid': !exists(json, 'flow_uuid') ? undefined : json['flow_uuid'],
+        'folder_name': !exists(json, 'folder_name') ? undefined : json['folder_name'],
+        'folder_uuid': !exists(json, 'folder_uuid') ? undefined : json['folder_uuid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'live': !exists(json, 'live') ? undefined : json['live'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -243,6 +257,8 @@ export function SfvbFlowToJSON(value?: SfvbFlow | null): any {
         'end_once_customer_purchases': value.end_once_customer_purchases,
         'end_once_customer_purchases_anywhere': value.end_once_customer_purchases_anywhere,
         'flow_uuid': value.flow_uuid,
+        'folder_name': value.folder_name,
+        'folder_uuid': value.folder_uuid,
         'hash_sha256': value.hash_sha256,
         'live': value.live,
         'name': value.name,

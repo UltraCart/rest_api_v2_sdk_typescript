@@ -33,7 +33,7 @@ export interface SfvbCommsTemplateResponse {
      */
     container_cjson?: string;
     /**
-     * The Velocity template it renders inside.  Its content isn't shown here.
+     * The Velocity template it renders inside, as stored.  It is looked up in the storefront's active theme.
      * @type {string}
      * @memberof SfvbCommsTemplateResponse
      */
@@ -50,6 +50,24 @@ export interface SfvbCommsTemplateResponse {
      * @memberof SfvbCommsTemplateResponse
      */
     template?: SfvbCommsTemplate;
+    /**
+     * True when the file at template_path exists.
+     * @type {boolean}
+     * @memberof SfvbCommsTemplateResponse
+     */
+    template_exists?: boolean;
+    /**
+     * Why there is no template file, or null when there is one.
+     * @type {string}
+     * @memberof SfvbCommsTemplateResponse
+     */
+    template_note?: string;
+    /**
+     * The theme file that template is, as a render finds it.  Read it with the files endpoints, whose read also reports valid and velocity_errors.  Null when it couldn't be worked out, with template_note saying why.
+     * @type {string}
+     * @memberof SfvbCommsTemplateResponse
+     */
+    template_path?: string;
 }
 
 
@@ -77,6 +95,9 @@ export function SfvbCommsTemplateResponseFromJSONTyped(json: any, ignoreDiscrimi
         'email_template_vm_path': !exists(json, 'email_template_vm_path') ? undefined : json['email_template_vm_path'],
         'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'template': !exists(json, 'template') ? undefined : SfvbCommsTemplateFromJSON(json['template']),
+        'template_exists': !exists(json, 'template_exists') ? undefined : json['template_exists'],
+        'template_note': !exists(json, 'template_note') ? undefined : json['template_note'],
+        'template_path': !exists(json, 'template_path') ? undefined : json['template_path'],
     };
 }
 
@@ -93,6 +114,9 @@ export function SfvbCommsTemplateResponseToJSON(value?: SfvbCommsTemplateRespons
         'email_template_vm_path': value.email_template_vm_path,
         'notes': value.notes,
         'template': SfvbCommsTemplateToJSON(value.template),
+        'template_exists': value.template_exists,
+        'template_note': value.template_note,
+        'template_path': value.template_path,
     };
 }
 

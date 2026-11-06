@@ -1036,6 +1036,8 @@ src/models/SfvbCommsListDetail.ts
 src/models/SfvbCommsListResponse.ts
 src/models/SfvbCommsListWriteRequest.ts
 src/models/SfvbCommsListsResponse.ts
+src/models/SfvbCommsLookupOwner.ts
+src/models/SfvbCommsLookupResponse.ts
 src/models/SfvbCommsMember.ts
 src/models/SfvbCommsMembersResponse.ts
 src/models/SfvbCommsPlan.ts
@@ -1046,6 +1048,8 @@ src/models/SfvbCommsProviderImportRequest.ts
 src/models/SfvbCommsProviderImportResponse.ts
 src/models/SfvbCommsProviderList.ts
 src/models/SfvbCommsProvidersResponse.ts
+src/models/SfvbCommsRulerValidateRequest.ts
+src/models/SfvbCommsRulerValidateResponse.ts
 src/models/SfvbCommsSegment.ts
 src/models/SfvbCommsSegmentDetail.ts
 src/models/SfvbCommsSegmentResponse.ts
@@ -1056,6 +1060,9 @@ src/models/SfvbCommsSender.ts
 src/models/SfvbCommsSenderUpdate.ts
 src/models/SfvbCommsSendingDomain.ts
 src/models/SfvbCommsSendingDomainsResponse.ts
+src/models/SfvbCommsSequenceFolder.ts
+src/models/SfvbCommsSequenceFolderResponse.ts
+src/models/SfvbCommsSequenceFoldersResponse.ts
 src/models/SfvbCommsSequenceStatsResponse.ts
 src/models/SfvbCommsSettings.ts
 src/models/SfvbCommsSettingsResponse.ts
@@ -1071,6 +1078,9 @@ src/models/SfvbCommsTestSendResponse.ts
 src/models/SfvbCommsTestSmsRequest.ts
 src/models/SfvbCommsTwilioAccount.ts
 src/models/SfvbCommsTwilioAccountResponse.ts
+src/models/SfvbCommsUnreferencedEmail.ts
+src/models/SfvbCommsUnreferencedPostcard.ts
+src/models/SfvbCommsUnreferencedResponse.ts
 src/models/SfvbCompileRequest.ts
 src/models/SfvbCompileResponse.ts
 src/models/SfvbContainerResponse.ts
@@ -1112,6 +1122,8 @@ src/models/SfvbFileWriteRequest.ts
 src/models/SfvbFileWriteResponse.ts
 src/models/SfvbFilesResponse.ts
 src/models/SfvbFlow.ts
+src/models/SfvbFlowBackfillRequest.ts
+src/models/SfvbFlowBackfillResponse.ts
 src/models/SfvbFlowStatusRequest.ts
 src/models/SfvbFlowWriteRequest.ts
 src/models/SfvbFlowsResponse.ts
