@@ -244,6 +244,7 @@ export const SfvbApprovalCreateRequestActionEnum = {
     SmartAttributionChange: 'smart_attribution.change',
     SmartAttributionDelete: 'smart_attribution.delete',
     TrackingProviderChange: 'tracking_provider.change',
+    TrackingProviderClear: 'tracking_provider.clear',
     TrackingHtmlPut: 'tracking_html.put',
     AffiliateNetworkChange: 'affiliate_network.change',
     AffiliateNetworkDelete: 'affiliate_network.delete',
