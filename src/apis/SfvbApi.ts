@@ -642,6 +642,9 @@ import {
     SfvbTrackingAdvancedRequest,
     SfvbTrackingAdvancedRequestFromJSON,
     SfvbTrackingAdvancedRequestToJSON,
+    SfvbTrackingCheckPlan,
+    SfvbTrackingCheckPlanFromJSON,
+    SfvbTrackingCheckPlanToJSON,
     SfvbTrackingHtml,
     SfvbTrackingHtmlFromJSON,
     SfvbTrackingHtmlToJSON,
@@ -1493,6 +1496,15 @@ export interface GetSfvbThemeAttributesRequest {
 export interface GetSfvbThemeJobRequest {
     storefrontOid: number;
     jobId: number;
+}
+
+export interface GetSfvbTrackingCheckPlanRequest {
+    storefrontOid: number;
+    path: string;
+    event?: string;
+    orderId?: string;
+    consent?: string;
+    region?: string;
 }
 
 export interface GetSfvbTrackingHtmlRequest {
@@ -4903,6 +4915,27 @@ export interface SfvbApiInterface {
      * Status of an asynchronous theme job
      */
     getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
+
+    /**
+     * What each tracking provider should load on one page, for page_view or a test order\'s purchase, under a consent state and region, with the requests and calls to look for and the ones that must not appear.  Built from the same rules the storefront\'s tracking templates follow, never by running them, so nothing is sent to any provider.  Includes the hosts the storefront\'s custom and affiliate network HTML loads, the sends made from UltraCart servers, and a snippet that collects what the browser saw.  Grade the results locally; they are never sent here.  With neither consent nor region, every provider is listed with the gate that holds it back.  A purchase needs a test order on this account. 
+     * @summary Plan a browser check of a storefront\'s tracking
+     * @param {number} storefrontOid 
+     * @param {string} path A storefront page path, such as / or /checkout/receipt.html, with an optional query
+     * @param {string} [event] page_view (the default) or purchase
+     * @param {string} [orderId] For purchase, a test order on this account
+     * @param {string} [consent] none, all, or a comma list of statistics, preferences and marketing
+     * @param {string} [region] Where the browser is.  eea, non-us or other
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbTrackingCheckPlanRaw(requestParameters: GetSfvbTrackingCheckPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingCheckPlan>>;
+
+    /**
+     * What each tracking provider should load on one page, for page_view or a test order\'s purchase, under a consent state and region, with the requests and calls to look for and the ones that must not appear.  Built from the same rules the storefront\'s tracking templates follow, never by running them, so nothing is sent to any provider.  Includes the hosts the storefront\'s custom and affiliate network HTML loads, the sends made from UltraCart servers, and a snippet that collects what the browser saw.  Grade the results locally; they are never sent here.  With neither consent nor region, every provider is listed with the gate that holds it back.  A purchase needs a test order on this account. 
+     * Plan a browser check of a storefront\'s tracking
+     */
+    getSfvbTrackingCheckPlan(requestParameters: GetSfvbTrackingCheckPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingCheckPlan>;
 
     /**
      * The HTML with its Velocity tokens as stored, and the hash_sha256 a write sends back as If-Match. 
@@ -14434,6 +14467,71 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse> {
         const response = await this.getSfvbThemeJobRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * What each tracking provider should load on one page, for page_view or a test order\'s purchase, under a consent state and region, with the requests and calls to look for and the ones that must not appear.  Built from the same rules the storefront\'s tracking templates follow, never by running them, so nothing is sent to any provider.  Includes the hosts the storefront\'s custom and affiliate network HTML loads, the sends made from UltraCart servers, and a snippet that collects what the browser saw.  Grade the results locally; they are never sent here.  With neither consent nor region, every provider is listed with the gate that holds it back.  A purchase needs a test order on this account. 
+     * Plan a browser check of a storefront\'s tracking
+     */
+    async getSfvbTrackingCheckPlanRaw(requestParameters: GetSfvbTrackingCheckPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingCheckPlan>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbTrackingCheckPlan.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbTrackingCheckPlan.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        if (requestParameters.event !== undefined) {
+            queryParameters['event'] = requestParameters.event;
+        }
+
+        if (requestParameters.orderId !== undefined) {
+            queryParameters['order_id'] = requestParameters.orderId;
+        }
+
+        if (requestParameters.consent !== undefined) {
+            queryParameters['consent'] = requestParameters.consent;
+        }
+
+        if (requestParameters.region !== undefined) {
+            queryParameters['region'] = requestParameters.region;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/check_plan`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingCheckPlanFromJSON(jsonValue));
+    }
+
+    /**
+     * What each tracking provider should load on one page, for page_view or a test order\'s purchase, under a consent state and region, with the requests and calls to look for and the ones that must not appear.  Built from the same rules the storefront\'s tracking templates follow, never by running them, so nothing is sent to any provider.  Includes the hosts the storefront\'s custom and affiliate network HTML loads, the sends made from UltraCart servers, and a snippet that collects what the browser saw.  Grade the results locally; they are never sent here.  With neither consent nor region, every provider is listed with the gate that holds it back.  A purchase needs a test order on this account. 
+     * Plan a browser check of a storefront\'s tracking
+     */
+    async getSfvbTrackingCheckPlan(requestParameters: GetSfvbTrackingCheckPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingCheckPlan> {
+        const response = await this.getSfvbTrackingCheckPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

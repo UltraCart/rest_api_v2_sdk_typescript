@@ -1319,6 +1319,13 @@ src/models/SfvbThemesResponse.ts
 src/models/SfvbTrackingAdvanced.ts
 src/models/SfvbTrackingAdvancedRequest.ts
 src/models/SfvbTrackingChange.ts
+src/models/SfvbTrackingCheckPlan.ts
+src/models/SfvbTrackingCheckPlanEvent.ts
+src/models/SfvbTrackingCheckPlanGate.ts
+src/models/SfvbTrackingCheckPlanProvider.ts
+src/models/SfvbTrackingCheckPlanRequest.ts
+src/models/SfvbTrackingCheckPlanServerSide.ts
+src/models/SfvbTrackingCheckPlanUnchecked.ts
 src/models/SfvbTrackingHtml.ts
 src/models/SfvbTrackingHtmlRenderRequest.ts
 src/models/SfvbTrackingHtmlRenderResponse.ts
