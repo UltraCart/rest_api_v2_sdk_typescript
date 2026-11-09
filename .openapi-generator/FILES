@@ -1229,6 +1229,7 @@ src/models/SfvbPreviewAccessRequest.ts
 src/models/SfvbPreviewAccessResponse.ts
 src/models/SfvbPreviewSessionRequest.ts
 src/models/SfvbPreviewSessionResponse.ts
+src/models/SfvbPreviewTrackingHtmlRequest.ts
 src/models/SfvbPreviewUrlResponse.ts
 src/models/SfvbRecording.ts
 src/models/SfvbRecordingEvent.ts
@@ -1319,6 +1320,8 @@ src/models/SfvbTrackingAdvanced.ts
 src/models/SfvbTrackingAdvancedRequest.ts
 src/models/SfvbTrackingChange.ts
 src/models/SfvbTrackingHtml.ts
+src/models/SfvbTrackingHtmlRenderRequest.ts
+src/models/SfvbTrackingHtmlRenderResponse.ts
 src/models/SfvbTrackingHtmlRequest.ts
 src/models/SfvbTrackingHtmlResponse.ts
 src/models/SfvbTrackingPrivacy.ts

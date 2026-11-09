@@ -32,7 +32,7 @@ export interface SfvbServerLog {
      */
     duration_ms?: number;
     /**
-     * Error lines in the log, including Velocity problems such as a null
+     * Error lines in the log, including Velocity problems such as setting a variable to null.
      * @type {number}
      * @memberof SfvbServerLog
      */

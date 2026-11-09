@@ -483,6 +483,9 @@ import {
     SfvbPreviewSessionResponse,
     SfvbPreviewSessionResponseFromJSON,
     SfvbPreviewSessionResponseToJSON,
+    SfvbPreviewTrackingHtmlRequest,
+    SfvbPreviewTrackingHtmlRequestFromJSON,
+    SfvbPreviewTrackingHtmlRequestToJSON,
     SfvbPreviewUrlResponse,
     SfvbPreviewUrlResponseFromJSON,
     SfvbPreviewUrlResponseToJSON,
@@ -642,6 +645,12 @@ import {
     SfvbTrackingHtml,
     SfvbTrackingHtmlFromJSON,
     SfvbTrackingHtmlToJSON,
+    SfvbTrackingHtmlRenderRequest,
+    SfvbTrackingHtmlRenderRequestFromJSON,
+    SfvbTrackingHtmlRenderRequestToJSON,
+    SfvbTrackingHtmlRenderResponse,
+    SfvbTrackingHtmlRenderResponseFromJSON,
+    SfvbTrackingHtmlRenderResponseToJSON,
     SfvbTrackingHtmlRequest,
     SfvbTrackingHtmlRequestFromJSON,
     SfvbTrackingHtmlRequestToJSON,
@@ -947,6 +956,8 @@ export interface DeleteSfvbTrackingProviderRequest {
     storefrontOid: number;
     provider: string;
     ifMatch: string;
+    dryRun?: boolean;
+    approvalId?: string;
 }
 
 export interface DeleteSfvbUtmShortcodeRequest {
@@ -1937,6 +1948,12 @@ export interface PutSfvbPreviewSessionRequest {
     themeOid?: number;
 }
 
+export interface PutSfvbPreviewTrackingHtmlRequest {
+    storefrontOid: number;
+    previewSessionId: string;
+    previewTrackingHtml: SfvbPreviewTrackingHtmlRequest;
+}
+
 export interface PutSfvbRecordingSettingsRequest {
     storefrontOid: number;
     recordingSettingsRequest: SfvbRecordingSettingsRequest;
@@ -1978,6 +1995,12 @@ export interface RenderSfvbEmailRequest {
     storefrontOid: number;
     emailUuid: string;
     emailRenderRequest: SfvbEmailRenderRequest;
+}
+
+export interface RenderSfvbTrackingHtmlRequest {
+    storefrontOid: number;
+    slot: string;
+    trackingHtmlRenderRequest: SfvbTrackingHtmlRenderRequest;
 }
 
 export interface RenderSfvbTransactionalEmailRequest {
@@ -3042,11 +3065,13 @@ export interface SfvbApiInterface {
     deleteSfvbSmartAttribution(requestParameters: DeleteSfvbSmartAttributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  dry_run=true reports the changes, and approval_needed, without clearing.  No approval, except when the clear removes a consent gate while something outside the provider\'s fields still fires it (Google Ads for an affiliate\'s own Google conversion id, Commission Junction for an affiliate network of its type): that needs an approved tracking_provider.clear request for the provider (Approval-Id). 
      * @summary Clear one tracking provider
      * @param {number} storefrontOid 
      * @param {string} provider 
      * @param {string} ifMatch The provider\&#39;s hash_sha256 from the last read.  428 when absent, 412 when stale.
+     * @param {boolean} [dryRun] 
+     * @param {string} [approvalId] When the clear removes a consent gate while something else still fires the provider, the approval_id of an approved tracking_provider.clear request for it.  See POST /sfvb/approvals.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -3054,7 +3079,7 @@ export interface SfvbApiInterface {
     deleteSfvbTrackingProviderRaw(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>>;
 
     /**
-     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  dry_run=true reports the changes, and approval_needed, without clearing.  No approval, except when the clear removes a consent gate while something outside the provider\'s fields still fires it (Google Ads for an affiliate\'s own Google conversion id, Commission Junction for an affiliate network of its type): that needs an approved tracking_provider.clear request for the provider (Approval-Id). 
      * Clear one tracking provider
      */
     deleteSfvbTrackingProvider(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider>;
@@ -3731,7 +3756,7 @@ export interface SfvbApiInterface {
     getSfvbCommsListMembers(requestParameters: GetSfvbCommsListMembersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsMembersResponse>;
 
     /**
-     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  An archived campaign or flow is found too, with archived true, and owner.archived is true when what was found belongs to one.  A uuid nothing on this account has, another account\'s included, and a deleted step, email, postcard, list or segment, is 404.  Read only. 
      * @summary Find which storefront a communications uuid lives on
      * @param {string} uuid The uuid to find.
      * @param {*} [options] Override http request option.
@@ -3741,7 +3766,7 @@ export interface SfvbApiInterface {
     getSfvbCommsLookupRaw(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsLookupResponse>>;
 
     /**
-     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  An archived campaign or flow is found too, with archived true, and owner.archived is true when what was found belongs to one.  A uuid nothing on this account has, another account\'s included, and a deleted step, email, postcard, list or segment, is 404.  Read only. 
      * Find which storefront a communications uuid lives on
      */
     getSfvbCommsLookup(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsLookupResponse>;
@@ -6268,6 +6293,24 @@ export interface SfvbApiInterface {
     putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
 
     /**
+     * Runs Tracking HTML, Conversion HTML or both instead of the storefront\'s live slots, only in a browser that opened this session\'s preview access link, so a page can be checked before the write is approved.  Staged Conversion HTML runs only on a test order\'s receipt.  Each slot gets the same checks as a write.  An empty string unstages a slot; a slot left out is left as it is.  Containers pushed to the session later keep what is staged.  Needs sfvb_write and a token that resolves to a user; no approval, since nothing durable is written and only that user\'s own session runs it. 
+     * @summary Stage custom tracking HTML in a preview session
+     * @param {number} storefrontOid 
+     * @param {string} previewSessionId 
+     * @param {SfvbPreviewTrackingHtmlRequest} previewTrackingHtml The HTML to stage
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbPreviewTrackingHtmlRaw(requestParameters: PutSfvbPreviewTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlResponse>>;
+
+    /**
+     * Runs Tracking HTML, Conversion HTML or both instead of the storefront\'s live slots, only in a browser that opened this session\'s preview access link, so a page can be checked before the write is approved.  Staged Conversion HTML runs only on a test order\'s receipt.  Each slot gets the same checks as a write.  An empty string unstages a slot; a slot left out is left as it is.  Containers pushed to the session later keep what is staged.  Needs sfvb_write and a token that resolves to a user; no approval, since nothing durable is written and only that user\'s own session runs it. 
+     * Stage custom tracking HTML in a preview session
+     */
+    putSfvbPreviewTrackingHtml(requestParameters: PutSfvbPreviewTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlResponse>;
+
+    /**
      * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
      * @summary Turn the storefront\'s screen recording on or off
      * @param {number} storefrontOid 
@@ -6405,6 +6448,24 @@ export interface SfvbApiInterface {
      * Render a flow or campaign email without sending it
      */
     renderSfvbEmail(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse>;
+
+    /**
+     * The Conversion HTML as the receipt of that order would inject it: order tokens filled, then Velocity run with $order, $conversion and $formatHelper.  Renders the stored slot, or content when it is sent (a draft, checked as a write is).  Only a test order on this account may be used; a real or unknown order is refused the same way.  Nothing is saved, injected or sent: the receipt\'s provider pixels, analytics and postbacks do not run, and a token that would write something ([CouponForNewAffiliate=...]) is left as written.  Only the conversion slot renders; tracking HTML is checked by staging it in a preview session. 
+     * @summary Render the Conversion HTML against a test order
+     * @param {number} storefrontOid 
+     * @param {string} slot conversion
+     * @param {SfvbTrackingHtmlRenderRequest} trackingHtmlRenderRequest The test order, and optionally a draft
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    renderSfvbTrackingHtmlRaw(requestParameters: RenderSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlRenderResponse>>;
+
+    /**
+     * The Conversion HTML as the receipt of that order would inject it: order tokens filled, then Velocity run with $order, $conversion and $formatHelper.  Renders the stored slot, or content when it is sent (a draft, checked as a write is).  Only a test order on this account may be used; a real or unknown order is refused the same way.  Nothing is saved, injected or sent: the receipt\'s provider pixels, analytics and postbacks do not run, and a token that would write something ([CouponForNewAffiliate=...]) is left as written.  Only the conversion slot renders; tracking HTML is checked by staging it in a preview session. 
+     * Render the Conversion HTML against a test order
+     */
+    renderSfvbTrackingHtml(requestParameters: RenderSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlRenderResponse>;
 
     /**
      * Renders a transactional email, such as the order receipt, exactly as it is sent, and returns the subject, HTML and text.  Nothing is sent or saved.  file_name is the template file, such as receipt_html.vm, or the display name.  Give cjson to render an unsaved draft of the email\'s body container in place of the saved one.  The order must be a test order.  Without one the email renders with a made up order. 
@@ -9420,7 +9481,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  dry_run=true reports the changes, and approval_needed, without clearing.  No approval, except when the clear removes a consent gate while something outside the provider\'s fields still fires it (Google Ads for an affiliate\'s own Google conversion id, Commission Junction for an affiliate network of its type): that needs an approved tracking_provider.clear request for the provider (Approval-Id). 
      * Clear one tracking provider
      */
     async deleteSfvbTrackingProviderRaw(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingProvider>> {
@@ -9438,10 +9499,18 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
 
         const queryParameters: any = {};
 
+        if (requestParameters.dryRun !== undefined) {
+            queryParameters['dry_run'] = requestParameters.dryRun;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
         }
 
         if (this.configuration && this.configuration.accessToken) {
@@ -9464,7 +9533,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  The provider stops being sent anything.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  No approval. 
+     * Clears every field and secret the API can change, the consent gate and the events, and turns off Google Tag Gateway.  An OAuth connection is left alone, and notes say to disconnect it in the admin.  Send the provider\'s hash_sha256 as If-Match.  Needs sfvb_publish.  dry_run=true reports the changes, and approval_needed, without clearing.  No approval, except when the clear removes a consent gate while something outside the provider\'s fields still fires it (Google Ads for an affiliate\'s own Google conversion id, Commission Junction for an affiliate network of its type): that needs an approved tracking_provider.clear request for the provider (Approval-Id). 
      * Clear one tracking provider
      */
     async deleteSfvbTrackingProvider(requestParameters: DeleteSfvbTrackingProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingProvider> {
@@ -11293,7 +11362,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  An archived campaign or flow is found too, with archived true, and owner.archived is true when what was found belongs to one.  A uuid nothing on this account has, another account\'s included, and a deleted step, email, postcard, list or segment, is 404.  Read only. 
      * Find which storefront a communications uuid lives on
      */
     async getSfvbCommsLookupRaw(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCommsLookupResponse>> {
@@ -11329,7 +11398,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  A uuid nothing on this account has, another account\'s included, is 404.  Read only. 
+     * Takes a campaign, flow, sequence, step, email, postcard, list or segment uuid and says which of this account\'s storefronts it is on, what it is, the campaign or flow it belongs to, and the command that reads it.  An archived campaign or flow is found too, with archived true, and owner.archived is true when what was found belongs to one.  A uuid nothing on this account has, another account\'s included, and a deleted step, email, postcard, list or segment, is 404.  Read only. 
      * Find which storefront a communications uuid lives on
      */
     async getSfvbCommsLookup(requestParameters: GetSfvbCommsLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsLookupResponse> {
@@ -18322,6 +18391,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Runs Tracking HTML, Conversion HTML or both instead of the storefront\'s live slots, only in a browser that opened this session\'s preview access link, so a page can be checked before the write is approved.  Staged Conversion HTML runs only on a test order\'s receipt.  Each slot gets the same checks as a write.  An empty string unstages a slot; a slot left out is left as it is.  Containers pushed to the session later keep what is staged.  Needs sfvb_write and a token that resolves to a user; no approval, since nothing durable is written and only that user\'s own session runs it. 
+     * Stage custom tracking HTML in a preview session
+     */
+    async putSfvbPreviewTrackingHtmlRaw(requestParameters: PutSfvbPreviewTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbPreviewTrackingHtml.');
+        }
+
+        if (requestParameters.previewSessionId === null || requestParameters.previewSessionId === undefined) {
+            throw new runtime.RequiredError('previewSessionId','Required parameter requestParameters.previewSessionId was null or undefined when calling putSfvbPreviewTrackingHtml.');
+        }
+
+        if (requestParameters.previewTrackingHtml === null || requestParameters.previewTrackingHtml === undefined) {
+            throw new runtime.RequiredError('previewTrackingHtml','Required parameter requestParameters.previewTrackingHtml was null or undefined when calling putSfvbPreviewTrackingHtml.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/preview_sessions/{preview_session_id}/tracking_html`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"preview_session_id"}}`, encodeURIComponent(String(requestParameters.previewSessionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPreviewTrackingHtmlRequestToJSON(requestParameters.previewTrackingHtml),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingHtmlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Runs Tracking HTML, Conversion HTML or both instead of the storefront\'s live slots, only in a browser that opened this session\'s preview access link, so a page can be checked before the write is approved.  Staged Conversion HTML runs only on a test order\'s receipt.  Each slot gets the same checks as a write.  An empty string unstages a slot; a slot left out is left as it is.  Containers pushed to the session later keep what is staged.  Needs sfvb_write and a token that resolves to a user; no approval, since nothing durable is written and only that user\'s own session runs it. 
+     * Stage custom tracking HTML in a preview session
+     */
+    async putSfvbPreviewTrackingHtml(requestParameters: PutSfvbPreviewTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlResponse> {
+        const response = await this.putSfvbPreviewTrackingHtmlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Turning it on records real shoppers\' sessions from that moment, with no history before it.  The first time starts a 14 day free trial, after which recorded sessions are billed per 1,000.  Only change it when the merchant has asked for it.  Asking for the state it is already in changes nothing, and changed comes back false.  Always needs sfvb_publish, in both directions, because it decides whether live shoppers are recorded.  Limited per storefront to 5 changes a minute, 20 an hour and 50 a day. 
      * Turn the storefront\'s screen recording on or off
      */
@@ -18719,6 +18840,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async renderSfvbEmail(requestParameters: RenderSfvbEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbEmailRenderResponse> {
         const response = await this.renderSfvbEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The Conversion HTML as the receipt of that order would inject it: order tokens filled, then Velocity run with $order, $conversion and $formatHelper.  Renders the stored slot, or content when it is sent (a draft, checked as a write is).  Only a test order on this account may be used; a real or unknown order is refused the same way.  Nothing is saved, injected or sent: the receipt\'s provider pixels, analytics and postbacks do not run, and a token that would write something ([CouponForNewAffiliate=...]) is left as written.  Only the conversion slot renders; tracking HTML is checked by staging it in a preview session. 
+     * Render the Conversion HTML against a test order
+     */
+    async renderSfvbTrackingHtmlRaw(requestParameters: RenderSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTrackingHtmlRenderResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling renderSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.slot === null || requestParameters.slot === undefined) {
+            throw new runtime.RequiredError('slot','Required parameter requestParameters.slot was null or undefined when calling renderSfvbTrackingHtml.');
+        }
+
+        if (requestParameters.trackingHtmlRenderRequest === null || requestParameters.trackingHtmlRenderRequest === undefined) {
+            throw new runtime.RequiredError('trackingHtmlRenderRequest','Required parameter requestParameters.trackingHtmlRenderRequest was null or undefined when calling renderSfvbTrackingHtml.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/tracking/html/{slot}/render`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"slot"}}`, encodeURIComponent(String(requestParameters.slot))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbTrackingHtmlRenderRequestToJSON(requestParameters.trackingHtmlRenderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTrackingHtmlRenderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The Conversion HTML as the receipt of that order would inject it: order tokens filled, then Velocity run with $order, $conversion and $formatHelper.  Renders the stored slot, or content when it is sent (a draft, checked as a write is).  Only a test order on this account may be used; a real or unknown order is refused the same way.  Nothing is saved, injected or sent: the receipt\'s provider pixels, analytics and postbacks do not run, and a token that would write something ([CouponForNewAffiliate=...]) is left as written.  Only the conversion slot renders; tracking HTML is checked by staging it in a preview session. 
+     * Render the Conversion HTML against a test order
+     */
+    async renderSfvbTrackingHtml(requestParameters: RenderSfvbTrackingHtmlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTrackingHtmlRenderResponse> {
+        const response = await this.renderSfvbTrackingHtmlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

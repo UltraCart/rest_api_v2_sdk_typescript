@@ -153,6 +153,12 @@ export interface SfvbTrackingProvider {
      */
     oauth?: SfvbTrackingProviderOauth;
     /**
+     * What the provider also sends from UltraCart's servers.  A consent gate holds back only the browser pixel, not these.  Absent when it sends nothing server side.
+     * @type {string}
+     * @memberof SfvbTrackingProvider
+     */
+    server_side?: string;
+    /**
      * For google_analytics, the account number per wholesale pricing tier.
      * @type {Array<SfvbTrackingWholesaleTier>}
      * @memberof SfvbTrackingProvider
@@ -197,6 +203,7 @@ export function SfvbTrackingProviderFromJSONTyped(json: any, ignoreDiscriminator
         'name': !exists(json, 'name') ? undefined : json['name'],
         'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'oauth': !exists(json, 'oauth') ? undefined : SfvbTrackingProviderOauthFromJSON(json['oauth']),
+        'server_side': !exists(json, 'server_side') ? undefined : json['server_side'],
         'wholesale_tiers': !exists(json, 'wholesale_tiers') ? undefined : ((json['wholesale_tiers'] as Array<any>).map(SfvbTrackingWholesaleTierFromJSON)),
     };
 }
@@ -226,6 +233,7 @@ export function SfvbTrackingProviderToJSON(value?: SfvbTrackingProvider | null):
         'name': value.name,
         'notes': value.notes,
         'oauth': SfvbTrackingProviderOauthToJSON(value.oauth),
+        'server_side': value.server_side,
         'wholesale_tiers': value.wholesale_tiers === undefined ? undefined : ((value.wholesale_tiers as Array<any>).map(SfvbTrackingWholesaleTierToJSON)),
     };
 }

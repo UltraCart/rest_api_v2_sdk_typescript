@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbCommsLookupOwner {
     /**
+     * True when the campaign or flow is archived.  It sends nothing, and 'sf comms flows list' or 'campaigns list' shows it only with --include-deleted.
+     * @type {boolean}
+     * @memberof SfvbCommsLookupOwner
+     */
+    archived?: boolean;
+    /**
      * True when it is sending now, by the same rule the sequence read uses.
      * @type {boolean}
      * @memberof SfvbCommsLookupOwner
@@ -72,6 +78,7 @@ export function SfvbCommsLookupOwnerFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'archived': !exists(json, 'archived') ? undefined : json['archived'],
         'live': !exists(json, 'live') ? undefined : json['live'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'status': !exists(json, 'status') ? undefined : json['status'],
@@ -89,6 +96,7 @@ export function SfvbCommsLookupOwnerToJSON(value?: SfvbCommsLookupOwner | null):
     }
     return {
         
+        'archived': value.archived,
         'live': value.live,
         'name': value.name,
         'status': value.status,

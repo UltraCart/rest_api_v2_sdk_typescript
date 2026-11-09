@@ -140,7 +140,7 @@ export interface SfvbApprovalParams {
      */
     step_uuid?: string;
     /**
-     * The tracking provider key, for tracking_provider.change.
+     * The tracking provider key, for tracking_provider.change and tracking_provider.clear.
      * @type {string}
      * @memberof SfvbApprovalParams
      */

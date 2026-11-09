@@ -27,6 +27,12 @@ import {
  */
 export interface SfvbCommsLookupResponse {
     /**
+     * True when the uuid is an archived campaign or flow.  It is still on its storefront and can be read; it sends nothing.
+     * @type {boolean}
+     * @memberof SfvbCommsLookupResponse
+     */
+    archived?: boolean;
+    /**
      * The sequence it belongs to, when there is one.
      * @type {string}
      * @memberof SfvbCommsLookupResponse
@@ -103,6 +109,7 @@ export function SfvbCommsLookupResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'archived': !exists(json, 'archived') ? undefined : json['archived'],
         'communication_sequence_uuid': !exists(json, 'communication_sequence_uuid') ? undefined : json['communication_sequence_uuid'],
         'kind': !exists(json, 'kind') ? undefined : json['kind'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -124,6 +131,7 @@ export function SfvbCommsLookupResponseToJSON(value?: SfvbCommsLookupResponse | 
     }
     return {
         
+        'archived': value.archived,
         'communication_sequence_uuid': value.communication_sequence_uuid,
         'kind': value.kind,
         'name': value.name,
