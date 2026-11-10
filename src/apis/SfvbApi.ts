@@ -327,18 +327,33 @@ import {
     SfvbItemAttributeUpdateRequest,
     SfvbItemAttributeUpdateRequestFromJSON,
     SfvbItemAttributeUpdateRequestToJSON,
+    SfvbItemChildCreateRequest,
+    SfvbItemChildCreateRequestFromJSON,
+    SfvbItemChildCreateRequestToJSON,
+    SfvbItemChildCreateResponse,
+    SfvbItemChildCreateResponseFromJSON,
+    SfvbItemChildCreateResponseToJSON,
     SfvbItemContainersResponse,
     SfvbItemContainersResponseFromJSON,
     SfvbItemContainersResponseToJSON,
     SfvbItemContentRequest,
     SfvbItemContentRequestFromJSON,
     SfvbItemContentRequestToJSON,
+    SfvbItemDefaultPageRequest,
+    SfvbItemDefaultPageRequestFromJSON,
+    SfvbItemDefaultPageRequestToJSON,
+    SfvbItemDefaultPageResponse,
+    SfvbItemDefaultPageResponseFromJSON,
+    SfvbItemDefaultPageResponseToJSON,
     SfvbItemMultimediaDescriptionRequest,
     SfvbItemMultimediaDescriptionRequestFromJSON,
     SfvbItemMultimediaDescriptionRequestToJSON,
     SfvbItemMultimediaRequest,
     SfvbItemMultimediaRequestFromJSON,
     SfvbItemMultimediaRequestToJSON,
+    SfvbItemPages,
+    SfvbItemPagesFromJSON,
+    SfvbItemPagesToJSON,
     SfvbItemPreorder,
     SfvbItemPreorderFromJSON,
     SfvbItemPreorderToJSON,
@@ -369,6 +384,15 @@ import {
     SfvbItemSeoRequest,
     SfvbItemSeoRequestFromJSON,
     SfvbItemSeoRequestToJSON,
+    SfvbItemVariations,
+    SfvbItemVariationsFromJSON,
+    SfvbItemVariationsToJSON,
+    SfvbItemVariationsRequest,
+    SfvbItemVariationsRequestFromJSON,
+    SfvbItemVariationsRequestToJSON,
+    SfvbItemVariationsResponse,
+    SfvbItemVariationsResponseFromJSON,
+    SfvbItemVariationsResponseToJSON,
     SfvbLibraryDeleteResult,
     SfvbLibraryDeleteResultFromJSON,
     SfvbLibraryDeleteResultToJSON,
@@ -1019,6 +1043,11 @@ export interface DryRunSfvbItemAttributeBatchRequest {
     itemAttributeBatchRequest: SfvbItemAttributeBatchRequest;
 }
 
+export interface DryRunSfvbItemDefaultPageRequest {
+    storefrontOid: number;
+    itemDefaultPageRequest: SfvbItemDefaultPageRequest;
+}
+
 export interface DryRunSfvbRedirectDeleteRequest {
     storefrontOid: number;
     redirectDeleteRequest: SfvbRedirectDeleteRequest;
@@ -1331,6 +1360,12 @@ export interface GetSfvbItemRequest {
     merchantItemOid?: number;
 }
 
+export interface GetSfvbItemPagesRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
 export interface GetSfvbItemPreorderRequest {
     storefrontOid: number;
     merchantItemId?: string;
@@ -1350,6 +1385,12 @@ export interface GetSfvbItemPricingRequest {
 }
 
 export interface GetSfvbItemRelatedRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface GetSfvbItemVariationsRequest {
     storefrontOid: number;
     merchantItemId?: string;
     merchantItemOid?: number;
@@ -1671,6 +1712,11 @@ export interface InsertSfvbDocsGapRequest {
     storefrontOid?: number;
 }
 
+export interface InsertSfvbItemChildRequest {
+    storefrontOid: number;
+    itemChildRequest: SfvbItemChildCreateRequest;
+}
+
 export interface InsertSfvbPageRequest {
     storefrontOid: number;
     pageCreateRequest: SfvbPageCreateRequest;
@@ -1976,6 +2022,15 @@ export interface PutSfvbItemSeoRequest {
     itemSeoRequest: SfvbItemSeoRequest;
     merchantItemId?: string;
     merchantItemOid?: number;
+}
+
+export interface PutSfvbItemVariationsRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    itemVariationsRequest: SfvbItemVariationsRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    approvalId?: string;
 }
 
 export interface PutSfvbMenuRequest {
@@ -2315,6 +2370,12 @@ export interface UpdateSfvbFlowStatusRequest {
 export interface UpdateSfvbItemAttributeBatchRequest {
     storefrontOid: number;
     itemAttributeBatchRequest: SfvbItemAttributeBatchRequest;
+    approvalId?: string;
+}
+
+export interface UpdateSfvbItemDefaultPageRequest {
+    storefrontOid: number;
+    itemDefaultPageRequest: SfvbItemDefaultPageRequest;
     approvalId?: string;
 }
 
@@ -3273,6 +3334,23 @@ export interface SfvbApiInterface {
      * Check attribute changes across many items without writing them
      */
     dryRunSfvbItemAttributeBatch(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse>;
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each naming an item and a page it is already on, and saves nothing.  Each row answers ready, already_default, target_not_found, target_not_on_host, target_not_assigned, target_hidden (refused - a hidden page isn\'t served to shoppers), item_not_found, invalid or stale, with the item\'s current default and current_sha256.  rows_sha256 covers the ready rows - request item.default_page with exactly those rows, then apply them. 
+     * @summary Check moving items\' default (canonical) pages
+     * @param {number} storefrontOid 
+     * @param {SfvbItemDefaultPageRequest} itemDefaultPageRequest The rows
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    dryRunSfvbItemDefaultPageRaw(requestParameters: DryRunSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemDefaultPageResponse>>;
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each naming an item and a page it is already on, and saves nothing.  Each row answers ready, already_default, target_not_found, target_not_on_host, target_not_assigned, target_hidden (refused - a hidden page isn\'t served to shoppers), item_not_found, invalid or stale, with the item\'s current default and current_sha256.  rows_sha256 covers the ready rows - request item.default_page with exactly those rows, then apply them. 
+     * Check moving items\' default (canonical) pages
+     */
+    dryRunSfvbItemDefaultPage(requestParameters: DryRunSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemDefaultPageResponse>;
 
     /**
      * Checks up to 5,000 rules by redirect_id and returns each one as deletable, stale (its hash_sha256 differs from the one sent) or not_found, with its current hash, source, target, status, type and note, and a plan_hash.  Writes nothing.  Rows may leave out hash_sha256; the result carries the current one to send when deleting. 
@@ -4351,6 +4429,24 @@ export interface SfvbApiInterface {
     getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
+     * Every page the item is assigned to on this storefront, whether each is visible, and which is the default - the page the item\'s canonical link uses.  Another storefront\'s pages aren\'t listed.  hash_sha256 is the same value the default-page dry run reports as current_sha256.  Address the item by merchant_item_id or merchant_item_oid. 
+     * @summary Read the pages an item is on and its default page
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemPagesRaw(requestParameters: GetSfvbItemPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPages>>;
+
+    /**
+     * Every page the item is assigned to on this storefront, whether each is visible, and which is the default - the page the item\'s canonical link uses.  Another storefront\'s pages aren\'t listed.  hash_sha256 is the same value the default-page dry run reports as current_sha256.  Address the item by merchant_item_id or merchant_item_oid. 
+     * Read the pages an item is on and its default page
+     */
+    getSfvbItemPages(requestParameters: GetSfvbItemPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPages>;
+
+    /**
      * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
      * @summary Read an item\'s pre-order flag and ETA
      * @param {number} storefrontOid 
@@ -4421,6 +4517,24 @@ export interface SfvbApiInterface {
      * Read an item\'s related items
      */
     getSfvbItemRelated(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated>;
+
+    /**
+     * The variation axes, such as Size, with their options in the order shoppers see them, and every filled combination with the child item it sells and its quantity.  A combination not listed has no child, and storefronts show it as unavailable.  hash_sha256 goes back as If-Match on the update.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * @summary Read an item\'s variations
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemVariationsRaw(requestParameters: GetSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemVariations>>;
+
+    /**
+     * The variation axes, such as Size, with their options in the order shoppers see them, and every filled combination with the child item it sells and its quantity.  A combination not listed has no child, and storefronts show it as unavailable.  hash_sha256 goes back as If-Match on the update.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s variations
+     */
+    getSfvbItemVariations(requestParameters: GetSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemVariations>;
 
     /**
      * The owner gets the draft with its hash_sha256, which an update, delete or publish sends back as If-Match.  Everyone else gets the latest published revision.  Pin a published revision with revision_number.  Read content_manifest before installing.  If the fragment references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
@@ -5506,6 +5620,23 @@ export interface SfvbApiInterface {
     insertSfvbDocsGap(requestParameters: InsertSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbDocsGap>;
 
     /**
+     * Creates a new item copying the parent\'s description, cost, weight, dimensions and item folder, so it can be assigned to a combination with the variations update.  It is not assigned here and nothing else is copied.  merchant_item_id may use letters, digits, dot, underscore and dash, at most 20 characters; an id already on the account is 409 sfvb.item_exists.  Needs sfvb_publish when items are live.  dry_run checks without creating. 
+     * @summary Create a child item for a parent\'s variations
+     * @param {number} storefrontOid 
+     * @param {SfvbItemChildCreateRequest} itemChildRequest The child to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbItemChildRaw(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemChildCreateResponse>>;
+
+    /**
+     * Creates a new item copying the parent\'s description, cost, weight, dimensions and item folder, so it can be assigned to a combination with the variations update.  It is not assigned here and nothing else is copied.  merchant_item_id may use letters, digits, dot, underscore and dash, at most 20 characters; an id already on the account is 409 sfvb.item_exists.  Needs sfvb_publish when items are live.  dry_run checks without creating. 
+     * Create a child item for a parent\'s variations
+     */
+    insertSfvbItemChild(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemChildCreateResponse>;
+
+    /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
      * @summary Create a page
      * @param {number} storefrontOid 
@@ -6380,6 +6511,27 @@ export interface SfvbApiInterface {
      * Change an item\'s search metadata
      */
     putSfvbItemSeo(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * A list of changes applied in order - add_axis, remove_axis, rename_axis, add_option, remove_option, rename_option, reorder_options, set_default, set_default_text, set_option_multimedia and set_combination.  Every change is checked before anything is saved, and nothing the list doesn\'t mention changes.  Child items must already exist; create one with POST items/children.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Removing an axis, removing an option whose combinations sell a child, or re-pointing or clearing a combination shoppers can buy today also needs the approval of the person who signed in the CLI - an approved item.variations request for this item and exactly this list.  Adding never does.  dry_run returns the planned variations, what each change does, and whether approval is needed. 
+     * @summary Change an item\'s variations
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the variations read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbItemVariationsRequest} itemVariationsRequest The changes
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {string} [approvalId] The approval_id of an approved item.variations request for this item and list.  Required when the list removes or re-points something shoppers can buy.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemVariationsRaw(requestParameters: PutSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemVariationsResponse>>;
+
+    /**
+     * A list of changes applied in order - add_axis, remove_axis, rename_axis, add_option, remove_option, rename_option, reorder_options, set_default, set_default_text, set_option_multimedia and set_combination.  Every change is checked before anything is saved, and nothing the list doesn\'t mention changes.  Child items must already exist; create one with POST items/children.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Removing an axis, removing an option whose combinations sell a child, or re-pointing or clearing a combination shoppers can buy today also needs the approval of the person who signed in the CLI - an approved item.variations request for this item and exactly this list.  Adding never does.  dry_run returns the planned variations, what each change does, and whether approval is needed. 
+     * Change an item\'s variations
+     */
+    putSfvbItemVariations(requestParameters: PutSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemVariationsResponse>;
 
     /**
      * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
@@ -7380,6 +7532,24 @@ export interface SfvbApiInterface {
      * Change attributes across many items in one call
      */
     updateSfvbItemAttributeBatch(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse>;
+
+    /**
+     * Applies the dry run\'s ready rows with their rows_sha256 under an approved item.default_page request for exactly those rows.  Each item\'s default moves to the named page on this storefront only; every page assignment stays, and nothing else on the item changes.  A row whose pages changed since the dry run is skipped as stale, and one failed row doesn\'t stop the others.  Each row is read back; it answers updated with previous_default_path, so the change can be undone, or failed.  Needs sfvb_publish when items are live. 
+     * @summary Move items\' default (canonical) pages
+     * @param {number} storefrontOid 
+     * @param {SfvbItemDefaultPageRequest} itemDefaultPageRequest The dry run\&#39;s ready rows and rows_sha256
+     * @param {string} [approvalId] The approval_id of an approved item.default_page request for exactly these rows.  Required.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbItemDefaultPageRaw(requestParameters: UpdateSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemDefaultPageResponse>>;
+
+    /**
+     * Applies the dry run\'s ready rows with their rows_sha256 under an approved item.default_page request for exactly those rows.  Each item\'s default moves to the named page on this storefront only; every page assignment stays, and nothing else on the item changes.  A row whose pages changed since the dry run is skipped as stale, and one failed row doesn\'t stop the others.  Each row is read back; it answers updated with previous_default_path, so the change can be undone, or failed.  Needs sfvb_publish when items are live. 
+     * Move items\' default (canonical) pages
+     */
+    updateSfvbItemDefaultPage(requestParameters: UpdateSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemDefaultPageResponse>;
 
     /**
      * A full replace of the draft\'s fields.  Owner only.  Send the hash_sha256 you read as If-Match.  Every save increments revision_number; nothing other merchants see changes until the draft is published.  A changed fragment is re-scanned and its images copied again, and screenshot_stale tells you to retake the screenshot. 
@@ -10076,6 +10246,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async dryRunSfvbItemAttributeBatch(requestParameters: DryRunSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse> {
         const response = await this.dryRunSfvbItemAttributeBatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each naming an item and a page it is already on, and saves nothing.  Each row answers ready, already_default, target_not_found, target_not_on_host, target_not_assigned, target_hidden (refused - a hidden page isn\'t served to shoppers), item_not_found, invalid or stale, with the item\'s current default and current_sha256.  rows_sha256 covers the ready rows - request item.default_page with exactly those rows, then apply them. 
+     * Check moving items\' default (canonical) pages
+     */
+    async dryRunSfvbItemDefaultPageRaw(requestParameters: DryRunSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemDefaultPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling dryRunSfvbItemDefaultPage.');
+        }
+
+        if (requestParameters.itemDefaultPageRequest === null || requestParameters.itemDefaultPageRequest === undefined) {
+            throw new runtime.RequiredError('itemDefaultPageRequest','Required parameter requestParameters.itemDefaultPageRequest was null or undefined when calling dryRunSfvbItemDefaultPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/default_page/dry_run`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemDefaultPageRequestToJSON(requestParameters.itemDefaultPageRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemDefaultPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Checks up to 2,000 rows on up to 200 items, each naming an item and a page it is already on, and saves nothing.  Each row answers ready, already_default, target_not_found, target_not_on_host, target_not_assigned, target_hidden (refused - a hidden page isn\'t served to shoppers), item_not_found, invalid or stale, with the item\'s current default and current_sha256.  rows_sha256 covers the ready rows - request item.default_page with exactly those rows, then apply them. 
+     * Check moving items\' default (canonical) pages
+     */
+    async dryRunSfvbItemDefaultPage(requestParameters: DryRunSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemDefaultPageResponse> {
+        const response = await this.dryRunSfvbItemDefaultPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -12959,6 +13177,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Every page the item is assigned to on this storefront, whether each is visible, and which is the default - the page the item\'s canonical link uses.  Another storefront\'s pages aren\'t listed.  hash_sha256 is the same value the default-page dry run reports as current_sha256.  Address the item by merchant_item_id or merchant_item_oid. 
+     * Read the pages an item is on and its default page
+     */
+    async getSfvbItemPagesRaw(requestParameters: GetSfvbItemPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPages>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemPages.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/pages`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPagesFromJSON(jsonValue));
+    }
+
+    /**
+     * Every page the item is assigned to on this storefront, whether each is visible, and which is the default - the page the item\'s canonical link uses.  Another storefront\'s pages aren\'t listed.  hash_sha256 is the same value the default-page dry run reports as current_sha256.  Address the item by merchant_item_id or merchant_item_oid. 
+     * Read the pages an item is on and its default page
+     */
+    async getSfvbItemPages(requestParameters: GetSfvbItemPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPages> {
+        const response = await this.getSfvbItemPagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
      * Read an item\'s pre-order flag and ETA
      */
@@ -13151,6 +13418,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbItemRelated(requestParameters: GetSfvbItemRelatedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemRelated> {
         const response = await this.getSfvbItemRelatedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The variation axes, such as Size, with their options in the order shoppers see them, and every filled combination with the child item it sells and its quantity.  A combination not listed has no child, and storefronts show it as unavailable.  hash_sha256 goes back as If-Match on the update.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s variations
+     */
+    async getSfvbItemVariationsRaw(requestParameters: GetSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemVariations>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemVariations.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/variations`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemVariationsFromJSON(jsonValue));
+    }
+
+    /**
+     * The variation axes, such as Size, with their options in the order shoppers see them, and every filled combination with the child item it sells and its quantity.  A combination not listed has no child, and storefronts show it as unavailable.  hash_sha256 goes back as If-Match on the update.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s variations
+     */
+    async getSfvbItemVariations(requestParameters: GetSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemVariations> {
+        const response = await this.getSfvbItemVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -16099,6 +16415,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Creates a new item copying the parent\'s description, cost, weight, dimensions and item folder, so it can be assigned to a combination with the variations update.  It is not assigned here and nothing else is copied.  merchant_item_id may use letters, digits, dot, underscore and dash, at most 20 characters; an id already on the account is 409 sfvb.item_exists.  Needs sfvb_publish when items are live.  dry_run checks without creating. 
+     * Create a child item for a parent\'s variations
+     */
+    async insertSfvbItemChildRaw(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemChildCreateResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbItemChild.');
+        }
+
+        if (requestParameters.itemChildRequest === null || requestParameters.itemChildRequest === undefined) {
+            throw new runtime.RequiredError('itemChildRequest','Required parameter requestParameters.itemChildRequest was null or undefined when calling insertSfvbItemChild.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/children`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemChildCreateRequestToJSON(requestParameters.itemChildRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemChildCreateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a new item copying the parent\'s description, cost, weight, dimensions and item folder, so it can be assigned to a combination with the variations update.  It is not assigned here and nothing else is copied.  merchant_item_id may use letters, digits, dot, underscore and dash, at most 20 characters; an id already on the account is 409 sfvb.item_exists.  Needs sfvb_publish when items are live.  dry_run checks without creating. 
+     * Create a child item for a parent\'s variations
+     */
+    async insertSfvbItemChild(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemChildCreateResponse> {
+        const response = await this.insertSfvbItemChildRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
      * Create a page
      */
@@ -18630,6 +18994,74 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbItemSeo(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
         const response = await this.putSfvbItemSeoRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A list of changes applied in order - add_axis, remove_axis, rename_axis, add_option, remove_option, rename_option, reorder_options, set_default, set_default_text, set_option_multimedia and set_combination.  Every change is checked before anything is saved, and nothing the list doesn\'t mention changes.  Child items must already exist; create one with POST items/children.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Removing an axis, removing an option whose combinations sell a child, or re-pointing or clearing a combination shoppers can buy today also needs the approval of the person who signed in the CLI - an approved item.variations request for this item and exactly this list.  Adding never does.  dry_run returns the planned variations, what each change does, and whether approval is needed. 
+     * Change an item\'s variations
+     */
+    async putSfvbItemVariationsRaw(requestParameters: PutSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemVariationsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemVariations.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling putSfvbItemVariations.');
+        }
+
+        if (requestParameters.itemVariationsRequest === null || requestParameters.itemVariationsRequest === undefined) {
+            throw new runtime.RequiredError('itemVariationsRequest','Required parameter requestParameters.itemVariationsRequest was null or undefined when calling putSfvbItemVariations.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/variations`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemVariationsRequestToJSON(requestParameters.itemVariationsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemVariationsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A list of changes applied in order - add_axis, remove_axis, rename_axis, add_option, remove_option, rename_option, reorder_options, set_default, set_default_text, set_option_multimedia and set_combination.  Every change is checked before anything is saved, and nothing the list doesn\'t mention changes.  Child items must already exist; create one with POST items/children.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Removing an axis, removing an option whose combinations sell a child, or re-pointing or clearing a combination shoppers can buy today also needs the approval of the person who signed in the CLI - an approved item.variations request for this item and exactly this list.  Adding never does.  dry_run returns the planned variations, what each change does, and whether approval is needed. 
+     * Change an item\'s variations
+     */
+    async putSfvbItemVariations(requestParameters: PutSfvbItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemVariationsResponse> {
+        const response = await this.putSfvbItemVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -21584,6 +22016,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbItemAttributeBatch(requestParameters: UpdateSfvbItemAttributeBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemAttributeBatchResponse> {
         const response = await this.updateSfvbItemAttributeBatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Applies the dry run\'s ready rows with their rows_sha256 under an approved item.default_page request for exactly those rows.  Each item\'s default moves to the named page on this storefront only; every page assignment stays, and nothing else on the item changes.  A row whose pages changed since the dry run is skipped as stale, and one failed row doesn\'t stop the others.  Each row is read back; it answers updated with previous_default_path, so the change can be undone, or failed.  Needs sfvb_publish when items are live. 
+     * Move items\' default (canonical) pages
+     */
+    async updateSfvbItemDefaultPageRaw(requestParameters: UpdateSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemDefaultPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbItemDefaultPage.');
+        }
+
+        if (requestParameters.itemDefaultPageRequest === null || requestParameters.itemDefaultPageRequest === undefined) {
+            throw new runtime.RequiredError('itemDefaultPageRequest','Required parameter requestParameters.itemDefaultPageRequest was null or undefined when calling updateSfvbItemDefaultPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/default_page`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemDefaultPageRequestToJSON(requestParameters.itemDefaultPageRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemDefaultPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Applies the dry run\'s ready rows with their rows_sha256 under an approved item.default_page request for exactly those rows.  Each item\'s default moves to the named page on this storefront only; every page assignment stays, and nothing else on the item changes.  A row whose pages changed since the dry run is skipped as stale, and one failed row doesn\'t stop the others.  Each row is read back; it answers updated with previous_default_path, so the change can be undone, or failed.  Needs sfvb_publish when items are live. 
+     * Move items\' default (canonical) pages
+     */
+    async updateSfvbItemDefaultPage(requestParameters: UpdateSfvbItemDefaultPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemDefaultPageResponse> {
+        const response = await this.updateSfvbItemDefaultPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

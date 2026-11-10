@@ -68,6 +68,12 @@ import {
     SfvbItemAttributeBatchRowToJSON,
 } from './SfvbItemAttributeBatchRow';
 import {
+    SfvbItemDefaultPageRow,
+    SfvbItemDefaultPageRowFromJSON,
+    SfvbItemDefaultPageRowFromJSONTyped,
+    SfvbItemDefaultPageRowToJSON,
+} from './SfvbItemDefaultPageRow';
+import {
     SfvbItemPreorderChildrenRequest,
     SfvbItemPreorderChildrenRequestFromJSON,
     SfvbItemPreorderChildrenRequestFromJSONTyped,
@@ -85,6 +91,12 @@ import {
     SfvbItemPricingRequestFromJSONTyped,
     SfvbItemPricingRequestToJSON,
 } from './SfvbItemPricingRequest';
+import {
+    SfvbItemVariationsRequest,
+    SfvbItemVariationsRequestFromJSON,
+    SfvbItemVariationsRequestFromJSONTyped,
+    SfvbItemVariationsRequestToJSON,
+} from './SfvbItemVariationsRequest';
 import {
     SfvbRedirectDeleteRow,
     SfvbRedirectDeleteRowFromJSON,
@@ -171,6 +183,12 @@ export interface SfvbApprovalCreateRequest {
      */
     item_attribute_rows?: Array<SfvbItemAttributeBatchRow>;
     /**
+     * For item.default_page, exactly the rows the apply will send - the dry run's ready rows, each with merchant_item_oid, page_oid and current_sha256.  UltraCart keeps only their hash.
+     * @type {Array<SfvbItemDefaultPageRow>}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_default_page_rows?: Array<SfvbItemDefaultPageRow>;
+    /**
      * 
      * @type {SfvbItemPreorderRequest}
      * @memberof SfvbApprovalCreateRequest
@@ -188,6 +206,12 @@ export interface SfvbApprovalCreateRequest {
      * @memberof SfvbApprovalCreateRequest
      */
     item_pricing?: SfvbItemPricingRequest;
+    /**
+     * 
+     * @type {SfvbItemVariationsRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_variations?: SfvbItemVariationsRequest;
     /**
      * 
      * @type {SfvbApprovalParams}
@@ -260,6 +284,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     ItemAttributeBatch: 'item.attribute_batch',
     ItemPricing: 'item.pricing',
     ItemPreorder: 'item.preorder',
+    ItemVariations: 'item.variations',
+    ItemDefaultPage: 'item.default_page',
     TwilioAccountDelete: 'twilio_account.delete',
     SendingDomainDelete: 'sending_domain.delete',
     SequenceStepDelete: 'sequence_step.delete',
@@ -310,9 +336,11 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
         'flow_backfill': !exists(json, 'flow_backfill') ? undefined : SfvbFlowBackfillRequestFromJSON(json['flow_backfill']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
+        'item_default_page_rows': !exists(json, 'item_default_page_rows') ? undefined : ((json['item_default_page_rows'] as Array<any>).map(SfvbItemDefaultPageRowFromJSON)),
         'item_preorder': !exists(json, 'item_preorder') ? undefined : SfvbItemPreorderRequestFromJSON(json['item_preorder']),
         'item_preorder_children': !exists(json, 'item_preorder_children') ? undefined : SfvbItemPreorderChildrenRequestFromJSON(json['item_preorder_children']),
         'item_pricing': !exists(json, 'item_pricing') ? undefined : SfvbItemPricingRequestFromJSON(json['item_pricing']),
+        'item_variations': !exists(json, 'item_variations') ? undefined : SfvbItemVariationsRequestFromJSON(json['item_variations']),
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'postcard_test_mail': !exists(json, 'postcard_test_mail') ? undefined : SfvbCommsTestPostcardRequestFromJSON(json['postcard_test_mail']),
         'reason': !exists(json, 'reason') ? undefined : json['reason'],
@@ -342,9 +370,11 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
         'flow_backfill': SfvbFlowBackfillRequestToJSON(value.flow_backfill),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
+        'item_default_page_rows': value.item_default_page_rows === undefined ? undefined : ((value.item_default_page_rows as Array<any>).map(SfvbItemDefaultPageRowToJSON)),
         'item_preorder': SfvbItemPreorderRequestToJSON(value.item_preorder),
         'item_preorder_children': SfvbItemPreorderChildrenRequestToJSON(value.item_preorder_children),
         'item_pricing': SfvbItemPricingRequestToJSON(value.item_pricing),
+        'item_variations': SfvbItemVariationsRequestToJSON(value.item_variations),
         'params': SfvbApprovalParamsToJSON(value.params),
         'postcard_test_mail': SfvbCommsTestPostcardRequestToJSON(value.postcard_test_mail),
         'reason': value.reason,
