@@ -92,6 +92,12 @@ export interface SfvbTrackingProviderSecrets {
      */
     northbeam_api_key?: string;
     /**
+     * OpenAI Conversions API Key.  A secret handle (sec_...) made for this storefront by POST secrets with sink tracking.openai.conversions_api_key, or an empty string to clear it.
+     * @type {string}
+     * @memberof SfvbTrackingProviderSecrets
+     */
+    openai_conversions_api_key?: string;
+    /**
      * Pinterest Conversion Token.  A secret handle (sec_...) made for this storefront by POST secrets with sink tracking.pinterest.capi_token, or an empty string to clear it.
      * @type {string}
      * @memberof SfvbTrackingProviderSecrets
@@ -144,6 +150,7 @@ export function SfvbTrackingProviderSecretsFromJSONTyped(json: any, ignoreDiscri
         'klaviyo_private_api_key': !exists(json, 'klaviyo_private_api_key') ? undefined : json['klaviyo_private_api_key'],
         'nextdoor_access_token': !exists(json, 'nextdoor_access_token') ? undefined : json['nextdoor_access_token'],
         'northbeam_api_key': !exists(json, 'northbeam_api_key') ? undefined : json['northbeam_api_key'],
+        'openai_conversions_api_key': !exists(json, 'openai_conversions_api_key') ? undefined : json['openai_conversions_api_key'],
         'pinterest_token': !exists(json, 'pinterest_token') ? undefined : json['pinterest_token'],
         'referralcandy_secret_key': !exists(json, 'referralcandy_secret_key') ? undefined : json['referralcandy_secret_key'],
         'retention_key': !exists(json, 'retention_key') ? undefined : json['retention_key'],
@@ -171,6 +178,7 @@ export function SfvbTrackingProviderSecretsToJSON(value?: SfvbTrackingProviderSe
         'klaviyo_private_api_key': value.klaviyo_private_api_key,
         'nextdoor_access_token': value.nextdoor_access_token,
         'northbeam_api_key': value.northbeam_api_key,
+        'openai_conversions_api_key': value.openai_conversions_api_key,
         'pinterest_token': value.pinterest_token,
         'referralcandy_secret_key': value.referralcandy_secret_key,
         'retention_key': value.retention_key,
