@@ -189,6 +189,12 @@ import {
     SfvbContainerWriteRequest,
     SfvbContainerWriteRequestFromJSON,
     SfvbContainerWriteRequestToJSON,
+    SfvbDocsGap,
+    SfvbDocsGapFromJSON,
+    SfvbDocsGapToJSON,
+    SfvbDocsGapReport,
+    SfvbDocsGapReportFromJSON,
+    SfvbDocsGapReportToJSON,
     SfvbElementSchemaResponse,
     SfvbElementSchemaResponseFromJSON,
     SfvbElementSchemaResponseToJSON,
@@ -1231,6 +1237,10 @@ export interface GetSfvbContainerVersionRequest {
     containerName?: string;
 }
 
+export interface GetSfvbDocsGapRequest {
+    reportId: string;
+}
+
 export interface GetSfvbElementRequest {
     elementType: string;
 }
@@ -1630,6 +1640,11 @@ export interface InsertSfvbCommsSendingDomainRequest {
 
 export interface InsertSfvbCommsTwilioAccountRequest {
     twilioAccount: SfvbCommsTwilioAccount;
+}
+
+export interface InsertSfvbDocsGapRequest {
+    docsGapReport: SfvbDocsGapReport;
+    storefrontOid?: number;
 }
 
 export interface InsertSfvbPageRequest {
@@ -4021,6 +4036,22 @@ export interface SfvbApiInterface {
     getSfvbContainerVersion(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersion>;
 
     /**
+     * The status of a report this account sent.  received until UltraCart staff look at it, then accepted, declined or fixed.  The report text and UltraCart\'s internal notes are not returned.  A report from another account answers 404. 
+     * @summary Get a documentation-gap report\'s status
+     * @param {string} reportId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbDocsGapRaw(requestParameters: GetSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbDocsGap>>;
+
+    /**
+     * The status of a report this account sent.  received until UltraCart staff look at it, then accepted, declined or fixed.  The report text and UltraCart\'s internal notes are not returned.  A report from another account answers 404. 
+     * Get a documentation-gap report\'s status
+     */
+    getSfvbDocsGap(requestParameters: GetSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbDocsGap>;
+
+    /**
      * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
      * @summary Configuration schema and field card for one element type
      * @param {string} elementType 
@@ -5379,6 +5410,23 @@ export interface SfvbApiInterface {
      * Connect the Twilio account
      */
     insertSfvbCommsTwilioAccount(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse>;
+
+    /**
+     * Reports a place where docs.ultracart.com is wrong or missing, for UltraCart staff to triage.  Send the report uc-storefront docs gap review checked, in this form.  Optionally name the storefront the agent was working on with storefront_oid.  The server checks the report again and refuses one that holds a credential or an email address (an ultracart.com address may stay), without keeping it.  Sending the same report again returns the earlier report_id with 200 and duplicate true rather than a second report.  An account may send 20 reports a UTC day.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * @summary Send UltraCart a documentation-gap report
+     * @param {SfvbDocsGapReport} docsGapReport The report
+     * @param {number} [storefrontOid] The storefront the agent was working on, recorded for context.  Leave it out when none applies.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbDocsGapRaw(requestParameters: InsertSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbDocsGap>>;
+
+    /**
+     * Reports a place where docs.ultracart.com is wrong or missing, for UltraCart staff to triage.  Send the report uc-storefront docs gap review checked, in this form.  Optionally name the storefront the agent was working on with storefront_oid.  The server checks the report again and refuses one that holds a credential or an email address (an ultracart.com address may stay), without keeping it.  Sending the same report again returns the earlier report_id with 200 and duplicate true rather than a second report.  An account may send 20 reports a UTC day.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Send UltraCart a documentation-gap report
+     */
+    insertSfvbDocsGap(requestParameters: InsertSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbDocsGap>;
 
     /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
@@ -12066,6 +12114,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The status of a report this account sent.  received until UltraCart staff look at it, then accepted, declined or fixed.  The report text and UltraCart\'s internal notes are not returned.  A report from another account answers 404. 
+     * Get a documentation-gap report\'s status
+     */
+    async getSfvbDocsGapRaw(requestParameters: GetSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbDocsGap>> {
+        if (requestParameters.reportId === null || requestParameters.reportId === undefined) {
+            throw new runtime.RequiredError('reportId','Required parameter requestParameters.reportId was null or undefined when calling getSfvbDocsGap.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/docs/gaps/{report_id}`.replace(`{${"report_id"}}`, encodeURIComponent(String(requestParameters.reportId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbDocsGapFromJSON(jsonValue));
+    }
+
+    /**
+     * The status of a report this account sent.  received until UltraCart staff look at it, then accepted, declined or fixed.  The report text and UltraCart\'s internal notes are not returned.  A report from another account answers 404. 
+     * Get a documentation-gap report\'s status
+     */
+    async getSfvbDocsGap(requestParameters: GetSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbDocsGap> {
+        const response = await this.getSfvbDocsGapRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
      * Configuration schema and field card for one element type
      */
@@ -15742,6 +15831,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbCommsTwilioAccount(requestParameters: InsertSfvbCommsTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCommsTwilioAccountResponse> {
         const response = await this.insertSfvbCommsTwilioAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Reports a place where docs.ultracart.com is wrong or missing, for UltraCart staff to triage.  Send the report uc-storefront docs gap review checked, in this form.  Optionally name the storefront the agent was working on with storefront_oid.  The server checks the report again and refuses one that holds a credential or an email address (an ultracart.com address may stay), without keeping it.  Sending the same report again returns the earlier report_id with 200 and duplicate true rather than a second report.  An account may send 20 reports a UTC day.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Send UltraCart a documentation-gap report
+     */
+    async insertSfvbDocsGapRaw(requestParameters: InsertSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbDocsGap>> {
+        if (requestParameters.docsGapReport === null || requestParameters.docsGapReport === undefined) {
+            throw new runtime.RequiredError('docsGapReport','Required parameter requestParameters.docsGapReport was null or undefined when calling insertSfvbDocsGap.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.storefrontOid !== undefined) {
+            queryParameters['storefront_oid'] = requestParameters.storefrontOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/docs/gaps`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbDocsGapReportToJSON(requestParameters.docsGapReport),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbDocsGapFromJSON(jsonValue));
+    }
+
+    /**
+     * Reports a place where docs.ultracart.com is wrong or missing, for UltraCart staff to triage.  Send the report uc-storefront docs gap review checked, in this form.  Optionally name the storefront the agent was working on with storefront_oid.  The server checks the report again and refuses one that holds a credential or an email address (an ultracart.com address may stay), without keeping it.  Sending the same report again returns the earlier report_id with 200 and duplicate true rather than a second report.  An account may send 20 reports a UTC day.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Send UltraCart a documentation-gap report
+     */
+    async insertSfvbDocsGap(requestParameters: InsertSfvbDocsGapRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbDocsGap> {
+        const response = await this.insertSfvbDocsGapRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

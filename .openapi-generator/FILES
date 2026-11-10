@@ -1088,6 +1088,9 @@ src/models/SfvbContainerRevertRequest.ts
 src/models/SfvbContainerVersion.ts
 src/models/SfvbContainerVersionsResponse.ts
 src/models/SfvbContainerWriteRequest.ts
+src/models/SfvbDocsGap.ts
+src/models/SfvbDocsGapReport.ts
+src/models/SfvbDocsGapReportGap.ts
 src/models/SfvbElement.ts
 src/models/SfvbElementSchemaResponse.ts
 src/models/SfvbElementsResponse.ts
