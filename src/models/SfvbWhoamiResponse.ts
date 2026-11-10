@@ -45,6 +45,12 @@ export interface SfvbWhoamiResponse {
      */
     authentication_type?: string;
     /**
+     * True when this token may change item data.  Needs can_write, and the UltraCart user behind the token must hold Edit Items.  A token with no user is judged on its scopes alone.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    can_edit_items?: boolean;
+    /**
      * True when this token may write a target that is currently live - an active upsell offer, an email on a delivering flow, the active theme, the storefront root.  Never infer this; it is the difference between a draft edit and a shopper visible change.
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
@@ -62,6 +68,12 @@ export interface SfvbWhoamiResponse {
      * @memberof SfvbWhoamiResponse
      */
     can_read?: boolean;
+    /**
+     * True when this token may read item data - the item, its pricing, pre-order and related items.  Needs can_read, and the UltraCart user behind the token must hold View Items or Edit Items.  A token with no user is judged on its scopes alone.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    can_read_items?: boolean;
     /**
      * True when this token may write.  Writing a target that is not currently live needs only this.
      * @type {boolean}
@@ -136,9 +148,11 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'acting_as_user': !exists(json, 'acting_as_user') ? undefined : json['acting_as_user'],
         'application_name': !exists(json, 'application_name') ? undefined : json['application_name'],
         'authentication_type': !exists(json, 'authentication_type') ? undefined : json['authentication_type'],
+        'can_edit_items': !exists(json, 'can_edit_items') ? undefined : json['can_edit_items'],
         'can_publish': !exists(json, 'can_publish') ? undefined : json['can_publish'],
         'can_publish_public': !exists(json, 'can_publish_public') ? undefined : json['can_publish_public'],
         'can_read': !exists(json, 'can_read') ? undefined : json['can_read'],
+        'can_read_items': !exists(json, 'can_read_items') ? undefined : json['can_read_items'],
         'can_write': !exists(json, 'can_write') ? undefined : json['can_write'],
         'device_scope': !exists(json, 'device_scope') ? undefined : json['device_scope'],
         'login': !exists(json, 'login') ? undefined : json['login'],
@@ -162,9 +176,11 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
         'acting_as_user': value.acting_as_user,
         'application_name': value.application_name,
         'authentication_type': value.authentication_type,
+        'can_edit_items': value.can_edit_items,
         'can_publish': value.can_publish,
         'can_publish_public': value.can_publish_public,
         'can_read': value.can_read,
+        'can_read_items': value.can_read_items,
         'can_write': value.can_write,
         'device_scope': value.device_scope,
         'login': value.login,

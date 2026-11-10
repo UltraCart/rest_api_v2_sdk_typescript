@@ -50,6 +50,12 @@ export interface TaxJarConfig {
      */
     send_test_orders?: boolean;
     /**
+     * Only calculate tax for states within your nexus.  Requires send_outside_nexus to be true.  When true, orders outside your nexus are still transmitted to TaxJar for nexus tracking, but no tax calculation is requested for them, reducing API calls.
+     * @type {boolean}
+     * @memberof TaxJarConfig
+     */
+    skip_calculation_outside_nexus?: boolean;
+    /**
      * Do not send channel partner orders to TaxJar.  Set this to true if your channel partner reports tax on their own.
      * @type {boolean}
      * @memberof TaxJarConfig
@@ -89,6 +95,7 @@ export function TaxJarConfigFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'estimate_only': !exists(json, 'estimate_only') ? undefined : json['estimate_only'],
         'send_outside_nexus': !exists(json, 'send_outside_nexus') ? undefined : json['send_outside_nexus'],
         'send_test_orders': !exists(json, 'send_test_orders') ? undefined : json['send_test_orders'],
+        'skip_calculation_outside_nexus': !exists(json, 'skip_calculation_outside_nexus') ? undefined : json['skip_calculation_outside_nexus'],
         'skip_channel_orders': !exists(json, 'skip_channel_orders') ? undefined : json['skip_channel_orders'],
         'use_distribution_center_from': !exists(json, 'use_distribution_center_from') ? undefined : json['use_distribution_center_from'],
     };
@@ -108,6 +115,7 @@ export function TaxJarConfigToJSON(value?: TaxJarConfig | null): any {
         'estimate_only': value.estimate_only,
         'send_outside_nexus': value.send_outside_nexus,
         'send_test_orders': value.send_test_orders,
+        'skip_calculation_outside_nexus': value.skip_calculation_outside_nexus,
         'skip_channel_orders': value.skip_channel_orders,
         'use_distribution_center_from': value.use_distribution_center_from,
     };

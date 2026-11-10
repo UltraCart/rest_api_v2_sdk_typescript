@@ -68,6 +68,18 @@ import {
     SfvbItemAttributeBatchRowToJSON,
 } from './SfvbItemAttributeBatchRow';
 import {
+    SfvbItemPreorderChildrenRequest,
+    SfvbItemPreorderChildrenRequestFromJSON,
+    SfvbItemPreorderChildrenRequestFromJSONTyped,
+    SfvbItemPreorderChildrenRequestToJSON,
+} from './SfvbItemPreorderChildrenRequest';
+import {
+    SfvbItemPreorderRequest,
+    SfvbItemPreorderRequestFromJSON,
+    SfvbItemPreorderRequestFromJSONTyped,
+    SfvbItemPreorderRequestToJSON,
+} from './SfvbItemPreorderRequest';
+import {
     SfvbItemPricingRequest,
     SfvbItemPricingRequestFromJSON,
     SfvbItemPricingRequestFromJSONTyped,
@@ -160,6 +172,18 @@ export interface SfvbApprovalCreateRequest {
     item_attribute_rows?: Array<SfvbItemAttributeBatchRow>;
     /**
      * 
+     * @type {SfvbItemPreorderRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_preorder?: SfvbItemPreorderRequest;
+    /**
+     * 
+     * @type {SfvbItemPreorderChildrenRequest}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    item_preorder_children?: SfvbItemPreorderChildrenRequest;
+    /**
+     * 
      * @type {SfvbItemPricingRequest}
      * @memberof SfvbApprovalCreateRequest
      */
@@ -235,6 +259,7 @@ export const SfvbApprovalCreateRequestActionEnum = {
     UpsellEnable: 'upsell.enable',
     ItemAttributeBatch: 'item.attribute_batch',
     ItemPricing: 'item.pricing',
+    ItemPreorder: 'item.preorder',
     TwilioAccountDelete: 'twilio_account.delete',
     SendingDomainDelete: 'sending_domain.delete',
     SequenceStepDelete: 'sequence_step.delete',
@@ -285,6 +310,8 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
         'flow_backfill': !exists(json, 'flow_backfill') ? undefined : SfvbFlowBackfillRequestFromJSON(json['flow_backfill']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
+        'item_preorder': !exists(json, 'item_preorder') ? undefined : SfvbItemPreorderRequestFromJSON(json['item_preorder']),
+        'item_preorder_children': !exists(json, 'item_preorder_children') ? undefined : SfvbItemPreorderChildrenRequestFromJSON(json['item_preorder_children']),
         'item_pricing': !exists(json, 'item_pricing') ? undefined : SfvbItemPricingRequestFromJSON(json['item_pricing']),
         'params': !exists(json, 'params') ? undefined : SfvbApprovalParamsFromJSON(json['params']),
         'postcard_test_mail': !exists(json, 'postcard_test_mail') ? undefined : SfvbCommsTestPostcardRequestFromJSON(json['postcard_test_mail']),
@@ -315,6 +342,8 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
         'flow_backfill': SfvbFlowBackfillRequestToJSON(value.flow_backfill),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),
+        'item_preorder': SfvbItemPreorderRequestToJSON(value.item_preorder),
+        'item_preorder_children': SfvbItemPreorderChildrenRequestToJSON(value.item_preorder_children),
         'item_pricing': SfvbItemPricingRequestToJSON(value.item_pricing),
         'params': SfvbApprovalParamsToJSON(value.params),
         'postcard_test_mail': SfvbCommsTestPostcardRequestToJSON(value.postcard_test_mail),

@@ -339,6 +339,18 @@ import {
     SfvbItemMultimediaRequest,
     SfvbItemMultimediaRequestFromJSON,
     SfvbItemMultimediaRequestToJSON,
+    SfvbItemPreorder,
+    SfvbItemPreorderFromJSON,
+    SfvbItemPreorderToJSON,
+    SfvbItemPreorderChildrenRequest,
+    SfvbItemPreorderChildrenRequestFromJSON,
+    SfvbItemPreorderChildrenRequestToJSON,
+    SfvbItemPreorderListResponse,
+    SfvbItemPreorderListResponseFromJSON,
+    SfvbItemPreorderListResponseToJSON,
+    SfvbItemPreorderRequest,
+    SfvbItemPreorderRequestFromJSON,
+    SfvbItemPreorderRequestToJSON,
     SfvbItemPricing,
     SfvbItemPricingFromJSON,
     SfvbItemPricingToJSON,
@@ -1319,6 +1331,18 @@ export interface GetSfvbItemRequest {
     merchantItemOid?: number;
 }
 
+export interface GetSfvbItemPreorderRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface GetSfvbItemPreorderChildrenRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
 export interface GetSfvbItemPricingRequest {
     storefrontOid: number;
     merchantItemId?: string;
@@ -1911,6 +1935,23 @@ export interface PutSfvbItemMultimediaDescriptionRequest {
     itemMultimediaDescriptionRequest: SfvbItemMultimediaDescriptionRequest;
     merchantItemId?: string;
     merchantItemOid?: number;
+}
+
+export interface PutSfvbItemPreorderRequest {
+    storefrontOid: number;
+    ifMatch: string;
+    itemPreorderRequest: SfvbItemPreorderRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    approvalId?: string;
+}
+
+export interface PutSfvbItemPreorderChildrenRequest {
+    storefrontOid: number;
+    itemPreorderChildrenRequest: SfvbItemPreorderChildrenRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    approvalId?: string;
 }
 
 export interface PutSfvbItemPricingRequest {
@@ -4310,6 +4351,42 @@ export interface SfvbApiInterface {
     getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
+     * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
+     * @summary Read an item\'s pre-order flag and ETA
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemPreorderRaw(requestParameters: GetSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorder>>;
+
+    /**
+     * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s pre-order flag and ETA
+     */
+    getSfvbItemPreorder(requestParameters: GetSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorder>;
+
+    /**
+     * The parent\'s own values and each variation\'s, with the option values that pick it (such as Size 2T) and its hash_sha256 to send when changing it.  Read fresh, never from a cache.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * @summary Read the pre-order flag and ETA of a parent item\'s variations
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemPreorderChildrenRaw(requestParameters: GetSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorderListResponse>>;
+
+    /**
+     * The parent\'s own values and each variation\'s, with the option values that pick it (such as Size 2T) and its hash_sha256 to send when changing it.  Read fresh, never from a cache.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read the pre-order flag and ETA of a parent item\'s variations
+     */
+    getSfvbItemPreorderChildren(requestParameters: GetSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorderListResponse>;
+
+    /**
      * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
      * @summary Read what an item charges
      * @param {number} storefrontOid 
@@ -6202,6 +6279,47 @@ export interface SfvbApiInterface {
      * Change an item image\'s description
      */
     putSfvbItemMultimediaDescription(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * Partial - a field left out is untouched, and nothing else on the item changes.  eta is YYYY-MM-DD; clear_eta removes it.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Putting the item on or off pre-order also needs the approval of the person who signed in the CLI - an approved item.preorder request for this item and exactly this change - because a pre-order item can be ordered while out of stock and its orders go to the Pre-ordered stage.  An ETA-only change needs no approval.  A change that sets every field to what it already is returns the item unchanged.  The answer has the values before and after, what shoppers now see, and warnings such as an ETA in the past. 
+     * @summary Change an item\'s pre-order flag or ETA
+     * @param {number} storefrontOid 
+     * @param {string} ifMatch hash_sha256 from the pre-order read.  Required; 428 when absent, 412 when stale.
+     * @param {SfvbItemPreorderRequest} itemPreorderRequest The change
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {string} [approvalId] The approval_id of an approved item.preorder request for this item and change.  Required when the change puts the item on or off pre-order.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemPreorderRaw(requestParameters: PutSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorder>>;
+
+    /**
+     * Partial - a field left out is untouched, and nothing else on the item changes.  eta is YYYY-MM-DD; clear_eta removes it.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Putting the item on or off pre-order also needs the approval of the person who signed in the CLI - an approved item.preorder request for this item and exactly this change - because a pre-order item can be ordered while out of stock and its orders go to the Pre-ordered stage.  An ETA-only change needs no approval.  A change that sets every field to what it already is returns the item unchanged.  The answer has the values before and after, what shoppers now see, and warnings such as an ETA in the past. 
+     * Change an item\'s pre-order flag or ETA
+     */
+    putSfvbItemPreorder(requestParameters: PutSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorder>;
+
+    /**
+     * The same change for each variation named, 1 to 100, by its merchant item id or by an option value only one variation has (such as 2T), each with the hash_sha256 from the children read.  All or nothing - every row is checked before any variation is saved, and an unknown, ambiguous, repeated or stale row refuses the whole call.  Putting any of them on or off pre-order needs one approved item.preorder request for the parent and exactly this change; an ETA-only change needs none.  Needs sfvb_publish when items are live.  Each variation is saved on its own, so if a save itself fails part way the error names the variations already saved. 
+     * @summary Change the pre-order flag or ETA of several variations of one parent
+     * @param {number} storefrontOid 
+     * @param {SfvbItemPreorderChildrenRequest} itemPreorderChildrenRequest The change and the variations
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {string} [approvalId] The approval_id of an approved item.preorder request for the parent and this change.  Required when the change puts any variation on or off pre-order.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemPreorderChildrenRaw(requestParameters: PutSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorderListResponse>>;
+
+    /**
+     * The same change for each variation named, 1 to 100, by its merchant item id or by an option value only one variation has (such as 2T), each with the hash_sha256 from the children read.  All or nothing - every row is checked before any variation is saved, and an unknown, ambiguous, repeated or stale row refuses the whole call.  Putting any of them on or off pre-order needs one approved item.preorder request for the parent and exactly this change; an ETA-only change needs none.  Needs sfvb_publish when items are live.  Each variation is saved on its own, so if a save itself fails part way the error names the variations already saved. 
+     * Change the pre-order flag or ETA of several variations of one parent
+     */
+    putSfvbItemPreorderChildren(requestParameters: PutSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorderListResponse>;
 
     /**
      * Partial - a field left out is untouched.  A sale needs sale_cost, sale_start and sale_end together, the end after the start; clear_sale removes it.  msrp must be more than 0 (0 only when the price is 0); clear_msrp removes it.  volume_discounts replaces the retail quantity breaks.  Shoppers pay the new price at once, so this needs sfvb_publish, If-Match with the pricing hash_sha256, and the approval of the person who signed in the CLI - an approved item.pricing request for this item and exactly this change.  A change that sets every field to what it already is returns the pricing unchanged and uses no approval. 
@@ -12841,6 +12959,104 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s pre-order flag and ETA
+     */
+    async getSfvbItemPreorderRaw(requestParameters: GetSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorder>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemPreorder.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/preorder`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPreorderFromJSON(jsonValue));
+    }
+
+    /**
+     * Whether the item is on pre-order, its ETA, and what itempreorder shows shoppers because of them, with a hash_sha256 to send as If-Match when changing them.  A variation is an item of its own and can be read here; read a parent\'s variations together with GET items/preorder/children.  Address by merchant_item_id or merchant_item_oid. 
+     * Read an item\'s pre-order flag and ETA
+     */
+    async getSfvbItemPreorder(requestParameters: GetSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorder> {
+        const response = await this.getSfvbItemPreorderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The parent\'s own values and each variation\'s, with the option values that pick it (such as Size 2T) and its hash_sha256 to send when changing it.  Read fresh, never from a cache.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read the pre-order flag and ETA of a parent item\'s variations
+     */
+    async getSfvbItemPreorderChildrenRaw(requestParameters: GetSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorderListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItemPreorderChildren.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/preorder/children`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPreorderListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The parent\'s own values and each variation\'s, with the option values that pick it (such as Size 2T) and its hash_sha256 to send when changing it.  Read fresh, never from a cache.  Address the parent by merchant_item_id or merchant_item_oid. 
+     * Read the pre-order flag and ETA of a parent item\'s variations
+     */
+    async getSfvbItemPreorderChildren(requestParameters: GetSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorderListResponse> {
+        const response = await this.getSfvbItemPreorderChildrenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Price, sale (with whether it applies now), MSRP and retail volume pricing - what itemprice, itemsale, itemmsrp, itemsavings and itemvolumediscounts render - with a hash_sha256 to send as If-Match when changing it.  Wholesale pricing tiers are not shown.  Address by merchant_item_id or merchant_item_oid. 
      * Read what an item charges
      */
@@ -18098,6 +18314,134 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbItemMultimediaDescription(requestParameters: PutSfvbItemMultimediaDescriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
         const response = await this.putSfvbItemMultimediaDescriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Partial - a field left out is untouched, and nothing else on the item changes.  eta is YYYY-MM-DD; clear_eta removes it.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Putting the item on or off pre-order also needs the approval of the person who signed in the CLI - an approved item.preorder request for this item and exactly this change - because a pre-order item can be ordered while out of stock and its orders go to the Pre-ordered stage.  An ETA-only change needs no approval.  A change that sets every field to what it already is returns the item unchanged.  The answer has the values before and after, what shoppers now see, and warnings such as an ETA in the past. 
+     * Change an item\'s pre-order flag or ETA
+     */
+    async putSfvbItemPreorderRaw(requestParameters: PutSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorder>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemPreorder.');
+        }
+
+        if (requestParameters.ifMatch === null || requestParameters.ifMatch === undefined) {
+            throw new runtime.RequiredError('ifMatch','Required parameter requestParameters.ifMatch was null or undefined when calling putSfvbItemPreorder.');
+        }
+
+        if (requestParameters.itemPreorderRequest === null || requestParameters.itemPreorderRequest === undefined) {
+            throw new runtime.RequiredError('itemPreorderRequest','Required parameter requestParameters.itemPreorderRequest was null or undefined when calling putSfvbItemPreorder.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/preorder`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemPreorderRequestToJSON(requestParameters.itemPreorderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPreorderFromJSON(jsonValue));
+    }
+
+    /**
+     * Partial - a field left out is untouched, and nothing else on the item changes.  eta is YYYY-MM-DD; clear_eta removes it.  Needs sfvb_publish when items are live and If-Match with the hash_sha256 from the read.  Putting the item on or off pre-order also needs the approval of the person who signed in the CLI - an approved item.preorder request for this item and exactly this change - because a pre-order item can be ordered while out of stock and its orders go to the Pre-ordered stage.  An ETA-only change needs no approval.  A change that sets every field to what it already is returns the item unchanged.  The answer has the values before and after, what shoppers now see, and warnings such as an ETA in the past. 
+     * Change an item\'s pre-order flag or ETA
+     */
+    async putSfvbItemPreorder(requestParameters: PutSfvbItemPreorderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorder> {
+        const response = await this.putSfvbItemPreorderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The same change for each variation named, 1 to 100, by its merchant item id or by an option value only one variation has (such as 2T), each with the hash_sha256 from the children read.  All or nothing - every row is checked before any variation is saved, and an unknown, ambiguous, repeated or stale row refuses the whole call.  Putting any of them on or off pre-order needs one approved item.preorder request for the parent and exactly this change; an ETA-only change needs none.  Needs sfvb_publish when items are live.  Each variation is saved on its own, so if a save itself fails part way the error names the variations already saved. 
+     * Change the pre-order flag or ETA of several variations of one parent
+     */
+    async putSfvbItemPreorderChildrenRaw(requestParameters: PutSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemPreorderListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemPreorderChildren.');
+        }
+
+        if (requestParameters.itemPreorderChildrenRequest === null || requestParameters.itemPreorderChildrenRequest === undefined) {
+            throw new runtime.RequiredError('itemPreorderChildrenRequest','Required parameter requestParameters.itemPreorderChildrenRequest was null or undefined when calling putSfvbItemPreorderChildren.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/preorder/children`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemPreorderChildrenRequestToJSON(requestParameters.itemPreorderChildrenRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemPreorderListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The same change for each variation named, 1 to 100, by its merchant item id or by an option value only one variation has (such as 2T), each with the hash_sha256 from the children read.  All or nothing - every row is checked before any variation is saved, and an unknown, ambiguous, repeated or stale row refuses the whole call.  Putting any of them on or off pre-order needs one approved item.preorder request for the parent and exactly this change; an ETA-only change needs none.  Needs sfvb_publish when items are live.  Each variation is saved on its own, so if a save itself fails part way the error names the variations already saved. 
+     * Change the pre-order flag or ETA of several variations of one parent
+     */
+    async putSfvbItemPreorderChildren(requestParameters: PutSfvbItemPreorderChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemPreorderListResponse> {
+        const response = await this.putSfvbItemPreorderChildrenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

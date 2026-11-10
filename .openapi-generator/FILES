@@ -1155,6 +1155,13 @@ src/models/SfvbItemContentRequest.ts
 src/models/SfvbItemMultimedia.ts
 src/models/SfvbItemMultimediaDescriptionRequest.ts
 src/models/SfvbItemMultimediaRequest.ts
+src/models/SfvbItemPreorder.ts
+src/models/SfvbItemPreorderChange.ts
+src/models/SfvbItemPreorderChildRow.ts
+src/models/SfvbItemPreorderChildrenRequest.ts
+src/models/SfvbItemPreorderListResponse.ts
+src/models/SfvbItemPreorderOption.ts
+src/models/SfvbItemPreorderRequest.ts
 src/models/SfvbItemPricing.ts
 src/models/SfvbItemPricingRequest.ts
 src/models/SfvbItemRelated.ts
