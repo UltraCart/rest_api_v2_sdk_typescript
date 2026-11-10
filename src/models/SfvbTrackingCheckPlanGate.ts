@@ -26,6 +26,12 @@ export interface SfvbTrackingCheckPlanGate {
      */
     region?: SfvbTrackingCheckPlanGateRegionEnum;
     /**
+     * The cookie service the consent gate is stored under, for example openai or facebook (#1959).
+     * @type {string}
+     * @memberof SfvbTrackingCheckPlanGate
+     */
+    service?: string;
+    /**
      * The consent category that must be granted.  Statistics, Preferences or Marketing.
      * @type {string}
      * @memberof SfvbTrackingCheckPlanGate
@@ -76,6 +82,7 @@ export function SfvbTrackingCheckPlanGateFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'region': !exists(json, 'region') ? undefined : json['region'],
+        'service': !exists(json, 'service') ? undefined : json['service'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
 }
@@ -90,6 +97,7 @@ export function SfvbTrackingCheckPlanGateToJSON(value?: SfvbTrackingCheckPlanGat
     return {
         
         'region': value.region,
+        'service': value.service,
         'type': value.type,
     };
 }

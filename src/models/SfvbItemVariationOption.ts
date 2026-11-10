@@ -24,7 +24,7 @@ export interface SfvbItemVariationOption {
      * @type {boolean}
      * @memberof SfvbItemVariationOption
      */
-    _default?: boolean;
+    default_option?: boolean;
     /**
      * An image or swatch of the parent item shown for this option, or null.
      * @type {number}
@@ -60,7 +60,7 @@ export function SfvbItemVariationOptionFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        '_default': !exists(json, 'default') ? undefined : json['default'],
+        'default_option': !exists(json, 'default_option') ? undefined : json['default_option'],
         'multimedia_oid': !exists(json, 'multimedia_oid') ? undefined : json['multimedia_oid'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
@@ -75,7 +75,7 @@ export function SfvbItemVariationOptionToJSON(value?: SfvbItemVariationOption | 
     }
     return {
         
-        'default': value._default,
+        'default_option': value.default_option,
         'multimedia_oid': value.multimedia_oid,
         'value': value.value,
     };

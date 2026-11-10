@@ -49,7 +49,7 @@ export interface SfvbItemVariationChange {
      * @type {boolean}
      * @memberof SfvbItemVariationChange
      */
-    _default?: boolean;
+    default_option?: boolean;
     /**
      * The prompt, for add_axis and set_default_text.  Null clears it.
      * @type {string}
@@ -124,7 +124,7 @@ export function SfvbItemVariationChangeFromJSONTyped(json: any, ignoreDiscrimina
         'axis': !exists(json, 'axis') ? undefined : json['axis'],
         'before': !exists(json, 'before') ? undefined : json['before'],
         'child': !exists(json, 'child') ? undefined : json['child'],
-        '_default': !exists(json, 'default') ? undefined : json['default'],
+        'default_option': !exists(json, 'default_option') ? undefined : json['default_option'],
         'default_text': !exists(json, 'default_text') ? undefined : json['default_text'],
         'multimedia_oid': !exists(json, 'multimedia_oid') ? undefined : json['multimedia_oid'],
         'op': !exists(json, 'op') ? undefined : json['op'],
@@ -148,7 +148,7 @@ export function SfvbItemVariationChangeToJSON(value?: SfvbItemVariationChange | 
         'axis': value.axis,
         'before': value.before,
         'child': value.child,
-        'default': value._default,
+        'default_option': value.default_option,
         'default_text': value.default_text,
         'multimedia_oid': value.multimedia_oid,
         'op': value.op,
