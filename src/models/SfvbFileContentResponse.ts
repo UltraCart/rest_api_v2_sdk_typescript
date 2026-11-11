@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbErrorDetail,
+    SfvbErrorDetailFromJSON,
+    SfvbErrorDetailFromJSONTyped,
+    SfvbErrorDetailToJSON,
+} from './SfvbErrorDetail';
+
 /**
  * 
  * @export
@@ -49,6 +56,12 @@ export interface SfvbFileContentResponse {
      * @memberof SfvbFileContentResponse
      */
     merge_conflict?: boolean;
+    /**
+     * 
+     * @type {SfvbErrorDetail}
+     * @memberof SfvbFileContentResponse
+     */
+    metadata_error?: SfvbErrorDetail;
     /**
      * Mime type.
      * @type {string}
@@ -119,6 +132,7 @@ export function SfvbFileContentResponseFromJSONTyped(json: any, ignoreDiscrimina
         'fs_file_oid': !exists(json, 'fs_file_oid') ? undefined : json['fs_file_oid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'merge_conflict': !exists(json, 'merge_conflict') ? undefined : json['merge_conflict'],
+        'metadata_error': !exists(json, 'metadata_error') ? undefined : SfvbErrorDetailFromJSON(json['metadata_error']),
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'size': !exists(json, 'size') ? undefined : json['size'],
@@ -143,6 +157,7 @@ export function SfvbFileContentResponseToJSON(value?: SfvbFileContentResponse | 
         'fs_file_oid': value.fs_file_oid,
         'hash_sha256': value.hash_sha256,
         'merge_conflict': value.merge_conflict,
+        'metadata_error': SfvbErrorDetailToJSON(value.metadata_error),
         'mime_type': value.mime_type,
         'path': value.path,
         'size': value.size,

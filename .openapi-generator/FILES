@@ -1016,6 +1016,7 @@ src/models/SfvbCampaignMembership.ts
 src/models/SfvbCampaignWriteRequest.ts
 src/models/SfvbCampaignsResponse.ts
 src/models/SfvbCliAccess.ts
+src/models/SfvbCliVersion.ts
 src/models/SfvbCodeLibraryEmail.ts
 src/models/SfvbCodeLibraryEmailsResponse.ts
 src/models/SfvbCommsBranchStat.ts

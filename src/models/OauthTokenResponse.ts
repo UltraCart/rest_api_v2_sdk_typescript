@@ -62,11 +62,23 @@ export interface OauthTokenResponse {
      */
     merchant_id?: string;
     /**
+     * With error_code sfvb.cli_upgrade_required, the lowest StoreFront CLI version the server supports.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    minimum_version?: string;
+    /**
      * With error_code sfvb.beta_access_required, the merchant id that was refused.
      * @type {string}
      * @memberof OauthTokenResponse
      */
     object_id?: string;
+    /**
+     * With error_code sfvb.cli_upgrade_required, the StoreFront CLI version to install.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    recommended_version?: string;
     /**
      * The refresh token that should be used to fetch a new access token when the expiration occurs
      * @type {string}
@@ -130,7 +142,9 @@ export function OauthTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'error_uri': !exists(json, 'error_uri') ? undefined : json['error_uri'],
         'expires_in': !exists(json, 'expires_in') ? undefined : json['expires_in'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'minimum_version': !exists(json, 'minimum_version') ? undefined : json['minimum_version'],
         'object_id': !exists(json, 'object_id') ? undefined : json['object_id'],
+        'recommended_version': !exists(json, 'recommended_version') ? undefined : json['recommended_version'],
         'refresh_token': !exists(json, 'refresh_token') ? undefined : json['refresh_token'],
         'refresh_token_expires_in': !exists(json, 'refresh_token_expires_in') ? undefined : json['refresh_token_expires_in'],
         'scope': !exists(json, 'scope') ? undefined : json['scope'],
@@ -154,7 +168,9 @@ export function OauthTokenResponseToJSON(value?: OauthTokenResponse | null): any
         'error_uri': value.error_uri,
         'expires_in': value.expires_in,
         'merchant_id': value.merchant_id,
+        'minimum_version': value.minimum_version,
         'object_id': value.object_id,
+        'recommended_version': value.recommended_version,
         'refresh_token': value.refresh_token,
         'refresh_token_expires_in': value.refresh_token_expires_in,
         'scope': value.scope,
