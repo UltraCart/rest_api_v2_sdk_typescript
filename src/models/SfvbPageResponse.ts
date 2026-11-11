@@ -39,6 +39,12 @@ export interface SfvbPageResponse {
      */
     attributes?: Array<SfvbPageAttribute>;
     /**
+     * Template that renders the blog posts under this page.  Omitted when not set.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    blog_post_template?: string;
+    /**
      * The page description, the text a page template renders as the page's description.  Omitted when empty.
      * @type {string}
      * @memberof SfvbPageResponse
@@ -63,17 +69,53 @@ export interface SfvbPageResponse {
      */
     item_template?: string;
     /**
+     * Items per page on a template that paginates.  Omitted when the template's default applies.
+     * @type {number}
+     * @memberof SfvbPageResponse
+     */
+    items_per_page?: number;
+    /**
      * The page's images, including codes a template declares but nothing has attached yet.  These are what the pageimage element renders - the default image when pageImageCode is empty, otherwise the image with that code.  The default image comes first.
      * @type {Array<SfvbPageMultimedia>}
      * @memberof SfvbPageResponse
      */
     multimedia?: Array<SfvbPageMultimedia>;
     /**
+     * S for a static page, D for a dynamic one.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    page_type?: string;
+    /**
      * The page path, normalized to begin and end with a slash.
      * @type {string}
      * @memberof SfvbPageResponse
      */
     path?: string;
+    /**
+     * Template that renders the item review pages under this page.  Omitted when not set.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    review_template?: string;
+    /**
+     * Position among its siblings when the parent sorts child pages by a custom order.  Omitted when not set.
+     * @type {number}
+     * @memberof SfvbPageResponse
+     */
+    sort_order?: number;
+    /**
+     * How the pages under this one are ordered.  TA or TD by title, DA or DD by description, C custom.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    sort_order_child_groups?: string;
+    /**
+     * How the page's items are ordered.  IA or ID by item id, DA or DD by description, SA or SD by manufacturer SKU, PA or PD by price, RA or RD by review, NA or ND by inventory, C custom.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    sort_order_child_items?: string;
     /**
      * The page title.
      * @type {string}
@@ -116,12 +158,19 @@ export function SfvbPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : ((json['attributes'] as Array<any>).map(SfvbPageAttributeFromJSON)),
+        'blog_post_template': !exists(json, 'blog_post_template') ? undefined : json['blog_post_template'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'group_template': !exists(json, 'group_template') ? undefined : json['group_template'],
         'item_template': !exists(json, 'item_template') ? undefined : json['item_template'],
+        'items_per_page': !exists(json, 'items_per_page') ? undefined : json['items_per_page'],
         'multimedia': !exists(json, 'multimedia') ? undefined : ((json['multimedia'] as Array<any>).map(SfvbPageMultimediaFromJSON)),
+        'page_type': !exists(json, 'page_type') ? undefined : json['page_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'review_template': !exists(json, 'review_template') ? undefined : json['review_template'],
+        'sort_order': !exists(json, 'sort_order') ? undefined : json['sort_order'],
+        'sort_order_child_groups': !exists(json, 'sort_order_child_groups') ? undefined : json['sort_order_child_groups'],
+        'sort_order_child_items': !exists(json, 'sort_order_child_items') ? undefined : json['sort_order_child_items'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'visible': !exists(json, 'visible') ? undefined : json['visible'],
         'visible_dts': !exists(json, 'visible_dts') ? undefined : json['visible_dts'],
@@ -138,12 +187,19 @@ export function SfvbPageResponseToJSON(value?: SfvbPageResponse | null): any {
     return {
         
         'attributes': value.attributes === undefined ? undefined : ((value.attributes as Array<any>).map(SfvbPageAttributeToJSON)),
+        'blog_post_template': value.blog_post_template,
         'description': value.description,
         'exclude_from_sitemap': value.exclude_from_sitemap,
         'group_template': value.group_template,
         'item_template': value.item_template,
+        'items_per_page': value.items_per_page,
         'multimedia': value.multimedia === undefined ? undefined : ((value.multimedia as Array<any>).map(SfvbPageMultimediaToJSON)),
+        'page_type': value.page_type,
         'path': value.path,
+        'review_template': value.review_template,
+        'sort_order': value.sort_order,
+        'sort_order_child_groups': value.sort_order_child_groups,
+        'sort_order_child_items': value.sort_order_child_items,
         'title': value.title,
         'visible': value.visible,
         'visible_dts': value.visible_dts,
