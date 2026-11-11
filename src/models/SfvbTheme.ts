@@ -38,6 +38,18 @@ export interface SfvbTheme {
      */
     fs_directory_oid?: number;
     /**
+     * How many of the theme's files still have unresolved merge conflicts from an upgrade.  Find them with searchSfvbFiles, merge_conflicts true and this theme's path.
+     * @type {number}
+     * @memberof SfvbTheme
+     */
+    merge_conflict_count?: number;
+    /**
+     * False while any file in the theme has an unresolved merge conflict.  Never activate a theme that reports false - resolve every conflict first.  Activation itself happens in the UltraCart admin, which runs the same check.
+     * @type {boolean}
+     * @memberof SfvbTheme
+     */
+    ok_to_activate?: boolean;
+    /**
      * Root path of the theme in the storefront file system, for example /themes/mytheme/
      * @type {string}
      * @memberof SfvbTheme
@@ -105,6 +117,8 @@ export function SfvbThemeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'active': !exists(json, 'active') ? undefined : json['active'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'fs_directory_oid': !exists(json, 'fs_directory_oid') ? undefined : json['fs_directory_oid'],
+        'merge_conflict_count': !exists(json, 'merge_conflict_count') ? undefined : json['merge_conflict_count'],
+        'ok_to_activate': !exists(json, 'ok_to_activate') ? undefined : json['ok_to_activate'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
         'theme_name': !exists(json, 'theme_name') ? undefined : json['theme_name'],
@@ -127,6 +141,8 @@ export function SfvbThemeToJSON(value?: SfvbTheme | null): any {
         'active': value.active,
         'description': value.description,
         'fs_directory_oid': value.fs_directory_oid,
+        'merge_conflict_count': value.merge_conflict_count,
+        'ok_to_activate': value.ok_to_activate,
         'path': value.path,
         'storefront_oid': value.storefront_oid,
         'theme_name': value.theme_name,

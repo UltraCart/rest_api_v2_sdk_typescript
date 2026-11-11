@@ -678,6 +678,9 @@ import {
     SfvbThemeJobResponse,
     SfvbThemeJobResponseFromJSON,
     SfvbThemeJobResponseToJSON,
+    SfvbThemeUpgradeCheckResponse,
+    SfvbThemeUpgradeCheckResponseFromJSON,
+    SfvbThemeUpgradeCheckResponseToJSON,
     SfvbThemesResponse,
     SfvbThemesResponseFromJSON,
     SfvbThemesResponseToJSON,
@@ -1571,6 +1574,12 @@ export interface GetSfvbThemeAttributesRequest {
 export interface GetSfvbThemeJobRequest {
     storefrontOid: number;
     jobId: number;
+}
+
+export interface GetSfvbThemeUpgradeCheckRequest {
+    storefrontOid: number;
+    themeOid: number;
+    version?: string;
 }
 
 export interface GetSfvbTrackingCheckPlanRequest {
@@ -3422,7 +3431,7 @@ export interface SfvbApiInterface {
     duplicateSfvbPage(requestParameters: DuplicateSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
 
     /**
-     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
+     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it.  Set upgrade_to_version to also upgrade the copy to a newer theme version, as the admin\'s Duplicate and Upgrade does - only the copy is upgraded.  Run getSfvbThemeUpgradeCheck first to see the available versions and the merge conflicts the upgrade will leave, then resolve those in the copy before anyone activates it.  Refused with sfvb.theme_limit_reached at the storefront\'s theme limit, sfvb.theme_upgrade_unavailable for a version that can\'t be used, and sfvb.theme_merge_conflicts while the source theme has unresolved conflicts. 
      * @summary Duplicate a theme
      * @param {number} storefrontOid 
      * @param {number} themeOid 
@@ -3434,7 +3443,7 @@ export interface SfvbApiInterface {
     duplicateSfvbThemeRaw(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeJobResponse>>;
 
     /**
-     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
+     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it.  Set upgrade_to_version to also upgrade the copy to a newer theme version, as the admin\'s Duplicate and Upgrade does - only the copy is upgraded.  Run getSfvbThemeUpgradeCheck first to see the available versions and the merge conflicts the upgrade will leave, then resolve those in the copy before anyone activates it.  Refused with sfvb.theme_limit_reached at the storefront\'s theme limit, sfvb.theme_upgrade_unavailable for a version that can\'t be used, and sfvb.theme_merge_conflicts while the source theme has unresolved conflicts. 
      * Duplicate a theme
      */
     duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
@@ -5122,7 +5131,7 @@ export interface SfvbApiInterface {
     getSfvbThemeAttributes(requestParameters: GetSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
 
     /**
-     * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
+     * Poll until complete is true, then check success.  A successful job reports the new theme as theme_oid.  After a duplicate with upgrade_to_version, success also means the copy reached that version, and merge_conflicts lists the copy\'s files that still need resolving - read fresh on every poll. 
      * @summary Status of an asynchronous theme job
      * @param {number} storefrontOid 
      * @param {number} jobId 
@@ -5133,10 +5142,28 @@ export interface SfvbApiInterface {
     getSfvbThemeJobRaw(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeJobResponse>>;
 
     /**
-     * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
+     * Poll until complete is true, then check success.  A successful job reports the new theme as theme_oid.  After a duplicate with upgrade_to_version, success also means the copy reached that version, and merge_conflicts lists the copy\'s files that still need resolving - read fresh on every poll. 
      * Status of an asynchronous theme job
      */
     getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
+
+    /**
+     * The same dry run the admin shows before an upgrade, and nothing is changed.  Lists the newer versions this account may use, and for one of them (version, or the newest when omitted) which customized files the upgrade would merge cleanly, leave with merge conflicts, or overwrite, plus the change log.  Use it before duplicateSfvbTheme with upgrade_to_version.  When no upgrade is possible the response says why in reason with can_duplicate_and_upgrade false.  A version that was asked for and is not available is refused with sfvb.theme_upgrade_unavailable. 
+     * @summary Check what upgrading a theme would do
+     * @param {number} storefrontOid 
+     * @param {number} themeOid 
+     * @param {string} [version] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbThemeUpgradeCheckRaw(requestParameters: GetSfvbThemeUpgradeCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeUpgradeCheckResponse>>;
+
+    /**
+     * The same dry run the admin shows before an upgrade, and nothing is changed.  Lists the newer versions this account may use, and for one of them (version, or the newest when omitted) which customized files the upgrade would merge cleanly, leave with merge conflicts, or overwrite, plus the change log.  Use it before duplicateSfvbTheme with upgrade_to_version.  When no upgrade is possible the response says why in reason with can_duplicate_and_upgrade false.  A version that was asked for and is not available is refused with sfvb.theme_upgrade_unavailable. 
+     * Check what upgrading a theme would do
+     */
+    getSfvbThemeUpgradeCheck(requestParameters: GetSfvbThemeUpgradeCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeUpgradeCheckResponse>;
 
     /**
      * What each tracking provider should load on one page, for page_view or a test order\'s purchase, under a consent state and region, with the requests and calls to look for and the ones that must not appear.  Built from the same rules the storefront\'s tracking templates follow, never by running them, so nothing is sent to any provider.  Includes the hosts the storefront\'s custom and affiliate network HTML loads, the sends made from UltraCart servers, and a snippet that collects what the browser saw.  Grade the results locally; they are never sent here.  With neither consent nor region, every provider is listed with the gate that holds it back.  A purchase needs a test order on this account. 
@@ -7017,7 +7044,7 @@ export interface SfvbApiInterface {
     revokeSfvbSecretRequest(requestParameters: RevokeSfvbSecretRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSecretRequest>;
 
     /**
-     * Searches names and, when text is supplied, file contents.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported. 
+     * Searches names and, when text is supplied, file contents.  Text search covers text files, including .cjson and .json, and skips binaries such as images, fonts and PDFs.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported.  merge_conflicts true with a theme\'s path lists the files an upgrade left with unresolved conflicts, as the admin file manager\'s merge conflicts search does. 
      * @summary Search storefront files
      * @param {number} storefrontOid 
      * @param {SfvbFileSearchRequest} searchRequest File search
@@ -7028,7 +7055,7 @@ export interface SfvbApiInterface {
     searchSfvbFilesRaw(requestParameters: SearchSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileSearchResponse>>;
 
     /**
-     * Searches names and, when text is supplied, file contents.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported. 
+     * Searches names and, when text is supplied, file contents.  Text search covers text files, including .cjson and .json, and skips binaries such as images, fonts and PDFs.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported.  merge_conflicts true with a theme\'s path lists the files an upgrade left with unresolved conflicts, as the admin file manager\'s merge conflicts search does. 
      * Search storefront files
      */
     searchSfvbFiles(requestParameters: SearchSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileSearchResponse>;
@@ -10491,7 +10518,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
+     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it.  Set upgrade_to_version to also upgrade the copy to a newer theme version, as the admin\'s Duplicate and Upgrade does - only the copy is upgraded.  Run getSfvbThemeUpgradeCheck first to see the available versions and the merge conflicts the upgrade will leave, then resolve those in the copy before anyone activates it.  Refused with sfvb.theme_limit_reached at the storefront\'s theme limit, sfvb.theme_upgrade_unavailable for a version that can\'t be used, and sfvb.theme_merge_conflicts while the source theme has unresolved conflicts. 
      * Duplicate a theme
      */
     async duplicateSfvbThemeRaw(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeJobResponse>> {
@@ -10534,7 +10561,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
+     * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it.  Set upgrade_to_version to also upgrade the copy to a newer theme version, as the admin\'s Duplicate and Upgrade does - only the copy is upgraded.  Run getSfvbThemeUpgradeCheck first to see the available versions and the merge conflicts the upgrade will leave, then resolve those in the copy before anyone activates it.  Refused with sfvb.theme_limit_reached at the storefront\'s theme limit, sfvb.theme_upgrade_unavailable for a version that can\'t be used, and sfvb.theme_merge_conflicts while the source theme has unresolved conflicts. 
      * Duplicate a theme
      */
     async duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse> {
@@ -15047,7 +15074,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
+     * Poll until complete is true, then check success.  A successful job reports the new theme as theme_oid.  After a duplicate with upgrade_to_version, success also means the copy reached that version, and merge_conflicts lists the copy\'s files that still need resolving - read fresh on every poll. 
      * Status of an asynchronous theme job
      */
     async getSfvbThemeJobRaw(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeJobResponse>> {
@@ -15083,11 +15110,60 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
+     * Poll until complete is true, then check success.  A successful job reports the new theme as theme_oid.  After a duplicate with upgrade_to_version, success also means the copy reached that version, and merge_conflicts lists the copy\'s files that still need resolving - read fresh on every poll. 
      * Status of an asynchronous theme job
      */
     async getSfvbThemeJob(requestParameters: GetSfvbThemeJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse> {
         const response = await this.getSfvbThemeJobRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The same dry run the admin shows before an upgrade, and nothing is changed.  Lists the newer versions this account may use, and for one of them (version, or the newest when omitted) which customized files the upgrade would merge cleanly, leave with merge conflicts, or overwrite, plus the change log.  Use it before duplicateSfvbTheme with upgrade_to_version.  When no upgrade is possible the response says why in reason with can_duplicate_and_upgrade false.  A version that was asked for and is not available is refused with sfvb.theme_upgrade_unavailable. 
+     * Check what upgrading a theme would do
+     */
+    async getSfvbThemeUpgradeCheckRaw(requestParameters: GetSfvbThemeUpgradeCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeUpgradeCheckResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbThemeUpgradeCheck.');
+        }
+
+        if (requestParameters.themeOid === null || requestParameters.themeOid === undefined) {
+            throw new runtime.RequiredError('themeOid','Required parameter requestParameters.themeOid was null or undefined when calling getSfvbThemeUpgradeCheck.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.version !== undefined) {
+            queryParameters['version'] = requestParameters.version;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/themes/{theme_oid}/upgrade_check`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"theme_oid"}}`, encodeURIComponent(String(requestParameters.themeOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbThemeUpgradeCheckResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The same dry run the admin shows before an upgrade, and nothing is changed.  Lists the newer versions this account may use, and for one of them (version, or the newest when omitted) which customized files the upgrade would merge cleanly, leave with merge conflicts, or overwrite, plus the change log.  Use it before duplicateSfvbTheme with upgrade_to_version.  When no upgrade is possible the response says why in reason with can_duplicate_and_upgrade false.  A version that was asked for and is not available is refused with sfvb.theme_upgrade_unavailable. 
+     * Check what upgrading a theme would do
+     */
+    async getSfvbThemeUpgradeCheck(requestParameters: GetSfvbThemeUpgradeCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeUpgradeCheckResponse> {
+        const response = await this.getSfvbThemeUpgradeCheckRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -20480,7 +20556,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Searches names and, when text is supplied, file contents.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported. 
+     * Searches names and, when text is supplied, file contents.  Text search covers text files, including .cjson and .json, and skips binaries such as images, fonts and PDFs.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported.  merge_conflicts true with a theme\'s path lists the files an upgrade left with unresolved conflicts, as the admin file manager\'s merge conflicts search does. 
      * Search storefront files
      */
     async searchSfvbFilesRaw(requestParameters: SearchSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileSearchResponse>> {
@@ -20519,7 +20595,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Searches names and, when text is supplied, file contents.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported. 
+     * Searches names and, when text is supplied, file contents.  Text search covers text files, including .cjson and .json, and skips binaries such as images, fonts and PDFs.  For a CLI with no local copy this is the only way to answer where something is defined without walking the whole tree.  Results are capped and truncation is always reported.  merge_conflicts true with a theme\'s path lists the files an upgrade left with unresolved conflicts, as the admin file manager\'s merge conflicts search does. 
      * Search storefront files
      */
     async searchSfvbFiles(requestParameters: SearchSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileSearchResponse> {

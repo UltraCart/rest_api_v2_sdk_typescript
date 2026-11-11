@@ -1339,10 +1339,12 @@ src/models/SfvbThemeAttribute.ts
 src/models/SfvbThemeAttributeUpdate.ts
 src/models/SfvbThemeAttributeUpdateRequest.ts
 src/models/SfvbThemeAttributesResponse.ts
+src/models/SfvbThemeChangeLogEntry.ts
 src/models/SfvbThemeDuplicateRequest.ts
 src/models/SfvbThemeFont.ts
 src/models/SfvbThemeFontFamily.ts
 src/models/SfvbThemeJobResponse.ts
+src/models/SfvbThemeUpgradeCheckResponse.ts
 src/models/SfvbThemesResponse.ts
 src/models/SfvbTrackingAdvanced.ts
 src/models/SfvbTrackingAdvancedRequest.ts

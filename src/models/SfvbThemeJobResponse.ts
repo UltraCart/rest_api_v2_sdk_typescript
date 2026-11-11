@@ -50,6 +50,12 @@ export interface SfvbThemeJobResponse {
      */
     job_id?: number;
     /**
+     * Paths of the copy's files that still have unresolved merge conflicts, read fresh on every poll, so the list shrinks as you resolve them.  Each needs its conflict marker lines resolved and the file saved before the theme can be activated.  Empty when there are none.
+     * @type {Array<string>}
+     * @memberof SfvbThemeJobResponse
+     */
+    merge_conflicts?: Array<string>;
+    /**
      * Percent complete, 0-100.
      * @type {number}
      * @memberof SfvbThemeJobResponse
@@ -86,11 +92,23 @@ export interface SfvbThemeJobResponse {
      */
     success?: boolean;
     /**
-     * Path the new theme is being created at.  Returned when the job is started and on every poll, so you do not have to keep the response that started it.  The theme oid itself is NOT returned, so once the job completes you list themes and match on this path.  It is also what success is checked against - a finished job whose theme is not here reports success false rather than pretending.
+     * Path the new theme is being created at.  Returned when the job is started and on every poll, so you do not have to keep the response that started it.  Once the job completes, the theme found at this path is reported as theme_oid.  It is also what success is checked against - a finished job whose theme is not here reports success false rather than pretending.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
     target_path?: string;
+    /**
+     * Oid of the theme the job created, once it is complete and the theme exists.  Null until then.
+     * @type {number}
+     * @memberof SfvbThemeJobResponse
+     */
+    theme_oid?: number;
+    /**
+     * The version the copy was asked to be upgraded to, when the duplicate asked for an upgrade.  Null for a plain copy.  A complete job reports success only when the copy is at this version.
+     * @type {string}
+     * @memberof SfvbThemeJobResponse
+     */
+    upgrade_to_version?: string;
 }
 
 
@@ -132,6 +150,7 @@ export function SfvbThemeJobResponseFromJSONTyped(json: any, ignoreDiscriminator
         'error_message': !exists(json, 'error_message') ? undefined : json['error_message'],
         'finished_dts': !exists(json, 'finished_dts') ? undefined : json['finished_dts'],
         'job_id': !exists(json, 'job_id') ? undefined : json['job_id'],
+        'merge_conflicts': !exists(json, 'merge_conflicts') ? undefined : json['merge_conflicts'],
         'progress': !exists(json, 'progress') ? undefined : json['progress'],
         'progress_description': !exists(json, 'progress_description') ? undefined : json['progress_description'],
         'started_dts': !exists(json, 'started_dts') ? undefined : json['started_dts'],
@@ -139,6 +158,8 @@ export function SfvbThemeJobResponseFromJSONTyped(json: any, ignoreDiscriminator
         'submitted_dts': !exists(json, 'submitted_dts') ? undefined : json['submitted_dts'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'target_path': !exists(json, 'target_path') ? undefined : json['target_path'],
+        'theme_oid': !exists(json, 'theme_oid') ? undefined : json['theme_oid'],
+        'upgrade_to_version': !exists(json, 'upgrade_to_version') ? undefined : json['upgrade_to_version'],
     };
 }
 
@@ -156,6 +177,7 @@ export function SfvbThemeJobResponseToJSON(value?: SfvbThemeJobResponse | null):
         'error_message': value.error_message,
         'finished_dts': value.finished_dts,
         'job_id': value.job_id,
+        'merge_conflicts': value.merge_conflicts,
         'progress': value.progress,
         'progress_description': value.progress_description,
         'started_dts': value.started_dts,
@@ -163,6 +185,8 @@ export function SfvbThemeJobResponseToJSON(value?: SfvbThemeJobResponse | null):
         'submitted_dts': value.submitted_dts,
         'success': value.success,
         'target_path': value.target_path,
+        'theme_oid': value.theme_oid,
+        'upgrade_to_version': value.upgrade_to_version,
     };
 }
 

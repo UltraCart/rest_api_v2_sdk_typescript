@@ -44,6 +44,12 @@ export interface SfvbFileContentResponse {
      */
     hash_sha256?: string;
     /**
+     * True when a theme upgrade left unresolved merge conflicts in this file.  The content holds conflict marker lines.  Resolve each conflict and save the file without any marker lines to clear it - a save that still has marker lines is refused.
+     * @type {boolean}
+     * @memberof SfvbFileContentResponse
+     */
+    merge_conflict?: boolean;
+    /**
      * Mime type.
      * @type {string}
      * @memberof SfvbFileContentResponse
@@ -112,6 +118,7 @@ export function SfvbFileContentResponseFromJSONTyped(json: any, ignoreDiscrimina
         'content': !exists(json, 'content') ? undefined : json['content'],
         'fs_file_oid': !exists(json, 'fs_file_oid') ? undefined : json['fs_file_oid'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'merge_conflict': !exists(json, 'merge_conflict') ? undefined : json['merge_conflict'],
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'size': !exists(json, 'size') ? undefined : json['size'],
@@ -135,6 +142,7 @@ export function SfvbFileContentResponseToJSON(value?: SfvbFileContentResponse | 
         'content': value.content,
         'fs_file_oid': value.fs_file_oid,
         'hash_sha256': value.hash_sha256,
+        'merge_conflict': value.merge_conflict,
         'mime_type': value.mime_type,
         'path': value.path,
         'size': value.size,

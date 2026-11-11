@@ -37,6 +37,12 @@ export interface SfvbThemeDuplicateRequest {
      * @memberof SfvbThemeDuplicateRequest
      */
     theme_name?: string;
+    /**
+     * Upgrade the copy to this theme version after copying it, as the admin's Duplicate and Upgrade does.  Only the copy is upgraded - the source theme is never touched.  Must be one of the available_versions from getSfvbThemeUpgradeCheck, which also predicts the merge conflicts.  Omit for a plain copy.
+     * @type {string}
+     * @memberof SfvbThemeDuplicateRequest
+     */
+    upgrade_to_version?: string;
 }
 
 
@@ -63,6 +69,7 @@ export function SfvbThemeDuplicateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'folder': !exists(json, 'folder') ? undefined : json['folder'],
         'target_storefront_oid': !exists(json, 'target_storefront_oid') ? undefined : json['target_storefront_oid'],
         'theme_name': !exists(json, 'theme_name') ? undefined : json['theme_name'],
+        'upgrade_to_version': !exists(json, 'upgrade_to_version') ? undefined : json['upgrade_to_version'],
     };
 }
 
@@ -78,6 +85,7 @@ export function SfvbThemeDuplicateRequestToJSON(value?: SfvbThemeDuplicateReques
         'folder': value.folder,
         'target_storefront_oid': value.target_storefront_oid,
         'theme_name': value.theme_name,
+        'upgrade_to_version': value.upgrade_to_version,
     };
 }
 

@@ -33,6 +33,18 @@ export interface SfvbThemesResponse {
      */
     active_theme_oid?: number;
     /**
+     * How many themes the storefront holds now.  When it equals theme_limit, delete an inactive theme in the admin before duplicating.
+     * @type {number}
+     * @memberof SfvbThemesResponse
+     */
+    theme_count?: number;
+    /**
+     * Most themes a storefront can hold, active and inactive together.  A duplicate or install at the limit is refused with sfvb.theme_limit_reached.
+     * @type {number}
+     * @memberof SfvbThemesResponse
+     */
+    theme_limit?: number;
+    /**
      * Themes belonging to the storefront.  Exactly one is flagged active.
      * @type {Array<SfvbTheme>}
      * @memberof SfvbThemesResponse
@@ -62,6 +74,8 @@ export function SfvbThemesResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'active_theme_oid': !exists(json, 'active_theme_oid') ? undefined : json['active_theme_oid'],
+        'theme_count': !exists(json, 'theme_count') ? undefined : json['theme_count'],
+        'theme_limit': !exists(json, 'theme_limit') ? undefined : json['theme_limit'],
         'themes': !exists(json, 'themes') ? undefined : ((json['themes'] as Array<any>).map(SfvbThemeFromJSON)),
     };
 }
@@ -76,6 +90,8 @@ export function SfvbThemesResponseToJSON(value?: SfvbThemesResponse | null): any
     return {
         
         'active_theme_oid': value.active_theme_oid,
+        'theme_count': value.theme_count,
+        'theme_limit': value.theme_limit,
         'themes': value.themes === undefined ? undefined : ((value.themes as Array<any>).map(SfvbThemeToJSON)),
     };
 }

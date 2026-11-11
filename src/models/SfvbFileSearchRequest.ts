@@ -110,7 +110,7 @@ export interface SfvbFileSearchRequest {
      */
     sub_directories?: boolean;
     /**
-     * Text to find inside files.  Only text/* files are searched.  This is the expensive filter; narrow with path or file_name where possible.
+     * Text to find inside files.  Text files are searched, including .cjson and .json; binaries such as images, fonts and PDFs are skipped.  This is the expensive filter; narrow with path or file_name where possible.
      * @type {string}
      * @memberof SfvbFileSearchRequest
      */
