@@ -32,7 +32,7 @@ export interface SfvbThemeDuplicateRequest {
      */
     target_storefront_oid?: number;
     /**
-     * Name for the new theme.
+     * Ignored.  A theme is named by its settings.json themeName, which the copy keeps from the source, so the copy has the source's name.  Edit themeName in the copy's settings.json to rename it.  Kept so existing callers still work.
      * @type {string}
      * @memberof SfvbThemeDuplicateRequest
      */
