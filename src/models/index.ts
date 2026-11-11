@@ -987,6 +987,7 @@ export * from './SfvbCampaign';
 export * from './SfvbCampaignMembership';
 export * from './SfvbCampaignWriteRequest';
 export * from './SfvbCampaignsResponse';
+export * from './SfvbCliAccess';
 export * from './SfvbCodeLibraryEmail';
 export * from './SfvbCodeLibraryEmailsResponse';
 export * from './SfvbCommsBranchStat';

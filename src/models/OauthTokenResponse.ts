@@ -32,6 +32,12 @@ export interface OauthTokenResponse {
      */
     error?: string;
     /**
+     * With error access_denied, a machine readable reason.  sfvb.beta_access_required means the account isn't enabled for the StoreFront CLI beta, not that a person clicked Deny.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    error_code?: string;
+    /**
      * 
      * @type {string}
      * @memberof OauthTokenResponse
@@ -55,6 +61,12 @@ export interface OauthTokenResponse {
      * @memberof OauthTokenResponse
      */
     merchant_id?: string;
+    /**
+     * With error_code sfvb.beta_access_required, the merchant id that was refused.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    object_id?: string;
     /**
      * The refresh token that should be used to fetch a new access token when the expiration occurs
      * @type {string}
@@ -113,10 +125,12 @@ export function OauthTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'access_token': !exists(json, 'access_token') ? undefined : json['access_token'],
         'error': !exists(json, 'error') ? undefined : json['error'],
+        'error_code': !exists(json, 'error_code') ? undefined : json['error_code'],
         'error_description': !exists(json, 'error_description') ? undefined : json['error_description'],
         'error_uri': !exists(json, 'error_uri') ? undefined : json['error_uri'],
         'expires_in': !exists(json, 'expires_in') ? undefined : json['expires_in'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'object_id': !exists(json, 'object_id') ? undefined : json['object_id'],
         'refresh_token': !exists(json, 'refresh_token') ? undefined : json['refresh_token'],
         'refresh_token_expires_in': !exists(json, 'refresh_token_expires_in') ? undefined : json['refresh_token_expires_in'],
         'scope': !exists(json, 'scope') ? undefined : json['scope'],
@@ -135,10 +149,12 @@ export function OauthTokenResponseToJSON(value?: OauthTokenResponse | null): any
         
         'access_token': value.access_token,
         'error': value.error,
+        'error_code': value.error_code,
         'error_description': value.error_description,
         'error_uri': value.error_uri,
         'expires_in': value.expires_in,
         'merchant_id': value.merchant_id,
+        'object_id': value.object_id,
         'refresh_token': value.refresh_token,
         'refresh_token_expires_in': value.refresh_token_expires_in,
         'scope': value.scope,

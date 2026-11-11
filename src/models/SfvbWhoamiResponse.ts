@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    SfvbCliAccess,
+    SfvbCliAccessFromJSON,
+    SfvbCliAccessFromJSONTyped,
+    SfvbCliAccessToJSON,
+} from './SfvbCliAccess';
+import {
     SfvbStorefront,
     SfvbStorefrontFromJSON,
     SfvbStorefrontFromJSONTyped,
@@ -80,6 +86,12 @@ export interface SfvbWhoamiResponse {
      * @memberof SfvbWhoamiResponse
      */
     can_write?: boolean;
+    /**
+     * 
+     * @type {SfvbCliAccess}
+     * @memberof SfvbWhoamiResponse
+     */
+    cli_access?: SfvbCliAccess;
     /**
      * Device scope name, when this is a device flow token.
      * @type {string}
@@ -154,6 +166,7 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'can_read': !exists(json, 'can_read') ? undefined : json['can_read'],
         'can_read_items': !exists(json, 'can_read_items') ? undefined : json['can_read_items'],
         'can_write': !exists(json, 'can_write') ? undefined : json['can_write'],
+        'cli_access': !exists(json, 'cli_access') ? undefined : SfvbCliAccessFromJSON(json['cli_access']),
         'device_scope': !exists(json, 'device_scope') ? undefined : json['device_scope'],
         'login': !exists(json, 'login') ? undefined : json['login'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -182,6 +195,7 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
         'can_read': value.can_read,
         'can_read_items': value.can_read_items,
         'can_write': value.can_write,
+        'cli_access': SfvbCliAccessToJSON(value.cli_access),
         'device_scope': value.device_scope,
         'login': value.login,
         'merchant_id': value.merchant_id,
