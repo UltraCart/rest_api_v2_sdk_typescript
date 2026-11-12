@@ -165,6 +165,12 @@ export interface SfvbApprovalCreateRequest {
      */
     content?: string;
     /**
+     * Optional.  The email of a colleague on this account who should decide the request instead of the person who signed in.  They must hold an admin permission that covers the action; they get an email with a link and decide with their own authenticator code.  Any colleague who can't be used is refused with sfvb.delegate_not_allowed, for every reason alike.  The approval stays yours to poll and use.
+     * @type {string}
+     * @memberof SfvbApprovalCreateRequest
+     */
+    delegate_email?: string;
+    /**
      * 
      * @type {SfvbExperimentStartRequest}
      * @memberof SfvbApprovalCreateRequest
@@ -334,6 +340,7 @@ export function SfvbApprovalCreateRequestFromJSONTyped(json: any, ignoreDiscrimi
         'comms_list_import': !exists(json, 'comms_list_import') ? undefined : SfvbCommsProviderImportRequestFromJSON(json['comms_list_import']),
         'comms_settings': !exists(json, 'comms_settings') ? undefined : SfvbCommsSettingsUpdateRequestFromJSON(json['comms_settings']),
         'content': !exists(json, 'content') ? undefined : json['content'],
+        'delegate_email': !exists(json, 'delegate_email') ? undefined : json['delegate_email'],
         'experiment_start': !exists(json, 'experiment_start') ? undefined : SfvbExperimentStartRequestFromJSON(json['experiment_start']),
         'flow_backfill': !exists(json, 'flow_backfill') ? undefined : SfvbFlowBackfillRequestFromJSON(json['flow_backfill']),
         'item_attribute_rows': !exists(json, 'item_attribute_rows') ? undefined : ((json['item_attribute_rows'] as Array<any>).map(SfvbItemAttributeBatchRowFromJSON)),
@@ -368,6 +375,7 @@ export function SfvbApprovalCreateRequestToJSON(value?: SfvbApprovalCreateReques
         'comms_list_import': SfvbCommsProviderImportRequestToJSON(value.comms_list_import),
         'comms_settings': SfvbCommsSettingsUpdateRequestToJSON(value.comms_settings),
         'content': value.content,
+        'delegate_email': value.delegate_email,
         'experiment_start': SfvbExperimentStartRequestToJSON(value.experiment_start),
         'flow_backfill': SfvbFlowBackfillRequestToJSON(value.flow_backfill),
         'item_attribute_rows': value.item_attribute_rows === undefined ? undefined : ((value.item_attribute_rows as Array<any>).map(SfvbItemAttributeBatchRowToJSON)),

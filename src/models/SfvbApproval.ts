@@ -57,6 +57,24 @@ export interface SfvbApproval {
      */
     created_at?: string;
     /**
+     * Who decided the request, once decided.
+     * @type {string}
+     * @memberof SfvbApproval
+     */
+    decided_by?: SfvbApprovalDecidedByEnum;
+    /**
+     * The name of the colleague the request was handed to, while it is.  Tell the person who is now deciding.
+     * @type {string}
+     * @memberof SfvbApproval
+     */
+    delegate_name?: string;
+    /**
+     * True when the request was handed to a colleague to decide.
+     * @type {boolean}
+     * @memberof SfvbApproval
+     */
+    delegated?: boolean;
+    /**
      * The sentence the person reads before approving.  Written by the server, not the agent.
      * @type {string}
      * @memberof SfvbApproval
@@ -159,6 +177,15 @@ export interface SfvbApproval {
 /**
  * @export
  */
+export const SfvbApprovalDecidedByEnum = {
+    Requester: 'requester',
+    Delegate: 'delegate'
+} as const;
+export type SfvbApprovalDecidedByEnum = typeof SfvbApprovalDecidedByEnum[keyof typeof SfvbApprovalDecidedByEnum];
+
+/**
+ * @export
+ */
 export const SfvbApprovalOutcomeEnum = {
     Succeeded: 'succeeded',
     Failed: 'failed'
@@ -204,6 +231,9 @@ export function SfvbApprovalFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'approval_id': !exists(json, 'approval_id') ? undefined : json['approval_id'],
         'approval_url': !exists(json, 'approval_url') ? undefined : json['approval_url'],
         'created_at': !exists(json, 'created_at') ? undefined : json['created_at'],
+        'decided_by': !exists(json, 'decided_by') ? undefined : json['decided_by'],
+        'delegate_name': !exists(json, 'delegate_name') ? undefined : json['delegate_name'],
+        'delegated': !exists(json, 'delegated') ? undefined : json['delegated'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'expires_at': !exists(json, 'expires_at') ? undefined : json['expires_at'],
         'expires_in_seconds': !exists(json, 'expires_in_seconds') ? undefined : json['expires_in_seconds'],
@@ -236,6 +266,9 @@ export function SfvbApprovalToJSON(value?: SfvbApproval | null): any {
         'approval_id': value.approval_id,
         'approval_url': value.approval_url,
         'created_at': value.created_at,
+        'decided_by': value.decided_by,
+        'delegate_name': value.delegate_name,
+        'delegated': value.delegated,
         'description': value.description,
         'expires_at': value.expires_at,
         'expires_in_seconds': value.expires_in_seconds,
