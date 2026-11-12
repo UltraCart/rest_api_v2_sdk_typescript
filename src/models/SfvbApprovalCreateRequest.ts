@@ -159,7 +159,7 @@ export interface SfvbApprovalCreateRequest {
      */
     comms_settings?: SfvbCommsSettingsUpdateRequest;
     /**
-     * For a file.put_script write, the exact script to be written, at most 256 KB.  For tracking_html.put, the exact HTML the write will send, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
+     * For a file.put_script write, the exact script to be written, at most 256 KB, and for a file.put_template write the exact template.  For tracking_html.put, the exact HTML the write will send, at most 256 KB.  UltraCart reviews it and keeps only its hash, so send the same bytes again on the write.  Leave it out for a revert, which names params.version.
      * @type {string}
      * @memberof SfvbApprovalCreateRequest
      */
@@ -277,6 +277,7 @@ export const SfvbApprovalCreateRequestActionEnum = {
     FileDelete: 'file.delete',
     BlogPostDelete: 'blog_post.delete',
     FilePutScript: 'file.put_script',
+    FilePutTemplate: 'file.put_template',
     RedirectDeleteBatch: 'redirect.delete_batch',
     ExperimentStart: 'experiment.start',
     ExperimentEnd: 'experiment.end',

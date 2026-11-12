@@ -44,7 +44,19 @@ export interface SfvbContainerVersion {
      */
     container_name?: string;
     /**
-     * When this snapshot was taken, ISO 8601 UTC.
+     * When this version's content was written, ISO 8601 UTC.  Same source and limits as content_edited_by.
+     * @type {string}
+     * @memberof SfvbContainerVersion
+     */
+    content_created_dts?: string;
+    /**
+     * Login of whoever wrote this version's content, taken from the write recorded on the next older entry.  Absent on a create entry and on the oldest entry kept, such as a template body that was in place before any history.  Saves made outside this API, in the admin visual builder, are not recorded, so after one this names the previous API write.
+     * @type {string}
+     * @memberof SfvbContainerVersion
+     */
+    content_edited_by?: string;
+    /**
+     * When the write that replaced this version happened, ISO 8601 UTC.  On the current entry, when it was written.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
@@ -56,7 +68,7 @@ export interface SfvbContainerVersion {
      */
     current?: boolean;
     /**
-     * Login of whoever caused this snapshot.
+     * Login of whoever made the write that replaced this version.  On the current entry, whoever wrote it.  See content_edited_by for who wrote a history entry's content.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
@@ -140,6 +152,8 @@ export function SfvbContainerVersionFromJSONTyped(json: any, ignoreDiscriminator
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
         'container_history_oid': !exists(json, 'container_history_oid') ? undefined : json['container_history_oid'],
         'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
+        'content_created_dts': !exists(json, 'content_created_dts') ? undefined : json['content_created_dts'],
+        'content_edited_by': !exists(json, 'content_edited_by') ? undefined : json['content_edited_by'],
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'current': !exists(json, 'current') ? undefined : json['current'],
         'edited_by': !exists(json, 'edited_by') ? undefined : json['edited_by'],
@@ -164,6 +178,8 @@ export function SfvbContainerVersionToJSON(value?: SfvbContainerVersion | null):
         'comment': value.comment,
         'container_history_oid': value.container_history_oid,
         'container_name': value.container_name,
+        'content_created_dts': value.content_created_dts,
+        'content_edited_by': value.content_edited_by,
         'created_dts': value.created_dts,
         'current': value.current,
         'edited_by': value.edited_by,

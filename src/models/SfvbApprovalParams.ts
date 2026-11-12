@@ -50,7 +50,7 @@ export interface SfvbApprovalParams {
      */
     branch_step_uuid?: string;
     /**
-     * For file.put_script and tracking_html.put, the SHA-256 of the exact bytes approved, and for affiliate_network.change the SHA-256 of the conversion pixel.  Set by the server, never by the caller.  The write must send bytes with this hash.
+     * For file.put_script, file.put_template and tracking_html.put, the SHA-256 of the exact bytes approved, and for affiliate_network.change the SHA-256 of the conversion pixel.  Set by the server, never by the caller.  The write must send bytes with this hash.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -86,7 +86,7 @@ export interface SfvbApprovalParams {
      */
     merchant_item_oid?: number;
     /**
-     * The file path, for file.delete and file.put_script, or the page path for experiment.start of a page experiment.  Exactly as the gated call will send it.
+     * The file path, for file.delete, file.put_script and file.put_template, or the page path for experiment.start of a page experiment.  Exactly as the gated call will send it.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
@@ -158,7 +158,7 @@ export interface SfvbApprovalParams {
      */
     upsell_oid?: number;
     /**
-     * For file.put_script, the history version a revert restores.  Leave it out, and send content instead, for a write.
+     * For file.put_script and file.put_template, the history version a revert restores.  Leave it out, and send content instead, for a write.
      * @type {number}
      * @memberof SfvbApprovalParams
      */
