@@ -38,11 +38,17 @@ export interface SfvbSequenceStepCreateRequest {
      */
     branch_step_uuid?: string;
     /**
-     * A wait step's settings, as the admin saves them and set-config changes them, namely delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), and optionally the delay_until_* options.  Not for an email step.
+     * A wait step's settings, as the admin saves them and set-config changes them, namely delay_duration and delay_duration_unit (minutes, hours, days, weeks or months), and optionally the delay_until_* options.  For a split, percentage_left (0.01 to 0.99, 0.5 by default) and merchant_notes.  For a condition, reverse, disabled and merchant_notes.  Not for an email step.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
      */
     config_json?: string;
+    /**
+     * A condition step's rule, required for one, as an audience filter in the shape segments use.  Customers who match go to the yes side.  Only for a condition step.
+     * @type {string}
+     * @memberof SfvbSequenceStepCreateRequest
+     */
+    filter_profile_equation_json?: string;
     /**
      * An email item from the code library (#1589) to start the new email from, taking its body, with new element ids, and its subject and preview text unless subject or preview_text is given.  The item must be this account's own, shared with it, or published, approved by UltraCart and free.  Only for an email step.  The items are listed by the code library email read.
      * @type {number}
@@ -74,7 +80,7 @@ export interface SfvbSequenceStepCreateRequest {
      */
     subject?: string;
     /**
-     * The kind of step, one of email (the default), wait or post_card.
+     * The kind of step, one of email (the default), wait, post_card, split or condition.
      * @type {string}
      * @memberof SfvbSequenceStepCreateRequest
      */
@@ -106,6 +112,7 @@ export function SfvbSequenceStepCreateRequestFromJSONTyped(json: any, ignoreDisc
         'after_step_uuid': !exists(json, 'after_step_uuid') ? undefined : json['after_step_uuid'],
         'branch_step_uuid': !exists(json, 'branch_step_uuid') ? undefined : json['branch_step_uuid'],
         'config_json': !exists(json, 'config_json') ? undefined : json['config_json'],
+        'filter_profile_equation_json': !exists(json, 'filter_profile_equation_json') ? undefined : json['filter_profile_equation_json'],
         'library_item_oid': !exists(json, 'library_item_oid') ? undefined : json['library_item_oid'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'preview_text': !exists(json, 'preview_text') ? undefined : json['preview_text'],
@@ -128,6 +135,7 @@ export function SfvbSequenceStepCreateRequestToJSON(value?: SfvbSequenceStepCrea
         'after_step_uuid': value.after_step_uuid,
         'branch_step_uuid': value.branch_step_uuid,
         'config_json': value.config_json,
+        'filter_profile_equation_json': value.filter_profile_equation_json,
         'library_item_oid': value.library_item_oid,
         'name': value.name,
         'preview_text': value.preview_text,
