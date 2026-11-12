@@ -80,7 +80,7 @@ export interface SfvbContainerVersion {
      */
     hash_sha256?: string;
     /**
-     * What the container was before the write this entry precedes.  create means it did not exist, so reverting to this entry removes it again; update means it held the cjson recorded here.
+     * What the container was before the write this entry precedes.  create means it did not exist, so reverting to this entry removes it again; update means it held the cjson recorded here; delete means it held the cjson recorded here and the write after it removed the container, so reverting to this entry puts that cjson back.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
@@ -112,7 +112,8 @@ export interface SfvbContainerVersion {
  */
 export const SfvbContainerVersionOperationEnum = {
     Create: 'create',
-    Update: 'update'
+    Update: 'update',
+    Delete: 'delete'
 } as const;
 export type SfvbContainerVersionOperationEnum = typeof SfvbContainerVersionOperationEnum[keyof typeof SfvbContainerVersionOperationEnum];
 
