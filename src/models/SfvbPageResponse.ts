@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    SfvbErrorDetail,
+    SfvbErrorDetailFromJSON,
+    SfvbErrorDetailFromJSONTyped,
+    SfvbErrorDetailToJSON,
+} from './SfvbErrorDetail';
+import {
     SfvbPageAttribute,
     SfvbPageAttributeFromJSON,
     SfvbPageAttributeFromJSONTyped,
@@ -25,6 +31,12 @@ import {
     SfvbPageMultimediaFromJSONTyped,
     SfvbPageMultimediaToJSON,
 } from './SfvbPageMultimedia';
+import {
+    SfvbRedirect,
+    SfvbRedirectFromJSON,
+    SfvbRedirectFromJSONTyped,
+    SfvbRedirectToJSON,
+} from './SfvbRedirect';
 
 /**
  * 
@@ -92,6 +104,18 @@ export interface SfvbPageResponse {
      * @memberof SfvbPageResponse
      */
     path?: string;
+    /**
+     * 
+     * @type {SfvbRedirect}
+     * @memberof SfvbPageResponse
+     */
+    redirect?: SfvbRedirect;
+    /**
+     * Findings on that redirect that did not block it, such as a chain.  Left out when there are none.
+     * @type {Array<SfvbErrorDetail>}
+     * @memberof SfvbPageResponse
+     */
+    redirect_warnings?: Array<SfvbErrorDetail>;
     /**
      * Template that renders the item review pages under this page.  Omitted when not set.
      * @type {string}
@@ -167,6 +191,8 @@ export function SfvbPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'multimedia': !exists(json, 'multimedia') ? undefined : ((json['multimedia'] as Array<any>).map(SfvbPageMultimediaFromJSON)),
         'page_type': !exists(json, 'page_type') ? undefined : json['page_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'redirect': !exists(json, 'redirect') ? undefined : SfvbRedirectFromJSON(json['redirect']),
+        'redirect_warnings': !exists(json, 'redirect_warnings') ? undefined : ((json['redirect_warnings'] as Array<any>).map(SfvbErrorDetailFromJSON)),
         'review_template': !exists(json, 'review_template') ? undefined : json['review_template'],
         'sort_order': !exists(json, 'sort_order') ? undefined : json['sort_order'],
         'sort_order_child_groups': !exists(json, 'sort_order_child_groups') ? undefined : json['sort_order_child_groups'],
@@ -196,6 +222,8 @@ export function SfvbPageResponseToJSON(value?: SfvbPageResponse | null): any {
         'multimedia': value.multimedia === undefined ? undefined : ((value.multimedia as Array<any>).map(SfvbPageMultimediaToJSON)),
         'page_type': value.page_type,
         'path': value.path,
+        'redirect': SfvbRedirectToJSON(value.redirect),
+        'redirect_warnings': value.redirect_warnings === undefined ? undefined : ((value.redirect_warnings as Array<any>).map(SfvbErrorDetailToJSON)),
         'review_template': value.review_template,
         'sort_order': value.sort_order,
         'sort_order_child_groups': value.sort_order_child_groups,

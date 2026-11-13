@@ -486,6 +486,12 @@ import {
     SfvbPageListResponse,
     SfvbPageListResponseFromJSON,
     SfvbPageListResponseToJSON,
+    SfvbPageMoveRequest,
+    SfvbPageMoveRequestFromJSON,
+    SfvbPageMoveRequestToJSON,
+    SfvbPageMoveResponse,
+    SfvbPageMoveResponseFromJSON,
+    SfvbPageMoveResponseToJSON,
     SfvbPageMultimediaRequest,
     SfvbPageMultimediaRequestFromJSON,
     SfvbPageMultimediaRequestToJSON,
@@ -585,6 +591,12 @@ import {
     SfvbRenderResponse,
     SfvbRenderResponseFromJSON,
     SfvbRenderResponseToJSON,
+    SfvbSearchFacetsRequest,
+    SfvbSearchFacetsRequestFromJSON,
+    SfvbSearchFacetsRequestToJSON,
+    SfvbSearchFacetsResponse,
+    SfvbSearchFacetsResponseFromJSON,
+    SfvbSearchFacetsResponseToJSON,
     SfvbSecretKindsResponse,
     SfvbSecretKindsResponseFromJSON,
     SfvbSecretKindsResponseToJSON,
@@ -1513,6 +1525,10 @@ export interface GetSfvbRedirectsRequest {
     status?: string;
 }
 
+export interface GetSfvbSearchFacetsRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbSecretRequestRequest {
     requestId: string;
 }
@@ -1895,6 +1911,12 @@ export interface ListSfvbUpsellPathsRequest {
     statsWeekdays?: string;
     maxResults?: number;
     offset?: number;
+}
+
+export interface MoveSfvbPageRequest {
+    storefrontOid: number;
+    pageMoveRequest: SfvbPageMoveRequest;
+    approvalId?: string;
 }
 
 export interface MoveSfvbSequenceStepRequest {
@@ -2400,6 +2422,12 @@ export interface UpdateSfvbRedirectRequest {
     redirectId: number;
     ifMatch: string;
     redirectRequest: SfvbRedirectRequest;
+}
+
+export interface UpdateSfvbSearchFacetsRequest {
+    storefrontOid: number;
+    searchFacetsRequest: SfvbSearchFacetsRequest;
+    ifMatch?: string;
 }
 
 export interface UpdateSfvbSequenceStepRequest {
@@ -4912,6 +4940,22 @@ export interface SfvbApiInterface {
     getSfvbRedirects(requestParameters: GetSfvbRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectsResponse>;
 
     /**
+     * Every facet the storefront can offer shoppers - the standard ones and one per item attribute on the storefront - with its heading and whether it is on, in the fixed order shoppers see them, and the Cost facet\'s price breaks.  The same settings as the store admin\'s Faceted Search Results.  Send hash_sha256 as If-Match to change them. 
+     * @summary Read the storefront\'s faceted search configuration
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSearchFacetsRaw(requestParameters: GetSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>>;
+
+    /**
+     * Every facet the storefront can offer shoppers - the standard ones and one per item attribute on the storefront - with its heading and whether it is on, in the fixed order shoppers see them, and the Cost facet\'s price breaks.  The same settings as the store admin\'s Faceted Search Results.  Send hash_sha256 as If-Match to change them. 
+     * Read the storefront\'s faceted search configuration
+     */
+    getSfvbSearchFacets(requestParameters: GetSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse>;
+
+    /**
      * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
      * @summary List the secrets this server collects
      * @param {*} [options] Override http request option.
@@ -6188,6 +6232,24 @@ export interface SfvbApiInterface {
     listSfvbUpsellPaths(requestParameters: ListSfvbUpsellPathsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellPathsResponse>;
 
     /**
+     * Moves a page to a new path - a new parent, a new last part, or both, so a rename is a move under the same parent.  Its sub-pages, their items and the page folder with its body move with it.  Refused for the root page, a path inside the page itself, a path where a page or folder already exists, a parent that does not exist, and a page whose folder holds a started experiment.  With redirect_old_url 301 the same call adds one pattern redirect from the old path to the new one, so every old address, sub-pages and items included, keeps working; the redirect is checked before anything moves, and if it is refused after the move the move is undone, so the page moves with its redirect or not at all.  dry_run runs every check and reports what would move.  Needs sfvb_publish, plus the approval of the person who signed in the CLI, as an approved page.move request for exactly this path, new path and redirect in the Approval-Id header. 
+     * @summary Move or rename a page
+     * @param {number} storefrontOid 
+     * @param {SfvbPageMoveRequest} pageMoveRequest The page and where it goes
+     * @param {string} [approvalId] The approval_id of an approved page.move request for exactly this path, new path and redirect.  Required unless dry_run.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    moveSfvbPageRaw(requestParameters: MoveSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageMoveResponse>>;
+
+    /**
+     * Moves a page to a new path - a new parent, a new last part, or both, so a rename is a move under the same parent.  Its sub-pages, their items and the page folder with its body move with it.  Refused for the root page, a path inside the page itself, a path where a page or folder already exists, a parent that does not exist, and a page whose folder holds a started experiment.  With redirect_old_url 301 the same call adds one pattern redirect from the old path to the new one, so every old address, sub-pages and items included, keeps working; the redirect is checked before anything moves, and if it is refused after the move the move is undone, so the page moves with its redirect or not at all.  dry_run runs every check and reports what would move.  Needs sfvb_publish, plus the approval of the person who signed in the CLI, as an approved page.move request for exactly this path, new path and redirect in the Approval-Id header. 
+     * Move or rename a page
+     */
+    moveSfvbPage(requestParameters: MoveSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageMoveResponse>;
+
+    /**
      * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
      * @summary Move one step
      * @param {number} storefrontOid 
@@ -6634,7 +6696,7 @@ export interface SfvbApiInterface {
     putSfvbPageSelectors(requestParameters: PutSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors>;
 
     /**
-     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live.  Hiding a page with redirect_old_url 301 and redirect_target also adds a 301 redirect from its address, checked first like any redirect rule.  The page is hidden and the rule added together, or neither. 
      * @summary Change a page\'s settings
      * @param {number} storefrontOid 
      * @param {string} path Page path, for example /lp/spring-sale/
@@ -6646,7 +6708,7 @@ export interface SfvbApiInterface {
     putSfvbPageSettingsRaw(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
 
     /**
-     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live.  Hiding a page with redirect_old_url 301 and redirect_target also adds a 301 redirect from its address, checked first like any redirect rule.  The page is hidden and the rule added together, or neither. 
      * Change a page\'s settings
      */
     putSfvbPageSettings(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
@@ -6975,7 +7037,7 @@ export interface SfvbApiInterface {
      * @param {number} storefrontOid 
      * @param {string} ownerType 
      * @param {string} ownerObjectId 
-     * @param {string} ifMatch CJSON hash of the container being reverted.  Required; 428 when absent, 412 when stale.
+     * @param {string} ifMatch CJSON hash of the container being reverted.  Required while the container holds content; 428 when absent, 412 when stale.  Leave it out when the container has been removed, since there is nothing to match.
      * @param {SfvbContainerRevertRequest} containerRevertRequest Version to revert the container to
      * @param {string} [containerName] 
      * @param {*} [options] Override http request option.
@@ -7615,6 +7677,24 @@ export interface SfvbApiInterface {
      * Change a redirect rule
      */
     updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
+
+    /**
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * @summary Change the storefront\'s faceted search configuration
+     * @param {number} storefrontOid 
+     * @param {SfvbSearchFacetsRequest} searchFacetsRequest The facets and price breaks to change
+     * @param {string} [ifMatch] hash_sha256 from the last read.  Required unless dry_run; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    updateSfvbSearchFacetsRaw(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>>;
+
+    /**
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * Change the storefront\'s faceted search configuration
+     */
+    updateSfvbSearchFacets(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse>;
 
     /**
      * Replaces the step\'s settings (config_json), its audience filter (filter_profile_equation_json), or both.  Nothing else about the step or the sequence changes.  Send the step\'s hash_sha256 as If-Match; the write only lands if the step is still what you read.  An email step\'s audience filter changes here, but not its settings.  Experiment, resend, webhook, begin, end, continue and merge steps are refused.  On a post_card step only disabled, name and info change, and not its filter.  A sequence whose campaign or flow is live needs sfvb_publish.  Turning a post_card step on, live or not, needs an approved sequence_step.enable_postcard approval (Approval-Id): once on, it mails printed cards whenever the campaign or flow runs. 
@@ -14495,6 +14575,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Every facet the storefront can offer shoppers - the standard ones and one per item attribute on the storefront - with its heading and whether it is on, in the fixed order shoppers see them, and the Cost facet\'s price breaks.  The same settings as the store admin\'s Faceted Search Results.  Send hash_sha256 as If-Match to change them. 
+     * Read the storefront\'s faceted search configuration
+     */
+    async getSfvbSearchFacetsRaw(requestParameters: GetSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSearchFacets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/search/facets`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSearchFacetsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every facet the storefront can offer shoppers - the standard ones and one per item attribute on the storefront - with its heading and whether it is on, in the fixed order shoppers see them, and the Cost facet\'s price breaks.  The same settings as the store admin\'s Faceted Search Results.  Send hash_sha256 as If-Match to change them. 
+     * Read the storefront\'s faceted search configuration
+     */
+    async getSfvbSearchFacets(requestParameters: GetSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse> {
+        const response = await this.getSfvbSearchFacetsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The kinds of secret value, with what each looks like, and the secret fields (sinks) a handle can be written to.  Request a handle for a sink with POST secrets. 
      * List the secrets this server collects
      */
@@ -17994,6 +18115,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Moves a page to a new path - a new parent, a new last part, or both, so a rename is a move under the same parent.  Its sub-pages, their items and the page folder with its body move with it.  Refused for the root page, a path inside the page itself, a path where a page or folder already exists, a parent that does not exist, and a page whose folder holds a started experiment.  With redirect_old_url 301 the same call adds one pattern redirect from the old path to the new one, so every old address, sub-pages and items included, keeps working; the redirect is checked before anything moves, and if it is refused after the move the move is undone, so the page moves with its redirect or not at all.  dry_run runs every check and reports what would move.  Needs sfvb_publish, plus the approval of the person who signed in the CLI, as an approved page.move request for exactly this path, new path and redirect in the Approval-Id header. 
+     * Move or rename a page
+     */
+    async moveSfvbPageRaw(requestParameters: MoveSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageMoveResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling moveSfvbPage.');
+        }
+
+        if (requestParameters.pageMoveRequest === null || requestParameters.pageMoveRequest === undefined) {
+            throw new runtime.RequiredError('pageMoveRequest','Required parameter requestParameters.pageMoveRequest was null or undefined when calling moveSfvbPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/move`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageMoveRequestToJSON(requestParameters.pageMoveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageMoveResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Moves a page to a new path - a new parent, a new last part, or both, so a rename is a move under the same parent.  Its sub-pages, their items and the page folder with its body move with it.  Refused for the root page, a path inside the page itself, a path where a page or folder already exists, a parent that does not exist, and a page whose folder holds a started experiment.  With redirect_old_url 301 the same call adds one pattern redirect from the old path to the new one, so every old address, sub-pages and items included, keeps working; the redirect is checked before anything moves, and if it is refused after the move the move is undone, so the page moves with its redirect or not at all.  dry_run runs every check and reports what would move.  Needs sfvb_publish, plus the approval of the person who signed in the CLI, as an approved page.move request for exactly this path, new path and redirect in the Approval-Id header. 
+     * Move or rename a page
+     */
+    async moveSfvbPage(requestParameters: MoveSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageMoveResponse> {
+        const response = await this.moveSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Moves the step, in one transaction, to right after after_step_uuid (the begin step puts it first in the sequence) or to the start of one side of a condition, split or inboxgeek step (branch_step_uuid with side).  The step keeps its uuid, settings and the email or postcard it sends: nothing is archived or created.  Refused for the begin, end, continue and merge markers, for a condition, split or inboxgeek step, while any customer is waiting on the step, and when the new place is the one it is in.  Send the step\'s hash_sha256 as If-Match, and the hash_sha256 of after_step_uuid or branch_step_uuid as anchor_hash_sha256.  A sequence whose campaign or flow is live needs sfvb_publish and an approved sequence_step.move approval (Approval-Id); a draft or inactive one needs neither. 
      * Move one step
      */
@@ -19366,7 +19539,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live.  Hiding a page with redirect_old_url 301 and redirect_target also adds a 301 redirect from its address, checked first like any redirect rule.  The page is hidden and the rule added together, or neither. 
      * Change a page\'s settings
      */
     async putSfvbPageSettingsRaw(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
@@ -19413,7 +19586,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live.  Hiding a page with redirect_old_url 301 and redirect_target also adds a 301 redirect from its address, checked first like any redirect rule.  The page is hidden and the rule added together, or neither. 
      * Change a page\'s settings
      */
     async putSfvbPageSettings(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
@@ -22264,6 +22437,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse> {
         const response = await this.updateSfvbRedirectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * Change the storefront\'s faceted search configuration
+     */
+    async updateSfvbSearchFacetsRaw(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling updateSfvbSearchFacets.');
+        }
+
+        if (requestParameters.searchFacetsRequest === null || requestParameters.searchFacetsRequest === undefined) {
+            throw new runtime.RequiredError('searchFacetsRequest','Required parameter requestParameters.searchFacetsRequest was null or undefined when calling updateSfvbSearchFacets.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/search/facets`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSearchFacetsRequestToJSON(requestParameters.searchFacetsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSearchFacetsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * Change the storefront\'s faceted search configuration
+     */
+    async updateSfvbSearchFacets(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse> {
+        const response = await this.updateSfvbSearchFacetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

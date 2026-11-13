@@ -62,6 +62,24 @@ export interface SfvbPageSettingsRequest {
      */
     page_type?: string;
     /**
+     * The note on that redirect rule.  Up to 500 characters.  A note naming the page is used when left out.
+     * @type {string}
+     * @memberof SfvbPageSettingsRequest
+     */
+    redirect_note?: string;
+    /**
+     * 301 to redirect the page's address to redirect_target in the same call (#1102).  Only with visible false, on a page that is visible now.  The page is hidden and the rule added together, or neither.
+     * @type {string}
+     * @memberof SfvbPageSettingsRequest
+     */
+    redirect_old_url?: SfvbPageSettingsRequestRedirectOldUrlEnum;
+    /**
+     * Where the hidden page's address redirects to, for example /lp/summer-sale/.  Required with redirect_old_url, and checked like any redirect rule.
+     * @type {string}
+     * @memberof SfvbPageSettingsRequest
+     */
+    redirect_target?: string;
+    /**
      * Template that renders the item review pages under this page.
      * @type {string}
      * @memberof SfvbPageSettingsRequest
@@ -108,6 +126,15 @@ export interface SfvbPageSettingsRequest {
 
 
 /**
+ * @export
+ */
+export const SfvbPageSettingsRequestRedirectOldUrlEnum = {
+    _301: '301'
+} as const;
+export type SfvbPageSettingsRequestRedirectOldUrlEnum = typeof SfvbPageSettingsRequestRedirectOldUrlEnum[keyof typeof SfvbPageSettingsRequestRedirectOldUrlEnum];
+
+
+/**
  * Check if a given object implements the SfvbPageSettingsRequest interface.
  */
 export function instanceOfSfvbPageSettingsRequest(value: object): boolean {
@@ -133,6 +160,9 @@ export function SfvbPageSettingsRequestFromJSONTyped(json: any, ignoreDiscrimina
         'item_template': !exists(json, 'item_template') ? undefined : json['item_template'],
         'items_per_page': !exists(json, 'items_per_page') ? undefined : json['items_per_page'],
         'page_type': !exists(json, 'page_type') ? undefined : json['page_type'],
+        'redirect_note': !exists(json, 'redirect_note') ? undefined : json['redirect_note'],
+        'redirect_old_url': !exists(json, 'redirect_old_url') ? undefined : json['redirect_old_url'],
+        'redirect_target': !exists(json, 'redirect_target') ? undefined : json['redirect_target'],
         'review_template': !exists(json, 'review_template') ? undefined : json['review_template'],
         'sort_order': !exists(json, 'sort_order') ? undefined : json['sort_order'],
         'sort_order_child_groups': !exists(json, 'sort_order_child_groups') ? undefined : json['sort_order_child_groups'],
@@ -159,6 +189,9 @@ export function SfvbPageSettingsRequestToJSON(value?: SfvbPageSettingsRequest | 
         'item_template': value.item_template,
         'items_per_page': value.items_per_page,
         'page_type': value.page_type,
+        'redirect_note': value.redirect_note,
+        'redirect_old_url': value.redirect_old_url,
+        'redirect_target': value.redirect_target,
         'review_template': value.review_template,
         'sort_order': value.sort_order,
         'sort_order_child_groups': value.sort_order_child_groups,

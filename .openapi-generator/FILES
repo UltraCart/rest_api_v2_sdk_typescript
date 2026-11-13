@@ -1242,6 +1242,8 @@ src/models/SfvbPageItemsAddRequest.ts
 src/models/SfvbPageItemsRemoveRequest.ts
 src/models/SfvbPageItemsResponse.ts
 src/models/SfvbPageListResponse.ts
+src/models/SfvbPageMoveRequest.ts
+src/models/SfvbPageMoveResponse.ts
 src/models/SfvbPageMultimedia.ts
 src/models/SfvbPageMultimediaRequest.ts
 src/models/SfvbPageRefreshRequest.ts
@@ -1290,6 +1292,10 @@ src/models/SfvbRedirectsResponse.ts
 src/models/SfvbRenderRequest.ts
 src/models/SfvbRenderResponse.ts
 src/models/SfvbRobotsTxt.ts
+src/models/SfvbSearchFacet.ts
+src/models/SfvbSearchFacetUpdate.ts
+src/models/SfvbSearchFacetsRequest.ts
+src/models/SfvbSearchFacetsResponse.ts
 src/models/SfvbSecretHandle.ts
 src/models/SfvbSecretKind.ts
 src/models/SfvbSecretKindsResponse.ts

@@ -86,11 +86,29 @@ export interface SfvbApprovalParams {
      */
     merchant_item_oid?: number;
     /**
+     * For page.move, where the page goes, exactly as the move will send it.  path is the page as it is now.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    new_path?: string;
+    /**
+     * For page.move, how many pages move, the page itself included, when it was requested.  Set by the server.
+     * @type {number}
+     * @memberof SfvbApprovalParams
+     */
+    pages_moved?: number;
+    /**
      * The file path, for file.delete, file.put_script and file.put_template, or the page path for experiment.start of a page experiment.  Exactly as the gated call will send it.
      * @type {string}
      * @memberof SfvbApprovalParams
      */
     path?: string;
+    /**
+     * For page.move, 301 when the move also redirects the old addresses, as the move will send it.  Left out or none for no redirect.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    redirect_old_url?: string;
     /**
      * For experiment.start of a url experiment, the hash of the checked experiment approved, for item.pricing, tracking_provider.change and affiliate_network.change the hash of the change, and for smart_attribution.change the hash of the configuration the change would store.  Set by the server.  The gated call must send the same.
      * @type {string}
@@ -219,7 +237,10 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'experiment_oid': !exists(json, 'experiment_oid') ? undefined : json['experiment_oid'],
         'item_count': !exists(json, 'item_count') ? undefined : json['item_count'],
         'merchant_item_oid': !exists(json, 'merchant_item_oid') ? undefined : json['merchant_item_oid'],
+        'new_path': !exists(json, 'new_path') ? undefined : json['new_path'],
+        'pages_moved': !exists(json, 'pages_moved') ? undefined : json['pages_moved'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'redirect_old_url': !exists(json, 'redirect_old_url') ? undefined : json['redirect_old_url'],
         'request_sha256': !exists(json, 'request_sha256') ? undefined : json['request_sha256'],
         'rows_sha256': !exists(json, 'rows_sha256') ? undefined : json['rows_sha256'],
         'rule_count': !exists(json, 'rule_count') ? undefined : json['rule_count'],
@@ -257,7 +278,10 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'experiment_oid': value.experiment_oid,
         'item_count': value.item_count,
         'merchant_item_oid': value.merchant_item_oid,
+        'new_path': value.new_path,
+        'pages_moved': value.pages_moved,
         'path': value.path,
+        'redirect_old_url': value.redirect_old_url,
         'request_sha256': value.request_sha256,
         'rows_sha256': value.rows_sha256,
         'rule_count': value.rule_count,
