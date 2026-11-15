@@ -1115,6 +1115,7 @@ src/models/SfvbExperimentStartVariation.ts
 src/models/SfvbExperimentVariationUpdateRequest.ts
 src/models/SfvbExperimentsResponse.ts
 src/models/SfvbFileContentResponse.ts
+src/models/SfvbFileContentResult.ts
 src/models/SfvbFileEntry.ts
 src/models/SfvbFileRevertRequest.ts
 src/models/SfvbFileSearchRequest.ts
@@ -1125,6 +1126,8 @@ src/models/SfvbFileVersion.ts
 src/models/SfvbFileVersionsResponse.ts
 src/models/SfvbFileWriteRequest.ts
 src/models/SfvbFileWriteResponse.ts
+src/models/SfvbFilesContentRequest.ts
+src/models/SfvbFilesContentResponse.ts
 src/models/SfvbFilesResponse.ts
 src/models/SfvbFlow.ts
 src/models/SfvbFlowBackfillRequest.ts

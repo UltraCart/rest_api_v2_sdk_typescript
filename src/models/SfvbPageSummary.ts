@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    SfvbPageResponse,
+    SfvbPageResponseFromJSON,
+    SfvbPageResponseFromJSONTyped,
+    SfvbPageResponseToJSON,
+} from './SfvbPageResponse';
+
 /**
  * 
  * @export
@@ -20,11 +27,23 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbPageSummary {
     /**
+     * The page's id.  It stays the same when the page is moved or renamed, where the path and the page folder's id do not, and it is what a menu entry's catalog_group_oid names.
+     * @type {number}
+     * @memberof SfvbPageSummary
+     */
+    catalog_group_oid?: number;
+    /**
      * Number of pages directly under this one.
      * @type {number}
      * @memberof SfvbPageSummary
      */
     child_count?: number;
+    /**
+     * 
+     * @type {SfvbPageResponse}
+     * @memberof SfvbPageSummary
+     */
+    detail?: SfvbPageResponse;
     /**
      * True when the page is left out of the sitemap and marked noindex.
      * @type {boolean}
@@ -126,7 +145,9 @@ export function SfvbPageSummaryFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'catalog_group_oid': !exists(json, 'catalog_group_oid') ? undefined : json['catalog_group_oid'],
         'child_count': !exists(json, 'child_count') ? undefined : json['child_count'],
+        'detail': !exists(json, 'detail') ? undefined : SfvbPageResponseFromJSON(json['detail']),
         'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'group_template': !exists(json, 'group_template') ? undefined : json['group_template'],
         'item_count': !exists(json, 'item_count') ? undefined : json['item_count'],
@@ -152,7 +173,9 @@ export function SfvbPageSummaryToJSON(value?: SfvbPageSummary | null): any {
     }
     return {
         
+        'catalog_group_oid': value.catalog_group_oid,
         'child_count': value.child_count,
+        'detail': SfvbPageResponseToJSON(value.detail),
         'exclude_from_sitemap': value.exclude_from_sitemap,
         'group_template': value.group_template,
         'item_count': value.item_count,

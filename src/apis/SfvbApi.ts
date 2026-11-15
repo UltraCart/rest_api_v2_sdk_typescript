@@ -270,6 +270,12 @@ import {
     SfvbFileWriteResponse,
     SfvbFileWriteResponseFromJSON,
     SfvbFileWriteResponseToJSON,
+    SfvbFilesContentRequest,
+    SfvbFilesContentRequestFromJSON,
+    SfvbFilesContentRequestToJSON,
+    SfvbFilesContentResponse,
+    SfvbFilesContentResponseFromJSON,
+    SfvbFilesContentResponseToJSON,
     SfvbFilesResponse,
     SfvbFilesResponseFromJSON,
     SfvbFilesResponseToJSON,
@@ -1332,6 +1338,11 @@ export interface GetSfvbFileContentRequest {
     version?: number;
 }
 
+export interface GetSfvbFileContentsRequest {
+    storefrontOid: number;
+    filesRequest: SfvbFilesContentRequest;
+}
+
 export interface GetSfvbFileUploadUrlRequest {
     storefrontOid: number;
     extension: string;
@@ -1437,6 +1448,7 @@ export interface GetSfvbMenuRequest {
 
 export interface GetSfvbMenusRequest {
     storefrontOid: number;
+    includeEntries?: boolean;
 }
 
 export interface GetSfvbNotFoundRequest {
@@ -1466,7 +1478,8 @@ export interface GetSfvbNotFoundSummaryRequest {
 
 export interface GetSfvbPageRequest {
     storefrontOid: number;
-    path: string;
+    path?: string;
+    catalogGroupOid?: number;
 }
 
 export interface GetSfvbPageBlogPostsRequest {
@@ -1873,6 +1886,9 @@ export interface ListSfvbLibraryInstallsRequest {
 export interface ListSfvbPagesRequest {
     storefrontOid: number;
     under?: string;
+    detail?: boolean;
+    offset?: number;
+    limit?: number;
 }
 
 export interface ListSfvbServerLogsRequest {
@@ -4327,6 +4343,23 @@ export interface SfvbApiInterface {
     getSfvbFileContent(requestParameters: GetSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileContentResponse>;
 
     /**
+     * The current content of up to 50 files in one call, each answered exactly as the single file read answers it.  A file that can\'t be read carries its own error and the others are still read.  When the response reaches its size limit, the paths not yet read come back in remaining_paths; send them again.  Only reads - a POST because the list of paths can be long. 
+     * @summary Read several storefront files
+     * @param {number} storefrontOid 
+     * @param {SfvbFilesContentRequest} filesRequest The files to read
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbFileContentsRaw(requestParameters: GetSfvbFileContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFilesContentResponse>>;
+
+    /**
+     * The current content of up to 50 files in one call, each answered exactly as the single file read answers it.  A file that can\'t be read carries its own error and the others are still read.  When the response reaches its size limit, the paths not yet read come back in remaining_paths; send them again.  Only reads - a POST because the list of paths can be long. 
+     * Read several storefront files
+     */
+    getSfvbFileContents(requestParameters: GetSfvbFileContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesContentResponse>;
+
+    /**
      * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
      * @summary Get a URL to upload a binary asset to
      * @param {number} storefrontOid 
@@ -4658,9 +4691,10 @@ export interface SfvbApiInterface {
     getSfvbMenu(requestParameters: GetSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenu>;
 
     /**
-     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * The menus a menu element\'s menuName can name, sorted by code.  Without include_entries each menu is listed without its entries; with include_entries=true each carries the tree the single-menu read returns, so one call reads every menu.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
      * @summary List a storefront\'s store menus
      * @param {number} storefrontOid 
+     * @param {boolean} [includeEntries] True to include each menu\&#39;s entries
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -4668,7 +4702,7 @@ export interface SfvbApiInterface {
     getSfvbMenusRaw(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenusResponse>>;
 
     /**
-     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * The menus a menu element\'s menuName can name, sorted by code.  Without include_entries each menu is listed without its entries; with include_entries=true each carries the tree the single-menu read returns, so one call reads every menu.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
      * List a storefront\'s store menus
      */
     getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse>;
@@ -4747,10 +4781,11 @@ export interface SfvbApiInterface {
     getSfvbNotFoundSummary(requestParameters: GetSfvbNotFoundSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundSummary>;
 
     /**
-     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved.  Name the page by path or by catalog_group_oid, not both.  The oid is the id the page list and menu reads return, and it stays the same when the page moves. 
      * @summary Read a page\'s attributes and images
      * @param {number} storefrontOid 
-     * @param {string} path Page path, for example /catalog/dispensers/
+     * @param {string} [path] Page path, for example /catalog/dispensers/.  Required unless catalog_group_oid is given.
+     * @param {number} [catalogGroupOid] The page\&#39;s id, in place of path
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -4758,7 +4793,7 @@ export interface SfvbApiInterface {
     getSfvbPageRaw(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
 
     /**
-     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved.  Name the page by path or by catalog_group_oid, not both.  The oid is the id the page list and menu reads return, and it stays the same when the page moves. 
      * Read a page\'s attributes and images
      */
     getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
@@ -6103,10 +6138,13 @@ export interface SfvbApiInterface {
     listSfvbLibraryInstalls(requestParameters: ListSfvbLibraryInstallsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryInstallsResponse>;
 
     /**
-     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write.  Pass detail=true to get each page\'s single-page read in detail as well, at most 25 pages a call.  Page through with offset and limit, following next_offset until it is omitted. 
      * @summary List the storefront\'s pages
      * @param {number} storefrontOid 
      * @param {string} [under] Only this page and the pages below it, for example /lp/
+     * @param {boolean} [detail] True to include each page\&#39;s single-page read, a window at a time
+     * @param {number} [offset] Where the window starts, with detail&#x3D;true.  Default 0.
+     * @param {number} [limit] Pages in the window, 1 to 25, with detail&#x3D;true.  Default 25.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SfvbApiInterface
@@ -6114,7 +6152,7 @@ export interface SfvbApiInterface {
     listSfvbPagesRaw(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageListResponse>>;
 
     /**
-     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write.  Pass detail=true to get each page\'s single-page read in detail as well, at most 25 pages a call.  Page through with offset and limit, following next_offset until it is omitted. 
      * List the storefront\'s pages
      */
     listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse>;
@@ -7679,7 +7717,7 @@ export interface SfvbApiInterface {
     updateSfvbRedirect(requestParameters: UpdateSfvbRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbRedirectResponse>;
 
     /**
-     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once.  Changes are limited to 30 an hour and 100 a day per storefront, and those that start a rebuild to 6 an hour and 20 a day (429, nothing saved). 
      * @summary Change the storefront\'s faceted search configuration
      * @param {number} storefrontOid 
      * @param {SfvbSearchFacetsRequest} searchFacetsRequest The facets and price breaks to change
@@ -7691,7 +7729,7 @@ export interface SfvbApiInterface {
     updateSfvbSearchFacetsRaw(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>>;
 
     /**
-     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once.  Changes are limited to 30 an hour and 100 a day per storefront, and those that start a rebuild to 6 an hour and 20 a day (429, nothing saved). 
      * Change the storefront\'s faceted search configuration
      */
     updateSfvbSearchFacets(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse>;
@@ -12912,6 +12950,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The current content of up to 50 files in one call, each answered exactly as the single file read answers it.  A file that can\'t be read carries its own error and the others are still read.  When the response reaches its size limit, the paths not yet read come back in remaining_paths; send them again.  Only reads - a POST because the list of paths can be long. 
+     * Read several storefront files
+     */
+    async getSfvbFileContentsRaw(requestParameters: GetSfvbFileContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFilesContentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbFileContents.');
+        }
+
+        if (requestParameters.filesRequest === null || requestParameters.filesRequest === undefined) {
+            throw new runtime.RequiredError('filesRequest','Required parameter requestParameters.filesRequest was null or undefined when calling getSfvbFileContents.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/files/content`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFilesContentRequestToJSON(requestParameters.filesRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFilesContentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The current content of up to 50 files in one call, each answered exactly as the single file read answers it.  A file that can\'t be read carries its own error and the others are still read.  When the response reaches its size limit, the paths not yet read come back in remaining_paths; send them again.  Only reads - a POST because the list of paths can be long. 
+     * Read several storefront files
+     */
+    async getSfvbFileContents(requestParameters: GetSfvbFileContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesContentResponse> {
+        const response = await this.getSfvbFileContentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
      * Get a URL to upload a binary asset to
      */
@@ -13799,7 +13885,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * The menus a menu element\'s menuName can name, sorted by code.  Without include_entries each menu is listed without its entries; with include_entries=true each carries the tree the single-menu read returns, so one call reads every menu.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
      * List a storefront\'s store menus
      */
     async getSfvbMenusRaw(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenusResponse>> {
@@ -13808,6 +13894,10 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.includeEntries !== undefined) {
+            queryParameters['include_entries'] = requestParameters.includeEntries;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -13831,7 +13921,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * The menus a menu element\'s menuName can name, sorted by code.  Without include_entries each menu is listed without its entries; with include_entries=true each carries the tree the single-menu read returns, so one call reads every menu.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
      * List a storefront\'s store menus
      */
     async getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse> {
@@ -14040,7 +14130,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved.  Name the page by path or by catalog_group_oid, not both.  The oid is the id the page list and menu reads return, and it stays the same when the page moves. 
      * Read a page\'s attributes and images
      */
     async getSfvbPageRaw(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
@@ -14048,14 +14138,14 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
             throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPage.');
         }
 
-        if (requestParameters.path === null || requestParameters.path === undefined) {
-            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbPage.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.path !== undefined) {
             queryParameters['path'] = requestParameters.path;
+        }
+
+        if (requestParameters.catalogGroupOid !== undefined) {
+            queryParameters['catalog_group_oid'] = requestParameters.catalogGroupOid;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -14080,7 +14170,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved.  Name the page by path or by catalog_group_oid, not both.  The oid is the id the page list and menu reads return, and it stays the same when the page moves. 
      * Read a page\'s attributes and images
      */
     async getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
@@ -17758,7 +17848,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write.  Pass detail=true to get each page\'s single-page read in detail as well, at most 25 pages a call.  Page through with offset and limit, following next_offset until it is omitted. 
      * List the storefront\'s pages
      */
     async listSfvbPagesRaw(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageListResponse>> {
@@ -17770,6 +17860,18 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
 
         if (requestParameters.under !== undefined) {
             queryParameters['under'] = requestParameters.under;
+        }
+
+        if (requestParameters.detail !== undefined) {
+            queryParameters['detail'] = requestParameters.detail;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -17794,7 +17896,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write.  Pass detail=true to get each page\'s single-page read in detail as well, at most 25 pages a call.  Page through with offset and limit, following next_offset until it is omitted. 
      * List the storefront\'s pages
      */
     async listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse> {
@@ -22441,7 +22543,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once.  Changes are limited to 30 an hour and 100 a day per storefront, and those that start a rebuild to 6 an hour and 20 a day (429, nothing saved). 
      * Change the storefront\'s faceted search configuration
      */
     async updateSfvbSearchFacetsRaw(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSearchFacetsResponse>> {
@@ -22484,7 +22586,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once. 
+     * A partial update.  Turn facets on or off, change their headings, and replace the Cost facet\'s price breaks; facets left out and every other search setting are unchanged.  Facets cannot be reordered - the order is fixed.  Turning facets on or off, or changing the price breaks, starts a search index rebuild, reported in rebuild.  dry_run checks the change and reports it, and the rebuild it would start, without saving.  Needs sfvb_publish, because facets show on every search and category page at once.  Changes are limited to 30 an hour and 100 a day per storefront, and those that start a rebuild to 6 an hour and 20 a day (429, nothing saved). 
      * Change the storefront\'s faceted search configuration
      */
     async updateSfvbSearchFacets(requestParameters: UpdateSfvbSearchFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSearchFacetsResponse> {

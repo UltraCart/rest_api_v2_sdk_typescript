@@ -27,11 +27,23 @@ import {
  */
 export interface SfvbPageListResponse {
     /**
+     * The offset of the next window, omitted on the last one.  Only with detail=true.
+     * @type {number}
+     * @memberof SfvbPageListResponse
+     */
+    next_offset?: number;
+    /**
      * Pages sorted by path, the root first.  Hidden pages are included.
      * @type {Array<SfvbPageSummary>}
      * @memberof SfvbPageListResponse
      */
     pages?: Array<SfvbPageSummary>;
+    /**
+     * How many pages the whole list has.  Only with detail=true.
+     * @type {number}
+     * @memberof SfvbPageListResponse
+     */
+    total?: number;
 }
 
 
@@ -55,7 +67,9 @@ export function SfvbPageListResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'next_offset': !exists(json, 'next_offset') ? undefined : json['next_offset'],
         'pages': !exists(json, 'pages') ? undefined : ((json['pages'] as Array<any>).map(SfvbPageSummaryFromJSON)),
+        'total': !exists(json, 'total') ? undefined : json['total'],
     };
 }
 
@@ -68,7 +82,9 @@ export function SfvbPageListResponseToJSON(value?: SfvbPageListResponse | null):
     }
     return {
         
+        'next_offset': value.next_offset,
         'pages': value.pages === undefined ? undefined : ((value.pages as Array<any>).map(SfvbPageSummaryToJSON)),
+        'total': value.total,
     };
 }
 

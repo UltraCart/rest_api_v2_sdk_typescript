@@ -57,6 +57,12 @@ export interface SfvbPageResponse {
      */
     blog_post_template?: string;
     /**
+     * The page's id.  It stays the same when the page is moved or renamed, where the path and the page folder's id do not.  The page read accepts it in place of path.
+     * @type {number}
+     * @memberof SfvbPageResponse
+     */
+    catalog_group_oid?: number;
+    /**
      * The page description, the text a page template renders as the page's description.  Omitted when empty.
      * @type {string}
      * @memberof SfvbPageResponse
@@ -183,6 +189,7 @@ export function SfvbPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'attributes': !exists(json, 'attributes') ? undefined : ((json['attributes'] as Array<any>).map(SfvbPageAttributeFromJSON)),
         'blog_post_template': !exists(json, 'blog_post_template') ? undefined : json['blog_post_template'],
+        'catalog_group_oid': !exists(json, 'catalog_group_oid') ? undefined : json['catalog_group_oid'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
         'group_template': !exists(json, 'group_template') ? undefined : json['group_template'],
@@ -214,6 +221,7 @@ export function SfvbPageResponseToJSON(value?: SfvbPageResponse | null): any {
         
         'attributes': value.attributes === undefined ? undefined : ((value.attributes as Array<any>).map(SfvbPageAttributeToJSON)),
         'blog_post_template': value.blog_post_template,
+        'catalog_group_oid': value.catalog_group_oid,
         'description': value.description,
         'exclude_from_sitemap': value.exclude_from_sitemap,
         'group_template': value.group_template,
