@@ -5098,6 +5098,21 @@ export interface SfvbApiInterface {
     getSfvbServerLog(requestParameters: GetSfvbServerLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbServerLogDetail>;
 
     /**
+     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
+     * @summary Who this token is
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSessionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbWhoamiResponse>>;
+
+    /**
+     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
+     * Who this token is
+     */
+    getSfvbSession(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse>;
+
+    /**
      * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
      * @summary Read a storefront\'s site attributes
      * @param {number} storefrontOid 
@@ -5475,21 +5490,6 @@ export interface SfvbApiInterface {
      * Compiler version for this merchant
      */
     getSfvbVersion(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbVersionResponse>;
-
-    /**
-     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
-     * @summary Who this token is
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SfvbApiInterface
-     */
-    getSfvbWhoamiRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbWhoamiResponse>>;
-
-    /**
-     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
-     * Who this token is
-     */
-    getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse>;
 
     /**
      * Hides one path from the list and stops counting its hits, for example scanner noise.  Reversible. 
@@ -15015,6 +15015,43 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
+     * Who this token is
+     */
+    async getSfvbSessionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbWhoamiResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/session`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbWhoamiResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
+     * Who this token is
+     */
+    async getSfvbSession(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse> {
+        const response = await this.getSfvbSessionRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
      * Read a storefront\'s site attributes
      */
@@ -16027,43 +16064,6 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbVersion(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbVersionResponse> {
         const response = await this.getSfvbVersionRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
-     * Who this token is
-     */
-    async getSfvbWhoamiRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbWhoamiResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/sfvb/whoami`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbWhoamiResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns the merchant, user, granted scopes and reachable storefronts for the calling token.  Declared for any scope so an application can always discover which account it is connected to. 
-     * Who this token is
-     */
-    async getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse> {
-        const response = await this.getSfvbWhoamiRaw(initOverrides);
         return await response.value();
     }
 
