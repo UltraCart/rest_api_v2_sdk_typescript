@@ -20,6 +20,12 @@ import {
     SfvbCliAccessToJSON,
 } from './SfvbCliAccess';
 import {
+    SfvbCliLocation,
+    SfvbCliLocationFromJSON,
+    SfvbCliLocationFromJSONTyped,
+    SfvbCliLocationToJSON,
+} from './SfvbCliLocation';
+import {
     SfvbCliVersion,
     SfvbCliVersionFromJSON,
     SfvbCliVersionFromJSONTyped,
@@ -98,6 +104,12 @@ export interface SfvbWhoamiResponse {
      * @memberof SfvbWhoamiResponse
      */
     cli_access?: SfvbCliAccess;
+    /**
+     * 
+     * @type {SfvbCliLocation}
+     * @memberof SfvbWhoamiResponse
+     */
+    cli_location?: SfvbCliLocation;
     /**
      * 
      * @type {SfvbCliVersion}
@@ -179,6 +191,7 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'can_read_items': !exists(json, 'can_read_items') ? undefined : json['can_read_items'],
         'can_write': !exists(json, 'can_write') ? undefined : json['can_write'],
         'cli_access': !exists(json, 'cli_access') ? undefined : SfvbCliAccessFromJSON(json['cli_access']),
+        'cli_location': !exists(json, 'cli_location') ? undefined : SfvbCliLocationFromJSON(json['cli_location']),
         'cli_version': !exists(json, 'cli_version') ? undefined : SfvbCliVersionFromJSON(json['cli_version']),
         'device_scope': !exists(json, 'device_scope') ? undefined : json['device_scope'],
         'login': !exists(json, 'login') ? undefined : json['login'],
@@ -209,6 +222,7 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
         'can_read_items': value.can_read_items,
         'can_write': value.can_write,
         'cli_access': SfvbCliAccessToJSON(value.cli_access),
+        'cli_location': SfvbCliLocationToJSON(value.cli_location),
         'cli_version': SfvbCliVersionToJSON(value.cli_version),
         'device_scope': value.device_scope,
         'login': value.login,

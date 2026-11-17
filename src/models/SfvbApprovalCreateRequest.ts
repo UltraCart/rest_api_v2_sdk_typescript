@@ -312,7 +312,8 @@ export const SfvbApprovalCreateRequestActionEnum = {
     CommsListImport: 'comms_list.import',
     PostcardTestMail: 'postcard.test_mail',
     FlowBackfill: 'flow.backfill',
-    PageMove: 'page.move'
+    PageMove: 'page.move',
+    CliLocation: 'cli.location'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];
 

@@ -74,6 +74,12 @@ export interface SfvbApprovalParams {
      */
     experiment_oid?: number;
     /**
+     * For cli.location, the IPv4 address the StoreFront CLI sign-in asks to be used from.  Set by the server from the caller's own address, never by the caller.
+     * @type {string}
+     * @memberof SfvbApprovalParams
+     */
+    ip?: string;
+    /**
      * For item.attribute_batch, how many items the batch would change when it was requested.  Set by the server.
      * @type {number}
      * @memberof SfvbApprovalParams
@@ -235,6 +241,7 @@ export function SfvbApprovalParamsFromJSONTyped(json: any, ignoreDiscriminator: 
         'domain': !exists(json, 'domain') ? undefined : json['domain'],
         'esp_twilio_uuid': !exists(json, 'esp_twilio_uuid') ? undefined : json['esp_twilio_uuid'],
         'experiment_oid': !exists(json, 'experiment_oid') ? undefined : json['experiment_oid'],
+        'ip': !exists(json, 'ip') ? undefined : json['ip'],
         'item_count': !exists(json, 'item_count') ? undefined : json['item_count'],
         'merchant_item_oid': !exists(json, 'merchant_item_oid') ? undefined : json['merchant_item_oid'],
         'new_path': !exists(json, 'new_path') ? undefined : json['new_path'],
@@ -276,6 +283,7 @@ export function SfvbApprovalParamsToJSON(value?: SfvbApprovalParams | null): any
         'domain': value.domain,
         'esp_twilio_uuid': value.esp_twilio_uuid,
         'experiment_oid': value.experiment_oid,
+        'ip': value.ip,
         'item_count': value.item_count,
         'merchant_item_oid': value.merchant_item_oid,
         'new_path': value.new_path,

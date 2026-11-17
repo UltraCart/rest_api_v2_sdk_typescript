@@ -1755,6 +1755,10 @@ export interface InsertSfvbItemChildRequest {
     itemChildRequest: SfvbItemChildCreateRequest;
 }
 
+export interface InsertSfvbLocationRequest {
+    approvalId?: string;
+}
+
 export interface InsertSfvbPageRequest {
     storefrontOid: number;
     pageCreateRequest: SfvbPageCreateRequest;
@@ -5741,6 +5745,37 @@ export interface SfvbApiInterface {
      * Create a child item for a parent\'s variations
      */
     insertSfvbItemChild(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemChildCreateResponse>;
+
+    /**
+     * Spends an approved cli.location approval, named in the Approval-Id header, from the address it was asked for.  From then on the sign-in may be used from that address until it ends.  An approval asked for from another address is refused with sfvb.approval_mismatch. 
+     * @summary Add the caller\'s address to this StoreFront CLI sign-in
+     * @param {string} [approvalId] The approval_id of an approved cli.location request asked for from this address.  See POST /sfvb/location/approval.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbLocationRaw(requestParameters: InsertSfvbLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Spends an approved cli.location approval, named in the Approval-Id header, from the address it was asked for.  From then on the sign-in may be used from that address until it ends.  An approval asked for from another address is refused with sfvb.approval_mismatch. 
+     * Add the caller\'s address to this StoreFront CLI sign-in
+     */
+    insertSfvbLocation(requestParameters: InsertSfvbLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * For a StoreFront CLI sign-in refused with sfvb.location_approval_required.  Asks the person who signed in to approve the address this call comes from (a cli.location approval).  Show them approval_url and user_code, poll GET approvals/{approval_id}, and once it is approved call POST location from the same address with the approval_id in the Approval-Id header.  Asking again returns the pending request (200).  The person is also emailed, so a request they didn\'t expect warns them. 
+     * @summary Ask to use this StoreFront CLI sign-in from the caller\'s address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbLocationApprovalRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>>;
+
+    /**
+     * For a StoreFront CLI sign-in refused with sfvb.location_approval_required.  Asks the person who signed in to approve the address this call comes from (a cli.location approval).  Show them approval_url and user_code, poll GET approvals/{approval_id}, and once it is approved call POST location from the same address with the approval_id in the Approval-Id header.  Asking again returns the pending request (200).  The person is also emailed, so a request they didn\'t expect warns them. 
+     * Ask to use this StoreFront CLI sign-in from the caller\'s address
+     */
+    insertSfvbLocationApproval(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval>;
 
     /**
      * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
@@ -16746,6 +16781,83 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbItemChild(requestParameters: InsertSfvbItemChildRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemChildCreateResponse> {
         const response = await this.insertSfvbItemChildRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Spends an approved cli.location approval, named in the Approval-Id header, from the address it was asked for.  From then on the sign-in may be used from that address until it ends.  An approval asked for from another address is refused with sfvb.approval_mismatch. 
+     * Add the caller\'s address to this StoreFront CLI sign-in
+     */
+    async insertSfvbLocationRaw(requestParameters: InsertSfvbLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/location`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Spends an approved cli.location approval, named in the Approval-Id header, from the address it was asked for.  From then on the sign-in may be used from that address until it ends.  An approval asked for from another address is refused with sfvb.approval_mismatch. 
+     * Add the caller\'s address to this StoreFront CLI sign-in
+     */
+    async insertSfvbLocation(requestParameters: InsertSfvbLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.insertSfvbLocationRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * For a StoreFront CLI sign-in refused with sfvb.location_approval_required.  Asks the person who signed in to approve the address this call comes from (a cli.location approval).  Show them approval_url and user_code, poll GET approvals/{approval_id}, and once it is approved call POST location from the same address with the approval_id in the Approval-Id header.  Asking again returns the pending request (200).  The person is also emailed, so a request they didn\'t expect warns them. 
+     * Ask to use this StoreFront CLI sign-in from the caller\'s address
+     */
+    async insertSfvbLocationApprovalRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbApproval>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/location/approval`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbApprovalFromJSON(jsonValue));
+    }
+
+    /**
+     * For a StoreFront CLI sign-in refused with sfvb.location_approval_required.  Asks the person who signed in to approve the address this call comes from (a cli.location approval).  Show them approval_url and user_code, poll GET approvals/{approval_id}, and once it is approved call POST location from the same address with the approval_id in the Approval-Id header.  Asking again returns the pending request (200).  The person is also emailed, so a request they didn\'t expect warns them. 
+     * Ask to use this StoreFront CLI sign-in from the caller\'s address
+     */
+    async insertSfvbLocationApproval(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbApproval> {
+        const response = await this.insertSfvbLocationApprovalRaw(initOverrides);
         return await response.value();
     }
 
