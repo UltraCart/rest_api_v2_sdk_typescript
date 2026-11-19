@@ -1019,7 +1019,12 @@ src/models/SfvbCliAccess.ts
 src/models/SfvbCliLocation.ts
 src/models/SfvbCliVersion.ts
 src/models/SfvbCodeLibraryEmail.ts
+src/models/SfvbCodeLibraryEmailCreateRequest.ts
+src/models/SfvbCodeLibraryEmailDetail.ts
+src/models/SfvbCodeLibraryEmailResponse.ts
 src/models/SfvbCodeLibraryEmailsResponse.ts
+src/models/SfvbCodeLibraryFile.ts
+src/models/SfvbCodeLibraryFileSkipped.ts
 src/models/SfvbCommsBranchStat.ts
 src/models/SfvbCommsChange.ts
 src/models/SfvbCommsClick.ts

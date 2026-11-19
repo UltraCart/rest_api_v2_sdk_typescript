@@ -60,6 +60,12 @@ import {
     SfvbCampaignsResponse,
     SfvbCampaignsResponseFromJSON,
     SfvbCampaignsResponseToJSON,
+    SfvbCodeLibraryEmailCreateRequest,
+    SfvbCodeLibraryEmailCreateRequestFromJSON,
+    SfvbCodeLibraryEmailCreateRequestToJSON,
+    SfvbCodeLibraryEmailResponse,
+    SfvbCodeLibraryEmailResponseFromJSON,
+    SfvbCodeLibraryEmailResponseToJSON,
     SfvbCodeLibraryEmailsResponse,
     SfvbCodeLibraryEmailsResponseFromJSON,
     SfvbCodeLibraryEmailsResponseToJSON,
@@ -1180,6 +1186,11 @@ export interface GetSfvbCjsonUsedElementsRequest {
     compileRequest: SfvbCompileRequest;
 }
 
+export interface GetSfvbCodeLibraryEmailRequest {
+    storefrontOid: number;
+    libraryItemOid: number;
+}
+
 export interface GetSfvbCommsCampaignFolderRequest {
     storefrontOid: number;
     folderUuid: string;
@@ -1710,6 +1721,11 @@ export interface InsertSfvbApprovalRequest {
 export interface InsertSfvbBlogPostRequest {
     storefrontOid: number;
     blogPostRequest: SfvbBlogPostRequest;
+}
+
+export interface InsertSfvbCodeLibraryEmailRequest {
+    storefrontOid: number;
+    codeLibraryEmailCreateRequest: SfvbCodeLibraryEmailCreateRequest;
 }
 
 export interface InsertSfvbCommsCampaignFolderRequest {
@@ -3787,6 +3803,23 @@ export interface SfvbApiInterface {
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
 
     /**
+     * Answers for an item this account owns, one shared with it, or one published for everyone, approved by UltraCart and free, the same items listSfvbCodeLibraryEmails lists; anything else is not found.  Returns the title, description, subject, preview text, the body as stored and the image files the item carries, without their contents (#2126). 
+     * @summary One code library email item, with its body and file list
+     * @param {number} storefrontOid 
+     * @param {number} libraryItemOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbCodeLibraryEmailRaw(requestParameters: GetSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailResponse>>;
+
+    /**
+     * Answers for an item this account owns, one shared with it, or one published for everyone, approved by UltraCart and free, the same items listSfvbCodeLibraryEmails lists; anything else is not found.  Returns the title, description, subject, preview text, the body as stored and the image files the item carries, without their contents (#2126). 
+     * One code library email item, with its body and file list
+     */
+    getSfvbCodeLibraryEmail(requestParameters: GetSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailResponse>;
+
+    /**
      * The folder, with the name and uuid of each campaign filed in it. 
      * @summary Read one campaign folder
      * @param {number} storefrontOid 
@@ -5594,6 +5627,23 @@ export interface SfvbApiInterface {
      * Create a blog post
      */
     insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail>;
+
+    /**
+     * Saves a whole email (body, subject and preview text) as a code library email item that the admin\'s \"start from library\" picker and the step insert\'s library_item_oid can start a new email from (#2126).  No flow, campaign, sequence or step is made, and nothing sends.  The item is private to this account, never published or shared.  The body must pass the library content scanner and the email container rules.  Image files the body names by a path starting with / are carried with the item when they are PNG, JPEG or GIF and their contents are that image, up to 25 files, 5 MB each and 20 MB in all; any other file is listed in files_skipped with the reason.  Make a new uuid for each save.  Sending the same uuid again returns the item it saved, unchanged, with created false, so a retry after an uncertain response is safe.  Titles may repeat. 
+     * @summary Save a reusable email to this account\'s code library
+     * @param {number} storefrontOid 
+     * @param {SfvbCodeLibraryEmailCreateRequest} codeLibraryEmailCreateRequest The email to save, with the uuid that makes a retry safe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbCodeLibraryEmailRaw(requestParameters: InsertSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailResponse>>;
+
+    /**
+     * Saves a whole email (body, subject and preview text) as a code library email item that the admin\'s \"start from library\" picker and the step insert\'s library_item_oid can start a new email from (#2126).  No flow, campaign, sequence or step is made, and nothing sends.  The item is private to this account, never published or shared.  The body must pass the library content scanner and the email container rules.  Image files the body names by a path starting with / are carried with the item when they are PNG, JPEG or GIF and their contents are that image, up to 25 files, 5 MB each and 20 MB in all; any other file is listed in files_skipped with the reason.  Make a new uuid for each save.  Sending the same uuid again returns the item it saved, unchanged, with created false, so a retry after an uncertain response is safe.  Titles may repeat. 
+     * Save a reusable email to this account\'s code library
+     */
+    insertSfvbCodeLibraryEmail(requestParameters: InsertSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailResponse>;
 
     /**
      * A new, empty folder.  File a campaign in it by setting its folder_uuid. 
@@ -11501,6 +11551,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Answers for an item this account owns, one shared with it, or one published for everyone, approved by UltraCart and free, the same items listSfvbCodeLibraryEmails lists; anything else is not found.  Returns the title, description, subject, preview text, the body as stored and the image files the item carries, without their contents (#2126). 
+     * One code library email item, with its body and file list
+     */
+    async getSfvbCodeLibraryEmailRaw(requestParameters: GetSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbCodeLibraryEmail.');
+        }
+
+        if (requestParameters.libraryItemOid === null || requestParameters.libraryItemOid === undefined) {
+            throw new runtime.RequiredError('libraryItemOid','Required parameter requestParameters.libraryItemOid was null or undefined when calling getSfvbCodeLibraryEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/code_library/emails/{library_item_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"library_item_oid"}}`, encodeURIComponent(String(requestParameters.libraryItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCodeLibraryEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Answers for an item this account owns, one shared with it, or one published for everyone, approved by UltraCart and free, the same items listSfvbCodeLibraryEmails lists; anything else is not found.  Returns the title, description, subject, preview text, the body as stored and the image files the item carries, without their contents (#2126). 
+     * One code library email item, with its body and file list
+     */
+    async getSfvbCodeLibraryEmail(requestParameters: GetSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailResponse> {
+        const response = await this.getSfvbCodeLibraryEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * The folder, with the name and uuid of each campaign filed in it. 
      * Read one campaign folder
      */
@@ -16357,6 +16452,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async insertSfvbBlogPost(requestParameters: InsertSfvbBlogPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostDetail> {
         const response = await this.insertSfvbBlogPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Saves a whole email (body, subject and preview text) as a code library email item that the admin\'s \"start from library\" picker and the step insert\'s library_item_oid can start a new email from (#2126).  No flow, campaign, sequence or step is made, and nothing sends.  The item is private to this account, never published or shared.  The body must pass the library content scanner and the email container rules.  Image files the body names by a path starting with / are carried with the item when they are PNG, JPEG or GIF and their contents are that image, up to 25 files, 5 MB each and 20 MB in all; any other file is listed in files_skipped with the reason.  Make a new uuid for each save.  Sending the same uuid again returns the item it saved, unchanged, with created false, so a retry after an uncertain response is safe.  Titles may repeat. 
+     * Save a reusable email to this account\'s code library
+     */
+    async insertSfvbCodeLibraryEmailRaw(requestParameters: InsertSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbCodeLibraryEmailResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbCodeLibraryEmail.');
+        }
+
+        if (requestParameters.codeLibraryEmailCreateRequest === null || requestParameters.codeLibraryEmailCreateRequest === undefined) {
+            throw new runtime.RequiredError('codeLibraryEmailCreateRequest','Required parameter requestParameters.codeLibraryEmailCreateRequest was null or undefined when calling insertSfvbCodeLibraryEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/code_library/emails`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbCodeLibraryEmailCreateRequestToJSON(requestParameters.codeLibraryEmailCreateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbCodeLibraryEmailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Saves a whole email (body, subject and preview text) as a code library email item that the admin\'s \"start from library\" picker and the step insert\'s library_item_oid can start a new email from (#2126).  No flow, campaign, sequence or step is made, and nothing sends.  The item is private to this account, never published or shared.  The body must pass the library content scanner and the email container rules.  Image files the body names by a path starting with / are carried with the item when they are PNG, JPEG or GIF and their contents are that image, up to 25 files, 5 MB each and 20 MB in all; any other file is listed in files_skipped with the reason.  Make a new uuid for each save.  Sending the same uuid again returns the item it saved, unchanged, with created false, so a retry after an uncertain response is safe.  Titles may repeat. 
+     * Save a reusable email to this account\'s code library
+     */
+    async insertSfvbCodeLibraryEmail(requestParameters: InsertSfvbCodeLibraryEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCodeLibraryEmailResponse> {
+        const response = await this.insertSfvbCodeLibraryEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
