@@ -6923,7 +6923,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {
@@ -6967,7 +6967,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {
@@ -7011,7 +7011,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {
@@ -8471,7 +8471,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {
@@ -8519,7 +8519,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {
@@ -8567,7 +8567,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
         }
 
         if (this.configuration && this.configuration.apiKey) {

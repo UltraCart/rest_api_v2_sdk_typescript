@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailSettings {
     /**
+     * Campaign hourly send divisor, default 8
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    campaign_hourly_divisor?: number;
+    /**
      * Emails per day allowed
      * @type {number}
      * @memberof EmailSettings
@@ -162,6 +168,7 @@ export function EmailSettingsFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'campaign_hourly_divisor': !exists(json, 'campaign_hourly_divisor') ? undefined : json['campaign_hourly_divisor'],
         'emails_per_day': !exists(json, 'emails_per_day') ? undefined : json['emails_per_day'],
         'emails_per_hour': !exists(json, 'emails_per_hour') ? undefined : json['emails_per_hour'],
         'emails_per_month': !exists(json, 'emails_per_month') ? undefined : json['emails_per_month'],
@@ -194,6 +201,7 @@ export function EmailSettingsToJSON(value?: EmailSettings | null): any {
     }
     return {
         
+        'campaign_hourly_divisor': value.campaign_hourly_divisor,
         'emails_per_day': value.emails_per_day,
         'emails_per_hour': value.emails_per_hour,
         'emails_per_month': value.emails_per_month,

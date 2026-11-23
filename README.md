@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.257
+## ultracart_rest_api_v2_typescript@4.1.258
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.257 --save
+npm install ultracart_rest_api_v2_typescript@4.1.258 --save
 ```
 
 ```typescript
@@ -84,6 +84,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.258 | 11/23/2026 | communications - expose the campaign hourly divisor on the settings |
 | 4.1.257 | 11/19/2026 | sfvb internal testing |
 | 4.1.256 | 11/17/2026 | sfvb internal testing |
 | 4.1.255 | 11/17/2026 | sfvb internal testing |
