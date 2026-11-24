@@ -48,6 +48,9 @@ import {
     OrderByTokenQuery,
     OrderByTokenQueryFromJSON,
     OrderByTokenQueryToJSON,
+    OrderCancelRequest,
+    OrderCancelRequestFromJSON,
+    OrderCancelRequestToJSON,
     OrderCustomerActivityResponse,
     OrderCustomerActivityResponseFromJSON,
     OrderCustomerActivityResponseToJSON,
@@ -142,6 +145,11 @@ export interface CancelOrderRequest {
     orderId: string;
     lockSelfShipOrders?: boolean;
     skipRefundAndHold?: boolean;
+}
+
+export interface CancelOrderWithOptionsRequest {
+    orderId: string;
+    cancelRequest: OrderCancelRequest;
 }
 
 export interface DeleteOrderRequest {
@@ -330,6 +338,10 @@ export interface ResendShipmentConfirmationRequest {
     orderId: string;
 }
 
+export interface SendUpdateBillingEmailRequest {
+    orderId: string;
+}
+
 export interface UnblockRefundOnOrderRequest {
     orderId: string;
 }
@@ -442,6 +454,23 @@ export interface OrderApiInterface {
      * Cancel an order
      */
     cancelOrder(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
+     * Cancel an order on the UltraCart account, with the options in the request body.  If the success flag is false, then consult the error message for why it failed.  An empty request body behaves the same as cancelOrder. 
+     * @summary Cancel an order with options
+     * @param {string} orderId The order id to cancel.
+     * @param {OrderCancelRequest} cancelRequest Cancel order options
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    cancelOrderWithOptionsRaw(requestParameters: CancelOrderWithOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+     * Cancel an order on the UltraCart account, with the options in the request body.  If the success flag is false, then consult the error message for why it failed.  An empty request body behaves the same as cancelOrder. 
+     * Cancel an order with options
+     */
+    cancelOrderWithOptions(requestParameters: CancelOrderWithOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
      * Delete an order on the UltraCart account. 
@@ -1032,6 +1061,22 @@ export interface OrderApiInterface {
     resendShipmentConfirmation(requestParameters: ResendShipmentConfirmationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
+     * Queues the update billing email to the customer on an order in Accounts Receivable, the same as the Send Billing Update button.  The email is sent within a minute.  The request is refused if the merchant has turned off the update billing notification, if a StoreFront communication flow handles unprocessed payments for the order, or if this method already sent the email for the order in the last 24 hours.  While the order is less than 7 days old, a reminder is sent every 2 days. 
+     * @summary Send update billing email
+     * @param {string} orderId The order id to send the update billing email for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    sendUpdateBillingEmailRaw(requestParameters: SendUpdateBillingEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+     * Queues the update billing email to the customer on an order in Accounts Receivable, the same as the Send Billing Update button.  The email is sent within a minute.  The request is refused if the merchant has turned off the update billing notification, if a StoreFront communication flow handles unprocessed payments for the order, or if this method already sent the email for the order in the last 24 hours.  While the order is less than 7 days old, a reminder is sent every 2 days. 
+     * Send update billing email
+     */
+    sendUpdateBillingEmail(requestParameters: SendUpdateBillingEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
      * Removes a refund block on an order to prevent a user from performing a refund. 
      * @summary Remove a refund block on an order
      * @param {string} orderId The order id to unblock a refund on.
@@ -1343,6 +1388,54 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async cancelOrder(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.cancelOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Cancel an order on the UltraCart account, with the options in the request body.  If the success flag is false, then consult the error message for why it failed.  An empty request body behaves the same as cancelOrder. 
+     * Cancel an order with options
+     */
+    async cancelOrderWithOptionsRaw(requestParameters: CancelOrderWithOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling cancelOrderWithOptions.');
+        }
+
+        if (requestParameters.cancelRequest === null || requestParameters.cancelRequest === undefined) {
+            throw new runtime.RequiredError('cancelRequest','Required parameter requestParameters.cancelRequest was null or undefined when calling cancelOrderWithOptions.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/cancel_with_options`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderCancelRequestToJSON(requestParameters.cancelRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Cancel an order on the UltraCart account, with the options in the request body.  If the success flag is false, then consult the error message for why it failed.  An empty request body behaves the same as cancelOrder. 
+     * Cancel an order with options
+     */
+    async cancelOrderWithOptions(requestParameters: CancelOrderWithOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.cancelOrderWithOptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2970,6 +3063,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async resendShipmentConfirmation(requestParameters: ResendShipmentConfirmationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.resendShipmentConfirmationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Queues the update billing email to the customer on an order in Accounts Receivable, the same as the Send Billing Update button.  The email is sent within a minute.  The request is refused if the merchant has turned off the update billing notification, if a StoreFront communication flow handles unprocessed payments for the order, or if this method already sent the email for the order in the last 24 hours.  While the order is less than 7 days old, a reminder is sent every 2 days. 
+     * Send update billing email
+     */
+    async sendUpdateBillingEmailRaw(requestParameters: SendUpdateBillingEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling sendUpdateBillingEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/send_update_billing_email`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Queues the update billing email to the customer on an order in Accounts Receivable, the same as the Send Billing Update button.  The email is sent within a minute.  The request is refused if the merchant has turned off the update billing notification, if a StoreFront communication flow handles unprocessed payments for the order, or if this method already sent the email for the order in the last 24 hours.  While the order is less than 7 days old, a reminder is sent every 2 days. 
+     * Send update billing email
+     */
+    async sendUpdateBillingEmail(requestParameters: SendUpdateBillingEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.sendUpdateBillingEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

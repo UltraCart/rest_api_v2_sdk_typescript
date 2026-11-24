@@ -31,6 +31,12 @@ export interface OrderProcessPaymentRequest {
      * @memberof OrderProcessPaymentRequest
      */
     card_verification_number_token?: string;
+    /**
+     * Rotating transaction gateway code to process the payment through (optional).  Must be an active rotating transaction gateway on the account.  The charge is attempted on that gateway only, without cascading to other gateways, the same as choosing a gateway on the Accounts Receivable Process Payment screen.
+     * @type {string}
+     * @memberof OrderProcessPaymentRequest
+     */
+    rotating_transaction_gateway_code?: string;
 }
 
 
@@ -56,6 +62,7 @@ export function OrderProcessPaymentRequestFromJSONTyped(json: any, ignoreDiscrim
         
         'amount': !exists(json, 'amount') ? undefined : json['amount'],
         'card_verification_number_token': !exists(json, 'card_verification_number_token') ? undefined : json['card_verification_number_token'],
+        'rotating_transaction_gateway_code': !exists(json, 'rotating_transaction_gateway_code') ? undefined : json['rotating_transaction_gateway_code'],
     };
 }
 
@@ -70,6 +77,7 @@ export function OrderProcessPaymentRequestToJSON(value?: OrderProcessPaymentRequ
         
         'amount': value.amount,
         'card_verification_number_token': value.card_verification_number_token,
+        'rotating_transaction_gateway_code': value.rotating_transaction_gateway_code,
     };
 }
 

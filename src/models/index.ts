@@ -797,6 +797,7 @@ export * from './OrderAutoOrderUpdateBillingUrlResponse';
 export * from './OrderBilling';
 export * from './OrderBuysafe';
 export * from './OrderByTokenQuery';
+export * from './OrderCancelRequest';
 export * from './OrderChannelPartner';
 export * from './OrderCheckout';
 export * from './OrderCoupon';

@@ -825,6 +825,7 @@ src/models/OrderAutoOrderUpdateBillingUrlResponse.ts
 src/models/OrderBilling.ts
 src/models/OrderBuysafe.ts
 src/models/OrderByTokenQuery.ts
+src/models/OrderCancelRequest.ts
 src/models/OrderChannelPartner.ts
 src/models/OrderCheckout.ts
 src/models/OrderCoupon.ts
