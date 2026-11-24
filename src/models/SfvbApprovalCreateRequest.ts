@@ -313,6 +313,7 @@ export const SfvbApprovalCreateRequestActionEnum = {
     PostcardTestMail: 'postcard.test_mail',
     FlowBackfill: 'flow.backfill',
     PageMove: 'page.move',
+    StorefrontCacheFlush: 'storefront_cache.flush',
     CliLocation: 'cli.location'
 } as const;
 export type SfvbApprovalCreateRequestActionEnum = typeof SfvbApprovalCreateRequestActionEnum[keyof typeof SfvbApprovalCreateRequestActionEnum];

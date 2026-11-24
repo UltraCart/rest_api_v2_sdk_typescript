@@ -1159,6 +1159,10 @@ export interface FixSfvbNotFoundEntryRequest {
     notFoundId: string;
 }
 
+export interface FlushSfvbStoreFrontCacheRequest {
+    approvalId?: string;
+}
+
 export interface GetSfvbAffiliateNetworkRequest {
     storefrontOid: number;
     affiliateNetworkOid: number;
@@ -3688,6 +3692,22 @@ export interface SfvbApiInterface {
      * Mark a 404 path fixed
      */
     fixSfvbNotFoundEntry(requestParameters: FixSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry>;
+
+    /**
+     * Marks every cached page on every storefront of the account out of date, so each re-renders on its next visit.  Templates, settings and files are not changed.  Allowed once per account every 15 minutes; an earlier call answers 429.  Needs an approved storefront_cache.flush request (POST approvals with no storefront_oid and empty params), and every request needs a fresh code. 
+     * @summary Flush the StoreFront page cache
+     * @param {string} [approvalId] The approval_id of an approved storefront_cache.flush request for this account.  See POST /sfvb/approvals.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    flushSfvbStoreFrontCacheRaw(requestParameters: FlushSfvbStoreFrontCacheRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Marks every cached page on every storefront of the account out of date, so each re-renders on its next visit.  Templates, settings and files are not changed.  Allowed once per account every 15 minutes; an earlier call answers 429.  Needs an approved storefront_cache.flush request (POST approvals with no storefront_oid and empty params), and every request needs a fresh code. 
+     * Flush the StoreFront page cache
+     */
+    flushSfvbStoreFrontCache(requestParameters: FlushSfvbStoreFrontCacheRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * The network with its conversion_pixel, and the hash_sha256 an update or delete sends back as If-Match. 
@@ -11252,6 +11272,46 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     async fixSfvbNotFoundEntry(requestParameters: FixSfvbNotFoundEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbNotFoundEntry> {
         const response = await this.fixSfvbNotFoundEntryRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Marks every cached page on every storefront of the account out of date, so each re-renders on its next visit.  Templates, settings and files are not changed.  Allowed once per account every 15 minutes; an earlier call answers 429.  Needs an approved storefront_cache.flush request (POST approvals with no storefront_oid and empty params), and every request needs a fresh code. 
+     * Flush the StoreFront page cache
+     */
+    async flushSfvbStoreFrontCacheRaw(requestParameters: FlushSfvbStoreFrontCacheRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.approvalId !== undefined && requestParameters.approvalId !== null) {
+            headerParameters['Approval-Id'] = String(requestParameters.approvalId);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/cache/flush`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Marks every cached page on every storefront of the account out of date, so each re-renders on its next visit.  Templates, settings and files are not changed.  Allowed once per account every 15 minutes; an earlier call answers 429.  Needs an approved storefront_cache.flush request (POST approvals with no storefront_oid and empty params), and every request needs a fresh code. 
+     * Flush the StoreFront page cache
+     */
+    async flushSfvbStoreFrontCache(requestParameters: FlushSfvbStoreFrontCacheRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.flushSfvbStoreFrontCacheRaw(requestParameters, initOverrides);
     }
 
     /**
